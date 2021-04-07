@@ -5,18 +5,32 @@ import { RowBetween } from '../Row'
 import { TYPE } from '../../theme'
 
 const StyledSwapHeader = styled.div`
-  padding: 12px 1rem 0px 1.5rem;
-  margin-bottom: -4px;
+  padding: 20px 24px 0;
   width: 100%;
-  max-width: 420px;
-  color: ${({ theme }) => theme.text2};
+  max-width: 100%;
+  font-size: 16px;
+  line-height: 24px;
+  color: ${({ theme }) => theme.text1};
+
+  small {
+    margin-top: 4px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: #606080;
+    display: block;
+  }
 `
 
 export default function SwapHeader() {
   return (
     <StyledSwapHeader>
       <RowBetween>
-        <TYPE.black fontWeight={500}>Swap</TYPE.black>
+        <TYPE.black fontWeight={500}>
+          兑换
+          <small>Trade tokens in an instant</small>
+        </TYPE.black>
         <Settings />
       </RowBetween>
     </StyledSwapHeader>

@@ -128,7 +128,7 @@ export default function ManageTokens({
             </TYPE.main>
             {userAddedTokens.length > 0 && (
               <ButtonText onClick={handleRemoveAll}>
-                <TYPE.blue>Clear all</TYPE.blue>
+                <TYPE.blue>全部清除</TYPE.blue>
               </ButtonText>
             )}
           </RowBetween>

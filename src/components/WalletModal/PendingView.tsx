@@ -25,7 +25,7 @@ const LoadingMessage = styled.div<{ error?: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap};
   align-items: center;
   justify-content: flex-start;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-bottom: 20px;
   color: ${({ theme, error }) => (error ? theme.red1 : 'inherit')};
   border: 1px solid ${({ theme, error }) => (error ? theme.red1 : theme.text4)};
@@ -82,14 +82,14 @@ export default function PendingView({
         <LoadingWrapper>
           {error ? (
             <ErrorGroup>
-              <div>Error connecting.</div>
+              <div>连接错误.</div>
               <ErrorButton
                 onClick={() => {
                   setPendingError(false)
                   connector && tryActivation(connector)
                 }}
               >
-                Try Again
+                再试一次
               </ErrorButton>
             </ErrorGroup>
           ) : (
@@ -119,7 +119,7 @@ export default function PendingView({
               color={option.color}
               header={option.name}
               subheader={option.description}
-              icon={require('../../assets/images/' + option.iconName)}
+              icon={require('../../assets/svg/wallet/' + option.iconName)}
             />
           )
         }

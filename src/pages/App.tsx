@@ -3,7 +3,7 @@ import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import AddressClaimModal from '../components/claim/AddressClaimModal'
-import Header from '../components/Header'
+// import Header from '../components/Header'
 import Polling from '../components/Header/Polling'
 import URLWarning from '../components/Header/URLWarning'
 import Popups from '../components/Popups'
@@ -22,6 +22,7 @@ import Manage from './Earn/Manage'
 import MigrateV1 from './MigrateV1'
 import MigrateV1Exchange from './MigrateV1/MigrateV1Exchange'
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
+import HomeIndex from './Home'
 import Pool from './Pool'
 import PoolFinder from './PoolFinder'
 import RemoveLiquidity from './RemoveLiquidity'
@@ -31,24 +32,29 @@ import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, Redirec
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
 
-const AppWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: flex-start;
-  overflow-x: hidden;
-`
+// Layer
+import LayerBase from '../components/Layer/Base'
 
-const HeaderWrapper = styled.div`
-  ${({ theme }) => theme.flexRowNoWrap}
-  width: 100%;
-  justify-content: space-between;
-`
+// Page
+import AboutIndex from './About'
+
+// const AppWrapper = styled.div`
+//   display: flex;
+//   flex-flow: column;
+//   align-items: flex-start;
+//   overflow-x: hidden;
+// `
+
+// const HeaderWrapper = styled.div`
+//   ${({ theme }) => theme.flexRowNoWrap}
+//   width: 100%;
+//   justify-content: space-between;
+// `
 
 const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-top: 100px;
   align-items: center;
   flex: 1;
   overflow-y: auto;
@@ -78,17 +84,23 @@ export default function App() {
     <Suspense fallback={null}>
       <Route component={GoogleAnalyticsReporter} />
       <Route component={DarkModeQueryParamReader} />
-      <AppWrapper>
+      <Popups />
+      <Polling />
+      <TopLevelModals />
+      <LayerBase>
         <URLWarning />
-        <HeaderWrapper>
+
+        {/* <HeaderWrapper>
           <Header />
-        </HeaderWrapper>
+        </HeaderWrapper> */}
+
         <BodyWrapper>
-          <Popups />
-          <Polling />
-          <TopLevelModals />
           <Web3ReactManager>
             <Switch>
+              <Route path="/home" component={HomeIndex} />
+
+              <Route strict path="/about" component={AboutIndex} />
+
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
@@ -116,7 +128,7 @@ export default function App() {
           </Web3ReactManager>
           <Marginer />
         </BodyWrapper>
-      </AppWrapper>
+      </LayerBase>
     </Suspense>
   )
 }

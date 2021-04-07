@@ -17,6 +17,26 @@ const Tabs = styled.div`
   align-items: center;
   border-radius: 3rem;
   justify-content: space-evenly;
+  background: #E3E7FF;
+  border-radius: 20px;
+  box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+
+  a {
+    padding: 8px 44px;
+    font-size: 16px;
+    border-radius: 20px;
+    height: 40px;
+    color: #6368F2;
+    font-weight: 600;
+
+    &.ACTIVE {
+      background: rgb(57, 57, 230);
+      border-radius: 20px;
+      color: #fff;
+      box-shadow: rgb(57 57 229 / 25%) 0px 2px 4px;
+    }
+  }
 `
 
 const activeClassName = 'ACTIVE'
@@ -59,7 +79,7 @@ const StyledArrowLeft = styled(ArrowLeft)`
 export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
   const { t } = useTranslation()
   return (
-    <Tabs style={{ marginBottom: '20px', display: 'none' }}>
+    <Tabs style={{ marginBottom: '24px' }}>
       <StyledNavLink id={`swap-nav-link`} to={'/swap'} isActive={() => active === 'swap'}>
         {t('swap')}
       </StyledNavLink>
@@ -99,7 +119,7 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
         >
           <StyledArrowLeft />
         </HistoryLink>
-        <ActiveText>{creating ? 'Create a pair' : adding ? 'Add Liquidity' : 'Remove Liquidity'}</ActiveText>
+        <ActiveText>{creating ? '创建交易对' : adding ? '添加流动性' : '移除流动性'}</ActiveText>
         <Settings />
       </RowBetween>
     </Tabs>

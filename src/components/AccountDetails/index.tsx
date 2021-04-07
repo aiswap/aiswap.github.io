@@ -10,7 +10,6 @@ import Copy from './Copy'
 import Transaction from './Transaction'
 
 import { SUPPORTED_WALLETS } from '../../constants'
-import { ReactComponent as Close } from '../../assets/images/x.svg'
 import { getEtherscanLink } from '../../utils'
 import { injected, walletconnect, walletlink, fortmatic, portis } from '../../connectors'
 import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
@@ -22,11 +21,15 @@ import { ButtonSecondary } from '../Button'
 import { ExternalLink as LinkIcon } from 'react-feather'
 import { ExternalLink, LinkStyledButton, TYPE } from '../../theme'
 
+import CloseSVG from '../../assets/svg/base/close.svg'
+
 const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};
-  padding: 1rem 1rem;
+  padding: 20px 24px;
   font-weight: 500;
-  color: ${props => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
+  line-height: 16px;
+  color: #151526;
+  font-size: 16px;
   ${({ theme }) => theme.mediaWidth.upToMedium`
     padding: 1rem;
   `};
@@ -53,12 +56,12 @@ const UpperSection = styled.div`
 `
 
 const InfoCard = styled.div`
-  padding: 1rem;
-  border: 1px solid ${({ theme }) => theme.bg3};
-  border-radius: 20px;
+  padding: 20px 24px;
+  border: 1px solid rgba(21, 21, 38, 0.06);
+  border-radius: 8px;
   position: relative;
   display: grid;
-  grid-row-gap: 12px;
+  grid-row-gap: 18px;
   margin-bottom: 20px;
 `
 
@@ -77,7 +80,7 @@ const AccountGroupingRow = styled.div`
 
 const AccountSection = styled.div`
   background-color: ${({ theme }) => theme.bg1};
-  padding: 0rem 1rem;
+  padding: 0 24px;
   ${({ theme }) => theme.mediaWidth.upToMedium`padding: 0rem 1rem 1.5rem 1rem;`};
 `
 
@@ -132,11 +135,13 @@ const AccountControl = styled.div`
 `
 
 const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
-  font-size: 0.825rem;
-  color: ${({ theme }) => theme.text3};
-  margin-left: 1rem;
-  font-size: 0.825rem;
+  color: #606080;
   display: flex;
+  font-size: 14px;
+  line-height: 24px;
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
   :hover {
     color: ${({ theme }) => theme.text2};
   }
@@ -144,17 +149,11 @@ const AddressLink = styled(ExternalLink)<{ hasENS: boolean; isENS: boolean }>`
 
 const CloseIcon = styled.div`
   position: absolute;
-  right: 1rem;
-  top: 14px;
+  right: 26px;
+  top: 19px;
   &:hover {
     cursor: pointer;
     opacity: 0.6;
-  }
-`
-
-const CloseColor = styled(Close)`
-  path {
-    stroke: ${({ theme }) => theme.text4};
   }
 `
 
@@ -188,8 +187,9 @@ const WalletAction = styled(ButtonSecondary)`
   width: fit-content;
   font-weight: 400;
   margin-left: 8px;
-  font-size: 0.825rem;
-  padding: 4px 6px;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 4px;
   :hover {
     cursor: pointer;
     text-decoration: underline;
@@ -238,7 +238,7 @@ export default function AccountDetails({
           SUPPORTED_WALLETS[k].connector === connector && (connector !== injected || isMetaMask === (k === 'METAMASK'))
       )
       .map(k => SUPPORTED_WALLETS[k].name)[0]
-    return <WalletName>Connected with {name}</WalletName>
+    return <WalletName>通过 {name} 连接</WalletName>
   }
 
   function getStatusIcon() {
@@ -293,9 +293,9 @@ export default function AccountDetails({
     <>
       <UpperSection>
         <CloseIcon onClick={toggleWalletModal}>
-          <CloseColor />
+          <img src={CloseSVG} alt="close" />
         </CloseIcon>
-        <HeaderRow>Account</HeaderRow>
+        <HeaderRow>账户</HeaderRow>
         <AccountSection>
           <YourAccount>
             <InfoCard>
@@ -309,7 +309,7 @@ export default function AccountDetails({
                         ;(connector as any).close()
                       }}
                     >
-                      Disconnect
+                      断开钱包
                     </WalletAction>
                   )}
                   <WalletAction
@@ -318,7 +318,7 @@ export default function AccountDetails({
                       openOptions()
                     }}
                   >
-                    Change
+                    切换钱包
                   </WalletAction>
                 </div>
               </AccountGroupingRow>
@@ -348,7 +348,7 @@ export default function AccountDetails({
                       <div>
                         {account && (
                           <Copy toCopy={account}>
-                            <span style={{ marginLeft: '4px' }}>Copy Address</span>
+                            <span style={{ marginLeft: '4px' }}>复制地址</span>
                           </Copy>
                         )}
                         {chainId && account && (
@@ -358,7 +358,7 @@ export default function AccountDetails({
                             href={chainId && getEtherscanLink(chainId, ENSName, 'address')}
                           >
                             <LinkIcon size={16} />
-                            <span style={{ marginLeft: '4px' }}>View on Etherscan</span>
+                            <span style={{ marginLeft: '4px' }}>在区块浏览器中查看</span>
                           </AddressLink>
                         )}
                       </div>
@@ -370,7 +370,7 @@ export default function AccountDetails({
                       <div>
                         {account && (
                           <Copy toCopy={account}>
-                            <span style={{ marginLeft: '4px' }}>Copy Address</span>
+                            <span style={{ marginLeft: '4px' }}>复制地址</span>
                           </Copy>
                         )}
                         {chainId && account && (
@@ -395,15 +395,15 @@ export default function AccountDetails({
       {!!pendingTransactions.length || !!confirmedTransactions.length ? (
         <LowerSection>
           <AutoRow mb={'1rem'} style={{ justifyContent: 'space-between' }}>
-            <TYPE.body>Recent Transactions</TYPE.body>
-            <LinkStyledButton onClick={clearAllTransactionsCallback}>(clear all)</LinkStyledButton>
+            <TYPE.body>最近交易</TYPE.body>
+            <LinkStyledButton onClick={clearAllTransactionsCallback}>(清空记录)</LinkStyledButton>
           </AutoRow>
           {renderTransactions(pendingTransactions)}
           {renderTransactions(confirmedTransactions)}
         </LowerSection>
       ) : (
         <LowerSection>
-          <TYPE.body color={theme.text1}>Your transactions will appear here...</TYPE.body>
+          <TYPE.body color={theme.text1}>您的交易记录将出现在这里...</TYPE.body>
         </LowerSection>
       )}
     </>

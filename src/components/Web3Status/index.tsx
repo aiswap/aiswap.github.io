@@ -39,8 +39,8 @@ const Web3StatusGeneric = styled(ButtonSecondary)`
   ${({ theme }) => theme.flexRowNoWrap}
   width: 100%;
   align-items: center;
-  padding: 0.5rem;
-  border-radius: 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
   cursor: pointer;
   user-select: none;
   :focus {
@@ -59,44 +59,39 @@ const Web3StatusError = styled(Web3StatusGeneric)`
 `
 
 const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
-  background-color: ${({ theme }) => theme.primary4};
-  border: none;
-  color: ${({ theme }) => theme.primaryText1};
+  background: #FFFFFF;
+  color: #00BFA0;
   font-weight: 500;
 
   :hover,
   :focus {
-    border: 1px solid ${({ theme }) => darken(0.05, theme.primary4)};
-    color: ${({ theme }) => theme.primaryText1};
+    color: #00BFA0;
+    border: 1px  #00BFA0;
   }
 
   ${({ faded }) =>
     faded &&
     css`
-      background-color: ${({ theme }) => theme.primary5};
-      border: 1px solid ${({ theme }) => theme.primary5};
-      color: ${({ theme }) => theme.primaryText1};
-
+      font-size: 16px;
+      font-weight: normal;
       :hover,
       :focus {
-        border: 1px solid ${({ theme }) => darken(0.05, theme.primary4)};
-        color: ${({ theme }) => darken(0.05, theme.primaryText1)};
+        
+
+        color: ${({ theme }) => darken(0.05, '#00BFA0')};
       }
     `}
 `
 
 const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
-  background-color: ${({ pending, theme }) => (pending ? theme.primary1 : theme.bg2)};
-  border: 1px solid ${({ pending, theme }) => (pending ? theme.primary1 : theme.bg3)};
-  color: ${({ pending, theme }) => (pending ? theme.white : theme.text1)};
+  background: #FFFFFF;
+  border-radius: 8px;
+  color: ${({ pending, theme }) => (pending ? theme.white : '#00BFA0')};
   font-weight: 500;
   :hover,
   :focus {
     background-color: ${({ pending, theme }) => (pending ? darken(0.05, theme.primary1) : lighten(0.05, theme.bg2))};
-
-    :focus {
-      border: 1px solid ${({ pending, theme }) => (pending ? darken(0.1, theme.primary1) : darken(0.1, theme.bg3))};
-    }
+    border: 1px solid #00BFA0;
   }
 `
 
@@ -108,7 +103,6 @@ const Text = styled.p`
   margin: 0 0.5rem 0 0.25rem;
   font-size: 1rem;
   width: fit-content;
-  font-weight: 500;
 `
 
 const NetworkIcon = styled(Activity)`
@@ -206,7 +200,7 @@ function Web3StatusInner() {
   } else {
     return (
       <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-        <Text>{t('Connect to a wallet')}</Text>
+        <Text>{t('连接钱包')}</Text>
       </Web3StatusConnect>
     )
   }

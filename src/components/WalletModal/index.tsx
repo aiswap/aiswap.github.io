@@ -6,7 +6,6 @@ import { isMobile } from 'react-device-detect'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import MetamaskIcon from '../../assets/images/metamask.png'
-import { ReactComponent as Close } from '../../assets/images/x.svg'
 import { fortmatic, injected, portis } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { SUPPORTED_WALLETS } from '../../constants'
@@ -15,24 +14,22 @@ import { ApplicationModal } from '../../state/application/actions'
 import { useModalOpen, useWalletModalToggle } from '../../state/application/hooks'
 import { ExternalLink } from '../../theme'
 import AccountDetails from '../AccountDetails'
+import { useTranslation } from 'react-i18next'
 
 import Modal from '../Modal'
 import Option from './Option'
 import PendingView from './PendingView'
 
+import ChevronLeft from '../../assets/svg/base/chevron_left.svg'
+import CloseSVG from '../../assets/svg/base/close.svg'
+
 const CloseIcon = styled.div`
   position: absolute;
-  right: 1rem;
-  top: 14px;
+  right: 26px;
+  top: 19px;
   &:hover {
     cursor: pointer;
     opacity: 0.6;
-  }
-`
-
-const CloseColor = styled(Close)`
-  path {
-    stroke: ${({ theme }) => theme.text4};
   }
 `
 
@@ -45,7 +42,7 @@ const Wrapper = styled.div`
 
 const HeaderRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap};
-  padding: 1rem 1rem;
+  padding: 20px 24px;
   font-weight: 500;
   color: ${props => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
   ${({ theme }) => theme.mediaWidth.upToMedium`
@@ -54,10 +51,10 @@ const HeaderRow = styled.div`
 `
 
 const ContentWrapper = styled.div`
-  background-color: ${({ theme }) => theme.bg2};
-  padding: 2rem;
-  border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  background-color: ${({ theme }) => '#FFF'};
+  padding: 0 24px 24px;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
 
   ${({ theme }) => theme.mediaWidth.upToMedium`padding: 1rem`};
 `
@@ -84,10 +81,10 @@ const UpperSection = styled.div`
 
 const Blurb = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
+  color: #606080;
   align-items: center;
-  justify-content: center;
   flex-wrap: wrap;
-  margin-top: 2rem;
+  margin-top: 20px;
   ${({ theme }) => theme.mediaWidth.upToMedium`
     margin: 1rem;
     font-size: 12px;
@@ -96,14 +93,17 @@ const Blurb = styled.div`
 
 const OptionGrid = styled.div`
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 20px;
   ${({ theme }) => theme.mediaWidth.upToMedium`
     grid-template-columns: 1fr;
-    grid-gap: 10px;
+    grid-gap: 20px;
   `};
 `
 
 const HoverText = styled.div`
+  align-items: center;
+  display: flex;
+  font-weight: normal;
   :hover {
     cursor: pointer;
   }
@@ -125,6 +125,8 @@ export default function WalletModal({
   confirmedTransactions: string[] // hashes of confirmed
   ENSName?: string
 }) {
+  const { t } = useTranslation()
+
   // important that these are destructed from the account-specific web3-react context
   const { active, account, connector, activate, error } = useWeb3React()
 
@@ -227,7 +229,7 @@ export default function WalletModal({
               link={option.href}
               header={option.name}
               subheader={null}
-              icon={require('../../assets/images/' + option.iconName)}
+              icon={require('../../assets/svg/wallet/' + option.iconName)}
             />
           )
         }
@@ -281,7 +283,7 @@ export default function WalletModal({
             link={option.href}
             header={option.name}
             subheader={null} //use option.descriptio to bring back multi-line
-            icon={require('../../assets/images/' + option.iconName)}
+            icon={require('../../assets/svg/wallet/' + option.iconName)}
           />
         )
       )
@@ -293,7 +295,7 @@ export default function WalletModal({
       return (
         <UpperSection>
           <CloseIcon onClick={toggleWalletModal}>
-            <CloseColor />
+            <img src={CloseSVG} alt="close" />
           </CloseIcon>
           <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
@@ -320,7 +322,7 @@ export default function WalletModal({
     return (
       <UpperSection>
         <CloseIcon onClick={toggleWalletModal}>
-          <CloseColor />
+          <img src={CloseSVG} alt="close" />
         </CloseIcon>
         {walletView !== WALLET_VIEWS.ACCOUNT ? (
           <HeaderRow color="blue">
@@ -330,12 +332,13 @@ export default function WalletModal({
                 setWalletView(WALLET_VIEWS.ACCOUNT)
               }}
             >
-              Back
+              <img src={ChevronLeft} alt="back"/>
+              返回
             </HoverText>
           </HeaderRow>
         ) : (
           <HeaderRow>
-            <HoverText>Connect to a wallet</HoverText>
+            <HoverText>{t('连接钱包')}</HoverText>
           </HeaderRow>
         )}
         <ContentWrapper>
@@ -351,8 +354,8 @@ export default function WalletModal({
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
-              <span>New to Ethereum? &nbsp;</span>{' '}
-              <ExternalLink href="https://ethereum.org/wallets/">Learn more about wallets</ExternalLink>
+              <span>以太坊新用户？</span>{' '}
+              <ExternalLink href="https://ethereum.org/wallets/">了解有关钱包的更多信息</ExternalLink>
             </Blurb>
           )}
         </ContentWrapper>

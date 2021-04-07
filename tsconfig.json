@@ -9,7 +9,11 @@
     "esModuleInterop": true,
     "module": "esnext",
     "strict": true,
-    "alwaysStrict": true,
+    // strict type checking options
+    "alwaysStrict": false,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false,
+
     "strictNullChecks": true,
     "noUnusedLocals": true,
     "noFallthroughCasesInSwitch": true,
@@ -26,5 +30,5 @@
     "baseUrl": "src"
   },
   "exclude": ["node_modules", "cypress"],
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/components/Confetti/index.js"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "src/components/Confetti/index.js", "src/components/Layer/base.ts", "src/components/Layer/base.ts", "src/components/Layer/ChangeLanguage.jsx", "src/components/Icon/Base.jsx"]
 }

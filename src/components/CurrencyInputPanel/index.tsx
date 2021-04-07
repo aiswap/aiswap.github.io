@@ -18,18 +18,18 @@ import useTheme from '../../hooks/useTheme'
 const InputRow = styled.div<{ selected: boolean }>`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
-  padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+  padding: ${({ selected }) => (selected ? '20px 24px' : '20px 24px')};
 `
 
 const CurrencySelect = styled.button<{ selected: boolean }>`
   align-items: center;
-  height: 2.2rem;
-  font-size: 20px;
-  font-weight: 500;
-  background-color: ${({ selected, theme }) => (selected ? theme.bg1 : theme.primary1)};
+  height: 32px;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: normal;
+  background-color: ${({ selected, theme }) => (selected ? 'transparent' : theme.primary1)};
   color: ${({ selected, theme }) => (selected ? theme.text1 : theme.white)};
-  border-radius: 12px;
-  box-shadow: ${({ selected }) => (selected ? 'none' : '0px 6px 10px rgba(0, 0, 0, 0.075)')};
+  border-radius: 4px;
   outline: none;
   cursor: pointer;
   user-select: none;
@@ -38,20 +38,20 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
 
   :focus,
   :hover {
-    background-color: ${({ selected, theme }) => (selected ? theme.bg2 : darken(0.05, theme.primary1))};
+    background-color: ${({ selected, theme }) => (selected ? '#fff' : darken(0.05, theme.primary1))};
   }
 `
 
 const LabelRow = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   align-items: center;
-  color: ${({ theme }) => theme.text1};
-  font-size: 0.75rem;
-  line-height: 1rem;
-  padding: 0.75rem 1rem 0 1rem;
+  color: #151526;
+  padding: 16px 24px 0;
+  font-weight: 600;
+  line-height: 24px;
   span:hover {
     cursor: pointer;
-    color: ${({ theme }) => darken(0.2, theme.text2)};
+    color: ${({ theme }) => darken(0.2, '#151526')};
   }
 `
 
@@ -74,15 +74,16 @@ const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
 const InputPanel = styled.div<{ hideInput?: boolean }>`
   ${({ theme }) => theme.flexColumnNoWrap}
   position: relative;
-  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  background-color: ${({ theme }) => theme.bg2};
+  border-radius: 8px;
   z-index: 1;
 `
 
 const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: ${({ hideInput }) => (hideInput ? '8px' : '20px')};
-  border: 1px solid ${({ theme }) => theme.bg2};
-  background-color: ${({ theme }) => theme.bg1};
+  border: 1px solid rgba(21, 21, 38, 0.06);
+  color: #151526;
+  box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #E3E7FF;
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -167,13 +168,13 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <TYPE.body color={theme.text2} fontWeight={500} fontSize={14}>
+              <TYPE.body color={theme.text1} fontWeight={500} fontSize={14}>
                 {label}
               </TYPE.body>
               {account && (
                 <TYPE.body
                   onClick={onMax}
-                  color={theme.text2}
+                  color={theme.text1}
                   fontWeight={500}
                   fontSize={14}
                   style={{ display: 'inline', cursor: 'pointer' }}

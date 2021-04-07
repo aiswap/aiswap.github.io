@@ -1,4 +1,10 @@
 {
+  "global": {
+    "balance": "余额"
+  },
+  "wallet": {
+    "submitConnect": "连接钱包"
+  },
   "noWallet": "未发现以太钱包",
   "wrongNetwork": "网络错误",
   "switchNetwork": "请切换到 {{ correctNetwork }}",
@@ -15,8 +21,8 @@
   "balance": "余额: {{ balanceInput }}",
   "unlock": "解锁",
   "pending": "处理中",
-  "selectToken": "选择通证",
-  "searchOrPaste": "搜索通证或粘贴地址",
+  "selectToken": "选择代币",
+  "searchOrPaste": "搜索代币或粘贴地址",
   "noExchange": "未找到交易所",
   "exchangeRate": "兑换率",
   "enterValueCont": "输入{{ missingCurrencyValue }}值并继续。",

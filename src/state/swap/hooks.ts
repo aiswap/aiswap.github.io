@@ -3,6 +3,7 @@ import { Version } from '../../hooks/useToggledVersion'
 import { parseUnits } from '@ethersproject/units'
 import { Currency, CurrencyAmount, ETHER, JSBI, Token, TokenAmount, Trade } from '@uniswap/sdk'
 import { ParsedQs } from 'qs'
+// import { useTranslation } from 'react-i18next'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useV1Trade } from '../../data/V1'
@@ -115,6 +116,7 @@ export function useDerivedSwapInfo(): {
   inputError?: string
   v1Trade: Trade | undefined
 } {
+  // const { t } = useTranslation()
   const { account } = useActiveWeb3React()
 
   const toggledVersion = useToggledVersion()
@@ -164,23 +166,23 @@ export function useDerivedSwapInfo(): {
   }
 
   if (!parsedAmount) {
-    inputError = inputError ?? 'Enter an amount'
+    inputError = inputError ?? '输入数量'
   }
 
   if (!currencies[Field.INPUT] || !currencies[Field.OUTPUT]) {
-    inputError = inputError ?? 'Select a token'
+    inputError = inputError ?? '选个代币'
   }
 
   const formattedTo = isAddress(to)
   if (!to || !formattedTo) {
-    inputError = inputError ?? 'Enter a recipient'
+    inputError = inputError ?? '输入接收者'
   } else {
     if (
       BAD_RECIPIENT_ADDRESSES.indexOf(formattedTo) !== -1 ||
       (bestTradeExactIn && involvesAddress(bestTradeExactIn, formattedTo)) ||
       (bestTradeExactOut && involvesAddress(bestTradeExactOut, formattedTo))
     ) {
-      inputError = inputError ?? 'Invalid recipient'
+      inputError = inputError ?? '无效的接收者'
     }
   }
 

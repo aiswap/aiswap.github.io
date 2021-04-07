@@ -62,7 +62,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
     error = 'Connect Wallet'
   }
   if (!stakingInfo?.stakedAmount) {
-    error = error ?? 'Enter an amount'
+    error = error ?? '输入数量'
   }
 
   return (

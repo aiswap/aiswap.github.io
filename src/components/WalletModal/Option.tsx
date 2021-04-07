@@ -3,16 +3,18 @@ import styled from 'styled-components'
 import { ExternalLink } from '../../theme'
 
 const InfoCard = styled.button<{ active?: boolean }>`
-  background-color: ${({ theme, active }) => (active ? theme.bg3 : theme.bg2)};
-  padding: 1rem;
+  background-color: ${({ theme, active }) => (active ? '#F0F0FF' : '#FFF')};
+  padding: 16px 24px;
   outline: none;
-  border: 1px solid;
-  border-radius: 12px;
+  border-radius: 8px;
   width: 100% !important;
   &:focus {
     box-shadow: 0 0 0 1px ${({ theme }) => theme.primary1};
   }
-  border-color: ${({ theme, active }) => (active ? 'transparent' : theme.bg3)};
+  &:hover {
+    background-color: #F0F0FF;
+  }
+  border: 1px solid rgba(21, 21, 38, 0.06);
 `
 
 const OptionCard = styled(InfoCard as any)`
@@ -20,8 +22,8 @@ const OptionCard = styled(InfoCard as any)`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  margin-top: 2rem;
-  padding: 1rem;
+  margin-top: 20px;
+  padding: 16px 24px;
 `
 
 const OptionCardLeft = styled.div`
@@ -34,7 +36,6 @@ const OptionCardClickable = styled(OptionCard as any)<{ clickable?: boolean }>`
   margin-top: 0;
   &:hover {
     cursor: ${({ clickable }) => (clickable ? 'pointer' : '')};
-    border: ${({ clickable, theme }) => (clickable ? `1px solid ${theme.primary1}` : ``)};
   }
   opacity: ${({ disabled }) => (disabled ? '0.5' : '1')};
 `
@@ -43,14 +44,6 @@ const GreenCircle = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
   justify-content: center;
   align-items: center;
-
-  &:first-child {
-    height: 8px;
-    width: 8px;
-    margin-right: 8px;
-    background-color: ${({ theme }) => theme.green1};
-    border-radius: 50%;
-  }
 `
 
 const CircleWrapper = styled.div`
