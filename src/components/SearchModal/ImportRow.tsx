@@ -1,17 +1,18 @@
 import React, { CSSProperties } from 'react'
 import { Token } from '@uniswap/sdk'
-import { AutoRow, RowFixed } from 'components/Row'
-import { AutoColumn } from 'components/Column'
-import CurrencyLogo from 'components/CurrencyLogo'
-import { TYPE } from 'theme'
-import ListLogo from 'components/ListLogo'
-import { useActiveWeb3React } from 'hooks'
-import { useCombinedInactiveList } from 'state/lists/hooks'
-import useTheme from 'hooks/useTheme'
-import { ButtonPrimary } from 'components/Button'
+import CurrencyLogo from '../CurrencyLogo'
+import { useActiveWeb3React } from '../../hooks'
+import { useCombinedInactiveList } from '../../state/lists/hooks'
 import styled from 'styled-components'
-import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens'
+import { useIsUserAddedToken, useIsTokenActive } from '../../hooks/Tokens'
 import { CheckCircle } from 'react-feather'
+import { TYPE } from '../../theme'
+import { AutoColumn } from '../Column'
+import {  RowFixed, AutoRow } from '../Row'
+import useTheme from '../../hooks/useTheme'
+import { ButtonPrimary } from '../Button'
+import ListLogo from '../ListLogo'
+
 
 const TokenSection = styled.div<{ dim?: boolean }>`
   padding: 4px 20px;

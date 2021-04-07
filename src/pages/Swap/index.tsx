@@ -20,6 +20,7 @@ import TradePrice from '../../components/swap/TradePrice'
 import TokenWarningModal from '../../components/TokenWarningModal'
 import ProgressSteps from '../../components/ProgressSteps'
 import SwapHeader from '../../components/swap/SwapHeader'
+import HeaderChoose from '../../components/HeaderChoose'
 
 import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
 import { getTradeVersion } from '../../data/V1'
@@ -308,8 +309,9 @@ export default function Swap({ history }: RouteComponentProps) {
         onDismiss={handleDismissTokenWarning}
       />
       <SwapPoolTabs active={'swap'} />
+      <HeaderChoose isPool={false}/>
       <AppBody>
-        <SwapHeader />
+        <SwapHeader title="swap"/>
         <Wrapper id="swap-page">
           <ConfirmSwapModal
             isOpen={showConfirm}

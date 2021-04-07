@@ -1,8 +1,8 @@
 import { getTokenLogoURL } from './../components/CurrencyLogo/index'
-import { wrappedCurrency } from 'utils/wrappedCurrency'
+import { wrappedCurrency } from '../utils/wrappedCurrency'
 import { Currency, Token } from '@uniswap/sdk'
 import { useCallback, useState } from 'react'
-import { useActiveWeb3React } from 'hooks'
+import { useActiveWeb3React } from './index'
 
 export default function useAddTokenToMetamask(
   currencyToAdd: Currency | undefined

@@ -75,7 +75,7 @@ const HeaderControls = styled.div`
     width: 100%;
     z-index: 99;
     height: 72px;
-    border-radius: 12px 12px 0 0;
+    border-radius:  8px 12px 0 0;
     background-color: ${({ theme }) => theme.bg1};
   `};
 `
@@ -119,7 +119,7 @@ const AccountElement = styled.div<{ active: boolean }>`
   flex-direction: row;
   align-items: center;
   background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
-  border-radius: 12px;
+  border-radius:  8px;
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
@@ -159,7 +159,7 @@ const HideSmall = styled.span`
 `
 
 const NetworkCard = styled(YellowCard)`
-  border-radius: 12px;
+  border-radius:  8px;
   padding: 8px 12px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     margin: 0;
@@ -216,7 +216,7 @@ const StyledNavLink = styled(NavLink).attrs({
   font-weight: 500;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius:  8px;
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }
@@ -243,7 +243,7 @@ const StyledExternalLink = styled(ExternalLink).attrs({
   font-weight: 500;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius:  8px;
     font-weight: 600;
     color: ${({ theme }) => theme.text1};
   }

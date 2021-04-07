@@ -1,4 +1,4 @@
-import { isTradeBetter } from 'utils/trades'
+import { isTradeBetter } from '../utils/trades'
 import { Currency, CurrencyAmount, Pair, Token, Trade } from '@uniswap/sdk'
 import flatMap from 'lodash.flatmap'
 import { useMemo } from 'react'
@@ -9,7 +9,7 @@ import { wrappedCurrency } from '../utils/wrappedCurrency'
 
 import { useActiveWeb3React } from './index'
 import { useUnsupportedTokens } from './Tokens'
-import { useUserSingleHopOnly } from 'state/user/hooks'
+import { useUserSingleHopOnly } from '../state/user/hooks'
 
 function useAllCommonPairs(currencyA?: Currency, currencyB?: Currency): Pair[] {
   const { chainId } = useActiveWeb3React()

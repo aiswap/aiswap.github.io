@@ -16,6 +16,7 @@ import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { AddRemoveTabs } from '../../components/NavigationTabs'
 import { MinimalPositionCard } from '../../components/PositionCard'
 import Row, { RowBetween, RowFlat } from '../../components/Row'
+import HeaderChoose from '../../components/HeaderChoose';
 
 import { ROUTER_ADDRESS } from '../../constants'
 import { PairState } from '../../data/Reserves'
@@ -38,8 +39,8 @@ import { Dots, Wrapper } from '../Pool/styleds'
 import { ConfirmAddModalBottom } from './ConfirmAddModalBottom'
 import { currencyId } from '../../utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
-import { useIsTransactionUnsupported } from 'hooks/Trades'
-import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
+import { useIsTransactionUnsupported } from '../../hooks/Trades'
+import UnsupportedCurrencyFooter from '../../components/swap/UnsupportedCurrencyFooter'
 
 export default function AddLiquidity({
   match: {
@@ -311,6 +312,7 @@ export default function AddLiquidity({
 
   return (
     <>
+      <HeaderChoose isPool={true}/>
       <AppBody>
         <AddRemoveTabs creating={isCreate} adding={true} />
         <Wrapper>

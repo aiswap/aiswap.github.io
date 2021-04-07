@@ -12,11 +12,11 @@ const Base = styled(RebassButton)<{
   borderRadius?: string
   altDisabledStyle?: boolean
 }>`
-  padding: ${({ padding }) => (padding ? padding : '18px')};
+  padding: ${({ padding }) => (padding ? padding : '10px')};
   width: ${({ width }) => (width ? width : '100%')};
   font-weight: 500;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 8px;
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
   outline: none;
   border: 1px solid transparent;
@@ -114,7 +114,7 @@ export const ButtonSecondary = styled(Base)`
   color: ${({ theme }) => theme.primary1};
   background-color: transparent;
   font-size: 16px;
-  border-radius: 12px;
+  border-radius:  8px;
   padding: ${({ padding }) => (padding ? padding : '10px')};
 
   &:focus {
@@ -181,8 +181,8 @@ export const ButtonUNIGradient = styled(ButtonPrimary)`
 
 export const ButtonOutlined = styled(Base)`
   border: 1px solid ${({ theme }) => theme.bg2};
-  background-color: transparent;
-  color: ${({ theme }) => theme.text1};
+  background-color: #00BFA0;
+  color: white;
 
   &:focus {
     box-shadow: 0 0 0 1px ${({ theme }) => theme.bg4};
@@ -322,10 +322,10 @@ export function ButtonDropdownGrey({ disabled = false, children, ...rest }: { di
 export function ButtonDropdownLight({ disabled = false, children, ...rest }: { disabled?: boolean } & ButtonProps) {
   return (
     <ButtonOutlined {...rest} disabled={disabled}>
-      <RowBetween>
+      <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
         <div style={{ display: 'flex', alignItems: 'center' }}>{children}</div>
         <ChevronDown size={24} />
-      </RowBetween>
+      </div>
     </ButtonOutlined>
   )
 }

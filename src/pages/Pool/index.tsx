@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { Pair, JSBI } from '@uniswap/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
-
+import AppBody from '../AppBody'
 import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
@@ -13,24 +13,26 @@ import Card from '../../components/Card'
 import { RowBetween, RowFixed } from '../../components/Row'
 import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
 import { AutoColumn } from '../../components/Column'
+import SwapHeader from '../../components/swap/SwapHeader'
+import HeaderChoose from '../../components/HeaderChoose'
 
 import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { Dots } from '../../components/swap/styleds'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+// import {  DataCard } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { BIG_INT_ZERO } from '../../constants'
 
-const PageWrapper = styled(AutoColumn)`
-  max-width: 640px;
-  width: 100%;
-`
+// const PageWrapper = styled(AutoColumn)`
+//   max-width: 640px;
+//   width: 100%;
+// `
 
-const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
-  overflow: hidden;
-`
+// const VoteCard = styled(DataCard)`
+//   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+//   overflow: hidden;
+// `
 
 const TitleRow = styled(RowBetween)`
   ${({ theme }) => theme.mediaWidth.upToSmall`
@@ -57,17 +59,17 @@ const ResponsiveButtonPrimary = styled(ButtonPrimary)`
   `};
 `
 
-const ResponsiveButtonSecondary = styled(ButtonSecondary)`
-  width: fit-content;
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
-  `};
-`
+// const ResponsiveButtonSecondary = styled(ButtonSecondary)`
+//   width: fit-content;
+//   ${({ theme }) => theme.mediaWidth.upToSmall`
+//     width: 48%;
+//   `};
+// `
 
 const EmptyProposals = styled.div`
   border: 1px solid ${({ theme }) => theme.text4};
   padding: 16px 12px;
-  border-radius: 12px;
+  border-radius:  8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -125,9 +127,13 @@ export default function Pool() {
 
   return (
     <>
-      <PageWrapper>
+      {/* <PageWrapper> */}
         <SwapPoolTabs active={'pool'} />
-        <VoteCard>
+        <HeaderChoose isPool={true}/>
+        <AppBody>
+        <SwapHeader title="资金池"/>
+        <div style={{padding:'4px 24px',color:'#606080',fontSize:'14px'}}>Add liquidity to receive LP tokens</div>
+        {/* <VoteCard>
           <CardBGImage />
           <CardNoise />
           <CardSection>
@@ -151,32 +157,33 @@ export default function Pool() {
           </CardSection>
           <CardBGImage />
           <CardNoise />
-        </VoteCard>
+        </VoteCard> */}
 
-        <AutoColumn gap="lg" justify="center">
+        <AutoColumn gap="lg" justify="center" style={{padding:'20px 24px'}}>
+        
           <AutoColumn gap="lg" style={{ width: '100%' }}>
+            <ButtonRow >
+              <ResponsiveButtonPrimary
+                id="join-pool-button"
+                as={Link}
+                padding="6px 8px"
+                borderRadius="12px"
+                to="/add/ETH"
+
+                style={{backgroundColor:'#00BFA0',borderRadius:'8px',padding:'12px 24px',fontSize:'20px',fontWeight:'bold'}}
+              >
+                <Text fontWeight={500} fontSize={16}>
+                  Add Liquidity
+                </Text>
+              </ResponsiveButtonPrimary>
+            </ButtonRow>
+
             <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
               <HideSmall>
                 <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>
                   Your liquidity
                 </TYPE.mediumHeader>
               </HideSmall>
-              <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
-                  Create a pair
-                </ResponsiveButtonSecondary>
-                <ResponsiveButtonPrimary
-                  id="join-pool-button"
-                  as={Link}
-                  padding="6px 8px"
-                  borderRadius="12px"
-                  to="/add/ETH"
-                >
-                  <Text fontWeight={500} fontSize={16}>
-                    Add Liquidity
-                  </Text>
-                </ResponsiveButtonPrimary>
-              </ButtonRow>
             </TitleRow>
 
             {!account ? (
@@ -233,7 +240,8 @@ export default function Pool() {
             </AutoColumn>
           </AutoColumn>
         </AutoColumn>
-      </PageWrapper>
+        </AppBody>
+      {/* </PageWrapper> */}
     </>
   )
 }

@@ -6,13 +6,15 @@ import { addPopup, ApplicationModal, PopupContent, removePopup, setOpenModal } f
 
 export function useBlockNumber(): number | undefined {
   const { chainId } = useActiveWeb3React()
-
+  // alert("chainId---"+chainId);
   return useSelector((state: AppState) => state.application.blockNumber[chainId ?? -1])
 }
 
 export function useModalOpen(modal: ApplicationModal): boolean {
+  // console.log("modal--",modal)
   const openModal = useSelector((state: AppState) => state.application.openModal)
   return openModal === modal
+  // return true
 }
 
 export function useToggleModal(modal: ApplicationModal): () => void {

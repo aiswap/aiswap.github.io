@@ -13,7 +13,7 @@ import Circle from '../../assets/images/blue-loader.svg'
 import MetaMaskLogo from '../../assets/images/metamask.png'
 import { getEtherscanLink } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
-import useAddTokenToMetamask from 'hooks/useAddTokenToMetamask'
+import useAddTokenToMetamask from '../../hooks/useAddTokenToMetamask'
 
 const Wrapper = styled.div`
   width: 100%;

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { PaddedColumn, Separator } from './styleds'
-import { RowBetween } from 'components/Row'
+import { RowBetween } from '../Row'
 import { ArrowLeft } from 'react-feather'
 import { Text } from 'rebass'
-import { CloseIcon } from 'theme'
+import { CloseIcon } from '../../theme'
 import styled from 'styled-components'
 import { Token } from '@uniswap/sdk'
 import { ManageLists } from './ManageLists'
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 
 const ToggleWrapper = styled(RowBetween)`
   background-color: ${({ theme }) => theme.bg3};
-  border-radius: 12px;
+  border-radius:  8px;
   padding: 6px;
 `
 
@@ -29,7 +29,7 @@ const ToggleOption = styled.div<{ active?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
+  border-radius:  8px;
   font-weight: 600;
   background-color: ${({ theme, active }) => (active ? theme.bg1 : theme.bg3)};
   color: ${({ theme, active }) => (active ? theme.text1 : theme.text2)};

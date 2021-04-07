@@ -22,12 +22,12 @@ import Column, { AutoColumn } from '../Column'
 import ListLogo from '../ListLogo'
 import Row, { RowFixed, RowBetween } from '../Row'
 import { PaddedColumn, SearchInput, Separator, SeparatorDark } from './styleds'
-import { useListColor } from 'hooks/useColor'
+import { useListColor } from '../../hooks/useColor'
 import useTheme from '../../hooks/useTheme'
 import ListToggle from '../Toggle/ListToggle'
-import Card from 'components/Card'
+import Card from '../Card'
 import { CurrencyModalView } from './CurrencySearchModal'
-import { UNSUPPORTED_LIST_URLS } from 'constants/lists'
+import { UNSUPPORTED_LIST_URLS } from '../../constants/lists'
 
 const Wrapper = styled(Column)`
   width: 100%;

@@ -22,7 +22,7 @@ import { useModalOpen, useToggleDelegateModal, useToggleVoteModal, useBlockNumbe
 import DelegateModal from '../../components/vote/DelegateModal'
 import { GreyCard } from '../../components/Card'
 import { useTokenBalance } from '../../state/wallet/hooks'
-import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
+import useCurrentBlockTimestamp from '../../hooks/useCurrentBlockTimestamp'
 import { BigNumber } from 'ethers'
 
 const PageWrapper = styled(AutoColumn)`
@@ -31,7 +31,7 @@ const PageWrapper = styled(AutoColumn)`
 
 const ProposalInfo = styled(AutoColumn)`
   border: 1px solid ${({ theme }) => theme.bg4};
-  border-radius: 12px;
+  border-radius:  8px;
   padding: 1.5rem;
   position: relative;
   max-width: 640px;

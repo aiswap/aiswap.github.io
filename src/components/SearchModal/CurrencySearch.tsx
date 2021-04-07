@@ -17,12 +17,12 @@ import { useTokenComparator } from './sorting'
 import { PaddedColumn, SearchInput, Separator } from './styleds'
 import AutoSizer from 'react-virtualized-auto-sizer'
 import styled from 'styled-components'
-import useToggle from 'hooks/useToggle'
-import { useOnClickOutside } from 'hooks/useOnClickOutside'
-import useTheme from 'hooks/useTheme'
+import useToggle from '../../hooks/useToggle'
+import { useOnClickOutside } from '../../hooks/useOnClickOutside'
+import useTheme from '../../hooks/useTheme'
 import ImportRow from './ImportRow'
 import { Edit } from 'react-feather'
-import useDebounce from 'hooks/useDebounce'
+import useDebounce from '../../hooks/useDebounce'
 
 const ContentWrapper = styled(Column)`
   width: 100%;

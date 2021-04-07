@@ -5,7 +5,7 @@ import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
 import { tryParseAmount } from '../swap/hooks'
-import useCurrentBlockTimestamp from 'hooks/useCurrentBlockTimestamp'
+import useCurrentBlockTimestamp from '../../hooks/useCurrentBlockTimestamp'
 
 export const STAKING_GENESIS = 1600387200
 

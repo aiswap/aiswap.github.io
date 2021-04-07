@@ -18,8 +18,9 @@ import { StyledInternalLink } from '../../theme'
 import { currencyId } from '../../utils/currencyId'
 import AppBody from '../AppBody'
 import { Dots } from '../Pool/styleds'
-import { BlueCard } from '../../components/Card'
-import { TYPE } from '../../theme'
+// import { BlueCard } from '../../components/Card'
+import HeaderChoose from '../../components/HeaderChoose'
+// import { TYPE } from '../../theme'
 
 enum Fields {
   TOKEN0 = 0,
@@ -79,16 +80,18 @@ export default function PoolFinder() {
   )
 
   return (
+    <>
+    <HeaderChoose isPool={true}/>
     <AppBody>
       <FindPoolTabs />
       <AutoColumn style={{ padding: '1rem' }} gap="md">
-        <BlueCard>
+        {/* <BlueCard>
           <AutoColumn gap="10px">
             <TYPE.link fontWeight={400} color={'primaryText1'}>
               <b>Tip:</b> Use this tool to find pairs that don&apos;t automatically appear in the interface.
             </TYPE.link>
           </AutoColumn>
-        </BlueCard>
+        </BlueCard> */}
         <ButtonDropdownLight
           onClick={() => {
             setShowSearch(true)
@@ -200,5 +203,6 @@ export default function PoolFinder() {
         selectedCurrency={(activeField === Fields.TOKEN0 ? currency1 : currency0) ?? undefined}
       />
     </AppBody>
+    </>
   )
 }

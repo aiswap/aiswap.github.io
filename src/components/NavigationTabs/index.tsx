@@ -9,8 +9,9 @@ import { RowBetween } from '../Row'
 // import QuestionHelper from '../QuestionHelper'
 import Settings from '../Settings'
 import { useDispatch } from 'react-redux'
-import { AppDispatch } from 'state'
-import { resetMintState } from 'state/mint/actions'
+import { AppDispatch } from '../../state'
+import { resetMintState } from '../../state/mint/actions'
+import chevron_left_24px from '../../assets/aiswap/chevron_left_24px.svg'
 
 const Tabs = styled.div`
   ${({ theme }) => theme.flexRowNoWrap}
@@ -36,7 +37,7 @@ const StyledNavLink = styled(NavLink).attrs({
   font-size: 20px;
 
   &.${activeClassName} {
-    border-radius: 12px;
+    border-radius:  8px;
     font-weight: 500;
     color: ${({ theme }) => theme.text1};
   }
@@ -49,7 +50,8 @@ const StyledNavLink = styled(NavLink).attrs({
 
 const ActiveText = styled.div`
   font-weight: 500;
-  font-size: 20px;
+  font-size: 16px;
+  color:#00BFA0;
 `
 
 const StyledArrowLeft = styled(ArrowLeft)`
@@ -74,10 +76,14 @@ export function FindPoolTabs() {
   return (
     <Tabs>
       <RowBetween style={{ padding: '1rem 1rem 0 1rem' }}>
+        <div style={{display:'flex',alignItems:'center'}}>
         <HistoryLink to="/pool">
-          <StyledArrowLeft />
+          {/* <StyledArrowLeft /> */}
+          <img src={chevron_left_24px}/>
         </HistoryLink>
-        <ActiveText>Import Pool</ActiveText>
+        <ActiveText>导入流动性池</ActiveText>
+
+        </div>
         <Settings />
       </RowBetween>
     </Tabs>
