@@ -1,21 +1,22 @@
-import React, { Suspense,useState } from 'react'
-import { Route, Switch,NavLink } from 'react-router-dom'
+import React, { Suspense } from 'react'
+import { Route, Switch } from 'react-router-dom'
 // import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
-import logo from '../assets/aiswap/logo.svg'
-import homepng from '../assets/aiswap/home.svg';
-import arrow_drop_up from '../assets/aiswap/arrow_drop_up.svg';
-import keyboard_arrow_down from '../assets/aiswap/keyboard_arrow_down_24px.svg';
-import UniBalanceContent from '../components/Header/UniBalanceContent'
-import Modal from '../components/Modal'
-import trade from '../assets/aiswap/trade.svg';
-import ido from '../assets/aiswap/ido.svg';
-import telegram from '../assets/aiswap/telegram.svg';
-import twitter from '../assets/aiswap/twitter.svg';
-import readis from '../assets/aiswap/readis.svg';
-import wechat from '../assets/aiswap/wechat.svg';
-import language from '../assets/aiswap/language.png';
+import SideMenu from '../components/SideMenu'
+// import logo from '../assets/aiswap/logo.svg'
+// import homepng from '../assets/aiswap/home.svg';
+// import arrow_drop_up from '../assets/aiswap/arrow_drop_up.svg';
+// import keyboard_arrow_down from '../assets/aiswap/keyboard_arrow_down_24px.svg';
+// import UniBalanceContent from '../components/Header/UniBalanceContent'
+// import Modal from '../components/Modal'
+// import trade from '../assets/aiswap/trade.svg';
+// import ido from '../assets/aiswap/ido.svg';
+// import telegram from '../assets/aiswap/telegram.svg';
+// import twitter from '../assets/aiswap/twitter.svg';
+// import readis from '../assets/aiswap/readis.svg';
+// import wechat from '../assets/aiswap/wechat.svg';
+// import language from '../assets/aiswap/language.png';
 
 import AddressClaimModal from '../components/claim/AddressClaimModal'
 // import Header from '../components/Header'
@@ -45,6 +46,8 @@ import Swap from './Swap'
 import Home from './Home'
 import IDODetail from './IDODetail'
 import IDO from './IDO'
+import farmtrade from './Farms/Trade'
+import farmlp from './Farms/Liquiidty'
 import { OpenClaimAddressModalAndRedirectToSwap, RedirectPathToSwapOnly, RedirectToSwap } from './Swap/redirects'
 import Vote from './Vote'
 import VotePage from './Vote/VotePage'
@@ -57,12 +60,6 @@ const AppWrapper = styled.div`
 //   align-items: flex-start;
 //   overflow-x: hidden;
 `
-
-// const HeaderWrapper = styled.div`
-//   ${({ theme }) => theme.flexRowNoWrap}
-//   width: 100%;
-//   justify-content: space-between;
-// `
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -92,104 +89,7 @@ function TopLevelModals() {
   const toggle = useToggleModal(ApplicationModal.ADDRESS_CLAIM)
   return <AddressClaimModal isOpen={open} onDismiss={toggle} />
 }
-const LeftDiv = styled.div`
-font-family: PingFang SC;
-font-style: normal;
-font-weight: 500;
-font-size: 14px;
-line-height: 22px;
-width:18%;
-letter-spacing: -0.005em;
-color: #606080;
-background: #FFFFFF;
-box-shadow: inset -1px 0px 0px rgba(35, 40, 64, 0.07);
-z-index:200;
-`
-const AddressDiv = styled.div`
-    border: 1px solid #00BFA0;
-    box-sizing: border-box;
-    box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
-    border-radius: 8px;
-    text-align:left;
-    width:100%;
-    padding:10px 0;
-    display: flex;
-    align-items: center;
-    font-size: 16px;
-    color: #00BFA0;
-    font-weight: bold;
-    span{
-      display: inline-block;
-    width: 15px;
-    height: 15px;
-    background: #00BFA0;
-    border-radius: 100%;
-    margin: 0 10px;
-    }
-`
-const MenuIcon = styled.div`
-    display:flex;
-    justify-content: center;
-    cursor:pointer;
-`
-
-const MenuDiv = styled(NavLink)`
-display:flex;
-justify-content: space-between;
-cursor:pointer;
-padding: 15px 30px;
-color:gray;
-&.active{
-    color:blue;
-    font-weight: bold;
-    background-color: rgba(243, 244, 246, 0.1);
-    border-right:2px solid blue;
-}
-`
-
-const MenuArr = [
-  {
-    "id":"1",
-    "name":"首页",
-    "icon":homepng,
-    "isChoosen":"1",
-    "route":"/home",
-    "isSub":"1",
-    "subMenu":[]
-  },{
-    "id":"2",
-    "name":"交易",
-    "icon":trade,
-    "isChoosen":"1",
-    "route":"",
-    "isSub":"2",
-    "subMenu":[
-      {
-        "name":"兑换",
-        "route":'/swap'
-      },
-      {
-        "name":"资金池",
-        "route":'/pool'
-      },
-    ]
-  },{
-    "id":"3",
-    "name":"IDO",
-    "icon":ido,
-    "isChoosen":"1",
-    "route":"/ido",
-    "isSub":"1",
-    "subMenu":[]
-  }
-]
 export default function App() {
-  const [isOpenSubMe,setisOpenSubMe] = useState(false);
-  const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
-  function openorcloseSubMe(){
-    setisOpenSubMe(!isOpenSubMe);
-  }
-
   return (
     <Suspense fallback={null}>
       <div style={{display:'hidden'}}>
@@ -199,80 +99,8 @@ export default function App() {
       <Route component={DarkModeQueryParamReader} />
       <AppWrapper>
         <URLWarning />
+        <SideMenu/>
         
-        <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
-            <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
-        </Modal>
-        <LeftDiv className="hidden md:block">
-            <div style={{display:'flex',justifyContent:'center',height:'18%'}}>
-                <div style={{width:'90%'}}>
-                    <div style={{display:'flex',justifyContent:'center',padding:'22px'}}>
-                        <img src={logo}/>
-                    </div>
-                    <AddressDiv>
-                        <span>&nbsp;</span>0x3kdkggdgg
-                    </AddressDiv>
-                </div>
-                
-            </div>
-            
-            <div style={{height:'69%',borderBottom:'1px solid #e6e0e0'}} >
-                {MenuArr && MenuArr.map((item,index)=>{
-                  
-                  return(
-                    
-                    <div>
-                          {item.isSub=="2"?(
-                          <div>
-                            <div style={{display:'flex',justifyContent:'space-between'}}  className="hover:bg-gray-100 hover:text-blue-600">
-                              <div onClick={openorcloseSubMe} style={{padding: '15px 30px',cursor:'pointer',color:'gray',display:'flex',alignItems:'center'}}>
-                                  <img src={item.icon}/>
-                                  <span>&nbsp;&nbsp;&nbsp;{item.name}</span>
-                              </div>
-                              <img src={isOpenSubMe?keyboard_arrow_down:arrow_drop_up}/>
-                            </div>
-                            
-                            {isOpenSubMe && (
-                                <>
-                                {item.subMenu.map((itemss,index)=>{
-                                  return(
-                                    <MenuDiv style={{padding: '15px 65px',textAlign:'left'}}  exact activeClassName="active" to={itemss.route}  className="hover:bg-gray-100 hover:text-indigo-600">
-                                      {itemss.name}
-                                      </MenuDiv>
-                                  )
-                                })}
-                                </>
-                              )}
-                            </div>
-                          ):(
-                            <MenuDiv  exact activeClassName="active" to={item.route} className="hover:bg-gray-100">
-                              <MenuIcon>
-                                  <img src={item.icon}/>
-                                  <span>&nbsp;&nbsp;&nbsp;{item.name}</span>
-                              </MenuIcon>
-                                <div>&nbsp;</div>
-                            </MenuDiv>
-                          )}
-                    </div>
-                  )
-                })}
-                
-            </div>
-            <div style={{height:'13%', display:'flex',justifyContent:'center',width:'100%'}}>
-                <div style={{width:'100%'}}>
-                    <div style={{display:'flex',justifyContent:'space-between',cursor:'pointer',padding: '15px 30px'}}>
-                        <img src={telegram}/>
-                        <img src={twitter}/>
-                        <img src={readis}/>
-                        <img src={wechat}/>
-                    </div>
-                    <div style={{textAlign:'center',marginTop:'5px',display:'flex',justifyContent:'left',paddingLeft:'12%'}}>
-                        <img src={language} width="22px" height="22px"/>
-                        <span>&nbsp;&nbsp;&nbsp;简体中文</span>
-                    </div>
-                </div>
-            </div>
-        </LeftDiv>
         <BodyWrapper>
           <Popups />
           <Polling />
@@ -282,6 +110,8 @@ export default function App() {
               <Route exact strict path="/home" component={Home}/>
               <Route exact strict path="/ido" component={IDO}/>
               <Route exact strict path="/detail_ido" component={IDODetail}/>
+              <Route exact strict path="/farmtrade" component={farmtrade}/>
+              <Route exact strict path="/farmlp" component={farmlp}/>
               
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />

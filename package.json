@@ -91,18 +91,33 @@
     "workbox-expiration": "^6.1.0",
     "workbox-precaching": "^6.1.0",
     "workbox-routing": "^6.1.0",
-    "workbox-strategies": "^6.1.0"
+    "workbox-strategies": "^6.1.0",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.6.0",
+    "autoprefixer": "10.x",
+    "npm-run-all": "4.x",
+    "postcss": "8.x",
+    "postcss-cli": "8.x",
+    "postcss-preset-env": "6.x",
+    "qrcode.react": "^1.0.1",
+    "react-swipeable-views": "^0.13.9",
+    "react-swipeable-views-utils": "^0.14.0-alpha.0",
+    "swiper": "^6.4.5",
+    "tailwindcss": "2.x"
   },
   "resolutions": {
     "@walletconnect/web3-provider": "1.1.1-alpha.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "start:service-worker": "yarn build && yarn serve -s build",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "run-p watch:css react-scripts:start",
+    "build": "run-s build:css react-scripts:build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "integration-test": "start-server-and-test 'serve build -l 3000' http://localhost:3000 'cypress run'"
+    "build:css": "cross-env NODE_ENV=production postcss src/styles/tailwind.css -o src/styles/index.css",
+    "watch:css": "cross-env NODE_ENV=development postcss src/styles/tailwind.css -o src/styles/index.css --watch",
+    "react-scripts:start": "sleep 5 && react-scripts start",
+    "react-scripts:build": "react-scripts build"
   },
   "eslintConfig": {
     "extends": "react-app",
@@ -125,6 +140,7 @@
   "license": "GPL-3.0-or-later",
   "dependencies": {
     "@uniswap/default-token-list": "^2.0.0",
-    "@uniswap/sdk": "aiswap/aiswap-sdk.git"
+    "@uniswap/sdk": "aiswap/aiswap-sdk.git",
+    "tailwindcss": "^2.0.4"
   }
 }
