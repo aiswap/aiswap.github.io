@@ -3,42 +3,73 @@ import styled, { ThemeContext } from 'styled-components'
 import { Pair, JSBI } from '@uniswap/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
-
+import AppBody from '../AppBody'
 import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
 import { StyledInternalLink, ExternalLink, TYPE, HideSmall } from '../../theme'
 import { Text } from 'rebass'
 import Card from '../../components/Card'
-import { RowBetween, RowFixed } from '../../components/Row'
-import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
+import { RowBetween, RowFixed, AutoRow } from '../../components/Row'
+import { ButtonPink, ButtonSecondary } from '../../components/Button'
 import { AutoColumn } from '../../components/Column'
-
 import { useActiveWeb3React } from '../../hooks'
 import { usePairs } from '../../data/Reserves'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
-import { Dots } from '../../components/swap/styleds'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { Dots, Wrapper } from '../../components/swap/styleds'
+// import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { BIG_INT_ZERO } from '../../constants'
+import {
+  Layout,
+} from 'antd';
+import BgGlobal from '../../assets/svg/art/bg_global.png'
+import Settings from '../../components/Settings'
+import QuestionHelper from '../../components/QuestionHelper'
 
-const PageWrapper = styled(AutoColumn)`
-  max-width: 640px;
+export const LayoutCenter = styled(Layout)<{ disabled?: boolean }>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  background: url(${BgGlobal}) no-repeat center center !important;
 `
 
-const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
-  overflow: hidden;
+// const VoteCard = styled(DataCard)`
+//   background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
+//   overflow: hidden;
+// `
+
+const StyledHeader = styled.div`
+  width: 100%;
+  max-width: 100%;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  color: ${({ theme }) => theme.text1};
+
+  small {
+    margin-top: 4px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 22px;
+    color: #606080;
+    display: block;
+  }
 `
 
 const TitleRow = styled(RowBetween)`
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    flex-wrap: wrap;
-    gap: 12px;
-    width: 100%;
-    flex-direction: column-reverse;
-  `};
+  margin-top: 1rem;
+  padding: 16px 0 0;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: 100%;
+  border-top: 1px solid rgba(21, 21, 38, 0.06);
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 22px;
 `
 
 const ButtonRow = styled(RowFixed)`
@@ -50,8 +81,9 @@ const ButtonRow = styled(RowFixed)`
   `};
 `
 
-const ResponsiveButtonPrimary = styled(ButtonPrimary)`
+const ResponsiveButtonPink = styled(ButtonPink)`
   width: fit-content;
+  background: #00BFA0;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
@@ -65,14 +97,18 @@ const ResponsiveButtonSecondary = styled(ButtonSecondary)`
 `
 
 const EmptyProposals = styled.div`
-  border: 1px solid ${({ theme }) => theme.text4};
-  padding: 16px 12px;
+  padding: 12px;
+  margin: 16px 0 16px;
   border-radius: 12px;
+  font-size: 14px;
   display: flex;
+  height: 70px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `
+
+
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -124,59 +160,45 @@ export default function Pool() {
   })
 
   return (
-    <>
-      <PageWrapper>
-        <SwapPoolTabs active={'pool'} />
-        <VoteCard>
-          <CardBGImage />
-          <CardNoise />
-          <CardSection>
-            <AutoColumn gap="md">
-              <RowBetween>
-                <TYPE.white fontWeight={600}>Liquidity provider rewards</TYPE.white>
-              </RowBetween>
-              <RowBetween>
-                <TYPE.white fontSize={14}>
-                  {`Liquidity providers earn a 0.3% fee on all trades proportional to their share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.`}
-                </TYPE.white>
-              </RowBetween>
-              <ExternalLink
-                style={{ color: 'white', textDecoration: 'underline' }}
-                target="_blank"
-                href="https://uniswap.org/docs/v2/core-concepts/pools/"
-              >
-                <TYPE.white fontSize={14}>Read more about providing liquidity</TYPE.white>
-              </ExternalLink>
-            </AutoColumn>
-          </CardSection>
-          <CardBGImage />
-          <CardNoise />
-        </VoteCard>
-
-        <AutoColumn gap="lg" justify="center">
-          <AutoColumn gap="lg" style={{ width: '100%' }}>
-            <TitleRow style={{ marginTop: '1rem' }} padding={'0'}>
-              <HideSmall>
-                <TYPE.mediumHeader style={{ marginTop: '0.5rem', justifySelf: 'flex-start' }}>
-                  Your liquidity
-                </TYPE.mediumHeader>
-              </HideSmall>
-              <ButtonRow>
-                <ResponsiveButtonSecondary as={Link} padding="6px 8px" to="/create/ETH">
-                  Create a pair
+    <LayoutCenter>
+      <SwapPoolTabs active={'pool'} />
+      <AppBody>
+        <Wrapper>
+          <AutoColumn gap="md">
+            <AutoRow>
+              <StyledHeader>
+                <RowBetween>
+                  <TYPE.black fontWeight={500}>
+                    资金池
+                    <small>Add liquidity to receive LP tokens</small>
+                  </TYPE.black>
+                  <Settings />
+                </RowBetween>
+              </StyledHeader>
+              <ButtonRow margin="16px 0 0">
+                <ResponsiveButtonSecondary as={Link} padding="12px 24px" borderRadius="8px" to="/create/ETH">
+                  <Text lineHeight={'24px'} fontSize={20}>
+                    Create a pair
+                  </Text>
                 </ResponsiveButtonSecondary>
-                <ResponsiveButtonPrimary
+                <ResponsiveButtonPink
                   id="join-pool-button"
                   as={Link}
-                  padding="6px 8px"
-                  borderRadius="12px"
+                  padding="12px 24px"
+                  borderRadius="8px"
                   to="/add/ETH"
                 >
-                  <Text fontWeight={500} fontSize={16}>
+                  <Text lineHeight={'24px'} fontWeight={'bold'} fontSize={20}>
                     Add Liquidity
                   </Text>
-                </ResponsiveButtonPrimary>
+                </ResponsiveButtonPink>
               </ButtonRow>
+            </AutoRow>
+            <TitleRow>
+              <HideSmall>
+                Your liquidity
+              </HideSmall>
+              <QuestionHelper text="Your Liquidity tip" />
             </TitleRow>
 
             {!account ? (
@@ -195,7 +217,7 @@ export default function Pool() {
               <>
                 <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'https://uniswap.info/account/' + account}>
+                    <ExternalLink href={'/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
                     <span> ↗</span>
@@ -217,14 +239,14 @@ export default function Pool() {
               </>
             ) : (
               <EmptyProposals>
-                <TYPE.body color={theme.text3} textAlign="center">
+                <TYPE.body fontWeight={'bold'} color={'#B6B6BF'} textAlign="center">
                   No liquidity found.
                 </TYPE.body>
               </EmptyProposals>
             )}
 
-            <AutoColumn justify={'center'} gap="md">
-              <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
+            <AutoColumn gap="md">
+              <Text fontSize={14} style={{ padding: '.5rem 0 0 0' }}>
                 {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
                   {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
@@ -232,8 +254,8 @@ export default function Pool() {
               </Text>
             </AutoColumn>
           </AutoColumn>
-        </AutoColumn>
-      </PageWrapper>
-    </>
+        </Wrapper>
+      </AppBody>
+    </LayoutCenter>
   )
 }

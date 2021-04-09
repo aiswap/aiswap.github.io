@@ -36,7 +36,7 @@ import VotePage from './Vote/VotePage'
 import LayerBase from '../components/Layer/Base'
 
 // Page
-import AboutIndex from './About'
+// import AboutIndex from './About'
 
 // const AppWrapper = styled.div`
 //   display: flex;
@@ -98,9 +98,7 @@ export default function App() {
           <Web3ReactManager>
             <Switch>
               <Route path="/home" component={HomeIndex} />
-
-              <Route strict path="/about" component={AboutIndex} />
-
+              {/* <Route strict path="/about" component={AboutIndex} /> */}
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />

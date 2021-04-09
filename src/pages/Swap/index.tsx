@@ -20,8 +20,6 @@ import TradePrice from '../../components/swap/TradePrice'
 import TokenWarningModal from '../../components/TokenWarningModal'
 import ProgressSteps from '../../components/ProgressSteps'
 import SwapHeader from '../../components/swap/SwapHeader'
-import { useTranslation } from 'react-i18next'
-
 import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
 import { getTradeVersion } from '../../data/V1'
 import { useActiveWeb3React } from '../../hooks'
@@ -119,9 +117,7 @@ export const LayoutCenter = styled(Layout)<{ disabled?: boolean }>`
 //     </TabPane>
 // </LayoutTabs>
 
-
 export default function Swap({ history }: RouteComponentProps) {
-  const { t } = useTranslation(['en','zh-CN'])
   const loadedUrlParams = useDefaultsFromURLSearch()
 
   // token warning stuff
@@ -372,7 +368,6 @@ export default function Swap({ history }: RouteComponentProps) {
 
   return (
     <LayoutCenter>
-      {t('en:noWallet')}{t('wallet.submitConnect')}
       <TokenWarningModal
         isOpen={importTokensNotInDefault.length > 0 && !dismissTokenWarning}
         tokens={importTokensNotInDefault}
@@ -455,7 +450,7 @@ export default function Swap({ history }: RouteComponentProps) {
 
               {showWrap ? null : (
                 <Card padding={showWrap ? '.25rem 1rem 0 1rem' : '0px'} borderRadius={'20px'}>
-                  <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
+                  <AutoColumn gap="8px" style={{ padding: '0 16px 16px' }}>
                     {Boolean(trade) && (
                       <RowBetween align="center">
                         <Text fontWeight={500} fontSize={14} color={theme.text2}>

@@ -9,6 +9,7 @@ const StyledSwapHeader = styled.div`
   width: 100%;
   max-width: 100%;
   font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
   color: ${({ theme }) => theme.text1};
 

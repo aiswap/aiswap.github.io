@@ -41,7 +41,7 @@ const WrapperAssistance = styled.div`
 `
 
 export default function LayerSide({ children }: { children: React.ReactNode }) {
-  const currentViewName: (string)[] = ['home']
+  // const currentViewName: (string)[] = ['home']
 
   // let stateCollapsed: boolean = false
 
@@ -52,9 +52,9 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
 
   const [collapsed, toggleCollapsed] = useToggle(false)
 
-
+    // <StyleSider width={240} className="layer-side" collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
   return (
-    <StyleSider width={240} className="layer-side" collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
+    <StyleSider width={240} className="layer-side" onCollapse={toggleCollapsed}>
       <NavLink className="logo" to={'/'}>
         {collapsed
           ? <img src={logoSingle} style={{
@@ -65,7 +65,8 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
       </NavLink>
       <AccountAddress />
 
-      <WrapperMenu selectedKeys={currentViewName}  mode="inline">
+      {/* <WrapperMenu selectedKeys={currentViewName} mode="inline"> */}
+      <WrapperMenu mode="inline">
         <Menu.Item key="home" disabled icon={<IconHome />}>
           <NavLink to={'/home'}>
             首页
@@ -77,7 +78,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
               兑换
             </NavLink>
           </Menu.Item>
-          <Menu.Item disabled key="pool">
+          <Menu.Item key="pool">
             <NavLink to={'/pool'}>
               资金池
             </NavLink>
