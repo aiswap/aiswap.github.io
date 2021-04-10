@@ -27,18 +27,24 @@ const CurrencySelect = styled.button<{ selected: boolean }>`
   font-size: 16px;
   line-height: 24px;
   font-weight: normal;
-  background-color: ${({ selected, theme }) => (selected ? 'transparent' : theme.primary1)};
-  color: ${({ selected, theme }) => (selected ? theme.text1 : theme.white)};
+  background-color: transparent;
+  // background-color: ${({ selected, theme }) => (selected ? 'transparent' : theme.primary1)};
+  color: #151526;
   border-radius: 4px;
   outline: none;
   cursor: pointer;
   user-select: none;
   border: none;
   padding: 0 0.5rem;
+  font-weight: 600;
 
   :focus,
   :hover {
-    background-color: ${({ selected, theme }) => (selected ? '#fff' : darken(0.05, theme.primary1))};
+    background-color: ${({ selected, theme }) => (selected ? '#fff' : darken(0.05, '#fff'))};
+  }
+
+  svg {
+    color: #151526;
   }
 `
 
@@ -66,7 +72,7 @@ const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
   height: 35%;
 
   path {
-    stroke: ${({ selected, theme }) => (selected ? theme.text1 : theme.white)};
+    stroke: ${({ selected, theme }) => (selected ? theme.text1 : '#606080')};
     stroke-width: 1.5px;
   }
 `

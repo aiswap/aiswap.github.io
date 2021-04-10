@@ -7,8 +7,9 @@ import ReactGA from 'react-ga'
 import { RouteComponentProps } from 'react-router-dom'
 import { Text } from 'rebass'
 import { ThemeContext } from 'styled-components'
-import { ButtonError, ButtonLight, ButtonPrimary } from '../../components/Button'
-import { BlueCard, LightCard } from '../../components/Card'
+import { ButtonError, ButtonLight, ButtonSubmit } from '../../components/Button'
+// import { BlueCard, LightCard } from '../../components/Card'
+import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
 import TransactionConfirmationModal, { ConfirmationModalContent } from '../../components/TransactionConfirmationModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
@@ -40,6 +41,8 @@ import { currencyId } from '../../utils/currencyId'
 import { PoolPriceBar } from './PoolPriceBar'
 import { useIsTransactionUnsupported } from 'hooks/Trades'
 import UnsupportedCurrencyFooter from 'components/swap/UnsupportedCurrencyFooter'
+import { LayoutCenter } from '../Swap'
+import { SwapPoolTabs } from '../../components/NavigationTabs'
 
 export default function AddLiquidity({
   match: {
@@ -310,7 +313,8 @@ export default function AddLiquidity({
   const addIsUnsupported = useIsTransactionUnsupported(currencies?.CURRENCY_A, currencies?.CURRENCY_B)
 
   return (
-    <>
+    <LayoutCenter>
+      <SwapPoolTabs active={'pool'} />
       <AppBody>
         <AddRemoveTabs creating={isCreate} adding={true} />
         <Wrapper>
@@ -331,36 +335,6 @@ export default function AddLiquidity({
             currencyToAdd={pair?.liquidityToken}
           />
           <AutoColumn gap="20px">
-            {noLiquidity ||
-              (isCreate ? (
-                <ColumnCenter>
-                  <BlueCard>
-                    <AutoColumn gap="10px">
-                      <TYPE.link fontWeight={600} color={'primaryText1'}>
-                        You are the first liquidity provider.
-                      </TYPE.link>
-                      <TYPE.link fontWeight={400} color={'primaryText1'}>
-                        The ratio of tokens you add will set the price of this pool.
-                      </TYPE.link>
-                      <TYPE.link fontWeight={400} color={'primaryText1'}>
-                        Once you are happy with the rate click supply to review.
-                      </TYPE.link>
-                    </AutoColumn>
-                  </BlueCard>
-                </ColumnCenter>
-              ) : (
-                <ColumnCenter>
-                  <BlueCard>
-                    <AutoColumn gap="10px">
-                      <TYPE.link fontWeight={400} color={'primaryText1'}>
-                        <b>Tip:</b> When you add liquidity, you will receive pool tokens representing your position.
-                        These tokens automatically earn fees proportional to your share of the pool, and can be redeemed
-                        at any time.
-                      </TYPE.link>
-                    </AutoColumn>
-                  </BlueCard>
-                </ColumnCenter>
-              ))}
             <CurrencyInputPanel
               value={formattedAmounts[Field.CURRENCY_A]}
               onUserInput={onFieldAInput}
@@ -409,9 +383,9 @@ export default function AddLiquidity({
             )}
 
             {addIsUnsupported ? (
-              <ButtonPrimary disabled={true}>
+              <ButtonSubmit disabled={true}>
                 <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
-              </ButtonPrimary>
+              </ButtonSubmit>
             ) : !account ? (
               <ButtonLight onClick={toggleWalletModal}>Connect Wallet</ButtonLight>
             ) : (
@@ -423,7 +397,7 @@ export default function AddLiquidity({
                   isValid && (
                     <RowBetween>
                       {approvalA !== ApprovalState.APPROVED && (
-                        <ButtonPrimary
+                        <ButtonSubmit
                           onClick={approveACallback}
                           disabled={approvalA === ApprovalState.PENDING}
                           width={approvalB !== ApprovalState.APPROVED ? '48%' : '100%'}
@@ -433,10 +407,10 @@ export default function AddLiquidity({
                           ) : (
                             'Approve ' + currencies[Field.CURRENCY_A]?.symbol
                           )}
-                        </ButtonPrimary>
+                        </ButtonSubmit>
                       )}
                       {approvalB !== ApprovalState.APPROVED && (
-                        <ButtonPrimary
+                        <ButtonSubmit
                           onClick={approveBCallback}
                           disabled={approvalB === ApprovalState.PENDING}
                           width={approvalA !== ApprovalState.APPROVED ? '48%' : '100%'}
@@ -446,7 +420,7 @@ export default function AddLiquidity({
                           ) : (
                             'Approve ' + currencies[Field.CURRENCY_B]?.symbol
                           )}
-                        </ButtonPrimary>
+                        </ButtonSubmit>
                       )}
                     </RowBetween>
                   )}
@@ -478,6 +452,6 @@ export default function AddLiquidity({
           currencies={[currencies.CURRENCY_A, currencies.CURRENCY_B]}
         />
       )}
-    </>
+    </LayoutCenter>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { darken, lighten } from 'polished'
 
-import { RowBetween } from '../Row'
+import { RowBetween, RowCenter } from '../Row'
 import { ChevronDown } from 'react-feather'
 import { Button as RebassButton, ButtonProps } from 'rebass/styled-components'
 
@@ -14,9 +14,9 @@ const Base = styled(RebassButton)<{
 }>`
   padding: ${({ padding }) => (padding ? padding : '18px')};
   width: ${({ width }) => (width ? width : '100%')};
-  font-weight: 500;
+  font-weight: bold;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 8px;
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
   outline: none;
   border: 1px solid transparent;
@@ -29,6 +29,8 @@ const Base = styled(RebassButton)<{
   cursor: pointer;
   position: relative;
   z-index: 1;
+  line-height: 24px;
+
   &:disabled {
     cursor: auto;
   }
@@ -55,6 +57,34 @@ export const ButtonPrimary = styled(Base)`
   &:disabled {
     background-color: ${({ theme, altDisabledStyle, disabled }) =>
       altDisabledStyle ? (disabled ? theme.bg3 : theme.primary1) : theme.bg3};
+    color: ${({ theme, altDisabledStyle, disabled }) =>
+      altDisabledStyle ? (disabled ? theme.text3 : 'white') : theme.text3};
+    cursor: auto;
+    box-shadow: none;
+    border: 1px solid transparent;
+    outline: none;
+    opacity: ${({ altDisabledStyle }) => (altDisabledStyle ? '0.5' : '1')};
+  }
+`
+
+
+export const ButtonSubmit = styled(Base)`
+  background-color: red;
+  color: white;
+  &:focus {
+    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, '#00BFA0')};
+    background-color: ${({ theme }) => darken(0.05, '#00BFA0')};
+  }
+  &:hover {
+    background-color: ${({ theme }) => darken(0.05, '#00BFA0')};
+  }
+  &:active {
+    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, '#00BFA0')};
+    background-color: ${({ theme }) => darken(0.1, '#00BFA0')};
+  }
+  &:disabled {
+    background-color: ${({ theme, altDisabledStyle, disabled }) =>
+      altDisabledStyle ? (disabled ? theme.bg3 : '#00BFA0') : theme.bg3};
     color: ${({ theme, altDisabledStyle, disabled }) =>
       altDisabledStyle ? (disabled ? theme.text3 : 'white') : theme.text3};
     cursor: auto;
@@ -200,6 +230,32 @@ export const ButtonOutlined = styled(Base)`
   }
 `
 
+export const ButtonGreen = styled(Base)`
+  align-items: center;
+  padding: 12px 24px;
+  display: flex;
+  background-color: #00BFA0;
+  box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
+  border-radius: 8px;
+
+  &:focus {
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.bg4};
+  }
+  &:hover {
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.bg4};
+  }
+  &:active {
+    box-shadow: 0 0 0 1px ${({ theme }) => theme.bg4};
+  }
+  &:disabled {
+    opacity: 50%;
+    cursor: auto;
+  }
+  svg {
+    margin-left: 12px;
+  }
+`
+
 export const ButtonEmpty = styled(Base)`
   background-color: transparent;
   color: ${({ theme }) => theme.primary1};
@@ -328,6 +384,17 @@ export function ButtonDropdownLight({ disabled = false, children, ...rest }: { d
         <ChevronDown size={24} />
       </RowBetween>
     </ButtonOutlined>
+  )
+}
+
+export function ButtonDropdownGreen({ disabled = false, children, ...rest }: { disabled?: boolean } & ButtonProps) {
+  return (
+    <ButtonGreen {...rest} disabled={disabled}>
+      <RowCenter>
+        <div style={{ display: 'flex', alignItems: 'center' }}>{children}</div>
+        <ChevronDown size={20} />
+      </RowCenter>
+    </ButtonGreen>
   )
 }
 

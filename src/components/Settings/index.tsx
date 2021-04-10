@@ -20,7 +20,7 @@ import { RowBetween, RowFixed } from '../Row'
 import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 
-import { IconSettings, IconHistory } from '../../components/Icon/Base'
+import { IconSettings } from '../../components/Icon/Base'
 
 const StyledMenuIcon = styled(IconSettings)`
   height: 20px;
@@ -35,41 +35,6 @@ const StyledMenuIcon = styled(IconSettings)`
   }
 `
 
-const StyledHistoryButton = styled.button`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  height: 35px;
-  padding: 0.15rem 0 0.15rem 0.5rem;
-  border-radius: 0.5rem;
-  margin-left: 4px;
-
-  :hover,
-  :focus {
-    cursor: pointer;
-    outline: none;
-  }
-
-  svg {
-    margin-top: 2px;
-  }
-`
-const StyledHistoryIcon = styled(IconHistory)`
-  height: 20px;
-  width: 20px;
-
-  > * {
-    stroke: ${({ theme }) => theme.text2};
-  }
-
-  :hover {
-    opacity: 0.7;
-  }
-`
 
 const StyledCloseIcon = styled(X)`
   height: 20px;
@@ -161,10 +126,6 @@ export default function SettingsTab() {
   const open = useModalOpen(ApplicationModal.SETTINGS)
   const toggle = useToggleSettingsMenu()
 
-  const historyToggle = () => {
-    console.log('historyToggle')
-  }
-
   const theme = useContext(ThemeContext)
   const [userSlippageTolerance, setUserslippageTolerance] = useUserSlippageTolerance()
 
@@ -229,9 +190,6 @@ export default function SettingsTab() {
           </EmojiWrapper>
         ) : null}
       </StyledMenuButton>
-      <StyledHistoryButton disabled onClick={historyToggle} >
-        <StyledHistoryIcon />
-      </StyledHistoryButton>
       {open && (
         <MenuFlyout>
           <AutoColumn gap="md" style={{ padding: '1rem' }}>

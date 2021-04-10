@@ -97,8 +97,8 @@ export default function App() {
         <BodyWrapper>
           <Web3ReactManager>
             <Switch>
-              <Route path="/home" component={HomeIndex} />
-              {/* <Route strict path="/about" component={AboutIndex} /> */}
+              <Route exact path="/home" component={HomeIndex} />
+              {/* <Route exact path="/about" component={AboutIndex} /> */}
               <Route exact strict path="/swap" component={Swap} />
               <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
               <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
