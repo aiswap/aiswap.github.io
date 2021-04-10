@@ -34,8 +34,9 @@ pipeline {
             steps {
                 echo '---== Build Stage ==---'
                 // Prepare Build Environment
-                sh 'npm install'
-                sh 'npm run build'
+                sh 'npm i -g yarn'
+                sh 'yarn'
+                sh 'yarn build'
             }
         }
         stage('Deploy') {
