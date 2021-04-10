@@ -12,7 +12,7 @@ pipeline {
     }
     environment {
         BUILD_VERSION = ''
-        LOCAL_BUILD_DIR = 'dist'
+        LOCAL_BUILD_DIR = 'build'
     }
     stages {
         stage('Init') {
