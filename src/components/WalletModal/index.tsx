@@ -103,9 +103,11 @@ const OptionGrid = styled.div`
 const HoverText = styled.div`
   align-items: center;
   display: flex;
+  color: #00BFA0;
   font-weight: normal;
   :hover {
     cursor: pointer;
+    color: #009985;
   }
 `
 
@@ -325,7 +327,7 @@ export default function WalletModal({
           <img src={CloseSVG} alt="close" />
         </CloseIcon>
         {walletView !== WALLET_VIEWS.ACCOUNT ? (
-          <HeaderRow color="blue">
+          <HeaderRow>
             <HoverText
               onClick={() => {
                 setPendingError(false)
