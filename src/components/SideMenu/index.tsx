@@ -13,6 +13,7 @@ import twitter from '../../assets/aiswap/twitter.svg';
 import readis from '../../assets/aiswap/readis.svg';
 import wechat from '../../assets/aiswap/wechat.svg';
 import language from '../../assets/aiswap/language.png';
+import menus from '../../assets/aiswap/menu.svg';
 // import { Route } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -121,17 +122,40 @@ const MenuArr = [
 //       },
 //     ]
 //   },
+const MoBsi = styled.div`
+position: fixed;
+z-index: 10;
+width: 100%;
+height:60px;
+padding:10px;
+background-color:white;
+box-shadow: 0px 2px 2px rgb(12 30 45 / 4%);
+`
+const OpenMuex = styled.div`
+height: 100%;
+width: 100%;
+position: fixed;
+z-index: 10;
+background: white;
+margin-top: 60px;
+`
 
 export default function SideMenu(){
     const [isOpenSubMe,setisOpenSubMe] = useState(false);
     const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
+    const [isShowMenx,setIsShowMenx] = useState(false)
+
     function openorcloseSubMe(){
         setisOpenSubMe(!isOpenSubMe);
     }
+    function closeOrOpenMu(){
+        setIsShowMenx(!isShowMenx)
+    }
+
     return(
         <>
-            <div style={{width:'18%',backgroundColor:'white'}}  className="h-screen">
-
+            <div style={{backgroundColor:'white',position:'fixed',zIndex:10}}  className="h-screen hidden md:block md:w-72 block">
+                <div>
                 <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
                     <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />
                 </Modal>
@@ -190,7 +214,7 @@ export default function SideMenu(){
                         })}
                         
                     </div>
-                    <div style={{height:'13%', position:'absolute',bottom:'0',justifyContent:'center',width:'18%',borderTop:'1px solid #e6e0e0'}}>
+                    <div style={{height:'13%', position:'absolute',bottom:'0',justifyContent:'center',width:'100%',borderTop:'1px solid #e6e0e0'}}>
                         <div style={{width:'100%'}}>
                             <div style={{display:'flex',justifyContent:'space-between',cursor:'pointer',padding: '15px 30px'}}>
                                 <img src={telegram}/>
@@ -205,7 +229,59 @@ export default function SideMenu(){
                         </div>
                     </div>
                 </LeftDiv>
+                </div>
             </div>
+            <MoBsi className="block md:hidden">
+                <img src={menus} width="10%" onClick={closeOrOpenMu}/>
+            </MoBsi>
+            {
+                isShowMenx && (
+                    <>
+                        <OpenMuex >
+                        {MenuArr && MenuArr.map((item,index)=>{
+                        
+                        return(
+                            
+                            <div>
+                                {item.isSub=="2"?(
+                                <div>
+                                    <div style={{display:'flex',justifyContent:'space-between'}}  className="hover:bg-gray-100 hover:text-blue-600 pr-3">
+                                        <div onClick={openorcloseSubMe} style={{padding: '15px 30px',cursor:'pointer',color:'gray',display:'flex',alignItems:'center'}}>
+                                            <img src={item.icon}/>
+                                            <span>&nbsp;&nbsp;&nbsp;{item.name}</span>
+                                        </div>
+                                        <img src={isOpenSubMe?keyboard_arrow_down:arrow_drop_up}/>
+                                    </div>
+                                    
+                                    {isOpenSubMe && (
+                                        <>
+                                        {item.subMenu.map((itemss,index)=>{
+                                        return(
+                                            <MenuDiv onClick={closeOrOpenMu} style={{padding: '15px 65px',textAlign:'left'}}  exact activeClassName="active" to={itemss.route}  className="hover:bg-gray-100 hover:text-indigo-600">
+                                            {itemss.name}
+                                            </MenuDiv>
+                                        )
+                                        })}
+                                        </>
+                                    )}
+                                    </div>
+                                ):(
+                                    <MenuDiv  onClick={closeOrOpenMu} exact activeClassName="active" to={item.route} className="hover:bg-gray-100">
+                                        <MenuIcon>
+                                            <img src={item.icon}/>
+                                            <span>&nbsp;&nbsp;&nbsp;{item.name}</span>
+                                        </MenuIcon>
+                                        <div>&nbsp;</div>
+                                    </MenuDiv>
+                                )}
+                            </div>
+                        )
+                        })}
+                        
+                    </OpenMuex>
+                    </>
+                )
+            }
         </>
     )
 }

@@ -45,6 +45,7 @@ letter-spacing: -0.005em;
 
 color: #FFFFFF;
 `
+
 const HeadFon = styled.div`
 font-family: PingFang SC;
 font-style: normal;
@@ -110,7 +111,7 @@ color: #606080;
 export default function IDO(){
     return(
         <>
-            <div style={{color:'black',width:'100%'}}>
+            <div style={{color:'black',width:'100%'}} className="mt-14 md:mt-0">
                 <HeaderD className="pb-5 md:p-8">
                     <div>
                         <HeadFon>IDO : 去中心化新币发行平台</HeadFon>
@@ -118,10 +119,10 @@ export default function IDO(){
                     </div>
                     <img src={aiido}/>
                 </HeaderD>
-                <div style={{background:'linear-gradient(180deg, #9FF5E7 0%, #ABEFF5 100%)'}} className="p-8">
+                <div style={{background:'linear-gradient(180deg, #9FF5E7 0%, #ABEFF5 100%)'}} className="pt-7 pr-3 pl-3 md:pr-8 md:pl-8 pb-6 ">
                     <div>即将到来的IDO</div>
-                    <div style={{display:'flex',justifyContent:'center',marginTop:'20px'}}>
-                        <BoxSdi>
+                    <div style={{marginTop:'20px'}} className="md:pl-20 md:pr-20 md:flex md:justify-center">
+                        <BoxSdi className="w-full md:w-2/5">
                             <div>
                                 <Logo1>
                                     <img style={{width:'24%',marginRight:'20px'}} src={aisvg}/>
@@ -131,6 +132,56 @@ export default function IDO(){
                                     </div>
                                 </Logo1>
                                 <div>
+                                    <Logcon1>
+                                        <span>方式</span>
+                                        <ValuFon>公开</ValuFon>
+                                    </Logcon1>
+                                    <Logcon1>
+                                        <span>存入</span>
+                                        <ValuFon>OKT</ValuFon>
+                                    </Logcon1>
+                                    <Logcon1>
+                                        <span>获得</span>
+                                        <ValuFon>AI</ValuFon>
+                                    </Logcon1>
+                                    <Logcon1>
+                                        <span>待售</span>
+                                        <ValuFon>15,000,000 AI</ValuFon>
+                                    </Logcon1>
+                                    <Logcon1>
+                                        <span>募集资金</span>
+                                        <ValuFon>$3,000</ValuFon>
+                                    </Logcon1>
+                                    <Logcon1>
+                                        <span>兑换占比</span>
+                                        <ValuFon>0.00%</ValuFon>
+                                    </Logcon1>
+                                    <Logcon1>
+                                        <span>状态</span>
+                                        <ValuFon>02:04:03</ValuFon>
+                                    </Logcon1>
+                                    <Link style={{textDecoration:'none',color:'#606080'}} to="/detail_ido">
+                                    <Butchoose>选择</Butchoose>
+                                    </Link>
+                                    
+                                </div>
+                            </div>
+                        </BoxSdi>
+                        <div style={{width:'24px'}}></div>
+                        <BoxSdi className="w-full md:w-2/5  mt-5 md:mt-0">
+                            <div>
+                                <Logo1>
+                                    <img style={{width:'24%',marginRight:'20px'}} src={aisvg}/>
+                                    <div>
+                                        <div style={{fontSize:'20px',color:'#151526'}}>AIswap</div>
+                                        <div style={{fontSize:'14px',color:'#606080'}}>AMM protocol incorporating multi-strategy yield optimization</div>
+                                    </div>
+                                </Logo1>
+                                <div>
+                                    <Logcon1>
+                                        <span>方式</span>
+                                        <ValuFon>白名单</ValuFon>
+                                    </Logcon1>
                                     <Logcon1>
                                         <span>存入</span>
                                         <ValuFon>OKT</ValuFon>
@@ -168,8 +219,8 @@ export default function IDO(){
 
                 <div style={{backgroundColor:'#D4D4D9'}} className="pt-7 pr-3 pl-3 md:pr-8 md:pl-8 pb-6 ">
                     <div>已结束的IDO</div>
-                    <div style={{marginTop:'20px'}} className="md:flex md:justify-between" >
-                        <BoxSdi style={{marginRight:'24px'}} className="w-full md:w-1/2">
+                    <div style={{marginTop:'20px'}} className="md:flex md:justify-center md:pl-20 md:pr-20" >
+                        <BoxSdi className="w-full md:w-2/5">
                             <div>
                                 <Logo1>
                                     <img style={{width:'25%',marginRight:'16px'}} src={Sfgsvg}/>
@@ -211,7 +262,8 @@ export default function IDO(){
                                 </div>
                             </div>
                         </BoxSdi>
-                        <BoxSdi  className="w-full md:w-1/2 mt-5 md:mt-0">
+                        <div style={{width:'24px'}}></div>
+                        <BoxSdi  className="w-full md:w-2/5 mt-5 md:mt-0">
                             <div>
                                 <Logo1>
                                     <img style={{width:'25%',marginRight:'16px'}} src={Sfgsvg}/>

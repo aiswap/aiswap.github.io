@@ -4,7 +4,9 @@ import { AddressZero } from '@ethersproject/constants'
 import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
-import { ROUTER_ADDRESS } from '../constants'
+import offeringABI from '../constants/abis/offering.json';
+import startABI from '../constants/abis/starter.json';
+import { ROUTER_ADDRESS,STAETER_ADDRESS,OFFERING_ADDRESS } from '../constants'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@uniswap/sdk'
 import { TokenAddressMap } from '../state/lists/hooks'
 
@@ -103,6 +105,14 @@ export function getContract(address: string, ABI: any, library: Web3Provider, ac
 export function getRouterContract(_: number, library: Web3Provider, account?: string): Contract {
   return getContract(ROUTER_ADDRESS, IUniswapV2Router02ABI, library, account)
 }
+
+export function getStarterContract(_: number, library: Web3Provider, account?: string): Contract {
+  return getContract(STAETER_ADDRESS, startABI, library, account)
+}
+export function getOfferContract(_: number, library: Web3Provider, account?: string): Contract {
+  return getContract(OFFERING_ADDRESS, offeringABI, library, account)
+}
+
 
 export function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string

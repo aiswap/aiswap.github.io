@@ -101,7 +101,7 @@ export default function App() {
         <URLWarning />
         <SideMenu/>
         
-        <BodyWrapper>
+        <BodyWrapper className="md:ml-72">
           <Popups />
           <Polling />
           <TopLevelModals />

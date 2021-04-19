@@ -17,8 +17,8 @@ export const BodyWrapper = styled.div`
 
 export default function AppBody({ children }: { children: React.ReactNode }) {
   return <>
-    <div style={{position:'absolute',marginTop:'22%'}}><img src={bg_global}/></div>
-    <BodyWrapper>
+    <div style={{position:'absolute',marginTop:'22%'}} className="hidden md:block"><img src={bg_global}/></div>
+    <BodyWrapper className="mt-10 md:mt-0">
     {children}
   </BodyWrapper>
   </>

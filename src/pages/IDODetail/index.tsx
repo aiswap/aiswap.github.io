@@ -1,19 +1,17 @@
-import React from 'react';
+import React ,{useState,useEffect}from 'react';
 import styled from 'styled-components'
 import aiido from '../../assets/aiswap/ai-ido.svg'
 import aisvg from '../../assets/aiswap/ai.svg'
+// import { getStarterContract } from '../../utils'
+// import { useActiveWeb3React } from '../../hooks'
+import info_outline_24px from '../../assets/aiswap/info_outline_24px.png'
 
 const LeftDe = styled.div`
 display:flex;
 justify-content:space-between;
 padding:4px 0 4px 0;
 `
-const HeaderD = styled.div`
-justify-content: space-between;
-display: flex;
-align-items: flex-start;
 
-`
 const Header2D = styled.div`
 background: #FFFFFF;
 /* Card/Stroke */
@@ -103,10 +101,12 @@ justify-content: center;
 box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
 border-radius: 8px;
 `
+
 const HeadFon = styled.div`
 font-family: PingFang SC;
 font-style: normal;
 font-weight: 600;
+font-size: 24px;
 line-height: 32px;
 /* identical to box height, or 133% */
 
@@ -115,6 +115,12 @@ letter-spacing: -0.02em;
 /* Blue/6 */
 
 color: #3939E6;
+`
+const HeaderD = styled.div`
+justify-content: space-between;
+display: flex;
+align-items: flex-start;
+
 `
 const Head2Fon = styled.div`
 font-family: PingFang SC;
@@ -155,26 +161,101 @@ div{
     background: #3939E6;
     box-shadow: 0px 2px 4px rgb(57 57 229 / 25%);
     border-radius:  8px;
-    width: 40%;
     height:24px;
 }
 `
+const WhiesS = styled.div`
+font-family: PingFang SC;
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 20px;
+/* identical to box height, or 167% */
+
+letter-spacing: -0.005em;
+
+/* Green/6 */
+
+color: #00BFA0;
+cursor:pointer;
+`
+const OutWhids = styled.div`
+font-family: PingFang SC;
+font-style: normal;
+font-weight: normal;
+font-size: 12px;
+line-height: 20px;
+/* identical to box height, or 167% */
+
+letter-spacing: -0.005em;
+
+/* Blue/6 */
+
+color: #3939E6;
+`
 export default function IDO(){
+    // const { account, chainId, library } = useActiveWeb3React()
+    const [isOver,setIsOver] = useState(false);
+    const [rateNs,setRateNs] = useState(0);
+
+    useEffect(()=>{
+        if(!isOver){
+            var timeInterval = setInterval(()=>{
+                let curTime = new Date().getTime();
+                let startTime = new Date("2021-04-12 17:30:00").getTime();
+                let overTime = new Date("2021-04-12 17:58:00").getTime();
+                let total = overTime-startTime;
+                let rateN = (curTime-startTime)/total*100;
+                if(rateN>=100){
+                    setRateNs(100);
+                }else{
+                    setRateNs(rateN);
+                }
+                console.log("rateN--",rateN)
+                if(curTime >= overTime){
+                    setIsOver(true);
+                    console.log("isOver --11---",isOver)
+                    clearInterval(timeInterval)
+                }
+                
+            },1000);
+        }else{
+            console.log("isOver--222---",isOver)
+        }
+    },[isOver,rateNs,setRateNs])
+
+    // async function getDatas(){
+    //     if (!chainId || !library || !account ) throw new Error('missing dependencies')
+    //     let starter = getStarterContract(chainId, library, account);
+    //     console.log("starter--",starter)
+    //     let completed = await starter.completed();
+    //     console.log("completed--",completed)
+    // }
+
     return(
         <>
-            <div style={{color:'black',width:'100%'}} className="p-3 md:p-8">
-                <HeaderD className="pb-5 md:p-5">
+            <div style={{color:'black',width:'100%'}} className="mt-14 md:mt-0">
+                <HeaderD className="pb-5 md:p-8">
                     <div>
-                        <HeadFon className="text-lg md:text-2xl">IDO : 去中心化新币发行平台</HeadFon>
+                        <HeadFon>IDO : 去中心化新币发行平台</HeadFon>
                         <Head2Fon>使用全新的代币销售模型购买新代币</Head2Fon>
                     </div>
                     <img src={aiido}/>
                 </HeaderD>
                 
+                <div className="p-3 md:p-8" style={{background:'#afeada'}}>
                 <Header2D className="md:flex">
                     <img style={{width:'24%'}} className="pr-5" src={aisvg}/>
                     <div>
-                        <div style={{fontSize:'20px',fontWeight:'bold',fontFamily:'Cairo'}}>AIswap</div>
+                        <div style={{display:'flex',justifyContent:"space-between"}}>
+                            <div style={{fontSize:'20px',fontWeight:'bold',fontFamily:'Cairo'}}>AIswap</div>
+                            <div style={{display:'flex',justifyContent:"space-between",alignItems:'center'}}>
+                                <img src={info_outline_24px}/>
+                                <OutWhids>&nbsp;&nbsp;不在白名单列表</OutWhids>
+                                <div style={{padding:'0 10px ',color:"#bbb7b7",fontSize:'2px'}}>|</div>
+                                <WhiesS>加入白名单</WhiesS>
+                            </div>
+                        </div>
                         <div style={{color:'#00BFA0'}}>https://s.finance</div>
                         <div style={{fontSize:'14px',fontFamily:'Cairo'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                     </div>
@@ -213,7 +294,7 @@ export default function IDO(){
                                 <span style={{fontFamily:'Cairo',fontWeight:'bold',fontSize:'14px'}}>23-03-2021 12:00 UTC</span>
                             </LeftDe>
                             <Dese1>
-                                <div></div>
+                                <div style={{width:rateNs+"%"}}></div>
                             </Dese1>
                         </Box1DldDiv>
                     </Box1Div>
@@ -268,6 +349,7 @@ export default function IDO(){
                         </Clamdsd>
                     </Box1Div>
                     </div>
+                </div>
                 </div>
                 
             </div>

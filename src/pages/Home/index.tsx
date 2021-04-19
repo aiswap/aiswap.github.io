@@ -163,7 +163,7 @@ color: #00BFA0;
 export default function Home(){
     return(
         <>
-            <BoxDiv>
+            <BoxDiv className="mt-10 md:mt-0">
                 <div style={{width:'100%'}}>
                     <HomeHead className="text-left md:flex md:justify-between">
                        <img src={extraleft}/>
