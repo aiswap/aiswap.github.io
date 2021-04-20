@@ -76,8 +76,6 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
       font-weight: normal;
       :hover,
       :focus {
-        
-
         color: ${({ theme }) => darken(0.05, '#00BFA0')};
       }
     `}
@@ -90,7 +88,7 @@ const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
   font-weight: 500;
   :hover,
   :focus {
-    color: white;
+    color: ${({ pending, theme }) => (pending ? darken(0.1, '#00BFA0') : darken(0.1, '#00BFA0'))};
     background-color: ${({ pending, theme }) => (pending ? darken(0.05, theme.primary1) : lighten(0.05, theme.bg2))};
     border: 1px solid #00BFA0;
   }
@@ -178,6 +176,7 @@ function Web3StatusInner() {
   if (account) {
     return (
       <Web3StatusConnected id="web3-status-connected" onClick={toggleWalletModal} pending={hasPendingTransactions}>
+        {!hasPendingTransactions && connector && <StatusIcon connector={connector} />}
         {hasPendingTransactions ? (
           <RowBetween>
             <Text>{pending?.length} Pending</Text> <Loader stroke="white" />
@@ -188,7 +187,6 @@ function Web3StatusInner() {
             <Text>{ENSName || shortenAddress(account)}</Text>
           </>
         )}
-        {!hasPendingTransactions && connector && <StatusIcon connector={connector} />}
       </Web3StatusConnected>
     )
   } else if (error) {

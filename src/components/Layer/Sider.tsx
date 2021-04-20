@@ -4,8 +4,8 @@ import { NavLink, withRouter } from 'react-router-dom'
 import AccountAddress from './AccountAddress'
 import { ExternalLink } from '../../theme'
 import styled from 'styled-components'
-import Logo from '../../assets/svg/logo_md.svg'
-import logoSingle from '../../assets/svg/logo_single.svg'
+import Logo from '../../assets/svg/logo/md.svg'
+import LogoWhite from '../../assets/svg/logo/white.svg'
 
 import { IconHome, IconFarm, IconTrade, IconIDO, IconMore } from '../Icon/Base'
 
@@ -66,11 +66,13 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
     // }
     // let openKeys: [string] = [findMenuSubKey(history.location.pathname)]
 
+
+    
     return (
       <StyleSider width={240} className="layer-side" onCollapse={toggleCollapsed}>
         <NavLink className="logo" to={'/'}>
           {collapsed
-            ? <img src={logoSingle} style={{
+            ? <img src={LogoWhite} style={{
                 height: '32px',
                 marginRight: '10px'
               }} alt="" />
@@ -80,7 +82,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
 
         {/* openKeys={openKeys} */}
         <WrapperMenu selectedKeys={[history.location.pathname]} mode="inline">
-          <Menu.Item key={'/home'} disabled icon={<IconHome />}>
+          <Menu.Item key={'/home'} icon={<IconHome />}>
             <NavLink to={'/home'}>
               首页
             </NavLink>
