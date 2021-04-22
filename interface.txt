@@ -1,0 +1,31 @@
+Offering
+待售总量  token.balanceOf(contract)
+存入资产  offering.currency()
+募集资金  offering.totalPurchasedCurrency()
+存入时限    
+存入总量    实际入金币种数量
+开始时间    offering.timeOffer()
+结束时间    
+预计可领取时间 
+存入占比：   100%
+兑换比例    offering.ratio()
+deposit   offering.offerHT()
+Claim     offering.claim()
+预计获得奖励数量 
+状态 
+//////////
+starter
+待售总量  underlying.balanceOf(contract)
+存入资产  starter.currency()
+募集资金  starter.totalPurchasedCurrency()
+存入时限    
+存入总量    starter.totalPurchasedCurrency()
+开始时间    
+结束时间    starter.time()
+预计可领取时间 starter.timeSettle()
+存入占比：   
+兑换比例    
+deposit   starter.purchaseHT()
+Claim     starter.settle()
+预计获得奖励数量 starter.settledUnderlyingOf(address)
+状态  starter.completed()

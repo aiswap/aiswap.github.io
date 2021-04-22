@@ -4,19 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import GoogleAnalyticsReporter from '../components/analytics/GoogleAnalyticsReporter'
 import SideMenu from '../components/SideMenu'
-// import logo from '../assets/aiswap/logo.svg'
-// import homepng from '../assets/aiswap/home.svg';
-// import arrow_drop_up from '../assets/aiswap/arrow_drop_up.svg';
-// import keyboard_arrow_down from '../assets/aiswap/keyboard_arrow_down_24px.svg';
-// import UniBalanceContent from '../components/Header/UniBalanceContent'
-// import Modal from '../components/Modal'
-// import trade from '../assets/aiswap/trade.svg';
-// import ido from '../assets/aiswap/ido.svg';
-// import telegram from '../assets/aiswap/telegram.svg';
-// import twitter from '../assets/aiswap/twitter.svg';
-// import readis from '../assets/aiswap/readis.svg';
-// import wechat from '../assets/aiswap/wechat.svg';
-// import language from '../assets/aiswap/language.png';
 
 import AddressClaimModal from '../components/claim/AddressClaimModal'
 // import Header from '../components/Header'
@@ -44,7 +31,8 @@ import RemoveLiquidity from './RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './RemoveLiquidity/redirects'
 import Swap from './Swap'
 import Home from './Home'
-import IDODetail from './IDODetail'
+import StarterIDODetail from './IDOStarterDetail'
+import OfferingIDODetail from './IDOOfferingDetail'
 import IDO from './IDO'
 import farmtrade from './Farms/Trade'
 import farmlp from './Farms/Liquiidty'
@@ -109,7 +97,8 @@ export default function App() {
             <Switch>
               <Route exact strict path="/home" component={Home}/>
               <Route exact strict path="/ido" component={IDO}/>
-              <Route exact strict path="/detail_ido" component={IDODetail}/>
+              <Route exact strict path="/detail_ido_starter" component={StarterIDODetail}/>
+              <Route exact strict path="/detail_ido_offering" component={OfferingIDODetail}/>
               <Route exact strict path="/farmtrade" component={farmtrade}/>
               <Route exact strict path="/farmlp" component={farmlp}/>
               

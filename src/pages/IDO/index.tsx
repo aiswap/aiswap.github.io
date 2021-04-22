@@ -1,9 +1,13 @@
-import React from 'react';
+import React ,{useState,useEffect}from 'react';
 import styled from 'styled-components'
 import aiido from '../../assets/aiswap/ai-ido.svg'
 import aisvg from '../../assets/aiswap/ai.svg'
 import Sfgsvg from '../../assets/aiswap/sfg.svg';
 import {Link } from 'react-router-dom'
+import { getStarterContract,getContract } from '../../utils'
+import { useActiveWeb3React } from '../../hooks'
+import erc20 from '../../constants/abis/erc20.json';
+import {STAETER_ADDRESS} from '../../constants'
 
 const Logo1 = styled.div`
 display: flex;
@@ -109,6 +113,44 @@ color: #606080;
 `
 
 export default function IDO(){
+    const { account, chainId, library } = useActiveWeb3React()
+    const [waitSellAmount,setwaitSellAmount] = useState("0")
+    const [totalPurchasedCurrency,settotalPurchasedCurrency] = useState("0")
+    const [completed,setcompleted]= useState(false)
+    const [currencySymbol,setcurrencySymbol] = useState("OKT")
+    const [IDOSymbol,setIDOSYmbol] = useState("AI")
+
+    useEffect(()=>{
+        if(account){
+            getDatas()
+        }
+        
+    },[account])
+
+    async function getDatas(){
+        if (!chainId || !library || !account ) throw new Error('missing dependencies')
+        let starter = getStarterContract(chainId, library, account);
+        let currency = await starter.currency();
+        let idoToken = await starter.underlying();
+        let tokenConIDO = getContract(idoToken,erc20,library,account);
+        let currencyToken = getContract(currency,erc20,library,account);
+        let symbolCurrency = await currencyToken.symbol()
+        setcurrencySymbol(symbolCurrency)
+        let symbolIDO = await tokenConIDO.symbol();
+        setIDOSYmbol(symbolIDO)
+
+        let waitSellAmount = await tokenConIDO.balanceOf(STAETER_ADDRESS)
+        setwaitSellAmount(parseEth(waitSellAmount));
+        let totalPurchasedCurrency = await starter.totalPurchasedCurrency();
+        settotalPurchasedCurrency(totalPurchasedCurrency+"");
+        let completed = await starter.completed();
+        setcompleted(completed)
+    }
+    function parseEth(amount:any){
+        return Number(amount/10**18).toFixed(4)
+    }
+    
+
     return(
         <>
             <div style={{color:'black',width:'100%'}} className="mt-14 md:mt-0">
@@ -138,19 +180,19 @@ export default function IDO(){
                                     </Logcon1>
                                     <Logcon1>
                                         <span>存入</span>
-                                        <ValuFon>OKT</ValuFon>
+                                        <ValuFon>{currencySymbol}</ValuFon>
                                     </Logcon1>
                                     <Logcon1>
                                         <span>获得</span>
-                                        <ValuFon>AI</ValuFon>
+                                        <ValuFon>{IDOSymbol}</ValuFon>
                                     </Logcon1>
                                     <Logcon1>
                                         <span>待售</span>
-                                        <ValuFon>15,000,000 AI</ValuFon>
+                                        <ValuFon>{waitSellAmount} {IDOSymbol}</ValuFon>
                                     </Logcon1>
                                     <Logcon1>
                                         <span>募集资金</span>
-                                        <ValuFon>$3,000</ValuFon>
+                                        <ValuFon>{totalPurchasedCurrency}</ValuFon>
                                     </Logcon1>
                                     <Logcon1>
                                         <span>兑换占比</span>
@@ -158,9 +200,9 @@ export default function IDO(){
                                     </Logcon1>
                                     <Logcon1>
                                         <span>状态</span>
-                                        <ValuFon>02:04:03</ValuFon>
+                                        <ValuFon>{completed ?("结束"):("进行中")}</ValuFon>
                                     </Logcon1>
-                                    <Link style={{textDecoration:'none',color:'#606080'}} to="/detail_ido">
+                                    <Link style={{textDecoration:'none',color:'#606080'}} to="/detail_ido_starter">
                                     <Butchoose>选择</Butchoose>
                                     </Link>
                                     
@@ -207,7 +249,7 @@ export default function IDO(){
                                         <ValuFon>02:04:03</ValuFon>
                                     </Logcon1>
                                     
-                                        <Link style={{textDecoration:'none',color:'#606080'}} to="/detail_ido">
+                                        <Link style={{textDecoration:'none',color:'#606080'}} to="/detail_ido_offering">
                                         <Butchoose>选择</Butchoose>
                                         </Link>
                                     
