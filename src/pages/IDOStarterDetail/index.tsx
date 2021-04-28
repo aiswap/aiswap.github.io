@@ -6,7 +6,41 @@ import { getStarterContract,getContract } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
 import erc20 from '../../constants/abis/erc20.json';
 import {STAETER_ADDRESS} from '../../constants'
+import Web3 from 'web3';
 // import info_outline_24px from '../../assets/aiswap/info_outline_24px.png'
+
+var web3 = new Web3("https://exchaintest.okexcn.com")
+
+// const WhiesS = styled.div`
+// font-family: PingFang SC;
+// font-style: normal;
+// font-weight: 600;
+// font-size: 12px;
+// line-height: 20px;
+// /* identical to box height, or 167% */
+
+// letter-spacing: -0.005em;
+
+// /* Green/6 */
+
+// color: #00BFA0;
+// cursor:pointer;
+// `
+// const OutWhids = styled.div`
+// font-family: PingFang SC;
+// font-style: normal;
+// font-weight: normal;
+// font-size: 12px;
+// line-height: 20px;
+// /* identical to box height, or 167% */
+
+// letter-spacing: -0.005em;
+
+// /* Blue/6 */
+
+// color: #3939E6;
+// `
+
 
 const LeftDe = styled.div`
 display:flex;
@@ -177,7 +211,10 @@ export default function IDO(){
     const [currencySymbol,setcurrencySymbol] = useState("OKT")
     const [IDOSymbol,setIDOSYmbol] = useState("AI")
     const [chadyAr,setChadyArr] = useState<Array<number>>();
-    const [willGet,setWiilGet] = useState("0")
+    const [willGet,setWiilGet] = useState("0");
+    const [inputVal,setInputVal] = useState('0.0000')
+    const [isAllownce,setIsallownce] = useState(false)
+    const [isSettle,setIsSettle] = useState(true);
 
     useEffect(()=>{
         if(account){
@@ -234,14 +271,22 @@ export default function IDO(){
         let waitSellAmount = await tokenConIDO.balanceOf(STAETER_ADDRESS)
         setwaitSellAmount(parseEth(waitSellAmount));
         let totalPurchasedCurrency = await starter.totalPurchasedCurrency();
-        settotalPurchasedCurrency(totalPurchasedCurrency+"");
+        settotalPurchasedCurrency(web3.utils.fromWei(String(totalPurchasedCurrency),'ether'));
         let willGet = await starter.settledUnderlyingOf(account)
         setWiilGet(parseEth(willGet))
+        allownceAmount();
+    }
+    async function approveTo(){
+        if (!chainId || !library || !account ) throw new Error('missing dependencies')
+        let starter = getStarterContract(chainId, library, account);
+        let currency = await starter.currency();
+        let currencyToken = getContract(currency,erc20,library,account);
+        await currencyToken.approve(STAETER_ADDRESS,web3.utils.toWei("1000000000000000","ether"),{from:account})
     }
     async function purchaseHTTodo(){
         if (!chainId || !library || !account ) throw new Error('missing dependencies')
         let starter = getStarterContract(chainId, library, account);
-        await starter.purchaseHT();
+        await starter.purchase(web3.utils.toWei(String(inputVal),'ether'),{from:account});
     }
     async function settleTodo(){
         if (!chainId || !library || !account ) throw new Error('missing dependencies')
@@ -249,11 +294,24 @@ export default function IDO(){
         await starter.settle();
     }
     function parseEth(amount:any){
-        return Number(amount/10**18).toFixed(4)
+        let amous = web3.utils.fromWei(String(amount),'ether')
+        return Number(amous).toFixed(4)
     }
     function formatTime(time:any){
         let date = new Date(time);
         return date.getFullYear()+"/"+(date.getMonth()+1)+"/"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+    }
+    async function allownceAmount(){
+        if (!chainId || !library || !account ) throw new Error('missing dependencies')
+        let starter = getStarterContract(chainId, library, account);
+        let currency = await starter.currency();
+        let currencyToken = getContract(currency,erc20,library,account);
+        let allAm = await currencyToken.allowance(account,STAETER_ADDRESS)
+        if(allAm == 0){
+            setIsallownce(false);
+        }else{
+            setIsallownce(true);
+        }
     }
 
     function getDaysHours(time:any){
@@ -270,6 +328,17 @@ export default function IDO(){
         arss.push(parseInt(String(minuts)))
         arss.push(parseInt(String(seconds)))
         setChadyArr(arss)
+        if(curTime/1000 <= time){
+            setIsSettle(true)
+        }else{
+            setIsSettle(false)
+        }
+    }
+    function onChangeInput(e:any){
+        setInputVal(e.target.value);
+    }
+    function clearInput(){
+        setInputVal("")
     }
     return(
         <>
@@ -283,10 +352,19 @@ export default function IDO(){
                 </HeaderD>
                 
                 <div className="p-3 md:p-8" style={{background:'#afeada'}}>
+
                 <Header2D className="md:flex">
                     <img style={{width:'24%'}} className="pr-5" src={aisvg}/>
                     <div>
-                        <div style={{fontSize:'20px',fontWeight:'bold',fontFamily:'Cairo'}}>AIswap </div>
+                        <div style={{display:'flex',justifyContent:"space-between"}}>
+                            <div style={{fontSize:'20px',fontWeight:'bold',fontFamily:'Cairo'}}>AIswap</div>
+                            {/* <div style={{display:'flex',justifyContent:"space-between",alignItems:'center'}}>
+                                <img src={info_outline_24px}/>
+                                <OutWhids>&nbsp;&nbsp;不在白名单列表</OutWhids>
+                                <div style={{padding:'0 10px ',color:"#bbb7b7",fontSize:'2px'}}>|</div>
+                                <WhiesS>加入白名单</WhiesS>
+                            </div> */}
+                        </div>
                         <div style={{color:'#00BFA0'}}>https://s.finance</div>
                         <div style={{fontSize:'14px',fontFamily:'Cairo'}}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus pronin sapien nunc accuan eget.Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                     </div>
@@ -337,18 +415,25 @@ export default function IDO(){
                             <div className="md:w-1/2 pr-3">
                                 <div style={{fontSize:'12px'}} className="pt-3 pb-2">你的存入</div>
                                 <Inputsdd className="w-full p-4 ">
-                                    <input className="w-5/6" style={{fontSize:'20px',outline:'none',border:'none'}} type="text"/>
+                                    <input onFocus={clearInput} onChange={(e)=>onChangeInput(e)} value={inputVal} className="w-5/6" style={{fontSize:'20px',outline:'none',border:'none'}} type="text"/>
                                     <div>{currencySymbol}</div>
                                 </Inputsdd>
                             </div>
                             <div className="md:w-1/2 pl-3">
                                 <div style={{fontSize:'12px'}} className="pt-3 pb-2">你的存入</div>
                                 <Inputsdd  className="w-full p-4">
-                                    <input style={{fontSize:'20px',outline:'none',border:'none'}} type="text"/>
+                                    <input disabled={true} value={inputVal} style={{fontSize:'20px',outline:'none',border:'none'}} type="text"/>
                                 </Inputsdd>
                             </div>
                         </div>
-                        <Depositddd className="p-4" onClick={purchaseHTTodo}>Deposit</Depositddd>
+                        {
+                            isAllownce ?(<>
+                                <Depositddd className="p-4" onClick={purchaseHTTodo}>Deposit</Depositddd>
+                            </>):(<>
+                                <Depositddd className="p-4" onClick={approveTo}>Approve</Depositddd>
+                            </>)
+                        }
+                        
                         <hr style={{border:'1px solid rgba(21, 21, 38, 0.06)'}}/>
                         <div style={{fontSize:'12px',color:'#606080',padding: '10px 0 4px 0'}}>
                             奖励预计可领取时间
@@ -375,8 +460,8 @@ export default function IDO(){
                         <div style={{fontSize:'20px',fontWeight:'bold',border:'1px solid rgba(21, 21, 38, 0.06)',borderRadius:'8px',padding:'16px 24px'}}>
                             {willGet} <span style={{fontSize:'12px',fontWeight:'normal'}}>{IDOSymbol}</span>
                         </div>
-                        <Clamdsd className="p-4" onClick={settleTodo}>
-                            Claim
+                        <Clamdsd  className={isSettle?"bg-gray-200 p-4":" p-4 "} >
+                            <button  disabled={isSettle} onClick={settleTodo}>{isSettle?"Waiting":"Claim"}</button>
                         </Clamdsd>
                     </Box1Div>
                     </div>

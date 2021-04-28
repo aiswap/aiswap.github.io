@@ -8,6 +8,8 @@ import { getStarterContract,getContract } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
 import erc20 from '../../constants/abis/erc20.json';
 import {STAETER_ADDRESS} from '../../constants'
+import Web3 from 'web3';
+var web3 = new Web3("https://exchaintest.okexcn.com")
 
 const Logo1 = styled.div`
 display: flex;
@@ -142,7 +144,7 @@ export default function IDO(){
         let waitSellAmount = await tokenConIDO.balanceOf(STAETER_ADDRESS)
         setwaitSellAmount(parseEth(waitSellAmount));
         let totalPurchasedCurrency = await starter.totalPurchasedCurrency();
-        settotalPurchasedCurrency(totalPurchasedCurrency+"");
+        settotalPurchasedCurrency(web3.utils.fromWei(String(totalPurchasedCurrency),'ether'));
         let completed = await starter.completed();
         setcompleted(completed)
     }
