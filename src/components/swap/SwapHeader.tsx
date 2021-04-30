@@ -3,42 +3,43 @@ import styled from 'styled-components'
 import Settings from '../Settings'
 import { RowBetween } from '../Row'
 import { TYPE } from '../../theme'
-import { IconHistory } from '../../components/Icon/Base'
+// import { IconHistory } from '../../components/Icon/Base'
+import { useTranslation } from 'react-i18next'
 
-const StyledHistoryIcon = styled(IconHistory)`
-  height: 20px;
-  width: 20px;
+// const StyledHistoryIcon = styled(IconHistory)`
+//   height: 20px;
+//   width: 20px;
 
-  > * {
-    stroke: ${({ theme }) => theme.text2};
-  }
+//   > * {
+//     stroke: ${({ theme }) => theme.text2};
+//   }
 
-  :hover {
-    opacity: 0.7;
-  }
-`
+//   :hover {
+//     opacity: 0.7;
+//   }
+// `
 
-const StyledHistoryButton = styled.button`
-  position: relative;
-  border: none;
-  background-color: transparent;
-  margin: 0;
-  padding: 0;
-  height: 35px;
-  padding: 0.15rem 0 0.15rem 0.5rem;
-  border-radius: 0.5rem;
-  margin-left: 4px;
+// const StyledHistoryButton = styled.button`
+//   position: relative;
+//   border: none;
+//   background-color: transparent;
+//   margin: 0;
+//   padding: 0;
+//   height: 35px;
+//   padding: 0.15rem 0 0.15rem 0.5rem;
+//   border-radius: 0.5rem;
+//   margin-left: 4px;
 
-  :hover,
-  :focus {
-    cursor: pointer;
-    outline: none;
-  }
+//   :hover,
+//   :focus {
+//     cursor: pointer;
+//     outline: none;
+//   }
 
-  svg {
-    margin-top: 2px;
-  }
-`
+//   svg {
+//     margin-top: 2px;
+//   }
+// `
 
 const StyledSwapHeader = styled.div`
   padding: 20px 24px 0;
@@ -65,23 +66,25 @@ const StyledTypeBlack = styled.div`
 `
 
 export default function SwapHeader() {
-  const historyToggle = () => {
-    console.log('historyToggle')
-  }
+  const { t } = useTranslation()
+
+  // const historyToggle = () => {
+  //   console.log('historyToggle')
+  // }
 
   return (
     <StyledSwapHeader>
       <RowBetween>
         <StyledTypeBlack>
           <TYPE.black fontWeight={500}>
-            兑换
-            <small>Trade tokens in an instant</small>
+            {t('exchange.swap')}
+            <small>{t('exchange.swapTip')}</small>
           </TYPE.black>
         </StyledTypeBlack>
         <Settings />
-        <StyledHistoryButton disabled onClick={historyToggle} >
+        {/* <StyledHistoryButton disabled onClick={historyToggle} >
           <StyledHistoryIcon />
-        </StyledHistoryButton>
+        </StyledHistoryButton> */}
       </RowBetween>
     </StyledSwapHeader>
   )

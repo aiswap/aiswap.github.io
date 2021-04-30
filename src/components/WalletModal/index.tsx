@@ -340,7 +340,7 @@ export default function WalletModal({
           </HeaderRow>
         ) : (
           <HeaderRow>
-            <HoverText>{t('连接钱包')}</HoverText>
+            <HoverText>{t('wallet.submitConnect')}</HoverText>
           </HeaderRow>
         )}
         <ContentWrapper>

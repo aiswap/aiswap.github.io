@@ -24,7 +24,7 @@ export default function ChangeLanguage() {
   const supportedI18n = {
     'en': 'English',
     'zh-CN': '中文（简体）',
-    'zh-TW': '中文（繁體）'
+    // 'zh-TW': '中文（繁體）'
   }
   let selectedLocaleName = supportedI18n[i18n.language]
 

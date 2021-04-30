@@ -2,6 +2,7 @@ import React from 'react'
 import { ColumnCenter } from '../../components/Column'
 import { AutoRow } from '../../components/Row'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 import styled from 'styled-components'
 // import { STAKING_REWARDS_INFO, useStakingInfo } from '../../state/stake/hooks'
@@ -19,24 +20,29 @@ import { ExternalLink } from '../../theme'
 
 import LogoMd from '../../assets/svg/logo/md.svg'
 import LogoWhite from '../../assets/svg/logo/white.svg'
-import CooperationKlend from '../../assets/svg/cooperation/klend.svg'
-import CooperationDMEX from '../../assets/svg/cooperation/dmex.svg'
-import CooperationSFinance from '../../assets/svg/cooperation/sfinance.svg'
-import CooperationSupremeX from '../../assets/svg/cooperation/superemex.svg'
+// import CooperationKlend from '../../assets/svg/cooperation/klend.svg'
+// import CooperationDMEX from '../../assets/svg/cooperation/dmex.svg'
+// import CooperationSFinance from '../../assets/svg/cooperation/sfinance.svg'
+// import CooperationSupremeX from '../../assets/svg/cooperation/superemex.svg'
 import CooperationBgLeft from '../../assets/svg/art/extra-left.svg'
 import CooperationBgRight from '../../assets/svg/art/extra-right.svg'
 
+import CommunityTelegram from '../../assets/svg/community/telegram_b.svg' 
+import CommunityTwitter from '../../assets/svg/community/twitter_b.svg' 
+import CommunityDiscord from '../../assets/svg/community/discord_b.svg' 
+import CommunityMedium from '../../assets/svg/community/medium.svg' 
+
 import ArtSwap from '../../assets/svg/art/ai-swap.svg'
-import ArtTrademin from '../../assets/svg/art/ai-trademin.svg'
-import ArtLiquidity from '../../assets/svg/art/ai-liqmin.svg'
-import ArtIdo from '../../assets/svg/art/ai-ido.svg'
-import ArtDestruction from '../../assets/svg/art/ai-destruction.svg'
+// import ArtTrademin from '../../assets/svg/art/ai-trademin.svg'
+// import ArtLiquidity from '../../assets/svg/art/ai-liqmin.svg'
+// import ArtIdo from '../../assets/svg/art/ai-ido.svg'
+// import ArtDestruction from '../../assets/svg/art/ai-destruction.svg'
 
 import ArtExtraSwap from '../../assets/svg/art/extra-swap.svg'
-import ArtExtraTrademin from '../../assets/svg/art/extra-trademin.svg'
-import ArtExtraLiquidity from '../../assets/svg/art/extra-liqmin.svg'
-import ArtExtraIdo from '../../assets/svg/art/extra-ido.svg'
-import ArtExtraDestruction from '../../assets/svg/art/extra-destruction.svg'
+// import ArtExtraTrademin from '../../assets/svg/art/extra-trademin.svg'
+// import ArtExtraLiquidity from '../../assets/svg/art/extra-liqmin.svg'
+// import ArtExtraIdo from '../../assets/svg/art/extra-ido.svg'
+// import ArtExtraDestruction from '../../assets/svg/art/extra-destruction.svg'
 
 import ArtCover from '../../assets/svg/art/art_01.svg'
 
@@ -71,6 +77,7 @@ const StyledCover = styled.div`
   h1 {
     color: #3939E6;
     padding-right: 120px;
+    max-width: 588px;
     display: flex;
     flex-flow: wrap column;
     font-style: normal;
@@ -92,15 +99,22 @@ const StyledCover = styled.div`
   img {
     width: 564px;
     height: 400px;
+    position: relative;
   }
 `
 
 const StyledFeatures = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 1152px;
-  margin: 64px 0 72px;
+  padding: 96px 0 72px;
+  margin-top: -40px;
   width: 100%;
+  background-color: #FFFFFF;
+  align-items: center;
+
+  a {
+    // max-width: 1152px;
+  }
 `
 
 const StyledFeatureLink = styled(Link)`
@@ -112,6 +126,8 @@ const StyledFeatureLink = styled(Link)`
   border-radius: 16px;
   margin-bottom: 24px;
   align-items: center;
+  width: 100%;
+  max-width: 1152px;
 
   > img {
     width: 72px;
@@ -181,11 +197,20 @@ const StyledCooperationBody = styled(AutoRow)`
 `
 
 const StyledCooperationLink = styled(ExternalLink)`
-  margin: 12px;
+  margin: 12px 16px;
   background-color: rgba(240,242,255, 0.5);
+  display: flex;
+  flex-direction: column;
+  color: #151526;
+  align-items: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 20px;
 
   :hover {
     opacity: 0.8;
+    color: #151526;
+    text-decoration: none;
   }
 `
 
@@ -201,6 +226,8 @@ const StyledFooter = styled.footer`
 // `
 
 export default function Earn() {
+  const { t } = useTranslation()
+
   // const { chainId } = useActiveWeb3React()
 
   // staking info for connected account
@@ -214,19 +241,25 @@ export default function Earn() {
 
   // toggle copy if rewards are inactive
   // const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
-  const cooperations: {id: string, href: string, width: string, src: string}[] = [
-    { id: 'Klend', href: '###', width: '112px', src: CooperationKlend },
-    { id: 'S.Finance', href: '###', width: '146px', src: CooperationSFinance },
-    { id: 'SupremeX', href: '###', width: '164px', src: CooperationSupremeX },
-    { id: 'DMEX', href: '###', width: '120px', src: CooperationDMEX }
+  // const cooperations: {id: string, href: string, width: string, src: string}[] = [
+  //   { id: 'Klend', href: '###', width: '112px', src: CooperationKlend },
+  //   { id: 'S.Finance', href: '###', width: '146px', src: CooperationSFinance },
+  //   { id: 'SupremeX', href: '###', width: '164px', src: CooperationSupremeX },
+  //   { id: 'DMEX', href: '###', width: '120px', src: CooperationDMEX }
+  // ]
+  const communities: {id: string, href: string, width: string, height: string, src: string}[] = [
+    { id: 'telegram', href: '###', width: '40px', height: '40px', src: CommunityTelegram },
+    { id: 'twitter', href: '###', width: '40px', height: '40px', src: CommunityTwitter },
+    { id: 'discord', href: '###', width: '40px', height: '40px', src: CommunityDiscord },
+    { id: 'medium', href: '###', width: '40px', height: '40px', src: CommunityMedium }
   ]
 
   const features: { to: string, title: string, tip?: string, small: string, icon: string, extra: string, style?: object}[] = [
-    {to: '/swap', title: '资产兑换',small: '生态链最大的资产兑换平台', icon: ArtSwap,  extra: ArtExtraSwap, style: {backgroundColor: '#FFE5FB'}},
-    {to: '/', title: '交易挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtTrademin,  extra: ArtExtraTrademin},
-    {to: '/', title: '流动性挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtLiquidity,  extra: ArtExtraLiquidity},
-    {to: '/ido', title: 'IDO', tip: 'Initial DeFi Offerings', small: '以一种全新的方式参与早期项目的认购，参与折价拍卖！', icon: ArtIdo,  extra: ArtExtraIdo, style: {backgroundColor: '#E1FAF6'}},
-    {to: '/', title: '回购销毁', small: '打造 OKExChain 生态链最大的资产兑换平台', icon: ArtDestruction,  extra: ArtExtraDestruction}
+    {to: '/swap', title: 'about.featuresSwap',small: 'about.featuresSwapSub', icon: ArtSwap,  extra: ArtExtraSwap, style: {backgroundColor: '#FFE5FB'}},
+    // {to: '/', title: '交易挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtTrademin,  extra: ArtExtraTrademin},
+    // {to: '/', title: '流动性挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtLiquidity,  extra: ArtExtraLiquidity},
+    // {to: '/ido', title: 'IDO', tip: 'Initial DeFi Offerings', small: '以一种全新的方式参与早期项目的认购，参与折价拍卖！', icon: ArtIdo,  extra: ArtExtraIdo, style: {backgroundColor: '#E1FAF6'}},
+    // {to: '/', title: '回购销毁', small: '打造 OKExChain 生态链最大的资产兑换平台', icon: ArtDestruction,  extra: ArtExtraDestruction}
   ]
 
   return (
@@ -237,10 +270,10 @@ export default function Earn() {
       <StyledMain>
         <StyledCover>
           <h1>
-            <b>AIswap</b>更多AI，更有爱
-            <small>OKExChain 生态一站式链上资产兑换与收益平台</small>
+            <b>AIswap</b>{t('about.title')}
+            <small>{t('about.subtitle')}</small>
           </h1>
-          <img src={ArtCover} />
+          <img src={ArtCover} alt="" />
         </StyledCover>
 
         <StyledFeatures>
@@ -248,12 +281,12 @@ export default function Earn() {
             features.map(item => {
               return (
                 <StyledFeatureLink to={item.to} style={item.style}>
-                  <img src={item.icon} />
+                  <img src={item.icon} alt="" />
                   <h3>
-                    <span>{item.title}{item.tip ? (<em>{item.tip}</em>) : '' }</span>
-                    <small>{item.small}</small>
+                    <span>{t(item.title)}{item.tip ? (<em>{t(item.tip)}</em>) : '' }</span>
+                    <small>{t(item.small)}</small>
                   </h3>
-                  <span><img src={item.extra} /></span>
+                  <span><img src={item.extra} alt="" /></span>
                 </StyledFeatureLink>
               )
             })
@@ -261,13 +294,14 @@ export default function Earn() {
         </StyledFeatures>
 
         <StyledCooperation>
-          <h3>生态合作伙伴</h3>
+          <h3>{t('about.community')}</h3>
           <StyledCooperationBody>
             {
-              cooperations.map(item => {
+              communities.map(item => {
                 return (
                   <StyledCooperationLink href={item.href} key={'item-' + item.id}>
-                    <img width={item.width} src={item.src} alt={item.id} />
+                    <img width={item.width} height={item.height} src={item.src} alt={item.id} />
+                    {item.id}
                   </StyledCooperationLink>
                 )
               })

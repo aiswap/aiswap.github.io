@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from 'react'
-import { X } from 'react-feather'
+import { Settings, X } from 'react-feather'
 import { Text } from 'rebass'
 import styled, { ThemeContext } from 'styled-components'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
@@ -20,9 +20,7 @@ import { RowBetween, RowFixed } from '../Row'
 import Toggle from '../Toggle'
 import TransactionSettings from '../TransactionSettings'
 
-import { IconSettings } from '../../components/Icon/Base'
-
-const StyledMenuIcon = styled(IconSettings)`
+const StyledMenuIcon = styled(Settings)`
   height: 20px;
   width: 20px;
 
@@ -34,7 +32,6 @@ const StyledMenuIcon = styled(IconSettings)`
     opacity: 0.7;
   }
 `
-
 
 const StyledCloseIcon = styled(X)`
   height: 20px;
@@ -57,6 +54,7 @@ const StyledMenuButton = styled.button`
   margin: 0;
   padding: 0;
   height: 35px;
+
   padding: 0.15rem 0.5rem;
   border-radius: 0.5rem;
 
@@ -92,7 +90,7 @@ const MenuFlyout = styled.span`
   background-color: ${({ theme }) => theme.bg2};
   box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.01), 0px 4px 8px rgba(0, 0, 0, 0.04), 0px 16px 24px rgba(0, 0, 0, 0.04),
     0px 24px 32px rgba(0, 0, 0, 0.01);
-  border-radius: 12px;
+  border-radius:  8px;
   display: flex;
   flex-direction: column;
   font-size: 1rem;
@@ -202,10 +200,10 @@ export default function SettingsTab() {
               deadline={ttl}
               setDeadline={setTtl}
             />
-            <Text fontWeight={600} fontSize={14}>
+            <Text fontWeight={600} fontSize={14} style={{ display: 'none' }}>
               Interface Settings
             </Text>
-            <RowBetween>
+            <RowBetween style={{ display: 'none' }}>
               <RowFixed>
                 <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
                   Toggle Expert Mode
@@ -228,7 +226,7 @@ export default function SettingsTab() {
                 }
               />
             </RowBetween>
-            <RowBetween>
+            <RowBetween style={{ display: 'none' }}>
               <RowFixed>
                 <TYPE.black fontWeight={400} fontSize={14} color={theme.text2}>
                   Disable Multihops

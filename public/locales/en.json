@@ -5,6 +5,31 @@
   "wallet": {
     "submitConnect": "Connect Wallet"
   },
+
+  "about": {
+    "title": "Always be Innovative",
+    "subtitle": "The AMM and yield farm on OKExChain",
+    "featuresSwap": "Exchange",
+    "featuresSwapSub": "To be the #1 swap platform on OKExChain and the home of new, innovative liquidity providing mechanics",
+    "community": "Join our community"
+  },
+  "sidenav": {
+    "home": "Home",
+    "exchange": "Exchange",
+    "swap": "Swap",
+    "pool": "Pool",
+    "more": "More",
+    "github": "GitHub"
+  },
+  "exchange": {
+    "swap": "Swap",
+    "swapTip": "Trade tokens in an instant",
+    "form": "Form",
+    "formEstimate": "Form (Estimate)",
+    "to": "To",
+    "toEstimate": "To (Estimate)"
+  },
+
   "noWallet": "No Ethereum wallet found",
   "wrongNetwork": "You are on the wrong network",
   "switchNetwork": "Please switch to {{ correctNetwork }}",

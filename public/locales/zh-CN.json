@@ -5,6 +5,30 @@
   "wallet": {
     "submitConnect": "连接钱包"
   },
+  "about": {
+    "title": "更多 AI，更多爱",
+    "subtitle": "OKExChain 生态一站式链上资产兑换与收益平台",
+    "featuresSwap": "资产兑换",
+    "featuresSwapSub": "打造 OKExChain 生态链最大的资产兑换平台",
+    "community": "加入社区"
+  },
+  "sidenav": {
+    "home": "首页",
+    "exchange": "交易",
+    "swap": "兑换",
+    "pool": "资金池",
+    "more": "更多",
+    "github": "GitHub"
+  },
+  "exchange": {
+    "swap": "兑换",
+    "swapTip": "即时交易代币",
+    "form": "从",
+    "formEstimate": "从 (预计)",
+    "to": "至",
+    "toEstimate": "至 (预计)"
+  },
+
   "noWallet": "未发现以太钱包",
   "wrongNetwork": "网络错误",
   "switchNetwork": "请切换到 {{ correctNetwork }}",

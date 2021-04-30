@@ -199,7 +199,7 @@ function Web3StatusInner() {
   } else {
     return (
       <Web3StatusConnect id="connect-wallet" onClick={toggleWalletModal} faded={!account}>
-        <Text>{t('连接钱包')}</Text>
+        <Text>{t('wallet.submitConnect')}</Text>
       </Web3StatusConnect>
     )
   }

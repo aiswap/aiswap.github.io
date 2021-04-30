@@ -19,7 +19,7 @@ i18next
     saveMissing: true,
     fallbackLng: 'en',
     preload: ['en', 'zh-CN'],
-    keySeparator: false,
+    keySeparator: '.',
     interpolation: {
       escapeValue: false,
       formatSeparator: ','

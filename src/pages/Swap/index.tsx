@@ -54,6 +54,7 @@ import {
 } from 'antd';
 import styled from 'styled-components'
 import BgGlobal from '../../assets/svg/art/bg_global.png'
+import { useTranslation } from 'react-i18next'
 
 // const { TabPane } = Tabs;
 
@@ -231,6 +232,7 @@ export default function Swap({ history }: RouteComponentProps) {
     swapErrorMessage: undefined,
     txHash: undefined
   })
+  const { t } = useTranslation()
 
   const formattedAmounts = {
     [independentField]: typedValue,
@@ -394,7 +396,7 @@ export default function Swap({ history }: RouteComponentProps) {
 
             <AutoColumn gap={'md'}>
               <CurrencyInputPanel
-                label={independentField === Field.OUTPUT && !showWrap && trade ? '从 (预计)' : '从'}
+                label={independentField === Field.OUTPUT && !showWrap && trade ? t('exchange.formEstimate') : t('exchange.form')}
                 value={formattedAmounts[Field.INPUT]}
                 showMaxButton={!atMaxAmountInput}
                 currency={currencies[Field.INPUT]}
@@ -426,7 +428,7 @@ export default function Swap({ history }: RouteComponentProps) {
               <CurrencyInputPanel
                 value={formattedAmounts[Field.OUTPUT]}
                 onUserInput={handleTypeOutput}
-                label={independentField === Field.INPUT && !showWrap && trade ? '至 (预计)' : '至'}
+                label={independentField === Field.INPUT && !showWrap && trade ? t('exchange.toEstimate') : t('exchange.to')}
                 showMaxButton={false}
                 currency={currencies[Field.OUTPUT]}
                 onCurrencySelect={handleOutputSelect}
@@ -483,7 +485,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
                 </ButtonPrimary>
               ) : !account ? (
-                <ButtonLight onClick={toggleWalletModal}>连接钱包</ButtonLight>
+                <ButtonLight onClick={toggleWalletModal}>{t('wallet.submitConnect')}</ButtonLight>
               ) : showWrap ? (
                 <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
                   {wrapInputError ??

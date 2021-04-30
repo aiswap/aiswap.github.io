@@ -6,8 +6,15 @@ import { ExternalLink } from '../../theme'
 import styled from 'styled-components'
 import Logo from '../../assets/svg/logo/md.svg'
 import LogoWhite from '../../assets/svg/logo/white.svg'
+import { useTranslation } from 'react-i18next'
 
-import { IconHome, IconFarm, IconTrade, IconIDO, IconMore } from '../Icon/Base'
+import {
+  IconHome,
+  // IconFarm,
+  IconTrade,
+  // IconIDO,
+  IconMore
+} from '../Icon/Base'
 
 // import Icon from '@ant-design/icons';
 import useToggle from '../../hooks/useToggle'
@@ -41,6 +48,8 @@ const WrapperAssistance = styled.div`
 `
 
 export default function LayerSide({ children }: { children: React.ReactNode }) {
+  const { t } = useTranslation()
+
   // const currentViewName: (string)[] = ['home']
   // let stateCollapsed: boolean = false
 
@@ -84,34 +93,34 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
         <WrapperMenu selectedKeys={[history.location.pathname]} mode="inline">
           <Menu.Item key={'/home'} icon={<IconHome />}>
             <NavLink to={'/home'}>
-              首页
+              {t('sidenav.home')}
             </NavLink>
           </Menu.Item>
-          <SubMenu key={'transaction'} icon={<IconTrade />} title="交易">
+          <SubMenu key={'transaction'} icon={<IconTrade />} title={t('sidenav.exchange')}>
             <Menu.Item key={'/swap'}>
               <NavLink to={'/swap'}>
-                兑换
+                {t('sidenav.swap')}
               </NavLink>
             </Menu.Item>
             <Menu.Item key="/pool">
               <NavLink to={'/pool'}>
-                资金池
+                {t('sidenav.pool')}
               </NavLink>
             </Menu.Item>
           </SubMenu>
-          <SubMenu key="mining" disabled icon={<IconFarm />} title="农场">
+          {/* <SubMenu key="mining" disabled icon={<IconFarm />} title="农场">
             <Menu.Item key="transaction_mining">交易挖矿</Menu.Item>
             <Menu.Item key="stablecoin_mining">流动性挖矿</Menu.Item>
-          </SubMenu>
-          <Menu.Item key="ido" disabled icon={<IconIDO />}>
+          </SubMenu> */}
+          {/* <Menu.Item key="ido" disabled icon={<IconIDO />}>
             IDO
-          </Menu.Item>
-          <SubMenu key="sub1" icon={<IconMore />} title="更多">
-            <Menu.Item key="3" disabled>投票</Menu.Item>
-            <Menu.Item key="4" disabled>图表</Menu.Item>
-            <Menu.Item key="5" disabled>新鲜事</Menu.Item>
-            <Menu.Item key="5" disabled>文档</Menu.Item>
-            <Menu.Item key="5">
+          </Menu.Item> */}
+          <SubMenu key="sub1" icon={<IconMore />} title={t('sidenav.more')}>
+            {/* <Menu.Item key="" disabled>投票</Menu.Item>
+            <Menu.Item key="" disabled>图表</Menu.Item>
+            <Menu.Item key="" disabled>新鲜事</Menu.Item>
+            <Menu.Item key="" disabled>文档</Menu.Item> */}
+            <Menu.Item key="github">
               <ExternalLink href={'https://github.com/aiswap/aiswap.github.io'}>
                 GitHub
               </ExternalLink>
