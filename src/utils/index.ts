@@ -23,13 +23,7 @@ const DOMAINS = {
 }
 
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-  1: DOMAINS.etherscan,
-  3: `ropsten.${DOMAINS.etherscan}`,
-  4: `rinkeby.${DOMAINS.etherscan}`,
-  5: `goerli.${DOMAINS.etherscan}`,
-  42: `kovan.${DOMAINS.etherscan}`,
-  65: `${DOMAINS.okexchain}-test`,
-  66: '',
+  66: `${DOMAINS.okexchain}`
 }
 
 export function getEtherscanLink(

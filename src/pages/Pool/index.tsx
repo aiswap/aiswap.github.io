@@ -20,9 +20,7 @@ import { Dots, Wrapper } from '../../components/swap/styleds'
 // import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { BIG_INT_ZERO } from '../../constants'
-import {
-  Layout,
-} from 'antd';
+import { Layout } from 'antd'
 import BgGlobal from '../../assets/svg/art/bg_global.png'
 import Settings from '../../components/Settings'
 import QuestionHelper from '../../components/QuestionHelper'
@@ -83,7 +81,7 @@ const ButtonRow = styled(RowFixed)`
 
 const ResponsiveButtonPink = styled(ButtonPink)`
   width: fit-content;
-  background: #00BFA0;
+  background: #00bfa0;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 48%;
   `};
@@ -107,8 +105,6 @@ const EmptyProposals = styled.div`
   justify-content: center;
   align-items: center;
 `
-
-
 
 export default function Pool() {
   const theme = useContext(ThemeContext)
@@ -195,9 +191,7 @@ export default function Pool() {
               </ButtonRow>
             </AutoRow>
             <TitleRow>
-              <HideSmall>
-                Your liquidity
-              </HideSmall>
+              <HideSmall>Your liquidity</HideSmall>
               <QuestionHelper text="Your Liquidity tip" />
             </TitleRow>
 
@@ -217,9 +211,7 @@ export default function Pool() {
               <>
                 <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'/account/' + account}>
-                      Account analytics and accrued fees
-                    </ExternalLink>
+                    <ExternalLink href={'/account/' + account}>Account analytics and accrued fees</ExternalLink>
                     <span> ↗</span>
                   </RowBetween>
                 </ButtonSecondary>
