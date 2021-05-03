@@ -105,7 +105,7 @@ export default function App() {
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                 <Route exact strict path="/find" component={PoolFinder} />
                 <Route exact strict path="/pool" component={Pool} />
-                <Route exact strict path="/uni" component={Earn} />0
+                <Route exact strict path="/uni" component={Earn} />
                 <Route exact strict path="/vote" component={Vote} />
                 <Route exact strict path="/create" component={RedirectToAddLiquidity} />
                 <Route exact path="/add" component={AddLiquidity} />
@@ -121,11 +121,11 @@ export default function App() {
                 <Route exact strict path="/migrate/v1/:address" component={MigrateV1Exchange} />
                 <Route exact strict path="/uni/:currencyIdA/:currencyIdB" component={Manage} />
                 <Route exact strict path="/vote/:id" component={VotePage} />
-                <Route component={RedirectPathToSwapOnly} />
               </>
             </Web3ReactManager>
           </BodyWrapper>
         </LayerBase>
+        <Route component={RedirectPathToSwapOnly} />
       </Switch>
       <Marginer />
     </Suspense>

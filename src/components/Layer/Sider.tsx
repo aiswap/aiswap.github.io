@@ -1,5 +1,5 @@
 import React from 'react'
-import { Layout, Menu } from 'antd';
+import { Layout, Menu } from 'antd'
 import { NavLink, withRouter } from 'react-router-dom'
 import AccountAddress from './AccountAddress'
 import { ExternalLink } from '../../theme'
@@ -21,8 +21,8 @@ import useToggle from '../../hooks/useToggle'
 import ChangeLanguage from './ChangeLanguage.jsx'
 import SiderCommunity from './SiderCommunity'
 
-const { Sider } = Layout;
-const { SubMenu } = Menu;
+const { Sider } = Layout
+const { SubMenu } = Menu
 
 const StyleSider = styled(Sider)`
   .ant-layout-sider-children {
@@ -62,7 +62,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
 
   // <StyleSider width={240} className="layer-side" collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
 
-  const Sider = withRouter(({history}) => {
+  const Sider = withRouter(({ history }) => {
     // const menuSub: object = {
     //   '/swap': 'transaction',
     //   '/pool': 'transaction',
@@ -75,37 +75,35 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
     // }
     // let openKeys: [string] = [findMenuSubKey(history.location.pathname)]
 
-
-    
     return (
       <StyleSider width={240} className="layer-side" onCollapse={toggleCollapsed}>
         <NavLink className="logo" to={'/'}>
-          {collapsed
-            ? <img src={LogoWhite} style={{
+          {collapsed ? (
+            <img
+              src={LogoWhite}
+              style={{
                 height: '32px',
                 marginRight: '10px'
-              }} alt="" />
-            :  <img src={Logo} alt="" />}
+              }}
+              alt=""
+            />
+          ) : (
+            <img src={Logo} alt="" />
+          )}
         </NavLink>
         <AccountAddress />
 
         {/* openKeys={openKeys} */}
         <WrapperMenu selectedKeys={[history.location.pathname]} mode="inline">
           <Menu.Item key={'/home'} icon={<IconHome />}>
-            <NavLink to={'/home'}>
-              {t('sidenav.home')}
-            </NavLink>
+            <NavLink to={'/home'}>{t('sidenav.home')}</NavLink>
           </Menu.Item>
           <SubMenu key={'transaction'} icon={<IconTrade />} title={t('sidenav.exchange')}>
             <Menu.Item key={'/swap'}>
-              <NavLink to={'/swap'}>
-                {t('sidenav.swap')}
-              </NavLink>
+              <NavLink to={'/swap'}>{t('sidenav.swap')}</NavLink>
             </Menu.Item>
             <Menu.Item key="/pool">
-              <NavLink to={'/pool'}>
-                {t('sidenav.pool')}
-              </NavLink>
+              <NavLink to={'/pool'}>{t('sidenav.pool')}</NavLink>
             </Menu.Item>
           </SubMenu>
           {/* <SubMenu key="mining" disabled icon={<IconFarm />} title="农场">
@@ -121,9 +119,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
             <Menu.Item key="" disabled>新鲜事</Menu.Item>
             <Menu.Item key="" disabled>文档</Menu.Item> */}
             <Menu.Item key="github">
-              <ExternalLink href={'https://github.com/aiswap/aiswap.github.io'}>
-                GitHub
-              </ExternalLink>
+              <ExternalLink href={'https://github.com/aiswap/aiswap.github.io'}>GitHub</ExternalLink>
             </Menu.Item>
           </SubMenu>
         </WrapperMenu>
@@ -134,6 +130,6 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
       </StyleSider>
     )
   })
-  
+
   return <Sider />
 }
