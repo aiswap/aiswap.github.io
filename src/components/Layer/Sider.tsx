@@ -81,7 +81,7 @@ const StyledDrawer = styled(Drawer)`
     background: rgba(57, 57, 230, 0.4);
   }
   .ant-drawer-body {
-    padding: 0;
+    padding: 0 0 54px 0;
     display: flex;
     flex-direction: column;
   }
