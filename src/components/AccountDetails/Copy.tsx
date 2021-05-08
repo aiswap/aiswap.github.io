@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import useCopyClipboard from '../../hooks/useCopyClipboard'
-
+import { useTranslation } from 'react-i18next'
 import { LinkStyledButton } from '../../theme'
 import { CheckCircle, Copy } from 'react-feather'
 
@@ -30,13 +30,14 @@ const TransactionStatusText = styled.span`
 
 export default function CopyHelper(props: { toCopy: string; children?: React.ReactNode }) {
   const [isCopied, setCopied] = useCopyClipboard()
+  const { t } = useTranslation()
 
   return (
     <CopyIcon onClick={() => setCopied(props.toCopy)}>
       {isCopied ? (
         <TransactionStatusText>
           <CheckCircle size={'16'} />
-          <TransactionStatusText>已复制</TransactionStatusText>
+          <TransactionStatusText>{t('global.copied')}</TransactionStatusText>
         </TransactionStatusText>
       ) : (
         <TransactionStatusText>

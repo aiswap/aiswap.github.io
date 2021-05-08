@@ -4,6 +4,7 @@ import { PaddedColumn, Separator, SearchInput } from './styleds'
 import Row, { RowBetween, RowFixed } from 'components/Row'
 import { TYPE, ExternalLinkIcon, TrashIcon, ButtonText, ExternalLink } from 'theme'
 import { useToken } from 'hooks/Tokens'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { useUserAddedTokens, useRemoveUserAddedToken } from 'state/user/hooks'
 import { Token } from '@uniswap/sdk'
@@ -42,6 +43,7 @@ export default function ManageTokens({
   setModalView: (view: CurrencyModalView) => void
   setImportToken: (token: Token) => void
 }) {
+  const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
 
   const [searchQuery, setSearchQuery] = useState<string>('')
@@ -108,7 +110,7 @@ export default function ManageTokens({
               onChange={handleInput}
             />
           </Row>
-          {searchQuery !== '' && !isAddressSearch && <TYPE.error error={true}>Enter valid token address</TYPE.error>}
+          {searchQuery !== '' && !isAddressSearch && <TYPE.error error={true}>{t('exchange.enterValidTokenAddress')}</TYPE.error>}
           {searchToken && (
             <Card backgroundColor={theme.bg2} padding="10px 0">
               <ImportRow
@@ -124,11 +126,11 @@ export default function ManageTokens({
         <PaddedColumn gap="lg">
           <RowBetween>
             <TYPE.main fontWeight={600}>
-              {userAddedTokens?.length} Custom {userAddedTokens.length === 1 ? 'Token' : 'Tokens'}
+              {userAddedTokens?.length} {userAddedTokens.length === 1 ? t('exchange.customToken') : t('exchange.customTokens')}
             </TYPE.main>
             {userAddedTokens.length > 0 && (
               <ButtonText onClick={handleRemoveAll}>
-                <TYPE.blue>全部清除</TYPE.blue>
+                <TYPE.blue>{t('global.removeAll')}</TYPE.blue>
               </ButtonText>
             )}
           </RowBetween>
@@ -136,7 +138,7 @@ export default function ManageTokens({
         </PaddedColumn>
       </Column>
       <Footer>
-        <TYPE.darkGray>Tip: Custom tokens are stored locally in your browser</TYPE.darkGray>
+        <TYPE.darkGray>{t('exchange.manageTokensTip')}</TYPE.darkGray>
       </Footer>
     </Wrapper>
   )

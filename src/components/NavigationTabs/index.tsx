@@ -89,6 +89,27 @@ const ActiveText = styled.div`
   flex: 1;
 `
 
+const StyledExchangeTabs = styled(Tabs)`
+  margin-bottom: 24px;
+  background: #E3E7FF;
+  box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+
+  a {
+    font-weight: 600;
+    color: #6368F2;
+  }
+  a:hover {
+    color: #6368F2;
+  }
+  a.ACTIVE {
+    font-weight: 600;
+  }
+  a.ACTIVE:hover {
+    color: #FFFFFF;
+  }
+`
+
 const StyledQuestionHelper = styled.div`
   display: flex;
   justify-content: center;
@@ -98,29 +119,32 @@ const StyledQuestionHelper = styled.div`
 
 export function SwapPoolTabs({ active }: { active: 'swap' | 'pool' }) {
   const { t } = useTranslation()
+
   return (
-    <Tabs style={{ marginBottom: '24px' }}>
+    <StyledExchangeTabs>
       <StyledNavLink id={`swap-nav-link`} to={'/swap'} isActive={() => active === 'swap'}>
-        {t('swap')}
+        {t('exchange.swap')}
       </StyledNavLink>
       <StyledNavLink id={`pool-nav-link`} to={'/pool'} isActive={() => active === 'pool'}>
-        {t('pool')}
+        {t('exchange.pool')}
       </StyledNavLink>
-    </Tabs>
+    </StyledExchangeTabs>
   )
 }
 
 export function FindPoolTabs() {
+  const { t } = useTranslation()
+
   return (
     <StyledTabs>
       <RowBetween>
         <HistoryLink to="/pool">
           <img src={ChevronLeft} alt="back"/>
         </HistoryLink>
-        <ActiveText>Import Pool</ActiveText>
+        <ActiveText>{t('exchange.importPool')}</ActiveText>
         <Settings />
         <StyledQuestionHelper>
-          <QuestionHelper text="Use this tool to find pairs that don&apos;t automatically appear in the interface." />
+          <QuestionHelper text={t('exchange.toolFindPairsTip')} />
         </StyledQuestionHelper>
       </RowBetween>
     </StyledTabs>
@@ -130,6 +154,7 @@ export function FindPoolTabs() {
 export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating: boolean }) {
   // reset states on back
   const dispatch = useDispatch<AppDispatch>()
+  const { t } = useTranslation()
 
   return (
     <StyledTabs>
@@ -142,13 +167,13 @@ export function AddRemoveTabs({ adding, creating }: { adding: boolean; creating:
         >
           <img src={ChevronLeft} alt="back"/>
         </HistoryLink>
-        <ActiveText>{creating ? '创建交易对' : adding ? '添加流动性' : '移除流动性'}</ActiveText>
+        <ActiveText>{creating ? t('exchange.createPair') : adding ? t('exchange.addLiquidity') : t('exchange.removeLiquidity')}</ActiveText>
         <Settings />
         <StyledQuestionHelper>
           <QuestionHelper text={
             creating
-              ? 'You are the first liquidity provider.The ratio of tokens you add will set the price of this pool.Once you are happy with the rate click supply to review.'
-              : 'When you add liquidity, you will receive pool tokens representing your position.These tokens automatically earn fees proportional to your share of the pool, and can be redeemed at any time.'
+              ? t('exchange.firstLiquidityProviderTip')
+              : t('exchange.addLiquidityAfter')
           } />
         </StyledQuestionHelper>
       </RowBetween>

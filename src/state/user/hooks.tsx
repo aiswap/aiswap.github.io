@@ -223,6 +223,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
               // loop though all bases on the current chain
               (BASES_TO_TRACK_LIQUIDITY_FOR[chainId] ?? [])
                 // to construct pairs of the given token with each base
+                // @ts-ignore
                 .map(base => {
                   if (base.address === token.address) {
                     return null
@@ -230,6 +231,7 @@ export function useTrackedTokenPairs(): [Token, Token][] {
                     return [base, token]
                   }
                 })
+                // @ts-ignore
                 .filter((p): p is [Token, Token] => p !== null)
             )
           })

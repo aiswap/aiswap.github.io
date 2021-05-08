@@ -2,6 +2,7 @@ import { Currency, ETHER, JSBI, TokenAmount } from '@uniswap/sdk'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Plus } from 'react-feather'
 import { Text } from 'rebass'
+import { useTranslation } from 'react-i18next'
 import { ButtonDropdownGreen } from '../../components/Button'
 import { LightCard } from '../../components/Card'
 import { AutoColumn, ColumnCenter } from '../../components/Column'
@@ -44,6 +45,7 @@ const StyledTipText = styled(Text)`
 `
 
 export default function PoolFinder() {
+  const { t } = useTranslation()
   const { account } = useActiveWeb3React()
 
   const [showSearch, setShowSearch] = useState<boolean>(false)
@@ -90,7 +92,7 @@ export default function PoolFinder() {
   const prerequisiteMessage = (
     <LightCard padding="24px 10px">
       <StyledTipText textAlign="center">
-        {!account ? 'Connect to a wallet to find pools' : 'Select a token to find your liquidity.'}
+        {!account ? t('exchange.connectWalletFindPools') : t('exchange.selectTokenFindYourLiquidity')}
       </StyledTipText>
     </LightCard>
   )
@@ -116,7 +118,7 @@ export default function PoolFinder() {
               </Row>
             ) : (
               <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                Select a Token
+                {t('exchange.selectToken')}
               </Text>
             )}
           </ButtonDropdownGreen>
@@ -140,7 +142,7 @@ export default function PoolFinder() {
               </Row>
             ) : (
               <Text fontWeight={500} fontSize={20} marginLeft={'12px'}>
-                Select a Token
+                {t('exchange.selectToken')}
               </Text>
             )}
           </ButtonDropdownGreen>
@@ -150,10 +152,10 @@ export default function PoolFinder() {
               style={{ justifyItems: 'center', backgroundColor: '', padding: '12px 0px', borderRadius: '12px' }}
             >
               <Text textAlign="center" fontWeight={500}>
-                Pool Found!
+                {t('exchange.poolFound')}
               </Text>
               <StyledLiquidityActiveLink to={`/pool`}>
-                <Text textAlign="center">Manage this pool.</Text>
+                <Text textAlign="center">{t('exchange.manageThisPool')}</Text>
               </StyledLiquidityActiveLink>
             </ColumnCenter>
           )}
@@ -166,10 +168,10 @@ export default function PoolFinder() {
                 <LightCard padding="24px 10px">
                   <AutoColumn gap="sm" justify="center">
                     <StyledTipText textAlign="center">
-                      You don’t have liquidity in this pool yet.
+                      {t('exchange.youPoolDontHaveLiquidity')}
                     </StyledTipText>
                     <StyledLiquidityActiveLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                      <Text textAlign="center">Add liquidity.</Text>
+                      <Text textAlign="center">{t('exchange.addLiquidity')}</Text>
                     </StyledLiquidityActiveLink>
                   </AutoColumn>
                 </LightCard>
@@ -178,10 +180,10 @@ export default function PoolFinder() {
               <LightCard padding="24px 10px">
                 <AutoColumn gap="sm" justify="center">
                   <StyledTipText textAlign="center">
-                    No pool found.
+                    {t('exchange.noPoolFound')}
                   </StyledTipText>
                   <StyledLiquidityActiveLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
-                    Create pool.
+                    {t('exchange.createPool')}
                   </StyledLiquidityActiveLink>
                 </AutoColumn>
               </LightCard>
@@ -189,7 +191,7 @@ export default function PoolFinder() {
               <LightCard padding="24px 10px">
                 <AutoColumn gap="sm" justify="center">
                   <StyledTipText textAlign="center" fontWeight={500}>
-                    Invalid pair.
+                    {t('exchange.invalidPair')}
                   </StyledTipText>
                 </AutoColumn>
               </LightCard>
@@ -197,7 +199,7 @@ export default function PoolFinder() {
               <LightCard padding="24px 10px">
                 <AutoColumn gap="sm" justify="center">
                   <StyledTipText textAlign="center">
-                    Loading
+                    {t('global.loading')}
                     <Dots />
                   </StyledTipText>
                 </AutoColumn>

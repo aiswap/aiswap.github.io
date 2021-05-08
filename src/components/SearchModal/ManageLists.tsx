@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
 import { TokenList } from '@uniswap/token-lists'
+import { useTranslation } from 'react-i18next'
 
 import useToggle from '../../hooks/useToggle'
 import { AppDispatch, AppState } from '../../state'
@@ -222,6 +223,7 @@ export function ManageLists({
   setImportList: (list: TokenList) => void
   setListUrl: (url: string) => void
 }) {
+  const { t } = useTranslation()
   const theme = useTheme()
 
   const [listUrlInput, setListUrlInput] = useState<string>('')
@@ -321,7 +323,7 @@ export function ManageLists({
           <SearchInput
             type="text"
             id="list-add-input"
-            placeholder="https:// or ipfs:// or ENS name"
+            placeholder={t('exchange.manageListAddInput')}
             value={listUrlInput}
             onChange={handleInput}
           />
@@ -340,7 +342,7 @@ export function ManageLists({
                 {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} size="40px" />}
                 <AutoColumn gap="4px" style={{ marginLeft: '20px' }}>
                   <TYPE.body fontWeight={600}>{tempList.name}</TYPE.body>
-                  <TYPE.main fontSize={'12px'}>{tempList.tokens.length} tokens</TYPE.main>
+                  <TYPE.main fontSize={'12px'}>{tempList.tokens.length} {t('global.tokens')}</TYPE.main>
                 </AutoColumn>
               </RowFixed>
               {isImported ? (
@@ -348,7 +350,7 @@ export function ManageLists({
                   <IconWrapper stroke={theme.text2} size="16px" marginRight={'10px'}>
                     <CheckCircle />
                   </IconWrapper>
-                  <TYPE.body color={theme.text2}>Loaded</TYPE.body>
+                  <TYPE.body color={theme.text2}>{t('global.loaded')}</TYPE.body>
                 </RowFixed>
               ) : (
                 <ButtonPrimary
@@ -357,7 +359,7 @@ export function ManageLists({
                   width="fit-content"
                   onClick={handleImport}
                 >
-                  Import
+                  {t('global.import')}
                 </ButtonPrimary>
               )}
             </RowBetween>

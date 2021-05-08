@@ -24,8 +24,8 @@ import LogoWhite from '../../assets/svg/logo/white.svg'
 // import CooperationDMEX from '../../assets/svg/cooperation/dmex.svg'
 // import CooperationSFinance from '../../assets/svg/cooperation/sfinance.svg'
 // import CooperationSupremeX from '../../assets/svg/cooperation/superemex.svg'
-import CooperationBgLeft from '../../assets/svg/art/extra-left.svg'
-import CooperationBgRight from '../../assets/svg/art/extra-right.svg'
+// import CooperationBg from '../../assets/svg/art/extra-bg.svg'
+import CooperationBgPng from '../../assets/svg/art/extra-bg.png'
 
 import CommunityTelegram from '../../assets/svg/community/telegram_b.svg' 
 import CommunityTwitter from '../../assets/svg/community/twitter_b.svg' 
@@ -38,11 +38,11 @@ import ArtSwap from '../../assets/svg/art/ai-swap.svg'
 // import ArtIdo from '../../assets/svg/art/ai-ido.svg'
 // import ArtDestruction from '../../assets/svg/art/ai-destruction.svg'
 
-import ArtExtraSwap from '../../assets/svg/art/extra-swap.svg'
-// import ArtExtraTrademin from '../../assets/svg/art/extra-trademin.svg'
-// import ArtExtraLiquidity from '../../assets/svg/art/extra-liqmin.svg'
-// import ArtExtraIdo from '../../assets/svg/art/extra-ido.svg'
-// import ArtExtraDestruction from '../../assets/svg/art/extra-destruction.svg'
+import ArtExtraSwap from '../../assets/svg/art/extra-swap-11.png'
+// import ArtExtraTrademin from '../../assets/svg/art/extra-trademin-11.png'
+// import ArtExtraLiquidity from '../../assets/svg/art/extra-liqmin-11.png'
+// import ArtExtraIdo from '../../assets/svg/art/extra-ido-11.png'
+// import ArtExtraDestruction from '../../assets/svg/art/extra-destruction-11.png'
 
 import ArtCover from '../../assets/svg/art/art_01.svg'
 
@@ -68,16 +68,17 @@ const StyledMain = styled.main`
 
 const StyledCover = styled.div`
   display: flex;
-  max-width: 1152px;
+  // max-width: 1152px;
+  max-width: 1200px;
+  width: 100%;
   align-items: center;
-  margin-top: 32px;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 24px;
 
   h1 {
     color: #3939E6;
-    padding-right: 120px;
-    max-width: 588px;
+    // margin-right: 110px;
     display: flex;
     flex-flow: wrap column;
     font-style: normal;
@@ -97,16 +98,18 @@ const StyledCover = styled.div`
     margin-top:16px;
   }
   img {
-    width: 564px;
-    height: 400px;
+    max-width: 564px;
+    max-height: 400px;
     position: relative;
+    // margin: 0 24px;
   }
 `
 
 const StyledFeatures = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 96px 0 72px;
+  // padding: 96px 0 72px;
+  padding: 48px 0 24px;
   margin-top: -40px;
   width: 100%;
   background-color: #FFFFFF;
@@ -115,33 +118,47 @@ const StyledFeatures = styled.div`
   a {
     // max-width: 1152px;
   }
+
+  > div {
+    padding: 0 24px;
+    width: 100%;
+    // max-width: 1152px;
+    max-width: 1200px;
+  }
 `
 
 const StyledFeatureLink = styled(Link)`
-  padding: 0 64px;
+  padding: 0 24px;
   display: flex;
   background-color: #FFFFFF;
   border: 1px solid rgba(35, 40, 64, 0.07);
   box-shadow: 0px 2px 2px rgba(35, 40, 64, 0.04);
   border-radius: 16px;
-  margin-bottom: 24px;
+  margin: 0 0 24px;
   align-items: center;
   width: 100%;
-  max-width: 1152px;
+  // max-width: 1152px;
+  max-width: 1200px;
 
-  > img {
+  > div {
+    padding: 20px 0;
+    display: flex;
+    // align-items: center;
+  }
+  > div > img {
     width: 72px;
     height: 72px;
-    margin: 56px 40px 56px 0;
+    // margin: 56px 40px 56px 0;
   }
   h3 {
+    margin-bottom: 0;
     display: flex;
     flex-direction: column;
     font-weight: 600;
     font-size: 24px;
     line-height: 32px;
     color: #151526;
-    margin: 56px 0;
+    // margin: 56px 0;
     flex: 1;
     justify-content: center;
     align-items: flex-start;
@@ -168,9 +185,6 @@ const StyledFeatureLink = styled(Link)`
     margin-top: 8px;
     text-align: left;
   }
-  span > img {
-    opacity: 0.11;
-  }
   :hover {
     box-shadow: 0px 4px 4px rgba(35, 40, 64, 0.08);
   }
@@ -178,11 +192,15 @@ const StyledFeatureLink = styled(Link)`
 
 const StyledCooperation = styled(ColumnCenter)`
   justify-content: center;
-  background: url(${CooperationBgLeft}) no-repeat 10% center,
-              url(${CooperationBgRight}) no-repeat 90% center;
+  background: url(${CooperationBgPng}) no-repeat center;
   background-color: #F0F2FF;
-  padding: 96px 0;
+  padding: 48px 0;
 
+  > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   h3 {
     font-weight: 600;
     font-size: 32px;
@@ -254,59 +272,64 @@ export default function Earn() {
     { id: 'medium', href: '###', width: '40px', height: '40px', src: CommunityMedium }
   ]
 
-  const features: { to: string, title: string, tip?: string, small: string, icon: string, extra: string, style?: object}[] = [
-    {to: '/swap', title: 'about.featuresSwap',small: 'about.featuresSwapSub', icon: ArtSwap,  extra: ArtExtraSwap, style: {backgroundColor: '#FFE5FB'}},
-    // {to: '/', title: '交易挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtTrademin,  extra: ArtExtraTrademin},
-    // {to: '/', title: '流动性挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtLiquidity,  extra: ArtExtraLiquidity},
-    // {to: '/ido', title: 'IDO', tip: 'Initial DeFi Offerings', small: '以一种全新的方式参与早期项目的认购，参与折价拍卖！', icon: ArtIdo,  extra: ArtExtraIdo, style: {backgroundColor: '#E1FAF6'}},
-    // {to: '/', title: '回购销毁', small: '打造 OKExChain 生态链最大的资产兑换平台', icon: ArtDestruction,  extra: ArtExtraDestruction}
+  const features: { to: string, title: string, tip?: string, small: string, icon: string, style?: object}[] = [
+    {to: '/swap', title: 'about.featuresSwap',small: 'about.featuresSwapSub', icon: ArtSwap, style: {background: `url(${ArtExtraSwap}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#FFE5FB'}},
+    // {to: '/', title: '交易挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtTrademin, style: {background: `url(${ArtExtraTrademin}) no-repeat 97% center`, backgroundSize: 'contain'}},
+    // {to: '/', title: '流动性挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtLiquidity, style: {background: `url(${ArtExtraLiquidity}) no-repeat 97% center`, backgroundSize: 'contain'}},
+    // {to: '/ido', title: 'IDO', tip: 'Initial DeFi Offerings', small: '以一种全新的方式参与早期项目的认购，参与折价拍卖！', icon: ArtIdo, style: {background: `url(${ArtExtraIdo}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#E1FAF6'}},
+    // {to: '/', title: '回购销毁', small: '打造 OKExChain 生态链最大的资产兑换平台', icon: ArtDestruction, style: {background: `url(${ArtExtraDestruction}) no-repeat 97% center`, backgroundSize: 'contain'}}
   ]
 
   return (
     <Wrapper>
-      <StyledHeader>
+      <StyledHeader className="px-4 px-md-5">
         <img width={'113px'} src={LogoMd} alt="logo" />
       </StyledHeader>
       <StyledMain>
-        <StyledCover>
-          <h1>
+        <StyledCover className="mt-0 mt-md-5 no-gutters justify-content-center">
+          <h1 className="col-12 col-lg-6">
             <b>AIswap</b>{t('about.title')}
             <small>{t('about.subtitle')}</small>
           </h1>
-          <img src={ArtCover} alt="" />
+          <img className="col-12 col-md-6" src={ArtCover} alt="" />
         </StyledCover>
 
         <StyledFeatures>
-          {
-            features.map(item => {
-              return (
-                <StyledFeatureLink to={item.to} style={item.style}>
-                  <img src={item.icon} alt="" />
-                  <h3>
-                    <span>{t(item.title)}{item.tip ? (<em>{t(item.tip)}</em>) : '' }</span>
-                    <small>{t(item.small)}</small>
-                  </h3>
-                  <span><img src={item.extra} alt="" /></span>
-                </StyledFeatureLink>
-              )
-            })
-          }
-        </StyledFeatures>
-
-        <StyledCooperation>
-          <h3>{t('about.community')}</h3>
-          <StyledCooperationBody>
+          <div className="py-0 py-md-5">
             {
-              communities.map(item => {
+              features.map(item => {
                 return (
-                  <StyledCooperationLink href={item.href} key={'item-' + item.id}>
-                    <img width={item.width} height={item.height} src={item.src} alt={item.id} />
-                    {item.id}
-                  </StyledCooperationLink>
+                  <StyledFeatureLink to={item.to} style={item.style} className="">
+                    <div className="px-0 mx-0 px-md-4 my-0 my-md-4 mx-md-2 flex-column flex-md-row">
+                      <img src={item.icon} className="mb-4 mb-md-0 mr-md-5" alt="" />
+                      <h3>
+                        <span>{t(item.title)}{item.tip ? (<em>{t(item.tip)}</em>) : '' }</span>
+                        <small>{t(item.small)}</small>
+                      </h3>
+                    </div>
+                  </StyledFeatureLink>
                 )
               })
             }
-          </StyledCooperationBody>
+          </div>
+        </StyledFeatures>
+
+        <StyledCooperation>
+          <div className="py-0 py-md-5">
+            <h3>{t('about.community')}</h3>
+            <StyledCooperationBody>
+              {
+                communities.map(item => {
+                  return (
+                    <StyledCooperationLink href={item.href} key={'item-' + item.id}>
+                      <img width={item.width} height={item.height} src={item.src} alt={item.id} />
+                      {item.id}
+                    </StyledCooperationLink>
+                  )
+                })
+              }
+            </StyledCooperationBody>
+          </div>
         </StyledCooperation>
       </StyledMain>
       <StyledFooter>

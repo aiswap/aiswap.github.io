@@ -76,7 +76,7 @@ export default function SwapHeader() {
     <StyledSwapHeader>
       <RowBetween>
         <StyledTypeBlack>
-          <TYPE.black fontWeight={500}>
+          <TYPE.black fontWeight={600} color={'#151526'}>
             {t('exchange.swap')}
             <small>{t('exchange.swapTip')}</small>
           </TYPE.black>

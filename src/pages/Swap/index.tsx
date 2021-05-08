@@ -54,6 +54,7 @@ import {
 } from 'antd'
 import styled from 'styled-components'
 import BgGlobal from '../../assets/svg/art/bg_global.png'
+import ArrowForwardDown from '../../assets/svg/base/arrow_forward_down.svg'
 import { useTranslation } from 'react-i18next'
 
 // const { TabPane } = Tabs;
@@ -66,59 +67,23 @@ export const LayoutCenter = styled(Layout)<{ disabled?: boolean }>`
   background: url(${BgGlobal}) no-repeat center center !important;
 `
 
-// export const LayoutTabs = styled(Tabs)`
-//   max-width: 436px;
-//   width: 436px;
+const StyledArrowWrapper = styled(ArrowWrapper)`
+  background: #FFFFFF;
+  color: #00BFA0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(21, 21, 38, 0.06);
+  border-radius: 20px;
 
-//   .ant-tabs-nav {
-//     margin-bottom: 24px !important;
-//     .ant-tabs-nav-list {
-//       background: #E3E7FF;
-//       box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
-//       border-radius: 20px;
-//       .ant-tabs-ink-bar-animated {
-//         background: rgb(57, 57, 230);
-//         box-shadow: rgb(57 57 229 / 25%) 0px 2px 4px;
-//         border-radius: 20px;
-//         height: 40px !important;
-//       }
-//       .ant-tabs-tab {
-//         padding: 8px 44px;
-//         font-size: 16px;
-//         margin-right: 0;
-//         .ant-tabs-tab-btn {
-//           position: relative;
-//           z-index: 1;
-//           color: #6368F2;
-//           font-weight: 600;
-//         }
-//         &.ant-tabs-tab-active {
-//           .ant-tabs-tab-btn {
-//             color: #fff;
-//           }
-//         }
-//         &.ant-tabs-tab-disabled {
-//           .ant-tabs-tab-btn {
-//             color: #B6B6BF;
-//           }
-//         }
-//       }
-//     }
-//   }
-// }
-// `
-// <LayoutTabs defaultActiveKey="1" onChange={callback} size="large" centered>
-//     <TabPane tab="兑换" key="swap">
-//     </TabPane>
-//     <TabPane tab="资金池" disabled key="pool">
-//       Pool
-//     </TabPane>
-//     <TabPane tab="资金池" key="pool1">
-//       Pool
-//     </TabPane>
-// </LayoutTabs>
+  > img {
+    width: 100%;
+    height: 100%;
+  }
+`
 
 export default function Swap({ history }: RouteComponentProps) {
+  const { t } = useTranslation()
+
   const loadedUrlParams = useDefaultsFromURLSearch()
 
   // token warning stuff
@@ -232,8 +197,6 @@ export default function Swap({ history }: RouteComponentProps) {
     swapErrorMessage: undefined,
     txHash: undefined
   })
-  const { t } = useTranslation()
-
   const formattedAmounts = {
     [independentField]: typedValue,
     [dependentField]: showWrap
@@ -271,6 +234,7 @@ export default function Swap({ history }: RouteComponentProps) {
   const [singleHopOnly] = useUserSingleHopOnly()
 
   const handleSwap = useCallback(() => {
+
     if (priceImpactWithoutFee && !confirmPriceImpactWithoutFee(priceImpactWithoutFee)) {
       return
     }
@@ -299,7 +263,7 @@ export default function Swap({ history }: RouteComponentProps) {
 
         ReactGA.event({
           category: 'Routing',
-          action: singleHopOnly ? 'Swap with multihop disabled' : 'Swap with multihop enabled'
+          action: singleHopOnly ? 'Swap with Multi-Hop disabled' : 'Swap with Multi-Hop enabled'
         })
       })
       .catch(error => {
@@ -398,8 +362,8 @@ export default function Swap({ history }: RouteComponentProps) {
             <CurrencyInputPanel
               label={
                 independentField === Field.OUTPUT && !showWrap && trade
-                  ? t('exchange.formEstimate')
-                  : t('exchange.form')
+                  ? t('exchange.fromEstimate')
+                  : t('exchange.from')
               }
               value={formattedAmounts[Field.INPUT]}
               showMaxButton={!atMaxAmountInput}
@@ -412,19 +376,15 @@ export default function Swap({ history }: RouteComponentProps) {
             />
             <AutoColumn justify="space-between">
               <AutoRow justify={isExpertMode ? 'space-between' : 'center'} style={{ padding: '0 1rem' }}>
-                <ArrowWrapper clickable>
-                  <ArrowDown
-                    size="16"
-                    onClick={() => {
+                <StyledArrowWrapper clickable onClick={() => {
                       setApprovalSubmitted(false) // reset 2 step UI for approvals
                       onSwitchTokens()
-                    }}
-                    color={currencies[Field.INPUT] && currencies[Field.OUTPUT] ? theme.primary1 : theme.text2}
-                  />
-                </ArrowWrapper>
+                    }}>
+                  <img src={ArrowForwardDown} alt="" />
+                </StyledArrowWrapper>
                 {recipient === null && !showWrap && isExpertMode ? (
                   <LinkStyledButton id="add-recipient-button" onClick={() => onChangeRecipient('')}>
-                    + Add a send (optional)
+                    + {t('exchange.addSendOptional')}
                   </LinkStyledButton>
                 ) : null}
               </AutoRow>
@@ -449,7 +409,7 @@ export default function Swap({ history }: RouteComponentProps) {
                     <ArrowDown size="16" color={theme.text2} />
                   </ArrowWrapper>
                   <LinkStyledButton id="remove-recipient-button" onClick={() => onChangeRecipient(null)}>
-                    - Remove send
+                    - {t('exchange.removeSend')}
                   </LinkStyledButton>
                 </AutoRow>
                 <AddressInputPanel id="recipient" value={recipient} onChange={onChangeRecipient} />
@@ -458,11 +418,11 @@ export default function Swap({ history }: RouteComponentProps) {
 
             {showWrap ? null : (
               <Card padding={showWrap ? '.25rem 1rem 0 1rem' : '0px'} borderRadius={'20px'}>
-                <AutoColumn gap="8px" style={{ padding: '0 16px 16px' }}>
+                <AutoColumn gap="8px" style={{ padding: '0 16px' }}>
                   {Boolean(trade) && (
                     <RowBetween align="center">
                       <Text fontWeight={500} fontSize={14} color={theme.text2}>
-                        Price
+                        {t('global.price')}
                       </Text>
                       <TradePrice
                         price={trade?.executionPrice}
@@ -474,7 +434,7 @@ export default function Swap({ history }: RouteComponentProps) {
                   {allowedSlippage !== INITIAL_ALLOWED_SLIPPAGE && (
                     <RowBetween align="center">
                       <ClickableText fontWeight={500} fontSize={14} color={theme.text2} onClick={toggleSettings}>
-                        Slippage Tolerance
+                        {t('exchange.slippageTolerance')}
                       </ClickableText>
                       <ClickableText fontWeight={500} fontSize={14} color={theme.text2} onClick={toggleSettings}>
                         {allowedSlippage / 100}%
@@ -485,10 +445,10 @@ export default function Swap({ history }: RouteComponentProps) {
               </Card>
             )}
           </AutoColumn>
-          <BottomGrouping>
+          <BottomGrouping style={{ padding: '16px 0 0' }}>
             {swapIsUnsupported ? (
               <ButtonPrimary disabled={true}>
-                <TYPE.main mb="4px">Unsupported Asset</TYPE.main>
+                <TYPE.main mb="4px">{t('exchange.unsupportedAsset')}</TYPE.main>
               </ButtonPrimary>
             ) : !account ? (
               <ButtonLight onClick={toggleWalletModal}>{t('wallet.submitConnect')}</ButtonLight>
@@ -499,8 +459,8 @@ export default function Swap({ history }: RouteComponentProps) {
               </ButtonPrimary>
             ) : noRoute && userHasSpecifiedInputOutput ? (
               <GreyCard style={{ textAlign: 'center' }}>
-                <TYPE.main mb="4px">Insufficient liquidity for this trade.</TYPE.main>
-                {singleHopOnly && <TYPE.main mb="4px">Try enabling multi-hop trades.</TYPE.main>}
+                <TYPE.main mb="4px">{t('exchange.tradeInsufficientLiquidity')}</TYPE.main>
+                {singleHopOnly && <TYPE.main mb="4px">{t('exchange.tryEnablingMultiHopTrades')}</TYPE.main>}
               </GreyCard>
             ) : showApproveFlow ? (
               <RowBetween>
@@ -516,9 +476,9 @@ export default function Swap({ history }: RouteComponentProps) {
                       Approving <Loader stroke="white" />
                     </AutoRow>
                   ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
-                    'Approved'
+                    t('exchange.approved')
                   ) : (
-                    'Approve ' + currencies[Field.INPUT]?.symbol
+                    t('exchange.approve') + currencies[Field.INPUT]?.symbol
                   )}
                 </ButtonConfirmed>
                 <ButtonError
@@ -544,8 +504,8 @@ export default function Swap({ history }: RouteComponentProps) {
                 >
                   <Text fontSize={16} fontWeight={500}>
                     {priceImpactSeverity > 3 && !isExpertMode
-                      ? `Price Impact High`
-                      : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                      ? t('exchange.priceImpactHigh')
+                      : t( priceImpactSeverity > 2 ? 'exchange.swapAnyway' : 'exchange.swap')}
                   </Text>
                 </ButtonError>
               </RowBetween>

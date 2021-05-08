@@ -9,7 +9,7 @@ import DoubleCurrencyLogo from '../DoubleLogo'
 import { RowBetween } from '../Row'
 import { TYPE } from '../../theme'
 import { Input as NumericalInput } from '../NumericalInput'
-import { ReactComponent as DropDown } from '../../assets/images/dropdown.svg'
+import { ReactComponent as DropDown } from '../../assets/svg/base/keyboard_arrow_down.svg'
 
 import { useActiveWeb3React } from '../../hooks'
 import { useTranslation } from 'react-i18next'
@@ -68,12 +68,12 @@ const Aligner = styled.span`
 `
 
 const StyledDropDown = styled(DropDown)<{ selected: boolean }>`
-  margin: 0 0.25rem 0 0.5rem;
-  height: 35%;
+  margin: 0 0 0 4px;
+  width: 16px;
+  height: 16px;
 
   path {
-    stroke: ${({ selected, theme }) => (selected ? theme.text1 : '#606080')};
-    stroke-width: 1.5px;
+    stroke: #606080;
   }
 `
 
@@ -140,6 +140,8 @@ interface CurrencyInputPanelProps {
   customBalanceText?: string
 }
 
+
+
 export default function CurrencyInputPanel({
   value,
   onUserInput,
@@ -158,7 +160,6 @@ export default function CurrencyInputPanel({
   customBalanceText
 }: CurrencyInputPanelProps) {
   const { t } = useTranslation()
-
   const [modalOpen, setModalOpen] = useState(false)
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
@@ -174,7 +175,7 @@ export default function CurrencyInputPanel({
         {!hideInput && (
           <LabelRow>
             <RowBetween>
-              <TYPE.body color={theme.text1} fontWeight={500} fontSize={14}>
+              <TYPE.body color={'#151526'} fontWeight={600} fontSize={14}>
                 {label}
               </TYPE.body>
               {account && (
@@ -186,7 +187,7 @@ export default function CurrencyInputPanel({
                   style={{ display: 'inline', cursor: 'pointer' }}
                 >
                   {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? (customBalanceText ?? 'Balance: ') + selectedCurrencyBalance?.toSignificant(6)
+                    ? (customBalanceText ?? t('global.balance_') ) + ' ' + selectedCurrencyBalance?.toSignificant(6)
                     : ' -'}
                 </TYPE.body>
               )}
@@ -204,7 +205,7 @@ export default function CurrencyInputPanel({
                 }}
               />
               {account && currency && showMaxButton && label !== 'To' && (
-                <StyledBalanceMax onClick={onMax}>MAX</StyledBalanceMax>
+                <StyledBalanceMax onClick={onMax}>{t('global.max')}</StyledBalanceMax>
               )}
             </>
           )}
