@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Layout, Menu } from 'antd'
 import { NavLink, withRouter } from 'react-router-dom'
 import AccountAddress from './AccountAddress'
-import { ExternalLink } from '../../theme'
+// import { ExternalLink } from '../../theme'
 import styled from 'styled-components'
 import Logo from '../../assets/svg/logo/md.svg'
 import LogoWhite from '../../assets/svg/logo/white_icon.svg'
@@ -15,7 +15,7 @@ import {
   // IconFarm,
   IconTrade,
   // IconIDO,
-  IconMore
+  // IconMore
 } from '../Icon/Base'
 
 // import Icon from '@ant-design/icons';
@@ -89,8 +89,6 @@ const StyledDrawer = styled(Drawer)`
 
 export default function LayerSide({ children }: { children: React.ReactNode }) {
   const { t } = useTranslation()
-
-
   const [state, setState] = useState<{ visible: boolean }>({
     visible: false
   })
@@ -163,7 +161,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
           <Menu.Item key={'/home'} icon={<IconHome />}>
             <NavLink to={'/home'}>{t('sidenav.home')}</NavLink>
           </Menu.Item>
-          <SubMenu key={'transaction'} icon={<IconTrade />} title={t('sidenav.exchange')}>
+          <SubMenu key="transaction" icon={<IconTrade />} title={t('sidenav.exchange')}>
             <Menu.Item key={'/swap'}>
               <NavLink to={'/swap'}>{t('sidenav.swap')}</NavLink>
             </Menu.Item>
@@ -178,15 +176,15 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
           {/* <Menu.Item key="ido" disabled icon={<IconIDO />}>
             IDO
           </Menu.Item> */}
-          <SubMenu key="sub1" icon={<IconMore />} title={t('sidenav.more')}>
-            {/* <Menu.Item key="" disabled>投票</Menu.Item>
+          {/* <SubMenu key="more" icon={<IconMore />} title={t('sidenav.more')}>
+            <Menu.Item key="" disabled>投票</Menu.Item>
             <Menu.Item key="" disabled>图表</Menu.Item>
             <Menu.Item key="" disabled>新鲜事</Menu.Item>
-            <Menu.Item key="" disabled>文档</Menu.Item> */}
+            <Menu.Item key="" disabled>文档</Menu.Item>
             <Menu.Item key="github">
               <ExternalLink href={'https://github.com/aiswap/aiswap.github.io'}>GitHub</ExternalLink>
             </Menu.Item>
-          </SubMenu>
+          </SubMenu> */}
         </WrapperMenu>
       )
     }

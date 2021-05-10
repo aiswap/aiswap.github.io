@@ -9,12 +9,19 @@ const StyledLayout = styled(Layout)`
     flex-direction: column !important;
   `};
 `
+const StyledMainLayout = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+`
 
 export default function LayerBase({ children }: { children: React.ReactNode }) {
   return (
     <StyledLayout style={{ minHeight: '100vh' }}>
       <LayerSide>{null}</LayerSide>
-      {children}
+      <StyledMainLayout>
+        {children}
+      </StyledMainLayout>
     </StyledLayout>
   )
 }

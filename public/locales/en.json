@@ -31,7 +31,8 @@
     "back": "Back",
     "balance_": "Balance:",
     "noResultsFound": "No results found.",
-    "copied": "Copied"
+    "copied": "Copied",
+    "makeSureUrlIs": "Make sure the URL is {{ host }}"
   },
   "wallet": {
     "submitConnect": "Connect Wallet",

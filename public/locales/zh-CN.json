@@ -31,7 +31,8 @@
     "back": "返回",
     "balance_": "余额：",
     "noResultsFound": "未找到结果",
-    "copied": "已复制"
+    "copied": "已复制",
+    "makeSureUrlIs": "请确保网址为 {{ host }}"
   },
   "wallet": {
     "submitConnect": "连接钱包",

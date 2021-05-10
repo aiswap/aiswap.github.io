@@ -61,12 +61,16 @@ const BodyWrapper = styled.div`
   overflow-x: hidden;
   z-index: 10;
 
-  ${({ theme }) => theme.mediaWidth.upToSmall`
-    padding: 16px;
-    padding-top: 2rem;
-  `};
+  // ${({ theme }) => theme.mediaWidth.upToSmall`
+  //   padding: 16px;
+  //   padding-top: 2rem;
+  // `};
 
   z-index: 1;
+
+  > section {
+    padding: 24px;
+  }
 `
 
 const Marginer = styled.div`
@@ -90,6 +94,7 @@ export default function App() {
 
       <Switch>
         <Route path="/home" component={AboutIndex} />
+        <Route exact strict path="/" component={AboutIndex} />
         <LayerBase>
           <URLWarning />
           {/* <HeaderWrapper>
