@@ -297,7 +297,7 @@ export default function AccountDetails({
         <CloseIcon onClick={toggleWalletModal}>
           <img src={CloseSVG} alt="close" />
         </CloseIcon>
-        <HeaderRow>{t('global.account')}</HeaderRow>
+        <HeaderRow>{t('wallet.account')}</HeaderRow>
         <AccountSection>
           <YourAccount>
             <InfoCard>

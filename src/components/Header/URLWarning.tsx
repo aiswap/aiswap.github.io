@@ -48,15 +48,13 @@ export default function URLWarning() {
   return isMobile
     ? (<PhishAlert isActive={showURLWarning}>
         <AlertTriangle style={{ marginRight: 6 }} size={12} />{t('global.makeSureUrlIs')}
-        <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>{SAFE_DOMAIN}</code>
+        <code>{SAFE_DOMAIN}</code>
         <StyledClose size={12} onClick={toggleURLWarning} />
       </PhishAlert>)
     : window.location.hostname === SAFE_DOMAIN
       ? (<PhishAlert isActive={showURLWarning}>
-          <div style={{ display: 'flex' }}>
-            <AlertTriangle style={{ marginRight: 6 }} size={12} />{t('global.AlwaysMakeSureUrlIs')}
-            <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>{SAFE_DOMAIN}</code> - {t('globa.bookmarkToBeSafe')}
-          </div>
+          <AlertTriangle style={{ marginRight: 6 }} size={12} />{t('global.AlwaysMakeSureUrlIs')}
+          <code>{SAFE_DOMAIN}</code> - {t('global.bookmarkToBeSafe')}
           <StyledClose size={12} onClick={toggleURLWarning} />
         </PhishAlert>)
       : (<PhishAlert isActive={showURLWarning}>
