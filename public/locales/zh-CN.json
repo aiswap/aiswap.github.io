@@ -32,7 +32,9 @@
     "balance_": "余额：",
     "noResultsFound": "未找到结果",
     "copied": "已复制",
-    "makeSureUrlIs": "请确保网址为 {{ host }}"
+    "makeSureUrlIs": "请确保网址为 {{ host }}",
+    "AlwaysMakeSureUrlIs": "始终确保网址为 {{ host }}",
+    "bookmarkToBeSafe": "添加书签更安全"
   },
   "wallet": {
     "submitConnect": "连接钱包",

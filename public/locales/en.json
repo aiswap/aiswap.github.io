@@ -32,7 +32,9 @@
     "balance_": "Balance:",
     "noResultsFound": "No results found.",
     "copied": "Copied",
-    "makeSureUrlIs": "Make sure the URL is {{ host }}"
+    "makeSureUrlIs": "Make sure the URL is {{ host }}",
+    "AlwaysMakeSureUrlIs": "Always make sure the URL is {{ host }}",
+    "bookmarkToBeSafe": "bookmark it to be safe."
   },
   "wallet": {
     "submitConnect": "Connect Wallet",

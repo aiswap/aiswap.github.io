@@ -54,9 +54,8 @@ export default function URLWarning() {
     : window.location.hostname === SAFE_DOMAIN
       ? (<PhishAlert isActive={showURLWarning}>
           <div style={{ display: 'flex' }}>
-            <AlertTriangle style={{ marginRight: 6 }} size={12} /> Always make sure the URL is
-            <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>{SAFE_DOMAIN}</code> - bookmark it
-            to be safe.
+            <AlertTriangle style={{ marginRight: 6 }} size={12} />{t('global.AlwaysMakeSureUrlIs')}
+            <code style={{ padding: '0 4px', display: 'inline', fontWeight: 'bold' }}>{SAFE_DOMAIN}</code> - {t('globa.bookmarkToBeSafe')}
           </div>
           <StyledClose size={12} onClick={toggleURLWarning} />
         </PhishAlert>)

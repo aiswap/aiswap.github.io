@@ -17,6 +17,12 @@ import styled from 'styled-components'
 // import { OutlineCard } from '../../components/Card'
 
 import { ExternalLink } from '../../theme'
+import {
+  // COMMUNITY_DISCORD,
+  // COMMUNITY_TELEGRAM,
+  COMMUNITY_TWITTER,
+  COMMUNITY_MEDIUM
+} from '../../constants/infoSetting'
 
 import LogoMd from '../../assets/svg/logo/md.svg'
 import LogoWhite from '../../assets/svg/logo/white.svg'
@@ -28,8 +34,8 @@ import LogoWhite from '../../assets/svg/logo/white.svg'
 import CooperationBgPng from '../../assets/svg/art/extra-bg.png'
 
 import CommunityTelegram from '../../assets/svg/community/telegram_b.svg' 
-import CommunityTwitter from '../../assets/svg/community/twitter_b.svg' 
-import CommunityDiscord from '../../assets/svg/community/discord_b.svg' 
+// import CommunityTwitter from '../../assets/svg/community/twitter_b.svg' 
+// import CommunityDiscord from '../../assets/svg/community/discord_b.svg' 
 import CommunityMedium from '../../assets/svg/community/medium.svg' 
 
 import ArtSwap from '../../assets/svg/art/ai-swap.svg'
@@ -265,11 +271,12 @@ export default function Earn() {
   //   { id: 'SupremeX', href: '###', width: '164px', src: CooperationSupremeX },
   //   { id: 'DMEX', href: '###', width: '120px', src: CooperationDMEX }
   // ]
+
   const communities: {id: string, href: string, width: string, height: string, src: string}[] = [
-    { id: 'telegram', href: '###', width: '40px', height: '40px', src: CommunityTelegram },
-    { id: 'twitter', href: '###', width: '40px', height: '40px', src: CommunityTwitter },
-    { id: 'discord', href: '###', width: '40px', height: '40px', src: CommunityDiscord },
-    { id: 'medium', href: '###', width: '40px', height: '40px', src: CommunityMedium }
+    { id: 'telegram', href: COMMUNITY_TWITTER, width: '40px', height: '40px', src: CommunityTelegram },
+    // { id: 'twitter', href: '###', width: '40px', height: '40px', src: CommunityTwitter },
+    // { id: 'discord', href: '###', width: '40px', height: '40px', src: CommunityDiscord },
+    { id: 'medium', href: COMMUNITY_MEDIUM, width: '40px', height: '40px', src: CommunityMedium }
   ]
 
   const features: { to: string, title: string, tip?: string, small: string, icon: string, style?: object}[] = [

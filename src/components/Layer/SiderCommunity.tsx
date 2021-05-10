@@ -3,7 +3,18 @@ import React from 'react'
 import { ExternalLink } from '../../theme/components'
 import styled from 'styled-components'
 
-import { IconDiscord, IconTelegram, IconTwitter, IconWechat } from '../Icon/Community'
+import {
+  // COMMUNITY_DISCORD,
+  // COMMUNITY_TELEGRAM,
+  COMMUNITY_TWITTER
+} from '../../constants/infoSetting'
+
+import {
+  // IconDiscord,
+  // IconTelegram,
+  IconTwitter,
+  // IconWechat
+} from '../Icon/Community'
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,18 +32,18 @@ export default function SiderCommunity() {
 
   return (
     <Wrapper>
-      <ExternalLink href={`https://###`}>
+      {/* <ExternalLink href={COMMUNITY_DISCORD}>
         <IconDiscord />
       </ExternalLink>
-      <ExternalLink href={`https://###`}>
+      <ExternalLink href={COMMUNITY_TELEGRAM}>
         <IconTelegram />
-      </ExternalLink>
-      <ExternalLink href={`https://###`}>
+      </ExternalLink> */}
+      <ExternalLink href={COMMUNITY_TWITTER}>
         <IconTwitter />
       </ExternalLink>
-      <ExternalLink href={`https://###`}>
+      {/* <ExternalLink href={`https://###`}>
         <IconWechat />
-      </ExternalLink>
+      </ExternalLink> */}
     </Wrapper>
   )
 }
