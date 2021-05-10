@@ -6,7 +6,7 @@ import { Token } from '@uniswap/sdk'
 import uriToHttp from 'utils/uriToHttp'
 
 async function getColorFromToken(token: Token): Promise<string | null> {
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${token.address}/logo.png`
+  const path = `https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/${token.address}.png`
 
   return Vibrant.from(path)
     .getPalette()

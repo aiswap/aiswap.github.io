@@ -1,24 +1,127 @@
 {
-  "name": "AISWAP",
-  "logoURI": "",
-  "keywords": [
-    "aiswap",
-    "defi"
-  ],
-  "timestamp": "2020-09-03T12:37:57.000+00:00",
-  "tokens": [
-    {
-      "name": "Wrapped OKT",
-      "address": "0x8f8526dbfd6e38e3d8307702ca8469bae6c56c15",
-      "symbol": "WOKT",
-      "decimals": 18,
-      "chainId": 66,
-      "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xaD6D458402F60fD3Bd25163575031ACDce07538D/logo.png"
-    }
-  ],
-  "version": {
-    "major": 0,
-    "minor": 18,
-    "patch": 0
-  }
+	"name": "AISWAP",
+	"logoURI": "",
+	"keywords": [
+		"aiswap",
+		"defi"
+	],
+	"timestamp": "2020-09-03T12:37:57.000+00:00",
+	"tokens": [{
+			"name": "Wrapped OKT",
+			"address": "0x8f8526dbfd6e38e3d8307702ca8469bae6c56c15",
+			"symbol": "WOKT",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x8f8526dbfd6e38e3d8307702ca8469bae6c56c15.png"
+		},
+		{
+			"name": "BTCK",
+			"address": "0x54e4622dc504176b3bb432dccaf504569699a7ff",
+			"symbol": "BTC",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x54e4622dc504176b3bb432dccaf504569699a7ff.png"
+		},
+		{
+			"name": "LTCK",
+			"address": "0xfa520efc34c81bfc1e3dd48b7fe9ff326049f986",
+			"symbol": "LTC",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0xfa520efc34c81bfc1e3dd48b7fe9ff326049f986.png"
+		},
+		{
+			"name": "ETHK",
+			"address": "0xef71ca2ee68f45b9ad6f72fbdb33d707b872315c",
+			"symbol": "ETH",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0xef71ca2ee68f45b9ad6f72fbdb33d707b872315c.png"
+		},
+		{
+			"name": "FILK",
+			"address": "0x3f8969be2fc0770dcc174968e4b4ff146e0acdaf",
+			"symbol": "FIL",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x3f8969be2fc0770dcc174968e4b4ff146e0acdaf.png"
+		},
+		{
+			"name": "DOTK",
+			"address": "0xabc732f6f69a519f6d508434481376b6221eb7d5",
+			"symbol": "DOT",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0xabc732f6f69a519f6d508434481376b6221eb7d5.png"
+		},
+		{
+			"name": "LINKK",
+			"address": "0x9b99c3ce751aa292320033f93a1376902d4ba58b",
+			"symbol": "LINK",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x9b99c3ce751aa292320033f93a1376902d4ba58b.png"
+		},
+		{
+			"name": "SUSHIK",
+			"address": "0x2218e0d5e0173769f5b4939a3ae423f7e5e4eab7",
+			"symbol": "SUSHI",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x2218e0d5e0173769f5b4939a3ae423f7e5e4eab7.png"
+		},
+		{
+			"name": "UNIK",
+			"address": "0x59d226bb0a4d74274d4354ebb6a0e1a1aa5175b6",
+			"symbol": "UNI",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x59d226bb0a4d74274d4354ebb6a0e1a1aa5175b6.png"
+		},
+		{
+			"name": "ZKSK",
+			"address": "0xcd08d321f6bc10a10f094e4b2e6c9b8bf9906401",
+			"symbol": "ZKS",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0xcd08d321f6bc10a10f094e4b2e6c9b8bf9906401.png"
+		},
+		{
+			"name": "AUCTIONK",
+			"address": "0x77df6ebec3316792d4ea5bc0f8286c27905aa8e8",
+			"symbol": "AUCTION",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x77df6ebec3316792d4ea5bc0f8286c27905aa8e8.png"
+		},
+		{
+			"name": "SFGK",
+			"address": "0x3212606f74cc59656e1ec6f587fca61ba3b85eb0",
+			"symbol": "SFG",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x3212606f74cc59656e1ec6f587fca61ba3b85eb0.png"
+		},
+		{
+			"name": "KINEK",
+			"address": "0xc05760d75e7f5ad428a906674ce7c7c82d003d01",
+			"symbol": "KINE",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0xc05760d75e7f5ad428a906674ce7c7c82d003d01.png"
+		},
+		{
+			"name": "DAIK",
+			"address": "0x21cde7e32a6caf4742d00d44b07279e7596d26b9",
+			"symbol": "DAI",
+			"decimals": 18,
+			"chainId": 66,
+			"logoURI": "https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/0x21cde7e32a6caf4742d00d44b07279e7596d26b9.png"
+		}
+	],
+	"version": {
+		"major": 0,
+		"minor": 18,
+		"patch": 0
+	}
 }
