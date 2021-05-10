@@ -22,15 +22,17 @@ const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
   flex-direction: row;
   align-items: center;
-  background-color: ${({ theme, active }) => (!active ? theme.bg1 : theme.bg3)};
+  background-color: #FFFFFF;
   box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
   border-radius: 8px;
   white-space: nowrap;
   width: 100%;
   cursor: pointer;
+  border: 1px solid #00BFA0;
 
   :focus {
-    border: 1px solid blue;
+    border: 1px solid #00BFA0;
+    box-shadow: 0px 3px 6px rgba(0, 191, 159, 0.3);
   }
 `
 
@@ -71,20 +73,18 @@ export const StyledMenuButton = styled.button`
 
 
 
-export default function Header() {
+export default function Header({ onClick }: {
+  onClick?: () => void
+}) {
   const { account } = useActiveWeb3React()
 
   // const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
   // const [isDark] = useDarkModeManager()
 
-
-
-
   const [showUniBalanceModal, setShowUniBalanceModal] = useState(false)
 
-
   return (
-    <HeaderFrame>
+    <HeaderFrame onClick={onClick}>
       <ClaimModal />
       <Modal isOpen={showUniBalanceModal} onDismiss={() => setShowUniBalanceModal(false)}>
         <UniBalanceContent setShowUniBalanceModal={setShowUniBalanceModal} />

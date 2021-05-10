@@ -37,6 +37,7 @@ export type TokenAddressMap = Readonly<{ [chainId in ChainId]: Readonly<{ [token
 /**
  * An empty result, useful as a default.
  */
+// @ts-ignore
 const EMPTY_LIST: TokenAddressMap = {
   [ChainId.MAINNET]: {}
 }
@@ -88,6 +89,7 @@ export function useAllLists(): {
 }
 
 function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddressMap {
+  // @ts-ignore
   return {
     66: { ...map1[66], ...map2[66] }
   }

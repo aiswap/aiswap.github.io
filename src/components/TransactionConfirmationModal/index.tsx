@@ -14,6 +14,7 @@ import MetaMaskLogo from '../../assets/svg/wallet/metamask.svg'
 import { getEtherscanLink } from '../../utils'
 import { useActiveWeb3React } from '../../hooks'
 import useAddTokenToMetamask from 'hooks/useAddTokenToMetamask'
+import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
   width: 100%;
@@ -78,6 +79,7 @@ function TransactionSubmittedContent({
   chainId: ChainId
   currencyToAdd?: Currency | undefined
 }) {
+  const { t } = useTranslation()
   const theme = useContext(ThemeContext)
 
   const { library } = useActiveWeb3React()
@@ -101,7 +103,7 @@ function TransactionSubmittedContent({
           {chainId && hash && (
             <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>
               <Text fontWeight={500} fontSize={14} color={theme.primary1}>
-                View on Etherscan
+                {t('wallet.viewOKLink')}
               </Text>
             </ExternalLink>
           )}

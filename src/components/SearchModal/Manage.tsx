@@ -7,6 +7,7 @@ import { CloseIcon } from 'theme'
 import styled from 'styled-components'
 import { Token } from '@uniswap/sdk'
 import { ManageLists } from './ManageLists'
+import { useTranslation } from 'react-i18next'
 import ManageTokens from './ManageTokens'
 import { TokenList } from '@uniswap/token-lists'
 import { CurrencyModalView } from './CurrencySearchModal'
@@ -54,6 +55,7 @@ export default function Manage({
   setImportList: (list: TokenList) => void
   setListUrl: (url: string) => void
 }) {
+  const { t } = useTranslation()
   // toggle between tokens and lists
   const [showLists, setShowLists] = useState(true)
 
@@ -63,7 +65,7 @@ export default function Manage({
         <RowBetween>
           <ArrowLeft style={{ cursor: 'pointer' }} onClick={() => setModalView(CurrencyModalView.search)} />
           <Text fontWeight={500} fontSize={20}>
-            Manage
+            {t('exchange.manageTokenSource')}
           </Text>
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
@@ -72,10 +74,10 @@ export default function Manage({
       <PaddedColumn style={{ paddingBottom: 0 }}>
         <ToggleWrapper>
           <ToggleOption onClick={() => setShowLists(!showLists)} active={showLists}>
-            Lists
+            {t('exchange.manageLists')}
           </ToggleOption>
           <ToggleOption onClick={() => setShowLists(!showLists)} active={!showLists}>
-            Tokens
+            {t('exchange.manageTokens')}
           </ToggleOption>
         </ToggleWrapper>
       </PaddedColumn>

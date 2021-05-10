@@ -45,9 +45,6 @@ const HeaderRow = styled.div`
   padding: 20px 24px;
   font-weight: 500;
   color: ${props => (props.color === 'blue' ? ({ theme }) => theme.primary1 : 'inherit')};
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    padding: 1rem;
-  `};
 `
 
 const ContentWrapper = styled.div`
@@ -55,8 +52,6 @@ const ContentWrapper = styled.div`
   padding: 0 24px 24px;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-
-  ${({ theme }) => theme.mediaWidth.upToMedium`padding: 1rem`};
 `
 
 const UpperSection = styled.div`
@@ -85,10 +80,13 @@ const Blurb = styled.div`
   align-items: center;
   flex-wrap: wrap;
   margin-top: 20px;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    margin: 1rem;
-    font-size: 12px;
-  `};
+`
+
+const StyledOption = styled(Option)`
+background-color: red !important;
+  > div {
+    font-weight: bold;
+  }
 `
 
 const OptionGrid = styled.div`
@@ -108,6 +106,22 @@ const HoverText = styled.div`
   :hover {
     cursor: pointer;
     color: #009985;
+  }
+`
+
+const HoverTextB = styled.div`
+  align-items: center;
+  display: flex;
+  font-weight: normal;
+
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #151526;
+
+  :hover {
+    cursor: pointer;
+    color: #151526;
   }
 `
 
@@ -220,7 +234,7 @@ export default function WalletModal({
 
         if (!window.web3 && !window.ethereum && option.mobile) {
           return (
-            <Option
+            <StyledOption
               onClick={() => {
                 option.connector !== connector && !option.href && tryActivation(option.connector)
               }}
@@ -244,11 +258,11 @@ export default function WalletModal({
         if (!(window.web3 || window.ethereum)) {
           if (option.name === 'MetaMask') {
             return (
-              <Option
+              <StyledOption
                 id={`connect-${key}`}
                 key={key}
-                color={'#E8831D'}
-                header={'Install Metamask'}
+                color={'#151526'}
+                header={t('wallet.installWallet', { walletName: 'Metamask' })}
                 subheader={null}
                 link={'https://metamask.io/'}
                 icon={MetamaskIcon}
@@ -272,7 +286,7 @@ export default function WalletModal({
       return (
         !isMobile &&
         !option.mobileOnly && (
-          <Option
+          <StyledOption
             id={`connect-${key}`}
             onClick={() => {
               option.connector === connector
@@ -299,12 +313,12 @@ export default function WalletModal({
           <CloseIcon onClick={toggleWalletModal}>
             <img src={CloseSVG} alt="close" />
           </CloseIcon>
-          <HeaderRow>{error instanceof UnsupportedChainIdError ? 'Wrong Network' : 'Error connecting'}</HeaderRow>
+          <HeaderRow>{error instanceof UnsupportedChainIdError ? t('wallet.wrongNetwork') : 'Error connecting'}</HeaderRow>
           <ContentWrapper>
             {error instanceof UnsupportedChainIdError ? (
-              <h5>Please connect to the appropriate OKEx network.</h5>
+              <h5>{t('wallet.connectAppropriateOKExNetwork')}</h5>
             ) : (
-              'Error connecting. Try refreshing the page.'
+              t('wallet.errorConnectingTry')
             )}
           </ContentWrapper>
         </UpperSection>
@@ -334,13 +348,13 @@ export default function WalletModal({
                 setWalletView(WALLET_VIEWS.ACCOUNT)
               }}
             >
-              <img src={ChevronLeft} alt="back"/>
-              返回
+              <img src={ChevronLeft} alt={t('global.back')} />
+              {t('global.back')}
             </HoverText>
           </HeaderRow>
         ) : (
           <HeaderRow>
-            <HoverText>{t('wallet.submitConnect')}</HoverText>
+            <HoverTextB>{t('wallet.submitConnect')}</HoverTextB>
           </HeaderRow>
         )}
         <ContentWrapper>
@@ -356,8 +370,8 @@ export default function WalletModal({
           )}
           {walletView !== WALLET_VIEWS.PENDING && (
             <Blurb>
-              <span>以太坊新用户？</span>{' '}
-              <ExternalLink href="https://ethereum.org/wallets/">了解有关钱包的更多信息</ExternalLink>
+              <span className="mr-2">{t('wallet.newUser_')}</span>
+              <ExternalLink href="https://ethereum.org/wallets/">{t('wallet.learnAboutWallets')}</ExternalLink>
             </Blurb>
           )}
         </ContentWrapper>

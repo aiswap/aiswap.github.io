@@ -50,7 +50,8 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
-        inputError: sufficientBalance ? undefined : 'Insufficient ETH balance'
+        // inputError: sufficientBalance ? undefined : t('exchange.insufficientTokenBalance', { symbol: "OKT" })
+        inputError: sufficientBalance ? undefined : 'Insufficient OKT balance'
       }
     } else if (currencyEquals(WETH[chainId], inputCurrency) && outputCurrency === ETHER) {
       return {
@@ -66,6 +67,7 @@ export default function useWrapCallback(
                 }
               }
             : undefined,
+        // inputError: sufficientBalance ? undefined : t('exchange.insufficientTokenBalance', { symbol: "WETH" })
         inputError: sufficientBalance ? undefined : 'Insufficient WETH balance'
       }
     } else {

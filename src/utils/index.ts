@@ -21,7 +21,7 @@ const DOMAINS = {
   etherscan: 'etherscan.io',
   okexchain: 'www.oklink.com/okexchain'
 }
-
+// @ts-ignore
 const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
   66: `${DOMAINS.okexchain}`
 }

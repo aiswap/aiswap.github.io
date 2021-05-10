@@ -3,6 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 import { Pair, JSBI } from '@uniswap/sdk'
 import { Link } from 'react-router-dom'
 import { SwapPoolTabs } from '../../components/NavigationTabs'
+import { useTranslation } from 'react-i18next'
 import AppBody from '../AppBody'
 import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
@@ -23,7 +24,7 @@ import { BIG_INT_ZERO } from '../../constants'
 import { Layout } from 'antd'
 import BgGlobal from '../../assets/svg/art/bg_global.png'
 import Settings from '../../components/Settings'
-import QuestionHelper from '../../components/QuestionHelper'
+// import QuestionHelper from '../../components/QuestionHelper'
 
 export const LayoutCenter = styled(Layout)<{ disabled?: boolean }>`
   display: flex;
@@ -74,7 +75,7 @@ const ButtonRow = styled(RowFixed)`
   gap: 8px;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 100%;
-    flex-direction: row-reverse;
+    // flex-direction: row-reverse;
     justify-content: space-between;
   `};
 `
@@ -107,6 +108,7 @@ const EmptyProposals = styled.div`
 `
 
 export default function Pool() {
+  const { t } = useTranslation()
   const theme = useContext(ThemeContext)
   const { account } = useActiveWeb3React()
 
@@ -164,9 +166,9 @@ export default function Pool() {
             <AutoRow>
               <StyledHeader>
                 <RowBetween>
-                  <TYPE.black fontWeight={500}>
-                    资金池
-                    <small>Add liquidity to receive LP tokens</small>
+                  <TYPE.black fontWeight={600}>
+                    {t('exchange.pool')}
+                    <small>{t('exchange.addLiquidityReceiveLPT')}</small>
                   </TYPE.black>
                   <Settings />
                 </RowBetween>
@@ -174,7 +176,7 @@ export default function Pool() {
               <ButtonRow margin="16px 0 0">
                 <ResponsiveButtonSecondary as={Link} padding="12px 24px" borderRadius="8px" to="/create/ETH">
                   <Text lineHeight={'24px'} fontSize={20}>
-                    Create a pair
+                    {t('exchange.createPair')}
                   </Text>
                 </ResponsiveButtonSecondary>
                 <ResponsiveButtonPink
@@ -185,33 +187,33 @@ export default function Pool() {
                   to="/add/ETH"
                 >
                   <Text lineHeight={'24px'} fontWeight={'bold'} fontSize={20}>
-                    Add Liquidity
+                    {t('exchange.addLiquidity')}
                   </Text>
                 </ResponsiveButtonPink>
               </ButtonRow>
             </AutoRow>
             <TitleRow>
-              <HideSmall>Your liquidity</HideSmall>
-              <QuestionHelper text="Your Liquidity tip" />
+              <HideSmall>{t('exchange.yourLiquidity')}</HideSmall>
+              {/* <QuestionHelper text="Your Liquidity tip" /> */}
             </TitleRow>
 
             {!account ? (
               <Card padding="40px">
                 <TYPE.body color={theme.text3} textAlign="center">
-                  Connect to a wallet to view your liquidity.
+                  {t('exchange.connectWalletViewYourLiquidity')}
                 </TYPE.body>
               </Card>
             ) : v2IsLoading ? (
               <EmptyProposals>
                 <TYPE.body color={theme.text3} textAlign="center">
-                  <Dots>Loading</Dots>
+                  <Dots>{t('global.loading')}</Dots>
                 </TYPE.body>
               </EmptyProposals>
             ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
                 <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'/account/' + account}>Account analytics and accrued fees</ExternalLink>
+                    <ExternalLink href={'/account/' + account}>{t('exchange.accountAnalyticsFees')}</ExternalLink>
                     <span> ↗</span>
                   </RowBetween>
                 </ButtonSecondary>
@@ -232,16 +234,16 @@ export default function Pool() {
             ) : (
               <EmptyProposals>
                 <TYPE.body fontWeight={'bold'} color={'#B6B6BF'} textAlign="center">
-                  No liquidity found.
+                  {t('exchange.noLiquidityFound')}
                 </TYPE.body>
               </EmptyProposals>
             )}
 
             <AutoColumn gap="md">
               <Text fontSize={14} style={{ padding: '.5rem 0 0 0' }}>
-                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : "Don't see a pool you joined?"}{' '}
+                {hasV1Liquidity ? 'Uniswap V1 liquidity found!' : t('exchange.noSeePoolJoined')}{' '}
                 <StyledInternalLink id="import-pool-link" to={hasV1Liquidity ? '/migrate/v1' : '/find'}>
-                  {hasV1Liquidity ? 'Migrate now.' : 'Import it.'}
+                  {hasV1Liquidity ? 'Migrate now.' : t('exchange.importLiquidity')}
                 </StyledInternalLink>
               </Text>
             </AutoColumn>

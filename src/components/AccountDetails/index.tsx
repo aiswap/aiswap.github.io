@@ -8,6 +8,7 @@ import { shortenAddress } from '../../utils'
 import { AutoRow } from '../Row'
 import Copy from './Copy'
 import Transaction from './Transaction'
+import { useTranslation } from 'react-i18next'
 
 import { SUPPORTED_WALLETS } from '../../constants'
 import { getEtherscanLink } from '../../utils'
@@ -225,6 +226,7 @@ export default function AccountDetails({
   ENSName,
   openOptions
 }: AccountDetailsProps) {
+  const { t } = useTranslation()
   const { chainId, account, connector } = useActiveWeb3React()
   const theme = useContext(ThemeContext)
   const dispatch = useDispatch<AppDispatch>()
@@ -238,7 +240,7 @@ export default function AccountDetails({
           SUPPORTED_WALLETS[k].connector === connector && (connector !== injected || isMetaMask === (k === 'METAMASK'))
       )
       .map(k => SUPPORTED_WALLETS[k].name)[0]
-    return <WalletName>通过 {name} 连接</WalletName>
+    return <WalletName>{t('wallet.connectWalletName', { walletName: name })}</WalletName>
   }
 
   function getStatusIcon() {
@@ -295,7 +297,7 @@ export default function AccountDetails({
         <CloseIcon onClick={toggleWalletModal}>
           <img src={CloseSVG} alt="close" />
         </CloseIcon>
-        <HeaderRow>账户</HeaderRow>
+        <HeaderRow>{t('wallet.account')}</HeaderRow>
         <AccountSection>
           <YourAccount>
             <InfoCard>
@@ -309,7 +311,7 @@ export default function AccountDetails({
                         ;(connector as any).close()
                       }}
                     >
-                      断开钱包
+                      {t('wallet.disconnected')}
                     </WalletAction>
                   )}
                   <WalletAction
@@ -318,7 +320,7 @@ export default function AccountDetails({
                       openOptions()
                     }}
                   >
-                    切换钱包
+                    {t('wallet.change')}
                   </WalletAction>
                 </div>
               </AccountGroupingRow>
@@ -348,7 +350,7 @@ export default function AccountDetails({
                       <div>
                         {account && (
                           <Copy toCopy={account}>
-                            <span style={{ marginLeft: '4px' }}>复制地址</span>
+                            <span style={{ marginLeft: '4px' }}>{t('wallet.copyAddress')}</span>
                           </Copy>
                         )}
                         {chainId && account && (
@@ -358,7 +360,7 @@ export default function AccountDetails({
                             href={chainId && getEtherscanLink(chainId, ENSName, 'address')}
                           >
                             <LinkIcon size={16} />
-                            <span style={{ marginLeft: '4px' }}>在区块浏览器中查看</span>
+                            <span style={{ marginLeft: '4px' }}>{t('wallet.viewOKLink')}</span>
                           </AddressLink>
                         )}
                       </div>
@@ -370,7 +372,7 @@ export default function AccountDetails({
                       <div>
                         {account && (
                           <Copy toCopy={account}>
-                            <span style={{ marginLeft: '4px' }}>复制地址</span>
+                            <span style={{ marginLeft: '4px' }}>{t('wallet.copyAddress')}</span>
                           </Copy>
                         )}
                         {chainId && account && (
@@ -380,7 +382,7 @@ export default function AccountDetails({
                             href={getEtherscanLink(chainId, account, 'address')}
                           >
                             <LinkIcon size={16} />
-                            <span style={{ marginLeft: '4px' }}>View on Etherscan</span>
+                            <span style={{ marginLeft: '4px' }}>{t('wallet.viewOKLink')}</span>
                           </AddressLink>
                         )}
                       </div>
@@ -395,15 +397,15 @@ export default function AccountDetails({
       {!!pendingTransactions.length || !!confirmedTransactions.length ? (
         <LowerSection>
           <AutoRow mb={'1rem'} style={{ justifyContent: 'space-between' }}>
-            <TYPE.body>最近交易</TYPE.body>
-            <LinkStyledButton onClick={clearAllTransactionsCallback}>(清空记录)</LinkStyledButton>
+            <TYPE.body>{t('wallet.recentTransactions')}</TYPE.body>
+            <LinkStyledButton onClick={clearAllTransactionsCallback}>({t('wallet.clear')})</LinkStyledButton>
           </AutoRow>
           {renderTransactions(pendingTransactions)}
           {renderTransactions(confirmedTransactions)}
         </LowerSection>
       ) : (
         <LowerSection>
-          <TYPE.body color={theme.text1}>您的交易记录将出现在这里...</TYPE.body>
+          <TYPE.body color={theme.text1}>{t('wallet.yourTransactionHistory')}...</TYPE.body>
         </LowerSection>
       )}
     </>
