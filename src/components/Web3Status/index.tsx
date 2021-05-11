@@ -1,6 +1,6 @@
 import { AbstractConnector } from '@web3-react/abstract-connector'
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core'
-import { darken, lighten } from 'polished'
+import { darken } from 'polished'
 import React, { useMemo } from 'react'
 import { Activity } from 'react-feather'
 import { useTranslation } from 'react-i18next'
@@ -19,7 +19,7 @@ import { TransactionDetails } from '../../state/transactions/reducer'
 import { shortenAddress } from '../../utils'
 import { ButtonSecondary } from '../Button'
 
-import Identicon from '../Identicon'
+// import Identicon from '../Identicon'
 import Loader from '../Loader'
 
 import { RowBetween } from '../Row'
@@ -52,6 +52,8 @@ const Web3StatusError = styled(Web3StatusGeneric)`
   border: 1px solid ${({ theme }) => theme.red1};
   color: ${({ theme }) => theme.white};
   font-weight: 500;
+  border-radius: 8px;
+
   :hover,
   :focus {
     background-color: ${({ theme }) => darken(0.1, theme.red1)};
@@ -59,14 +61,31 @@ const Web3StatusError = styled(Web3StatusGeneric)`
 `
 
 const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
-  background: #FFFFFF;
+  background-color: #FFFFFF;
+  border: 1px solid #00BFA0;
+  box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
   color: #00BFA0;
-  font-weight: 500;
 
-  :hover,
-  :focus {
+  &:focus,
+  &:hover {
     color: #00BFA0;
-    border: 1px  #00BFA0;
+    box-shadow: 0px 3px 6px rgba(0, 191, 159, 0.3);
+  }
+  &:active {
+    color: #00BFA0;
+    box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
+  }
+  &:disabled {
+    color: #B6B6BF;
+    border: 1px solid #B6B6BF;
+    cursor: auto;
+  }
+  a:hover {
+    text-decoration: none;
   }
 
   ${({ faded }) =>
@@ -82,15 +101,32 @@ const Web3StatusConnect = styled(Web3StatusGeneric)<{ faded?: boolean }>`
 `
 
 const Web3StatusConnected = styled(Web3StatusGeneric)<{ pending?: boolean }>`
-  background: #FFFFFF;
+  background-color: #FFFFFF;
+  border: 1px solid #00BFA0;
+  box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
   border-radius: 8px;
-  color: ${({ pending, theme }) => (pending ? '#00BFA0' : '#00BFA0')};
-  font-weight: 500;
-  :hover,
-  :focus {
-    color: ${({ pending, theme }) => (pending ? darken(0.1, '#00BFA0') : darken(0.1, '#00BFA0'))};
-    background-color: ${({ pending, theme }) => (pending ? darken(0.05, theme.primary1) : lighten(0.05, theme.bg2))};
-    border: 1px solid #00BFA0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #00BFA0;
+
+  &:focus,
+  &:hover {
+    color: #00BFA0;
+    box-shadow: 0px 3px 6px rgba(0, 191, 159, 0.3);
+  }
+  &:active {
+    color: #00BFA0;
+    box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
+  }
+  &:disabled {
+    color: #B6B6BF;
+    border: 1px solid #B6B6BF;
+    cursor: auto;
+  }
+  a:hover {
+    text-decoration: none;
   }
 `
 
@@ -102,6 +138,14 @@ const Text = styled.p`
   margin: 0 0.5rem 0 0.25rem;
   font-size: 1rem;
   width: fit-content;
+`
+
+const StyledConnectedIcon = styled.span`
+  background-color: #00BFA0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 12px;
 `
 
 const NetworkIcon = styled(Activity)`
@@ -125,7 +169,8 @@ const SOCK = (
 // eslint-disable-next-line react/prop-types
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
   if (connector === injected) {
-    return <Identicon />
+    // return <Identicon />
+    return <StyledConnectedIcon></StyledConnectedIcon>
   } else if (connector === walletconnect) {
     return (
       <IconWrapper size={16}>
@@ -184,7 +229,7 @@ function Web3StatusInner() {
         ) : (
           <>
             {hasSocks ? SOCK : null}
-            <Text>{ENSName || shortenAddress(account)}</Text>
+            <Text className="text-left">{ENSName || shortenAddress(account)}</Text>
           </>
         )}
       </Web3StatusConnected>

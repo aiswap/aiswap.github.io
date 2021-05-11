@@ -8,7 +8,7 @@ import AppBody from '../AppBody'
 import FullPositionCard from '../../components/PositionCard'
 import { useUserHasLiquidityInAllTokens } from '../../data/V1'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { StyledInternalLink, ExternalLink, TYPE, HideSmall } from '../../theme'
+import { StyledInternalLink, ExternalLink, TYPE } from '../../theme'
 import { Text } from 'rebass'
 import Card from '../../components/Card'
 import { RowBetween, RowFixed, AutoRow } from '../../components/Row'
@@ -59,8 +59,8 @@ const StyledHeader = styled.div`
 `
 
 const TitleRow = styled(RowBetween)`
-  margin-top: 1rem;
-  padding: 16px 0 0;
+  // margin-top: 1rem;
+  padding: 20px 0 0;
   flex-wrap: wrap;
   gap: 12px;
   width: 100%;
@@ -72,26 +72,28 @@ const TitleRow = styled(RowBetween)`
 `
 
 const ButtonRow = styled(RowFixed)`
-  gap: 8px;
+  gap: 20px;
+  flex-wrap: wrap;
+  width: 100%;
   ${({ theme }) => theme.mediaWidth.upToSmall`
     width: 100%;
-    // flex-direction: row-reverse;
+    flex-direction: column;
     justify-content: space-between;
   `};
 `
 
 const ResponsiveButtonPink = styled(ButtonPink)`
-  width: fit-content;
   background: #00bfa0;
+  flex: 1;
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
+    width: 100%;
   `};
 `
 
 const ResponsiveButtonSecondary = styled(ButtonSecondary)`
-  width: fit-content;
+  flex: 1;
   ${({ theme }) => theme.mediaWidth.upToSmall`
-    width: 48%;
+    width: 100%;
   `};
 `
 
@@ -193,7 +195,7 @@ export default function Pool() {
               </ButtonRow>
             </AutoRow>
             <TitleRow>
-              <HideSmall>{t('exchange.yourLiquidity')}</HideSmall>
+              <span>{t('exchange.yourLiquidity')}</span>
               {/* <QuestionHelper text="Your Liquidity tip" /> */}
             </TitleRow>
 

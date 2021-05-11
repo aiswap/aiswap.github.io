@@ -34,9 +34,20 @@
     "copied": "Copied",
     "makeSureUrlIs": "Make sure the URL is {{ host }}",
     "AlwaysMakeSureUrlIs": "Always make sure the URL is {{ host }}",
-    "bookmarkToBeSafe": "bookmark it to be safe."
+    "bookmarkToBeSafe": "bookmark it to be safe.",
+    "active": "Active",
+    "viaListName": "via {{ name }}",
+    "initializing": "Initializing",
+    "again": "Again",
+    "rates": "Rates",
+    "deposited": "Deposited",
+    "aPerB": "{{ a }} per {{ b }}"
   },
   "wallet": {
+    "desc": {
+      "walletConnect": "Connect to Trust Wallet, Rainbow Wallet and more...",
+      "walletLink": ""
+    },
     "submitConnect": "Connect Wallet",
     "errUnsupportChain": "Unsupport Chain Id",
     "errUnsupportChainInfo": "Unsupport Chain Id Error.Check your chain id.",
@@ -50,6 +61,7 @@
     "viewExplorer": "View on {{ networkName }} Explorer",
     "noRecentTransactions": "No recent transactions",
     "wrongNetwork": "Wrong Network",
+    "errorConnecting": "Error connecting.",
     "errorConnectingTry": "Error connecting. Try refreshing the page.",
     "connectAppropriateOKExNetwork": "Please connect to the appropriate OKEx network.",
     "newUser_": "New user?",
@@ -162,7 +174,10 @@
     "manageListAddInput": "https:// or ipfs:// or ENS name",
     "enterValidTokenAddress": "Enter valid token address",
     "removingPoolTip": "Removing pool tokens converts your position back into underlying tokens at the current rate, proportional to your share of the pool. Accrued fees are included in the amounts you receive.",
-    "creatingPool": "You are creating a pool"
+    "creatingPool": "You are creating a pool",
+    "shareOfPool_": "Share of Pool:",
+    "createPoolAndSupply": "Create Pool & Supply",
+    "confirmSupply": "Confirm Supply"
   },
 
   "noWallet": "No Ethereum wallet found",

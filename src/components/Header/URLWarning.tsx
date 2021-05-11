@@ -11,25 +11,14 @@ const PhishAlert = styled.div<{ isActive: any }>`
   background-color: ${({ theme }) => theme.blue1};
   color: white;
   font-size: 11px;
-  justify-content: space-between;
   align-items: center;
   display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
-
-  > div {
-    display: flex;
-    align-items: center;
-  }
-
-  :last-child {
-
-  }
 
   > code {
     padding: 0 4px;
     display: inline;
     font-weight: bold;
   }
-
 `
 
 export const StyledClose = styled(X)`
@@ -52,10 +41,10 @@ export default function URLWarning() {
         <StyledClose size={12} onClick={toggleURLWarning} />
       </PhishAlert>)
     : window.location.hostname === SAFE_DOMAIN
-      ? (<PhishAlert isActive={showURLWarning}>
-          <AlertTriangle style={{ marginRight: 6 }} size={12} />{t('global.AlwaysMakeSureUrlIs')}
-          <code>{SAFE_DOMAIN}</code> - {t('global.bookmarkToBeSafe')}
-          <StyledClose size={12} onClick={toggleURLWarning} />
+      ? (<PhishAlert isActive={showURLWarning}>{isMobile}
+          <AlertTriangle style={{ marginRight: 6 }} size={12} />
+          {t('global.AlwaysMakeSureUrlIs')}<code>{SAFE_DOMAIN}</code> - {t('global.bookmarkToBeSafe')}
+          <StyledClose className="ml-auto" size={12} onClick={toggleURLWarning} />
         </PhishAlert>)
       : (<PhishAlert isActive={showURLWarning}>
           <AlertTriangle style={{ marginRight: 6 }} size={12} />{t('global.makeSureUrlIs')}

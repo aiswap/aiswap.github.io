@@ -34,7 +34,14 @@
     "copied": "已复制",
     "makeSureUrlIs": "请确保网址为 {{ host }}",
     "AlwaysMakeSureUrlIs": "始终确保网址为 {{ host }}",
-    "bookmarkToBeSafe": "添加书签更安全"
+    "bookmarkToBeSafe": "添加书签更安全",
+    "active": "有效",
+    "viaListName": "通过 {{ name }}",
+    "initializing": "正在初始化",
+    "again": "再试一次",
+    "rates": "费率",
+    "deposited": "已存入",
+    "aPerB": "{{ a }} / {{ b }}"
   },
   "wallet": {
     "submitConnect": "连接钱包",
@@ -50,13 +57,17 @@
     "viewExplorer": "{{ networkName }} 浏览器中查看",
     "noRecentTransactions": "你的交易记录将出现在这里",
     "wrongNetwork": "网络错误",
+    "errorConnecting": "连接错误",
     "errorConnectingTry": "连接错误。请尝试刷新页面",
     "connectAppropriateOKExNetwork": "请连接到合适的 OKEx 网络",
     "newUser_": "新用户？",
     "learnAboutWallets": "了解有关钱包的更多信息",
     "installWallet": "装配 {{ walletName }}",
     "viewOKLink": "在 OKLink 浏览器查看",
-    "yourTransactionHistory": "您的交易记录将出现在这里"
+    "yourTransactionHistory": "您的交易记录将出现在这里",
+    "shareOfPool_": "所占份额：",
+    "createPoolAndSupply": "创建资金池并提供流动性",
+    "confirmSupply": "确认"
   },
   "about": {
     "title": "更多 AI，更多爱",

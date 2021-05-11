@@ -20,20 +20,9 @@ const HeaderFrame = styled.div`
 
 const AccountElement = styled.div<{ active: boolean }>`
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  background-color: #FFFFFF;
-  box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
-  border-radius: 8px;
-  white-space: nowrap;
-  width: 100%;
-  cursor: pointer;
-  border: 1px solid #00BFA0;
-
-  :focus {
-    border: 1px solid #00BFA0;
-    box-shadow: 0px 3px 6px rgba(0, 191, 159, 0.3);
-  }
+  // flex-direction: row;
+  // align-items: center;
+  // white-space: nowrap;
 `
 
 // const BalanceText = styled(Text)`
