@@ -95,7 +95,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
                 )}
                 {list !== undefined ? (
                   <RowFixed>
-                    {list.logoURI && <ListLogo logoURI={list.logoURI} size="12px" />}
+                    {list.logoURI && <ListLogo logoURI={list.logoURI} address={list.address} size="12px" />}
                     <TYPE.small ml="6px" color={theme.text3}>
                       via {list.name}
                     </TYPE.small>

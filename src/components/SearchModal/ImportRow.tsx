@@ -82,7 +82,7 @@ export default function ImportRow({
             <TYPE.small mr="4px" color={theme.text3}>
               {t('global.viaListName', { name: list.name })}
             </TYPE.small>
-            <ListLogo logoURI={list.logoURI} size="12px" />
+            <ListLogo logoURI={list.logoURI} address={list.address} size="12px" />
           </RowFixed>
         )}
       </AutoColumn>

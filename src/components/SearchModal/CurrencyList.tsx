@@ -200,6 +200,7 @@ export default function CurrencyList({
                 <RowFixed>
                   <TokenListLogoWrapper src={TokenListLogo} />
                   <TYPE.main ml="6px" fontSize="12px" color={theme.text1}>
+                    {/* {t('tokens.tokenListsInactiveExpanded')} */}
                     Expanded results from inactive Token Lists
                   </TYPE.main>
                 </RowFixed>

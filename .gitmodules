@@ -1,0 +1,4 @@
+[submodule "public/images/assets/main"]
+	path = public/images/assets/main
+	url = git@github.com:aiswap/assets.git
+	branch = main

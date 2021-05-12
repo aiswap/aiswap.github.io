@@ -43,10 +43,20 @@
     "deposited": "Deposited",
     "aPerB": "{{ a }} per {{ b }}"
   },
+  "tokens": {
+    "tokenListsInactiveExpanded": "Expanded results from inactive Token Lists",
+    "enterValidListLocation": "Enter valid list location",
+    "errImportingList": "Error importing list"
+  },
   "wallet": {
     "desc": {
+      "injected": "Injected web3 provider.",
       "walletConnect": "Connect to Trust Wallet, Rainbow Wallet and more...",
-      "walletLink": ""
+      "walletLink": "Use Coinbase Wallet app on mobile device",
+      "metamask": "Easy-to-use browser extension.",
+      "coinbaseLink": "Open in Coinbase Wallet app.",
+      "fortmatic": "Login using Fortmatic hosted wallet",
+      "portis": "Login using Portis hosted wallet"
     },
     "submitConnect": "Connect Wallet",
     "errUnsupportChain": "Unsupport Chain Id",

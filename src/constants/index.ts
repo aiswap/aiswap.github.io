@@ -94,7 +94,8 @@ export interface WalletInfo {
   connector?: AbstractConnector
   name: string
   iconName: string
-  description: string
+  description: string,
+  descI18n?: string,
   href: string | null
   color: string
   primary?: true
@@ -107,7 +108,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     connector: injected,
     name: 'Injected',
     iconName: 'arrow-right.svg',
-    description: 'Injected web3 provider.',
+    description: '',
+    descI18n: 'wallet.desc.injected',
     href: null,
     color: '#010101',
     primary: true
@@ -116,7 +118,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     connector: injected,
     name: 'MetaMask',
     iconName: 'metamask.svg',
-    description: 'Easy-to-use browser extension.',
+    description: '',
+    descI18n: 'wallet.desc.metamask',
     href: null,
     color: '#E8831D'
   },
@@ -124,7 +127,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     connector: walletconnect,
     name: 'WalletConnect',
     iconName: 'walletconnect.svg',
-    description: 'Connect to Trust Wallet, Rainbow Wallet and more...',
+    description: '',
+    descI18n: 'wallet.desc.walletConnect',
     href: null,
     color: '#4196FC',
     mobile: true
@@ -133,14 +137,16 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     connector: walletlink,
     name: 'Coinbase Wallet',
     iconName: 'coinbase.svg',
-    description: 'Use Coinbase Wallet app on mobile device',
+    description: '',
+    descI18n: 'wallet.desc.walletConnect',
     href: null,
     color: '#315CF5'
   },
   COINBASE_LINK: {
     name: 'Open in Coinbase Wallet',
     iconName: 'coinbase.svg',
-    description: 'Open in Coinbase Wallet app.',
+    description: '',
+    descI18n: 'wallet.desc.coinbaseLink',
     href: 'https://go.cb-w.com/mtUDhEZPy1',
     color: '#315CF5',
     mobile: true,
@@ -150,7 +156,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     connector: fortmatic,
     name: 'Fortmatic',
     iconName: 'fortmatic.svg',
-    description: 'Login using Fortmatic hosted wallet',
+    description: '',
+    descI18n: 'wallet.desc.fortmatic',
     href: null,
     color: '#6748FF',
     mobile: true
@@ -159,7 +166,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     connector: portis,
     name: 'Portis',
     iconName: 'portis.svg',
-    description: 'Login using Portis hosted wallet',
+    description: '',
+    descI18n: 'wallet.desc.portis',
     href: null,
     color: '#4A6C9B',
     mobile: true

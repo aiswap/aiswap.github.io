@@ -120,7 +120,7 @@ export default function PendingView({
               clickable={false}
               color={option.color}
               header={option.name}
-              subheader={option.description}
+              subheader={t(option.descI18n) || option.description}
               icon={require('../../assets/svg/wallet/' + option.iconName)}
             />
           )

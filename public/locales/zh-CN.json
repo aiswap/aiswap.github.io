@@ -43,7 +43,21 @@
     "deposited": "已存入",
     "aPerB": "{{ a }} / {{ b }}"
   },
+  "tokens": {
+    "tokenListsInactiveExpanded": "扩展的代币列表无效",
+    "enterValidListLocation": "输入有效的列表来源",
+    "errImportingList": "导入列表时出错"
+  },
   "wallet": {
+    "desc": {
+      "injected": "装载 Web3。",
+      "walletConnect": "连接到 Trust、Rainbow 等更多钱包...",
+      "walletLink": "在移动设备上使用 Coinbase 钱包 App",
+      "metamask": "易于使用的浏览器扩展。",
+      "coinbaseLink": "在 Coinbase 钱包 App 内打开",
+      "fortmatic": "使用 Fortmatic 托管钱包登录",
+      "portis": "使用 Portis 托管钱包登录"
+    },
     "submitConnect": "连接钱包",
     "errUnsupportChain": "不支持的链 ID",
     "errUnsupportChainInfo": "链 ID 错误，请检查钱包主链",
