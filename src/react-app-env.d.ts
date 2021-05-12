@@ -7,8 +7,10 @@ declare module 'jazzicon' {
 declare module 'fortmatic'
 
 interface Window {
+  imToken?: false
   ethereum?: {
     isMetaMask?: true
+    isImToken?: false
     on?: (...args: any[]) => void
     removeListener?: (...args: any[]) => void
     autoRefreshOnNetworkChange?: boolean

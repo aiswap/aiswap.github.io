@@ -6,6 +6,7 @@ import { SUPPORTED_WALLETS } from '../../constants'
 import { injected } from '../../connectors'
 import { darken } from 'polished'
 import Loader from '../Loader'
+import { useTranslation } from 'react-i18next'
 
 const PendingSection = styled.div`
   ${({ theme }) => theme.flexColumnNoWrap};
@@ -74,6 +75,7 @@ export default function PendingView({
   setPendingError: (error: boolean) => void
   tryActivation: (connector: AbstractConnector) => void
 }) {
+  const { t } = useTranslation()
   const isMetamask = window?.ethereum?.isMetaMask
 
   return (
@@ -82,20 +84,20 @@ export default function PendingView({
         <LoadingWrapper>
           {error ? (
             <ErrorGroup>
-              <div>连接错误.</div>
+              <div>{t('wallet.errorConnecting')}</div>
               <ErrorButton
                 onClick={() => {
                   setPendingError(false)
                   connector && tryActivation(connector)
                 }}
               >
-                再试一次
+                {t('global.again')}
               </ErrorButton>
             </ErrorGroup>
           ) : (
             <>
               <StyledLoader />
-              Initializing...
+              {t('global.initializing')}...
             </>
           )}
         </LoadingWrapper>
@@ -118,7 +120,7 @@ export default function PendingView({
               clickable={false}
               color={option.color}
               header={option.name}
-              subheader={option.description}
+              subheader={t(option.descI18n) || option.description}
               icon={require('../../assets/svg/wallet/' + option.iconName)}
             />
           )

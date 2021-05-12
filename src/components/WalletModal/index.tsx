@@ -15,6 +15,9 @@ import { useModalOpen, useWalletModalToggle } from '../../state/application/hook
 import { ExternalLink } from '../../theme'
 import AccountDetails from '../AccountDetails'
 import { useTranslation } from 'react-i18next'
+import { notification } from 'antd';
+import { ReactComponent as NotifyWarningIcon } from '../../assets/svg/base/notify_warning.svg'
+import { ReactComponent as NotifyCloseIcon } from '../../assets/svg/base/close.svg'
 
 import Modal from '../Modal'
 import Option from './Option'
@@ -145,6 +148,18 @@ export default function WalletModal({
 
   // important that these are destructed from the account-specific web3-react context
   const { active, account, connector, activate, error } = useWeb3React()
+
+  if (error instanceof UnsupportedChainIdError) {
+    notification.open({
+      key: 'unsupportNewworkNotify',
+      duration: 4,
+      className: 'unsupportNewworkNotify',
+      message: t('wallet.errUnsupportChain'),
+      description: t('wallet.errUnsupportChainInfo'),
+      icon: <NotifyWarningIcon />,
+      closeIcon: <NotifyCloseIcon />
+    });
+  }
 
   const [walletView, setWalletView] = useState(WALLET_VIEWS.ACCOUNT)
 
@@ -307,23 +322,23 @@ export default function WalletModal({
   }
 
   function getModalContent() {
-    if (error) {
-      return (
-        <UpperSection>
-          <CloseIcon onClick={toggleWalletModal}>
-            <img src={CloseSVG} alt="close" />
-          </CloseIcon>
-          <HeaderRow>{error instanceof UnsupportedChainIdError ? t('wallet.wrongNetwork') : 'Error connecting'}</HeaderRow>
-          <ContentWrapper>
-            {error instanceof UnsupportedChainIdError ? (
-              <h5>{t('wallet.connectAppropriateOKExNetwork')}</h5>
-            ) : (
-              t('wallet.errorConnectingTry')
-            )}
-          </ContentWrapper>
-        </UpperSection>
-      )
-    }
+    // if (error) {
+    //   return (
+    //     <UpperSection>
+    //       <CloseIcon onClick={toggleWalletModal}>
+    //         <img src={CloseSVG} alt="close" />
+    //       </CloseIcon>
+    //       <HeaderRow>{error instanceof UnsupportedChainIdError ? t('wallet.wrongNetwork') : t('wallet.errorConnecting')}</HeaderRow>
+    //       <ContentWrapper>
+    //         {error instanceof UnsupportedChainIdError ? (
+    //           <h5>{t('wallet.connectAppropriateOKExNetwork')}</h5>
+    //         ) : (
+    //           t('wallet.errorConnectingTry')
+    //         )}
+    //       </ContentWrapper>
+    //     </UpperSection>
+    //   )
+    // }
     if (account && walletView === WALLET_VIEWS.ACCOUNT) {
       return (
         <AccountDetails

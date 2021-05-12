@@ -21,6 +21,7 @@ import { LightGreyCard } from 'components/Card'
 import TokenListLogo from '../../assets/svg/art/tokenlist.svg'
 import QuestionHelper from 'components/QuestionHelper'
 import useTheme from 'hooks/useTheme'
+import { useTranslation } from 'react-i18next'
 
 function currencyKey(currency: Currency): string {
   return currency instanceof Token ? currency.address : currency === ETHER ? 'ETHER' : ''
@@ -166,6 +167,7 @@ export default function CurrencyList({
   setImportToken: (token: Token) => void
   breakIndex: number | undefined
 }) {
+  const { t } = useTranslation()
   const itemData: (Currency | undefined)[] = useMemo(() => {
     let formatted: (Currency | undefined)[] = showETH ? [Currency.ETHER, ...currencies] : currencies
     if (breakIndex !== undefined) {
@@ -180,6 +182,9 @@ export default function CurrencyList({
   const inactiveTokens: {
     [address: string]: Token
   } = useAllInactiveTokens()
+
+  const tokenListsInactiveExpanded = t('tokens.tokenListsInactiveExpanded')
+  const tokensFromInactiveListsTip = t('tokens.tokensFromInactiveListsTip')
 
   const Row = useCallback(
     ({ data, index, style }) => {
@@ -200,10 +205,10 @@ export default function CurrencyList({
                 <RowFixed>
                   <TokenListLogoWrapper src={TokenListLogo} />
                   <TYPE.main ml="6px" fontSize="12px" color={theme.text1}>
-                    Expanded results from inactive Token Lists
+                    {tokenListsInactiveExpanded}
                   </TYPE.main>
                 </RowFixed>
-                <QuestionHelper text="Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists." />
+                <QuestionHelper text={tokensFromInactiveListsTip} />
               </RowBetween>
             </LightGreyCard>
           </FixedContentRow>
@@ -241,7 +246,9 @@ export default function CurrencyList({
       setImportToken,
       showImportView,
       breakIndex,
-      theme.text1
+      theme.text1,
+      tokenListsInactiveExpanded,
+      tokensFromInactiveListsTip
     ]
   )
 

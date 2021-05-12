@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Token, Currency } from '@uniswap/sdk'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import { TYPE, CloseIcon } from 'theme'
 import Card from 'components/Card'
 import { AutoColumn } from 'components/Column'
@@ -47,6 +48,7 @@ interface ImportProps {
 }
 
 export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }: ImportProps) {
+  const { t } = useTranslation()
   const theme = useTheme()
 
   const { chainId } = useActiveWeb3React()
@@ -93,7 +95,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
                 )}
                 {list !== undefined ? (
                   <RowFixed>
-                    {list.logoURI && <ListLogo logoURI={list.logoURI} size="12px" />}
+                    {list.logoURI && <ListLogo logoURI={list.logoURI} address={list.address} size="12px" />}
                     <TYPE.small ml="6px" color={theme.text3}>
                       via {list.name}
                     </TYPE.small>
@@ -156,7 +158,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
           }}
           className=".token-dismiss-button"
         >
-          Import
+          {t('global.import')}
         </ButtonPrimary>
       </PaddedColumn>
     </Wrapper>

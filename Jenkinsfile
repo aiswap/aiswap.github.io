@@ -24,6 +24,7 @@ pipeline {
                     BUILD_VERSION = "${dateFormat}.${env.BUILD_NUMBER}.${env.GIT_COMMIT.take(7)}"
                 }
                 echo "Build Version: ${BUILD_VERSION}"
+                sh "git submodule update --init --recursive"
                 // Clean Previous Build
                 sh "rm -rf ${LOCAL_BUILD_DIR}"
                 // Package Artifact

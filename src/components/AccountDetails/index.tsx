@@ -31,9 +31,6 @@ const HeaderRow = styled.div`
   line-height: 16px;
   color: #151526;
   font-size: 16px;
-  ${({ theme }) => theme.mediaWidth.upToMedium`
-    padding: 1rem;
-  `};
 `
 
 const UpperSection = styled.div`
@@ -82,7 +79,6 @@ const AccountGroupingRow = styled.div`
 const AccountSection = styled.div`
   background-color: ${({ theme }) => theme.bg1};
   padding: 0 24px;
-  ${({ theme }) => theme.mediaWidth.upToMedium`padding: 0rem 1rem 1.5rem 1rem;`};
 `
 
 const YourAccount = styled.div`

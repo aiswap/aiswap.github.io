@@ -9,7 +9,7 @@ import { Token } from '@uniswap/sdk'
 import { ManageLists } from './ManageLists'
 import { useTranslation } from 'react-i18next'
 import ManageTokens from './ManageTokens'
-import { TokenList } from '@uniswap/token-lists'
+import { TokenList } from '../../constants'
 import { CurrencyModalView } from './CurrencySearchModal'
 
 const Wrapper = styled.div`

@@ -13,20 +13,19 @@ import { SectionBreak } from 'components/swap/styleds'
 import { ExternalLink } from '../../theme/components'
 import ListLogo from 'components/ListLogo'
 import { PaddedColumn, Checkbox, TextDot } from './styleds'
-import { TokenList } from '@uniswap/token-lists'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from 'state'
 import { useFetchListCallback } from 'hooks/useFetchListCallback'
 import { removeList, enableList } from 'state/lists/actions'
 import { CurrencyModalView } from './CurrencySearchModal'
 import { useAllLists } from 'state/lists/hooks'
+import { TokenList } from '../../constants/index'
 
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
   overflow: auto;
 `
-
 interface ImportProps {
   listURL: string
   list: TokenList

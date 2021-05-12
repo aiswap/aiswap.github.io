@@ -7,7 +7,7 @@ import useHttpLocations from '../../hooks/useHttpLocations'
 import { WrappedTokenInfo } from '../../state/lists/hooks'
 import Logo from '../Logo'
 
-export const getTokenLogoURL = (address: string) =>
+export const getTokenLogoURL = (address: string, isLocal: boolean = false): string =>
   `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${address}/logo.png`
 
 const StyledEthereumLogo = styled.img<{ size: string }>`
@@ -35,7 +35,6 @@ export default function CurrencyLogo({
   style?: React.CSSProperties
 }) {
   const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
-
   const srcs: string[] = useMemo(() => {
     if (currency === ETHER) return []
 
@@ -52,5 +51,5 @@ export default function CurrencyLogo({
     return <StyledEthereumLogo src={EthereumLogo} size={size} style={style} />
   }
 
-  return <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
+  return <StyledLogo size={size} address={currency instanceof Token ? currency.address : ''} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
 }

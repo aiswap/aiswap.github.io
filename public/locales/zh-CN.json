@@ -34,9 +34,31 @@
     "copied": "已复制",
     "makeSureUrlIs": "请确保网址为 {{ host }}",
     "AlwaysMakeSureUrlIs": "始终确保网址为 {{ host }}",
-    "bookmarkToBeSafe": "添加书签更安全"
+    "bookmarkToBeSafe": "添加书签更安全",
+    "active": "有效",
+    "viaListName": "通过 {{ name }}",
+    "initializing": "正在初始化",
+    "again": "再试一次",
+    "rates": "费率",
+    "deposited": "已存入",
+    "aPerB": "{{ a }} / {{ b }}"
+  },
+  "tokens": {
+    "tokenListsInactiveExpanded": "扩展的代币列表无效",
+    "enterValidListLocation": "输入有效的列表来源",
+    "errImportingList": "导入列表时出错",
+    "tokensFromInactiveListsTip": "非活动列表中的代币。在下面导入特定代币或通过“管理代币来源”以激活更多列表。"
   },
   "wallet": {
+    "desc": {
+      "injected": "装载 Web3。",
+      "walletConnect": "连接到 Trust、Rainbow 等更多钱包...",
+      "walletLink": "在移动设备上使用 Coinbase 钱包 App",
+      "metamask": "易于使用的浏览器扩展。",
+      "coinbaseLink": "在 Coinbase 钱包 App 内打开",
+      "fortmatic": "使用 Fortmatic 托管钱包登录",
+      "portis": "使用 Portis 托管钱包登录"
+    },
     "submitConnect": "连接钱包",
     "errUnsupportChain": "不支持的链 ID",
     "errUnsupportChainInfo": "链 ID 错误，请检查钱包主链",
@@ -50,6 +72,7 @@
     "viewExplorer": "{{ networkName }} 浏览器中查看",
     "noRecentTransactions": "你的交易记录将出现在这里",
     "wrongNetwork": "网络错误",
+    "errorConnecting": "连接错误",
     "errorConnectingTry": "连接错误。请尝试刷新页面",
     "connectAppropriateOKExNetwork": "请连接到合适的 OKEx 网络",
     "newUser_": "新用户？",
@@ -162,7 +185,10 @@
     "manageListAddInput": "https:// 或 ipfs:// 或 ENS 名称",
     "enterValidTokenAddress": "输入有效的代币地址",
     "removingPoolTip": "删除资金池代币会按照您在池中所占的比例按当前汇率将您的头寸转换回基础代币。应计费用已包含在您收到的金额中。",
-    "creatingPool": "您正在创建一个资金池"
+    "creatingPool": "您正在创建一个资金池",
+    "shareOfPool_": "所占份额：",
+    "createPoolAndSupply": "创建资金池并提供流动性",
+    "confirmSupply": "确认"
   },
 
   "noWallet": "未发现以太钱包",
@@ -181,7 +207,6 @@
   "balance": "余额: {{ balanceInput }}",
   "unlock": "解锁",
   "pending": "处理中",
-  "selectToken": "选择代币",
   "searchOrPaste": "搜索代币或粘贴地址",
   "noExchange": "未找到交易所",
   "exchangeRate": "兑换率",

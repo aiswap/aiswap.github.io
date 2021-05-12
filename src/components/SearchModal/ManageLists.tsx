@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { useFetchListCallback } from '../../hooks/useFetchListCallback'
 import { useOnClickOutside } from '../../hooks/useOnClickOutside'
-import { TokenList } from '@uniswap/token-lists'
+import { TokenList } from '../../constants'
 import { useTranslation } from 'react-i18next'
 
 import useToggle from '../../hooks/useToggle'
@@ -164,7 +164,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
   return (
     <RowWrapper active={isActive} bgColor={listColor} key={listUrl} id={listUrlRowHTMLId(listUrl)}>
       {list.logoURI ? (
-        <ListLogo size="40px" style={{ marginRight: '1rem' }} logoURI={list.logoURI} alt={`${list.name} list logo`} />
+        <ListLogo size="40px" style={{ marginRight: '1rem' }} logoURI={list.logoURI} address={list.address} alt={`${list.name} list logo`} />
       ) : (
         <div style={{ width: '24px', height: '24px', marginRight: '1rem' }} />
       )}
@@ -285,25 +285,28 @@ export function ManageLists({
   const [tempList, setTempList] = useState<TokenList>()
   const [addError, setAddError] = useState<string | undefined>()
 
+  const enterValidListLocation = t('tokens.enterValidListLocation')
+  const errImportingList = t('tokens.errImportingList')
+
   useEffect(() => {
     async function fetchTempList() {
       fetchList(listUrlInput, false)
         .then(list => setTempList(list))
-        .catch(() => setAddError('Error importing list'))
+        .catch(() => setAddError(errImportingList))
     }
     // if valid url, fetch details for card
     if (validUrl) {
       fetchTempList()
     } else {
       setTempList(undefined)
-      listUrlInput !== '' && setAddError('Enter valid list location')
+      listUrlInput !== '' && setAddError(enterValidListLocation)
     }
 
     // reset error
     if (listUrlInput === '') {
       setAddError(undefined)
     }
-  }, [fetchList, listUrlInput, validUrl])
+  }, [fetchList, listUrlInput, validUrl, enterValidListLocation, errImportingList])
 
   // check if list is already imported
   const isImported = Object.keys(lists).includes(listUrlInput)
@@ -339,7 +342,7 @@ export function ManageLists({
           <Card backgroundColor={theme.bg2} padding="12px 20px">
             <RowBetween>
               <RowFixed>
-                {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} size="40px" />}
+                {tempList.logoURI && <ListLogo logoURI={tempList.logoURI} address={tempList.address} size="40px" />}
                 <AutoColumn gap="4px" style={{ marginLeft: '20px' }}>
                   <TYPE.body fontWeight={600}>{tempList.name}</TYPE.body>
                   <TYPE.main fontSize={'12px'}>{tempList.tokens.length} {t('global.tokens')}</TYPE.main>

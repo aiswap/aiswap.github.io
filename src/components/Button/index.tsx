@@ -140,26 +140,26 @@ export const ButtonGray = styled(Base)`
 `
 
 export const ButtonSecondary = styled(Base)`
-  border: 1px solid ${({ theme }) => theme.primary4};
-  color: ${({ theme }) => theme.primary1};
+  border: 1px solid #00BFA0;
+  color: #00BFA0;
   background-color: transparent;
-  font-size: 16px;
-  border-radius: 12px;
-  padding: ${({ padding }) => (padding ? padding : '10px')};
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 8px;
+  padding: ${({ padding }) => (padding ? padding : '12px 24px')};
 
-  &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme }) => theme.primary4};
-    border: 1px solid ${({ theme }) => theme.primary3};
-  }
+  &:focus,
   &:hover {
-    border: 1px solid ${({ theme }) => theme.primary3};
+    color: #45D9B6;
+    border: 1px solid #45D9B6;
   }
   &:active {
-    box-shadow: 0 0 0 1pt ${({ theme }) => theme.primary4};
-    border: 1px solid ${({ theme }) => theme.primary3};
+    color: #00BFA0;
+    border: 1px solid #00BFA0;
   }
   &:disabled {
-    opacity: 50%;
+    color: #B6B6BF;
+    border: 1px solid #B6B6BF;
     cursor: auto;
   }
   a:hover {
@@ -170,22 +170,24 @@ export const ButtonSecondary = styled(Base)`
 export const ButtonPink = styled(Base)`
   background-color: #00BFA0;
   color: white;
+  font-weight: 600;
+  font-size: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
+  padding: ${({ padding }) => (padding ? padding : '12px 24px')};
 
-  &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, '#00BFA0')};
-    background-color: ${({ theme }) => darken(0.05, '#00BFA0')};
-  }
+  &:focus,
   &:hover {
-    background-color: ${({ theme }) => darken(0.05, '#00BFA0')};
+    background-color: #45D9B6;
     color: white;
   }
   &:active {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, '#00BFA0')};
-    background-color: ${({ theme }) => darken(0.1, '#00BFA0')};
+    background-color: #00BFA0;
+    color: white;
   }
   &:disabled {
-    background-color: ${({ theme }) => '#00BFA0'};
-    opacity: 50%;
+    background-color: #D4D4D9;
+    box-shadow: none;
     cursor: auto;
   }
 `

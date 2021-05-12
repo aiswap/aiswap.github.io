@@ -12,6 +12,7 @@ import { ButtonPrimary } from 'components/Button'
 import styled from 'styled-components'
 import { useIsUserAddedToken, useIsTokenActive } from 'hooks/Tokens'
 import { CheckCircle } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 
 const TokenSection = styled.div<{ dim?: boolean }>`
   padding: 4px 20px;
@@ -53,6 +54,7 @@ export default function ImportRow({
   showImportView: () => void
   setImportToken: (token: Token) => void
 }) {
+  const { t } = useTranslation()
   // gloabls
   const { chainId } = useActiveWeb3React()
   const theme = useTheme()
@@ -78,9 +80,9 @@ export default function ImportRow({
         {list && list.logoURI && (
           <RowFixed>
             <TYPE.small mr="4px" color={theme.text3}>
-              via {list.name}
+              {t('global.viaListName', { name: list.name })}
             </TYPE.small>
-            <ListLogo logoURI={list.logoURI} size="12px" />
+            <ListLogo logoURI={list.logoURI} address={list.address} size="12px" />
           </RowFixed>
         )}
       </AutoColumn>
@@ -95,12 +97,12 @@ export default function ImportRow({
             showImportView()
           }}
         >
-          Import
+          {t('global.import')}
         </ButtonPrimary>
       ) : (
         <RowFixed style={{ minWidth: 'fit-content' }}>
           <CheckIcon />
-          <TYPE.main color={theme.green1}>Active</TYPE.main>
+          <TYPE.main color={theme.green1}>{t('global.active')}</TYPE.main>
         </RowFixed>
       )}
     </TokenSection>
