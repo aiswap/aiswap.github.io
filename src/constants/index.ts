@@ -2,6 +2,12 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
 import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
+import { TokenList as TokenListOrgin } from '@uniswap/token-lists'
+
+export interface TokenList extends TokenListOrgin {
+  readonly address?: string
+}
+
 
 export const ROUTER_ADDRESS = '0x9f843d9ba2a386bda2845507450fd47934fb3d03'
 

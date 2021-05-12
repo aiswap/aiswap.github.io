@@ -1,4 +1,4 @@
-import { TokenList } from '@uniswap/token-lists'
+import { TokenList } from '../constants'
 import schema from '@uniswap/token-lists/src/tokenlist.schema.json'
 import Ajv from 'ajv'
 import contenthashToUri from './contenthashToUri'

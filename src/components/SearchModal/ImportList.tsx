@@ -13,20 +13,19 @@ import { SectionBreak } from 'components/swap/styleds'
 import { ExternalLink } from '../../theme/components'
 import ListLogo from 'components/ListLogo'
 import { PaddedColumn, Checkbox, TextDot } from './styleds'
-import { TokenList } from '@uniswap/token-lists'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from 'state'
 import { useFetchListCallback } from 'hooks/useFetchListCallback'
 import { removeList, enableList } from 'state/lists/actions'
 import { CurrencyModalView } from './CurrencySearchModal'
 import { useAllLists } from 'state/lists/hooks'
+import { TokenList } from '../../constants/index'
 
 const Wrapper = styled.div`
   position: relative;
   width: 100%;
   overflow: auto;
 `
-
 interface ImportProps {
   listURL: string
   list: TokenList
@@ -90,7 +89,7 @@ export function ImportList({ listURL, list, setModalView, onDismiss }: ImportPro
           <Card backgroundColor={theme.bg2} padding="12px 20px">
             <RowBetween>
               <RowFixed>
-                {list.logoURI && <ListLogo logoURI={list.logoURI} address={list.address} size="40px" />}
+                {list.logoURI && <ListLogo logoURI={list.logoURI} size="40px" />}
                 <AutoColumn gap="sm" style={{ marginLeft: '20px' }}>
                   <RowFixed>
                     <TYPE.body fontWeight={600} mr="6px">

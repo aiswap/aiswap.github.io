@@ -46,7 +46,8 @@
   "tokens": {
     "tokenListsInactiveExpanded": "Expanded results from inactive Token Lists",
     "enterValidListLocation": "Enter valid list location",
-    "errImportingList": "Error importing list"
+    "errImportingList": "Error importing list",
+    "tokensFromInactiveListsTip": "Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists."
   },
   "wallet": {
     "desc": {
