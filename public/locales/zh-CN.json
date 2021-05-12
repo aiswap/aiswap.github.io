@@ -47,7 +47,7 @@
     "tokenListsInactiveExpanded": "扩展的代币列表无效",
     "enterValidListLocation": "输入有效的列表来源",
     "errImportingList": "导入列表时出错",
-    "tokensFromInactiveListsTip": "非活动列表中的代币。在下面导入特定代币或通过“管理”以激活更多列表。"
+    "tokensFromInactiveListsTip": "非活动列表中的代币。在下面导入特定代币或通过“管理代币来源”以激活更多列表。"
   },
   "wallet": {
     "desc": {
