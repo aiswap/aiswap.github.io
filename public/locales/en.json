@@ -209,7 +209,6 @@
   "balance": "Balance: {{ balanceInput }}",
   "unlock": "Unlock",
   "pending": "Pending",
-  "selectToken": "Select a token",
   "searchOrPaste": "Search Token Name, Symbol, or Address",
   "searchOrPasteMobile": "Name, Symbol, or Address",
   "noExchange": "No Exchange Found",

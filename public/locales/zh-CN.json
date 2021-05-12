@@ -79,10 +79,7 @@
     "learnAboutWallets": "了解有关钱包的更多信息",
     "installWallet": "装配 {{ walletName }}",
     "viewOKLink": "在 OKLink 浏览器查看",
-    "yourTransactionHistory": "您的交易记录将出现在这里",
-    "shareOfPool_": "所占份额：",
-    "createPoolAndSupply": "创建资金池并提供流动性",
-    "confirmSupply": "确认"
+    "yourTransactionHistory": "您的交易记录将出现在这里"
   },
   "about": {
     "title": "更多 AI，更多爱",
@@ -188,7 +185,10 @@
     "manageListAddInput": "https:// 或 ipfs:// 或 ENS 名称",
     "enterValidTokenAddress": "输入有效的代币地址",
     "removingPoolTip": "删除资金池代币会按照您在池中所占的比例按当前汇率将您的头寸转换回基础代币。应计费用已包含在您收到的金额中。",
-    "creatingPool": "您正在创建一个资金池"
+    "creatingPool": "您正在创建一个资金池",
+    "shareOfPool_": "所占份额：",
+    "createPoolAndSupply": "创建资金池并提供流动性",
+    "confirmSupply": "确认"
   },
 
   "noWallet": "未发现以太钱包",
@@ -207,7 +207,6 @@
   "balance": "余额: {{ balanceInput }}",
   "unlock": "解锁",
   "pending": "处理中",
-  "selectToken": "选择代币",
   "searchOrPaste": "搜索代币或粘贴地址",
   "noExchange": "未找到交易所",
   "exchangeRate": "兑换率",
