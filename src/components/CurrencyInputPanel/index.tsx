@@ -89,7 +89,7 @@ const Container = styled.div<{ hideInput: boolean }>`
   color: #151526;
   box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  background-color: #E3E7FF;
+  background-color: #e3e7ff;
 `
 
 const StyledTokenName = styled.span<{ active?: boolean }>`
@@ -140,8 +140,6 @@ interface CurrencyInputPanelProps {
   customBalanceText?: string
 }
 
-
-
 export default function CurrencyInputPanel({
   value,
   onUserInput,
@@ -187,7 +185,7 @@ export default function CurrencyInputPanel({
                   style={{ display: 'inline', cursor: 'pointer' }}
                 >
                   {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? (customBalanceText ?? t('global.balance_') ) + ' ' + selectedCurrencyBalance?.toSignificant(6)
+                    ? (customBalanceText ?? t('global.balance_')) + ' ' + selectedCurrencyBalance?.toSignificant(6)
                     : ' -'}
                 </TYPE.body>
               )}
