@@ -1,0 +1,2 @@
+# assets
+aiswap assets
