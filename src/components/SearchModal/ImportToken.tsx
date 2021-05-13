@@ -105,7 +105,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
                     <RowFixed>
                       <AlertTriangle stroke={theme.red1} size="10px" />
                       <TYPE.body color={theme.red1} ml="4px" fontSize="10px" fontWeight={500}>
-                        Unknown Source
+                        {t('tokens.unknownSource')}
                       </TYPE.body>
                     </RowFixed>
                   </WarningWrapper>
@@ -121,17 +121,16 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
           <AutoColumn justify="center" style={{ textAlign: 'center', gap: '16px', marginBottom: '12px' }}>
             <AlertTriangle stroke={fromLists ? theme.yellow2 : theme.red1} size={32} />
             <TYPE.body fontWeight={600} fontSize={20} color={fromLists ? theme.yellow2 : theme.red1}>
-              Trade at your own risk!
+              {t('tokens.tradeAtYourOwnRisk')}
             </TYPE.body>
           </AutoColumn>
 
           <AutoColumn style={{ textAlign: 'center', gap: '16px', marginBottom: '12px' }}>
             <TYPE.body fontWeight={400} color={fromLists ? theme.yellow2 : theme.red1}>
-              Anyone can create a token, including creating fake versions of existing tokens that claim to represent
-              projects.
+              {t('tokens.tradeRiskFakeVersions')}
             </TYPE.body>
             <TYPE.body fontWeight={600} color={fromLists ? theme.yellow2 : theme.red1}>
-              If you purchase this token, you may not be able to sell it back.
+              {t('tokens.tradeRiskMayNotBeAbleToSell')}
             </TYPE.body>
           </AutoColumn>
           <AutoRow justify="center" style={{ cursor: 'pointer' }} onClick={() => setConfirmed(!confirmed)}>
@@ -143,7 +142,7 @@ export function ImportToken({ tokens, onBack, onDismiss, handleCurrencySelect }:
               onChange={() => setConfirmed(!confirmed)}
             />
             <TYPE.body ml="10px" fontSize="16px" color={fromLists ? theme.yellow2 : theme.red1} fontWeight={500}>
-              I understand
+              {t('global.iUnderstand')}
             </TYPE.body>
           </AutoRow>
         </Card>

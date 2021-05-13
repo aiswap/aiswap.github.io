@@ -177,7 +177,7 @@ export default function Pool() {
               </StyledHeader>
               <ButtonRow margin="16px 0 0">
                 <ResponsiveButtonSecondary as={Link} padding="12px 24px" borderRadius="8px" to="/create/ETH">
-                  <Text lineHeight={'24px'} fontSize={20}>
+                  <Text>
                     {t('exchange.createPair')}
                   </Text>
                 </ResponsiveButtonSecondary>
@@ -188,7 +188,7 @@ export default function Pool() {
                   borderRadius="8px"
                   to="/add/OKT"
                 >
-                  <Text lineHeight={'24px'} fontWeight={'bold'} fontSize={20}>
+                  <Text fontWeight={'bold'}>
                     {t('exchange.addLiquidity')}
                   </Text>
                 </ResponsiveButtonPink>
@@ -201,7 +201,7 @@ export default function Pool() {
 
             {!account ? (
               <Card padding="40px">
-                <TYPE.body color={theme.text3} textAlign="center">
+                <TYPE.body style={{ fontSize: '14px' }} color={theme.text3} textAlign="center">
                   {t('exchange.connectWalletViewYourLiquidity')}
                 </TYPE.body>
               </Card>
@@ -213,7 +213,7 @@ export default function Pool() {
               </EmptyProposals>
             ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
-                <ButtonSecondary>
+                <ButtonSecondary style={{ display: 'none'}}>
                   <RowBetween>
                     <ExternalLink href={'/account/' + account}>{t('exchange.accountAnalyticsFees')}</ExternalLink>
                     <span> ↗</span>

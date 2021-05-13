@@ -5,13 +5,13 @@ import styled from 'styled-components'
 
 import {
   // COMMUNITY_DISCORD,
-  // COMMUNITY_TELEGRAM,
+  COMMUNITY_TELEGRAM,
   COMMUNITY_TWITTER
 } from '../../constants/infoSetting'
 
 import {
   // IconDiscord,
-  // IconTelegram,
+  IconTelegram,
   IconTwitter,
   // IconWechat
 } from '../Icon/Community'
@@ -20,11 +20,12 @@ const Wrapper = styled.div`
   display: flex;
   padding: 0 20px 20px;
   flex-wrap: wrap;
-  justify-content: space-between;
+  // justify-content: space-between;
   a {
     height: 20px;
     width: 20px;
     display: flex;
+    margin-right: 42px;
   }
 `
 
@@ -34,10 +35,10 @@ export default function SiderCommunity() {
     <Wrapper>
       {/* <ExternalLink href={COMMUNITY_DISCORD}>
         <IconDiscord />
-      </ExternalLink>
+      </ExternalLink> */}
       <ExternalLink href={COMMUNITY_TELEGRAM}>
         <IconTelegram />
-      </ExternalLink> */}
+      </ExternalLink>
       <ExternalLink href={COMMUNITY_TWITTER}>
         <IconTwitter />
       </ExternalLink>

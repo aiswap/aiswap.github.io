@@ -28,6 +28,7 @@ import { BackArrow, ExternalLink, TYPE } from '../../theme'
 import { getEtherscanLink, isAddress } from '../../utils'
 import { BodyWrapper } from '../AppBody'
 import { EmptyState } from './EmptyState'
+import { useTranslation } from 'react-i18next'
 
 const WEI_DENOM = JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(18))
 const ZERO = JSBI.BigInt(0)
@@ -87,6 +88,7 @@ export function V1LiquidityInfo({
 }
 
 function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount: TokenAmount; token: Token }) {
+  const { t } = useTranslation()
   const { account, chainId } = useActiveWeb3React()
   const totalSupply = useTotalSupply(liquidityTokenAmount.token)
   const exchangeETHBalance = useETHBalances([liquidityTokenAmount.token.address])?.[liquidityTokenAmount.token.address]
@@ -247,7 +249,7 @@ function V1PairMigration({ liquidityTokenAmount, token }: { liquidityTokenAmount
 
           <AutoColumn gap="8px">
             <RowBetween>
-              <TYPE.body>V1 Price:</TYPE.body>
+              <TYPE.body>V1 {t('global.price')}:</TYPE.body>
               <TYPE.black>
                 {v1SpotPrice?.toSignificant(6)} {token.symbol}/ETH
               </TYPE.black>

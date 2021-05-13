@@ -532,8 +532,8 @@ export default function Swap({ history }: RouteComponentProps) {
                   {swapInputError
                     ? swapInputError
                     : priceImpactSeverity > 3 && !isExpertMode
-                    ? `Price Impact Too High`
-                    : `Swap${priceImpactSeverity > 2 ? ' Anyway' : ''}`}
+                      ? t('exchange.priceImpactTooHigh')
+                      : t(priceImpactSeverity > 2 ? 'exchange.swapAnyway' : 'exchange.swap')}
                 </Text>
               </ButtonError>
             )}

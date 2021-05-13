@@ -41,13 +41,31 @@
     "again": "Again",
     "rates": "Rates",
     "deposited": "Deposited",
-    "aPerB": "{{ a }} per {{ b }}"
+    "aPerB": "{{ a }} per {{ b }}",
+    "dismiss": "Dismiss",
+    "acceptUpdate": "Accept update",
+    "accept": "Accept",
+    "removed": "removed",
+    "added": "added",
+    "add": "Add",
+    "addedToken": "Added {{ symbol }}",
+    "to": "to",
+    "pooledSymbol": "持有 {{ symbol }}",
+    "iUnderstand": "I understand",
+    "confirm": "Confirm"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "Expanded results from inactive Token Lists",
     "enterValidListLocation": "Enter valid list location",
     "errImportingList": "Error importing list",
-    "tokensFromInactiveListsTip": "Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists."
+    "tokensFromInactiveListsTip": "Tokens from inactive lists. Import specific tokens below or click 'Manage' to activate more lists.",
+    "changedTokensUpdated": "{{ num }} tokens updated",
+    "tokenListAvailableUpdate": "An update is available for the token list",
+    "tokenListUpdatedTo": "The token list \"{{ name }}\" has been updated to",
+    "unknownSource": "Unknown Source",
+    "tradeAtYourOwnRisk": "Trade at your own risk!",
+    "tradeRiskFakeVersions": "Anyone can create a token, including creating fake versions of existing tokens that claim to represent projects.",
+    "tradeRiskMayNotBeAbleToSell": "If you purchase this token, you may not be able to sell it back."
   },
   "wallet": {
     "desc": {
@@ -79,7 +97,9 @@
     "learnAboutWallets": "Learn more about wallets",
     "installWallet": "Install {{ walletName }}",
     "viewOKLink": "View on OKLink",
-    "yourTransactionHistory": "Your transaction history will appear here"
+    "yourTransactionHistory": "Your transaction history will appear here",
+    "viewTransactionOnScan": "View transaction on {{ scan }}",
+    "addToken2Metamask": "Add {{ symbol }} to Metamask"
   },
   "about": {
     "title": "Always be Innovative",
@@ -114,6 +134,7 @@
     "unfavorableSwapTip": "Your transaction will revert if there is a large, unfavorable price movement before it is confirmed.",
     "priceImpact": "Price Impact",
     "priceImpactHigh": "Price Impact High",
+    "priceImpactTooHigh": "Price Impact Too High",
     "differenceBetweenTip": "The difference between the market price and estimated price due to trade size.",
     "liquidityProviderFee": "Liquidity Provider Fee",
     "tradeProtocolIncentive": "A portion of each trade({{ tradeFee }}%) goes to liquidity providers as a protocol incentive.",
@@ -188,7 +209,17 @@
     "creatingPool": "You are creating a pool",
     "shareOfPool_": "Share of Pool:",
     "createPoolAndSupply": "Create Pool & Supply",
-    "confirmSupply": "Confirm Supply"
+    "confirmSupply": "Confirm Supply",
+    "manageLiquidityInRewardsPool": "Manage Liquidity in Rewards Pool",
+    "yourPoolShare": "Your Pool Share",
+    "yourTotalPoolTokens": "Your total pool tokens",
+    "poolTokensInRewardsPool": "Pool tokens in rewards pool",
+    "yourPosition": "Your position",
+    "byAddingLiquidityTip": "By adding liquidity you'll earn 0.3% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
+    "outputWillBeSentTo": "Output will be sent to"
+  },
+  "account": {
+    "viewAccruedFeesAnalytics": "View accrued fees and analytics"
   },
 
   "noWallet": "No Ethereum wallet found",
@@ -238,11 +269,9 @@
   "recipientAddress": "Recipient Address",
   "youAreSending": "You are sending",
   "willReceive": "will receive at least",
-  "to": "to",
   "addLiquidity": "Add Liquidity",
   "deposit": "Deposit",
   "currentPoolSize": "Current Pool Size",
-  "yourPoolShare": "Your Pool Share",
   "noZero": "Amount cannot be zero.",
   "mustBeETH": "One of the input must be ETH.",
   "enterCurrencyOrLabelCont": "Enter a {{ inputCurrency }} or {{ label }} value to continue.",

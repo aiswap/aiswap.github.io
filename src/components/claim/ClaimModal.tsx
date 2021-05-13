@@ -11,11 +11,12 @@ import { useModalOpen, useToggleSelfClaimModal } from '../../state/application/h
 import { useClaimCallback, useUserClaimData, useUserUnclaimedAmount } from '../../state/claim/hooks'
 import { useUserHasSubmittedClaim } from '../../state/transactions/hooks'
 import { CloseIcon, CustomLightSpinner, ExternalLink, TYPE, UniTokenAnimated } from '../../theme'
-import { getEtherscanLink } from '../../utils'
+import { getEtherscanLink, getEtherscanName } from '../../utils'
 import { ButtonPrimary } from '../Button'
 import { AutoColumn, ColumnCenter } from '../Column'
 import Confetti from '../Confetti'
 import { Break, CardBGImage, CardBGImageSmaller, CardNoise, CardSection, DataCard } from '../earn/styled'
+import { useTranslation } from 'react-i18next'
 
 import Modal from '../Modal'
 import { RowBetween } from '../Row'
@@ -46,6 +47,7 @@ const SOCKS_AMOUNT = 1000
 const USER_AMOUNT = 400
 
 export default function ClaimModal() {
+  const { t } = useTranslation()
   const isOpen = useModalOpen(ApplicationModal.SELF_CLAIM)
   const toggleClaimModal = useToggleSelfClaimModal()
 
@@ -192,11 +194,11 @@ export default function ClaimModal() {
               </>
             )}
             {attempting && !claimSubmitted && (
-              <TYPE.subHeader color="black">Confirm this transaction in your wallet</TYPE.subHeader>
+              <TYPE.subHeader color="black">{t('exchange.confirmTransactionInWallet')}</TYPE.subHeader>
             )}
             {attempting && claimSubmitted && !claimConfirmed && chainId && claimTxn?.hash && (
               <ExternalLink href={getEtherscanLink(chainId, claimTxn?.hash, 'transaction')} style={{ zIndex: 99 }}>
-                View transaction on Etherscan
+                {t('exchange.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}
               </ExternalLink>
             )}
           </AutoColumn>

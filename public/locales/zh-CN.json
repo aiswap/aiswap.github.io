@@ -41,13 +41,31 @@
     "again": "再试一次",
     "rates": "费率",
     "deposited": "已存入",
-    "aPerB": "{{ a }} / {{ b }}"
+    "aPerB": "{{ a }} / {{ b }}",
+    "dismiss": "解散",
+    "acceptUpdate": "允许更新",
+    "accept": "允许",
+    "removed": "已移除",
+    "added": "已添加",
+    "add": "添加",
+    "addedToken": "已添加 {{ symbol }}",
+    "to": "至",
+    "pooledSymbol": "的 {{ symbol }}",
+    "iUnderstand": "我明白",
+    "confirm": "确认"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "扩展的代币列表无效",
     "enterValidListLocation": "输入有效的列表来源",
     "errImportingList": "导入列表时出错",
-    "tokensFromInactiveListsTip": "非活动列表中的代币。在下面导入特定代币或通过“管理代币来源”以激活更多列表。"
+    "tokensFromInactiveListsTip": "非活动列表中的代币。在下面导入特定代币或通过“管理代币来源”以激活更多列表。",
+    "changedTokensUpdated": "已更新 {{ num }} 个代币",
+    "tokenListAvailableUpdate": "有可用的代币列表更新",
+    "tokenListUpdatedTo": "代币列表\"{{ name }}\"已更新为",
+    "unknownSource": "未知来源",
+    "tradeAtYourOwnRisk": "自负风险！",
+    "tradeRiskFakeVersions": "任何人都可以创建令牌，包括创建声称代表项目的现有令牌的伪造版本。",
+    "tradeRiskMayNotBeAbleToSell": "如果您购买了此令牌，则可能无法将其出售。"
   },
   "wallet": {
     "desc": {
@@ -79,7 +97,9 @@
     "learnAboutWallets": "了解有关钱包的更多信息",
     "installWallet": "装配 {{ walletName }}",
     "viewOKLink": "在 OKLink 浏览器查看",
-    "yourTransactionHistory": "您的交易记录将出现在这里"
+    "yourTransactionHistory": "您的交易记录将出现在这里",
+    "viewTransactionOnScan": "在 {{ scan }} 中查看交易",
+    "addToken2Metamask": "添加 {{ symbol }} 至 Metamask"
   },
   "about": {
     "title": "更多 AI，更多爱",
@@ -114,6 +134,7 @@
     "unfavorableSwapTip": "如果在确认之前价格出现较大的不利变动，您的交易将被撤回",
     "priceImpact": "价格影响",
     "priceImpactHigh": "价格影响高",
+    "priceImpactTooHigh": "价格影响太高",
     "differenceBetweenTip": "市场价格和交易价格的差异由交易规模引起",
     "liquidityProviderFee": "流动性供应商费用",
     "tradeProtocolIncentive": "每笔交易产生的 {{ tradeFee }}%手续费奖励给流动性提供者",
@@ -188,7 +209,17 @@
     "creatingPool": "您正在创建一个资金池",
     "shareOfPool_": "所占份额：",
     "createPoolAndSupply": "创建资金池并提供流动性",
-    "confirmSupply": "确认"
+    "confirmSupply": "确认",
+    "manageLiquidityInRewardsPool": "管理资金池内的流动性",
+    "yourPoolShare": "你的资金池份额",
+    "yourTotalPoolTokens": "你的总资金池代币",
+    "poolTokensInRewardsPool": "资金池代币在奖励池中",
+    "yourPosition": "你的位置",
+    "byAddingLiquidityTip": "通过增加流动性，将获得当前交易对所有交易费的0.3％，并你所占资金池成正比。费用会实时添加到资金池中，并可以通过提取流动资金来索取费用。",
+    "outputWillBeSentTo": "输出将发送到"
+  },
+  "account": {
+    "viewAccruedFeesAnalytics": "查看应计费用和分析"
   },
 
   "noWallet": "未发现以太钱包",
@@ -233,7 +264,6 @@
   "addLiquidity": "添加流动金",
   "deposit": "存入",
   "currentPoolSize": "当前资金池大小",
-  "yourPoolShare": "你的资金池份额",
   "noZero": "金额不能为零。",
   "mustBeETH": "输入中必须有一个是 ETH。",
   "enterCurrencyOrLabelCont": "输入 {{ inputCurrency }} 或 {{ label }} 值并继续。",

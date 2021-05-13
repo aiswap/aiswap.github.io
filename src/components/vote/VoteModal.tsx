@@ -10,9 +10,10 @@ import { X, ArrowUpCircle } from 'react-feather'
 import { ButtonPrimary } from '../Button'
 import Circle from '../../assets/images/blue-loader.svg'
 import { useVoteCallback, useUserVotes } from '../../state/governance/hooks'
-import { getEtherscanLink } from '../../utils'
+import { getEtherscanLink, getEtherscanName } from '../../utils'
 import { ExternalLink } from '../../theme/components'
 import { TokenAmount } from '@uniswap/sdk'
+import { useTranslation } from 'react-i18next'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -48,6 +49,7 @@ export default function VoteModal({ isOpen, onDismiss, proposalId, support }: Vo
   }: {
     voteCallback: (proposalId: string | undefined, support: boolean) => Promise<string> | undefined
   } = useVoteCallback()
+  const { t } = useTranslation()
   const availableVotes: TokenAmount | undefined = useUserVotes()
 
   // monitor call to help UI loading state
@@ -114,7 +116,7 @@ export default function VoteModal({ isOpen, onDismiss, proposalId, support }: Vo
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.largeHeader>Submitting Vote</TYPE.largeHeader>
             </AutoColumn>
-            <TYPE.subHeader>Confirm this transaction in your wallet</TYPE.subHeader>
+            <TYPE.subHeader>{t('exchange.confirmTransactionInWallet')}</TYPE.subHeader>
           </AutoColumn>
         </ConfirmOrLoadingWrapper>
       )}
@@ -129,11 +131,11 @@ export default function VoteModal({ isOpen, onDismiss, proposalId, support }: Vo
           </ConfirmedIcon>
           <AutoColumn gap="100px" justify={'center'}>
             <AutoColumn gap="12px" justify={'center'}>
-              <TYPE.largeHeader>Transaction Submitted</TYPE.largeHeader>
+              <TYPE.largeHeader>{t('exchange.transactionSubmitted')}</TYPE.largeHeader>
             </AutoColumn>
             {chainId && (
               <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ marginLeft: '4px' }}>
-                <TYPE.subHeader>View transaction on Etherscan</TYPE.subHeader>
+                <TYPE.subHeader>{t('exchange.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}</TYPE.subHeader>
               </ExternalLink>
             )}
           </AutoColumn>
