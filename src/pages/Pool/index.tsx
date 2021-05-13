@@ -186,7 +186,7 @@ export default function Pool() {
                   as={Link}
                   padding="12px 24px"
                   borderRadius="8px"
-                  to="/add/ETH"
+                  to="/add/OKT"
                 >
                   <Text lineHeight={'24px'} fontWeight={'bold'} fontSize={20}>
                     {t('exchange.addLiquidity')}

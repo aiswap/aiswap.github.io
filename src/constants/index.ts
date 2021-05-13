@@ -8,7 +8,6 @@ export interface TokenList extends TokenListOrgin {
   readonly address?: string
 }
 
-
 export const ROUTER_ADDRESS = '0x9f843d9ba2a386bda2845507450fd47934fb3d03'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
@@ -100,8 +99,8 @@ export interface WalletInfo {
   connector?: AbstractConnector
   name: string
   iconName: string
-  description: string,
-  descI18n?: string,
+  description: string
+  descI18n?: string
   href: string | null
   color: string
   primary?: true

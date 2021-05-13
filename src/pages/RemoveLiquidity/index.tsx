@@ -113,10 +113,8 @@ export default function RemoveLiquidity({
     if (isArgentWallet) {
       return approveCallback()
     }
-
     // try to gather a signature for permission
     const nonce = await pairContract.nonces(account)
-
     const EIP712Domain = [
       { name: 'name', type: 'string' },
       { name: 'version', type: 'string' },
@@ -124,9 +122,9 @@ export default function RemoveLiquidity({
       { name: 'verifyingContract', type: 'address' }
     ]
     const domain = {
-      name: 'Uniswap V2',
+      name: 'AiSwap Liquidity Provider Token',
       version: '1',
-      chainId: chainId,
+      chainId,
       verifyingContract: pair.liquidityToken.address
     }
     const Permit = [
@@ -496,7 +494,8 @@ export default function RemoveLiquidity({
             <BlueCard>
               <AutoColumn gap="10px">
                 <TYPE.link fontWeight={400} color={'primaryText1'}>
-                  <b>{t('global.tip_')}</b>{t('exchange.removingPoolTip')}
+                  <b>{t('global.tip_')}</b>
+                  {t('exchange.removingPoolTip')}
                 </TYPE.link>
               </AutoColumn>
             </BlueCard>
@@ -576,15 +575,15 @@ export default function RemoveLiquidity({
                               currencyB === ETHER ? WETH[chainId].address : currencyIdB
                             }`}
                           >
-                            {t('global.receive')} WETH
+                            {t('global.receive')} WOKT
                           </StyledInternalLink>
                         ) : oneCurrencyIsWETH ? (
                           <StyledInternalLink
                             to={`/remove/${
-                              currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'ETH' : currencyIdA
-                            }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'ETH' : currencyIdB}`}
+                              currencyA && currencyEquals(currencyA, WETH[chainId]) ? 'OKT' : currencyIdA
+                            }/${currencyB && currencyEquals(currencyB, WETH[chainId]) ? 'OKT' : currencyIdB}`}
                           >
-                            {t('global.receive')} ETH
+                            {t('global.receive')} OKT
                           </StyledInternalLink>
                         ) : null}
                       </RowBetween>
