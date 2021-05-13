@@ -17,13 +17,21 @@ export function isAddress(value: any): string | false {
   }
 }
 
-const DOMAINS = {
-  etherscan: 'etherscan.io',
-  okexchain: 'www.oklink.com/okexchain'
+const ETHERSCANS: { [chainId in ChainId]: { name: string, domain: string } } = {
+  // 1: {
+  //   name: 'Etherscan',
+  //   domain: 'etherscan.io'
+  // },
+  66: {
+    name: 'OKExChain',
+    domain: 'www.oklink.com/okexchain'
+  }
 }
-// @ts-ignore
-const ETHERSCAN_PREFIXES: { [chainId in ChainId]: string } = {
-  66: `${DOMAINS.okexchain}`
+
+export function getEtherscanName(
+  chainId: ChainId,
+): string {
+  return ETHERSCANS[chainId].name || ''
 }
 
 export function getEtherscanLink(
@@ -31,7 +39,9 @@ export function getEtherscanLink(
   data: string,
   type: 'transaction' | 'token' | 'address' | 'block'
 ): string {
-  const prefix = `https://${ETHERSCAN_PREFIXES[chainId] || ETHERSCAN_PREFIXES[1]}`
+  const prefix = `https://${ETHERSCANS[chainId].domain}`
+    // TODO: ChainId range
+    // || ETHERSCANS[1].domain}`
 
   switch (type) {
     case 'transaction': {

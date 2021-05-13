@@ -19,7 +19,7 @@ import styled from 'styled-components'
 import { ExternalLink } from '../../theme'
 import {
   // COMMUNITY_DISCORD,
-  // COMMUNITY_TELEGRAM,
+  COMMUNITY_TELEGRAM,
   COMMUNITY_TWITTER,
   COMMUNITY_MEDIUM
 } from '../../constants/infoSetting'
@@ -34,7 +34,7 @@ import LogoWhite from '../../assets/svg/logo/white.svg'
 import CooperationBgPng from '../../assets/svg/art/extra-bg.png'
 
 import CommunityTelegram from '../../assets/svg/community/telegram_b.svg' 
-// import CommunityTwitter from '../../assets/svg/community/twitter_b.svg' 
+import CommunityTwitter from '../../assets/svg/community/twitter_b.svg' 
 // import CommunityDiscord from '../../assets/svg/community/discord_b.svg' 
 import CommunityMedium from '../../assets/svg/community/medium.svg' 
 
@@ -63,7 +63,10 @@ const Wrapper = styled.div`
 // `
 
 const StyledHeader = styled.header`
-  padding: 40px;
+  padding: 40px 40px 0;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    padding: 24px;
+  `};
 `
 
 const StyledMain = styled.main`
@@ -104,11 +107,21 @@ const StyledCover = styled.div`
     margin-top:16px;
   }
   img {
-    max-width: 564px;
-    max-height: 400px;
+    // max-width: 564px;
+    // max-height: 400px;
     position: relative;
     // margin: 0 24px;
   }
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    h1 {
+      font-size: 32px;
+      line-height: 40px;
+    }
+    h1 b {
+      font-size: 40px;
+      line-height: 48px;
+    }
+  `};
 `
 
 const StyledFeatures = styled.div`
@@ -116,7 +129,7 @@ const StyledFeatures = styled.div`
   flex-direction: column;
   // padding: 96px 0 72px;
   padding: 48px 0 24px;
-  margin-top: -40px;
+  margin-top: -30px;
   width: 100%;
   background-color: #FFFFFF;
   align-items: center;
@@ -214,6 +227,14 @@ const StyledCooperation = styled(ColumnCenter)`
     color: #151526;
     margin: 0 0 12px;
   }
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    h3 {
+      font-size: 24px;
+      line-height: 32px;
+      margin: 0 0 8px;
+    }
+  `};
 `
 const StyledCooperationBody = styled(AutoRow)`
   justify-content: center;
@@ -241,6 +262,9 @@ const StyledCooperationLink = styled(ExternalLink)`
 const StyledFooter = styled.footer`
   background-color: #151526;
   padding: 40px;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    padding: 24px;
+  `};
 `
 
 // const DataRow = styled(RowBetween)`
@@ -273,9 +297,9 @@ export default function Earn() {
   // ]
 
   const communities: {id: string, href: string, width: string, height: string, src: string}[] = [
-    { id: 'telegram', href: COMMUNITY_TWITTER, width: '40px', height: '40px', src: CommunityTelegram },
-    // { id: 'twitter', href: '###', width: '40px', height: '40px', src: CommunityTwitter },
-    // { id: 'discord', href: '###', width: '40px', height: '40px', src: CommunityDiscord },
+    { id: 'telegram', href: COMMUNITY_TELEGRAM, width: '40px', height: '40px', src: CommunityTelegram },
+    { id: 'twitter', href: COMMUNITY_TWITTER, width: '40px', height: '40px', src: CommunityTwitter },
+    // { id: 'discord', href: COMMUNITY_DISCORD, width: '40px', height: '40px', src: CommunityDiscord },
     { id: 'medium', href: COMMUNITY_MEDIUM, width: '40px', height: '40px', src: CommunityMedium }
   ]
 
@@ -293,16 +317,16 @@ export default function Earn() {
         <img width={'113px'} src={LogoMd} alt="logo" />
       </StyledHeader>
       <StyledMain>
-        <StyledCover className="mt-0 mt-md-5 no-gutters justify-content-center">
-          <h1 className="col-12 col-lg-6">
+        <StyledCover className="no-gutters justify-content-center">
+          <h1 className="col-12 col-lg-5">
             <b>AIswap</b>{t('about.title')}
             <small>{t('about.subtitle')}</small>
           </h1>
-          <img className="col-12 col-md-6" src={ArtCover} alt="" />
+          <img className="col-12 col-md-6 ml-0 ml-lg-auto" src={ArtCover} alt="" />
         </StyledCover>
 
         <StyledFeatures>
-          <div className="py-0 py-md-5">
+          <div className="py-0 py-md-3">
             {
               features.map(item => {
                 return (

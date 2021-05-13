@@ -40,6 +40,8 @@ const StyledLogo = styled.img`
 `
 
 function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () => void; pendingText: string }) {
+  const { t } = useTranslation()
+
   return (
     <Wrapper>
       <Section>
@@ -52,7 +54,7 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
           <Text fontWeight={500} fontSize={20}>
-            Waiting For Confirmation
+            {t('exchange.waitingForConfirmation')}
           </Text>
           <AutoColumn gap="12px" justify={'center'}>
             <Text fontWeight={600} fontSize={14} color="" textAlign="center">
@@ -60,7 +62,7 @@ function ConfirmationPendingContent({ onDismiss, pendingText }: { onDismiss: () 
             </Text>
           </AutoColumn>
           <Text fontSize={12} color="#565A69" textAlign="center">
-            Confirm this transaction in your wallet
+            {t('exchange.confirmTransactionInWallet')}
           </Text>
         </AutoColumn>
       </Section>
@@ -98,7 +100,7 @@ function TransactionSubmittedContent({
         </ConfirmedIcon>
         <AutoColumn gap="12px" justify={'center'}>
           <Text fontWeight={500} fontSize={20}>
-            Transaction Submitted
+            {t('exchange.transactionSubmitted')}
           </Text>
           {chainId && hash && (
             <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')}>
@@ -111,11 +113,11 @@ function TransactionSubmittedContent({
             <ButtonLight mt="12px" padding="6px 12px" width="fit-content" onClick={addToken}>
               {!success ? (
                 <RowFixed>
-                  Add {currencyToAdd.symbol} to Metamask <StyledLogo src={MetaMaskLogo} />
+                  {t('wallet.addToken2Metamask', { symbol: currencyToAdd.symbol })} <StyledLogo src={MetaMaskLogo} />
                 </RowFixed>
               ) : (
                 <RowFixed>
-                  Added {currencyToAdd.symbol}{' '}
+                  {t('global.addedToken', { symbol: currencyToAdd.symbol })}{' '}
                   <CheckCircle size={'16px'} stroke={theme.green1} style={{ marginLeft: '6px' }} />
                 </RowFixed>
               )}
@@ -123,7 +125,7 @@ function TransactionSubmittedContent({
           )}
           <ButtonPrimary onClick={onDismiss} style={{ margin: '20px 0 0 0' }}>
             <Text fontWeight={500} fontSize={20}>
-              Close
+              {t('global.close')}
             </Text>
           </ButtonPrimary>
         </AutoColumn>
@@ -160,13 +162,15 @@ export function ConfirmationModalContent({
 }
 
 export function TransactionErrorContent({ message, onDismiss }: { message: string; onDismiss: () => void }) {
+  const { t } = useTranslation()
   const theme = useContext(ThemeContext)
+
   return (
     <Wrapper>
       <Section>
         <RowBetween>
           <Text fontWeight={500} fontSize={20}>
-            Error
+            {t('global.error')}
           </Text>
           <CloseIcon onClick={onDismiss} />
         </RowBetween>
@@ -178,7 +182,7 @@ export function TransactionErrorContent({ message, onDismiss }: { message: strin
         </AutoColumn>
       </Section>
       <BottomSection gap="12px">
-        <ButtonPrimary onClick={onDismiss}>Dismiss</ButtonPrimary>
+        <ButtonPrimary onClick={onDismiss}>{t('global.dismiss')}</ButtonPrimary>
       </BottomSection>
     </Wrapper>
   )

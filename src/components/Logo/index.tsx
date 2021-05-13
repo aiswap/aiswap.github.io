@@ -12,13 +12,18 @@ export interface LogoProps extends Pick<ImageProps, 'style' | 'alt' | 'className
   address?: string
 }
 
+let showLocalIcon: boolean = false
+
 /**
  * Renders an image by sequentially trying a list of URIs, and then eventually a fallback triangle alert
  */
 export default function Logo({ srcs, alt, address, ...rest }: LogoProps) {
   const [, refresh] = React.useState<number>(0)
+  const localSrc: string = LocalTokenIconPath({ address })
 
-  const src: string | undefined = srcs.find(src => !BAD_SRCS[src])
+  const src: string | undefined = showLocalIcon
+    ? localSrc
+    : srcs.find(src => !BAD_SRCS[src])
 
   if (src) {
     return (
@@ -28,34 +33,26 @@ export default function Logo({ srcs, alt, address, ...rest }: LogoProps) {
         src={src}
         onError={e => {
           const eTarget = e.target as any
-          const localSrc = LocalTokenIconPath({ address })
 
           // Backup local dir
           if (eTarget.src && eTarget.src !== localSrc) {
+            showLocalIcon = true
+            // localStorage.setItem('aaa', JSON.stringify({
+            //   __EXPIREDATE__: 1,
+            //   data: {
+
+            //   }
+            // }))
             // # 2
             eTarget.src = localSrc
           }
           refresh(i => {
             if (i > MAX_REFRESH && !BAD_SRCS[src]) {
               BAD_SRCS[src] = true
+              showLocalIcon = false
             }
             return i + 1
           })
-
-          // const eTarget = e.target as any
-          // const localSrc = `/images/assets/main/OKExChain/${address}.png`
-
-          //   if (src) {
-          //     if (eTarget.src !== localSrc) {
-          //       // # 2
-          //       eTarget.src = localSrc
-          //     } else if (src) {
-          //       // # 3
-          //       BAD_SRCS[src] = true
-          //     }
-          //     // BAD_SRCS[src] = true
-          //   }
-          //   // refresh(i => i + 1)
         }}
       />
     )

@@ -10,6 +10,7 @@ import QuestionHelper from '../QuestionHelper'
 import { RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
+import { useTranslation } from 'react-i18next'
 
 const InfoLink = styled(ExternalLink)`
   width: 100%;
@@ -22,6 +23,7 @@ const InfoLink = styled(ExternalLink)`
 `
 
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
+  const { t } = useTranslation()
   const theme = useContext(ThemeContext)
   const { priceImpactWithoutFee, realizedLPFee } = computeTradePriceBreakdown(trade)
   const isExactIn = trade.tradeType === TradeType.EXACT_INPUT
@@ -33,9 +35,11 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {isExactIn ? 'Minimum received' : 'Maximum sold'}
+             {t(isExactIn ? 'exchange.minimumReceived' : 'exchange.maximumSold')}
             </TYPE.black>
-            <QuestionHelper text="Your transaction will revert if there is a large, unfavorable price movement before it is confirmed." />
+            <QuestionHelper text={t('exchange.unfavorableSwapTip')} />
+            <QuestionHelper text="Bypasses confirmation modals and allows high slippage trades. Use at your own risk." />
+
           </RowFixed>
           <RowFixed>
             <TYPE.black color={theme.text1} fontSize={14}>
@@ -50,9 +54,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              Price Impact
+              {t('exchange.priceImpact')}
             </TYPE.black>
-            <QuestionHelper text="The difference between the market price and estimated price due to trade size." />
+            <QuestionHelper text={t('exchange.differenceBetweenTip')} />
           </RowFixed>
           <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
         </RowBetween>
@@ -60,9 +64,9 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
         <RowBetween>
           <RowFixed>
             <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              Liquidity Provider Fee
+              {t('exchange.liquidityProviderFee')}
             </TYPE.black>
-            <QuestionHelper text="A portion of each trade (0.30%) goes to liquidity providers as a protocol incentive." />
+            <QuestionHelper text={t('exchange.tradeProtocolIncentive', { tradeFee: '0.30'})} />
           </RowFixed>
           <TYPE.black fontSize={14} color={theme.text1}>
             {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}

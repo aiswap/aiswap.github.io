@@ -18,7 +18,8 @@ import Confetti from '../Confetti'
 import { CardNoise, CardBGImage, CardBGImageSmaller } from '../earn/styled'
 import { useIsTransactionPending } from '../../state/transactions/hooks'
 import { TokenAmount } from '@uniswap/sdk'
-import { getEtherscanLink, shortenAddress } from '../../utils'
+import { getEtherscanLink, shortenAddress, getEtherscanName } from '../../utils'
+import { useTranslation } from 'react-i18next'
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
@@ -43,6 +44,7 @@ const ConfirmedIcon = styled(ColumnCenter)`
 `
 
 export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boolean; onDismiss: () => void }) {
+  const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
 
   // state for smart contract input
@@ -178,11 +180,11 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
               </>
             )}
             {attempting && !hash && (
-              <TYPE.subHeader color="black">Confirm this transaction in your wallet</TYPE.subHeader>
+              <TYPE.subHeader color="black">{t('exchange.confirmTransactionInWallet')}</TYPE.subHeader>
             )}
             {attempting && hash && !claimConfirmed && chainId && hash && (
               <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ zIndex: 99 }}>
-                View transaction on Etherscan
+                {t('exchange.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}
               </ExternalLink>
             )}
           </AutoColumn>

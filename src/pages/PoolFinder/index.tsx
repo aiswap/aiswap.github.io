@@ -32,9 +32,6 @@ enum Fields {
 }
 
 const StyledLiquidityActiveLink = styled(StyledInternalLink)`
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 24px;
   color: #00BFA0;
 `
 const StyledTipText = styled(Text)`
