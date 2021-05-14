@@ -48,6 +48,7 @@ export const ButtonPrimary = styled(Base)`
     background-color: ${({ theme }) => darken(0.05, theme.primary1)};
   }
   &:hover {
+    color: white;
     background-color: ${({ theme }) => darken(0.05, theme.primary1)};
   }
   &:active {
