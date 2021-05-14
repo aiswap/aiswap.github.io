@@ -56,7 +56,8 @@
     "auditReport": "审计报告",
     "more": "更多",
     "hide": "隐藏",
-    "comingSoon_": "即将开启..."
+    "comingSoon_": "即将开启...",
+    "cancel": "取消"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "扩展的代币列表无效",
@@ -120,7 +121,11 @@
     "receiveAward": "领取奖励",
     "getLpt": "获取 {{ name }} LPT",
     "lptMortgageRedemption": "LPT 抵押/赎回",
-    "earningsRate": "{{ token }}/天"
+    "earningsRate": "{{ token }}/天",
+    "depositLpt": "质押 LP 代币",
+    "withdrawLpt": "赎回 LP 代币",
+    "deposit": "质押",
+    "withdraw": "赎回"
   },
   "about": {
     "title": "更多 AI，更多爱",

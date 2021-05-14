@@ -1,15 +1,54 @@
-import React from 'react';
+import React, { useState, 
+  // useCallback
+} from 'react';
 import styled from 'styled-components'
 import { Currency } from '@uniswap/sdk'
+// import { useActiveWeb3React } from '../../hooks'
+// import { useIsTransactionUnsupported } from 'hooks/Trades'
 import { ReactComponent as LogoSingleFarm } from '../../assets/svg/logo/single/farm.svg'
 import { ReactComponent as ArrowForwardRight } from '../../assets/svg/base/arrow_forward_right.svg'
 import { ReactComponent as ArrowDropDown } from '../../assets/svg/base/arrow_drop_down.svg'
+import {
+  // ButtonError,
+  // ButtonLight,
+  ButtonPrimary,
+  // ButtonConfirmed
+} from '../../components/Button'
 import { useTranslation } from 'react-i18next'
+// import Loader from '../../components/Loader'
+// import ProgressSteps from '../../components/ProgressSteps'
+// import Column from '../../components/Column'
+// import { AutoRow, RowBetween } from '../../components/Row'
+// import { TYPE } from '../../theme'
+// import { Text } from 'rebass'
+// import { GreyCard } from '../../components/Card'
+
+// import { Field } from '../../state/swap/actions'
 import { Collapse } from 'antd'
+// import BetterTradeLink, { DefaultVersionLink } from '../../components/swap/BetterTradeLink'
+import { BottomGrouping,
+  // SwapCallbackError
+} from '../../components/swap/styleds'
+// import {
+//   useSwapState,
+//   // useDerivedSwapInfo
+// } from '../../state/swap/hooks'
+// import { useWalletModalToggle } from '../../state/application/hooks'
 import { ButtonPink, ButtonSecondary } from '../../components/Button'
 import DoubleCurrencyLogo from '../../components/DoubleLogo'
+import Modal from '../../components/Modal'
+import CloseSVG from '../../assets/svg/base/close.svg'
+// import CurrencyInputPanel from '../../components/CurrencyInputPanel'
+// import useWrapCallback, { WrapType } from '../../hooks/useWrapCallback'
 
 const { Panel } = Collapse
+
+// const {
+//   // independentField, 
+//   typedValue,
+//   // recipient
+// } = useSwapState()
+// const { independentField, typedValue } = useSwapState()
 
 const Wrapper = styled.div`
   display: flex;
@@ -221,11 +260,239 @@ export default function Liquidity() {
   // )
 
   const poolList: { code: string, name: string, lptAddress: string, token0?: Currency, token1?: Currency, todaysReward: string, rewardTokenName: string, earnings: string, apy: string, liquidityVol: string, multiple: string, pengdingReward: string, pengdingRewardUsd: string, mortgageVol: string, mortgageUsd: string}[]= [
-    { code: 'WOKT-BTCK', name: 'WOKT - BTCK', lptAddress: '', todaysReward: '21,345.78', rewardTokenName: 'AI', earnings: '', apy: '2,111', liquidityVol: '7,128,708,779', multiple: '20', pengdingReward: '2,333.1', pengdingRewardUsd: '21.34', mortgageVol: '1', mortgageUsd: '2' },
+    { code: 'WOKT-BTCK', name: 'WOKT - BTCK 1', lptAddress: '', todaysReward: '21,345.78', rewardTokenName: 'AI', earnings: '', apy: '2,111', liquidityVol: '7,128,708,779', multiple: '20', pengdingReward: '2,333.1', pengdingRewardUsd: '21.34', mortgageVol: '1', mortgageUsd: '2' },
+    { code: 'WOKT-BTCK', name: 'WOKT - BTCK 2', lptAddress: '', todaysReward: '21,345.78', rewardTokenName: 'AI', earnings: '', apy: '2,111', liquidityVol: '7,128,708,779', multiple: '20', pengdingReward: '2,333.1', pengdingRewardUsd: '21.34', mortgageVol: '1', mortgageUsd: '2' },
   ]
+
+  const [isShow, setShow] = useState(false)
+
+  const UpperSection = styled.div`
+    position: relative;
+    width: 100%;
+
+    h5 {
+      margin: 0;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    h5:last-child {
+      margin-bottom: 0px;
+    }
+
+    h4 {
+      margin-top: 0;
+      font-weight: 500;
+    }
+  `
+
+  const CloseIcon = styled.div`
+    position: absolute;
+    right: 26px;
+    top: 19px;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+  `
+
+  const HeaderRow = styled.div`
+    ${({ theme }) => theme.flexRowNoWrap};
+    padding: 20px 24px;
+    font-weight: 500;
+    line-height: 16px;
+    color: #151526;
+    font-size: 16px;
+  `
+
+  function toggleModal (show: boolean): void {
+    setShow(show)
+  }
+
+  // const formattedAmounts = {
+  //   [independentField]: typedValue,
+  //   [dependentField]: showWrap
+  //     ? parsedAmounts[independentField]?.toExact() ?? ''
+  //     : parsedAmounts[dependentField]?.toSignificant(6) ?? ''
+  // }
+
+  // const { onSwitchTokens, onCurrencySelection, onUserInput, onChangeRecipient } = useSwapActionHandlers()
+
+  // const handleTypeInput = useCallback(
+  //   (value: string) => {
+  //     onUserInput(Field.INPUT, value)
+  //   },
+  //   [onUserInput]
+  // )
+  // const trade = showWrap ? undefined : tradesByVersion[toggledVersion]
+  // const route = trade?.route
+  // const noRoute = !route
+
+  // const {
+  //   // v1Trade,
+  //   // v2Trade,
+  //   // currencyBalances,
+  //   // parsedAmount,
+  //   currencies,
+  //   inputError: swapInputError
+  // } = useDerivedSwapInfo()
+  // const toggleWalletModal = useWalletModalToggle()
+  // const { wrapType, execute: onWrap, inputError: wrapInputError } = useWrapCallback(
+  //   currencies[Field.INPUT],
+  //   currencies[Field.OUTPUT],
+  //   typedValue
+  // )
+  // const showWrap: boolean = wrapType !== WrapType.NOT_APPLICABLE
+
+  // const { account } = useActiveWeb3React()
+  // const swapIsUnsupported = useIsTransactionUnsupported(currencies?.INPUT, currencies?.OUTPUT)
+
+  const StyledBottomGrouping = styled(BottomGrouping)`
+    display: flex;
+    padding: 20px 24px 24px;
+
+    button {
+      padding: 14px 0;
+      font-size: 16px;
+    }
+  `
 
   return(
     <Wrapper>
+      <Modal isOpen={isShow} onDismiss={() => setShow(false)}>
+        <UpperSection>
+          <CloseIcon onClick={() => {
+            toggleModal(false)
+          }}>
+            <img src={CloseSVG} alt="close" />
+          </CloseIcon>
+          <HeaderRow>{t('farm.depositLpt')}</HeaderRow>
+          {/* <CurrencyInputPanel
+            value={formattedAmounts[Field.INPUT]}
+            showMaxButton={!atMaxAmountInput}
+            currency={currencies[Field.INPUT]}
+            onUserInput={handleTypeInput}
+            onMax={handleMaxInput}
+            onCurrencySelect={handleInputSelect}
+            otherCurrency={currencies[Field.OUTPUT]}
+            id="deposit-currency-input"
+          /> */}
+            <StyledBottomGrouping>
+              <StyledButtonSecondary className="col mr-3">
+                {t('global.cancel')}
+              </StyledButtonSecondary>
+              <ButtonPrimary className="col">
+                {t('farm.deposit')}
+              </ButtonPrimary>
+
+
+              {/* {swapIsUnsupported ? (
+                <ButtonPrimary disabled={true}>
+                  <TYPE.main mb="4px">{t('exchange.unsupportedAsset')}</TYPE.main>
+                </ButtonPrimary>
+              ) : !account ? (
+                <ButtonLight onClick={toggleWalletModal}>{t('wallet.submitConnect')}</ButtonLight>
+              ) : showWrap ? (
+                <ButtonPrimary disabled={Boolean(wrapInputError)} onClick={onWrap}>
+                  {wrapInputError ??
+                    (wrapType === WrapType.WRAP ? 'Wrap' : wrapType === WrapType.UNWRAP ? 'Unwrap' : null)}
+                </ButtonPrimary>
+              ) : noRoute && userHasSpecifiedInputOutput ? (
+                <GreyCard style={{ textAlign: 'center' }}>
+                  <TYPE.main mb="4px">{t('exchange.tradeInsufficientLiquidity')}</TYPE.main>
+                  {singleHopOnly && <TYPE.main mb="4px">{t('exchange.tryEnablingMultiHopTrades')}</TYPE.main>}
+                </GreyCard>
+              ) : showApproveFlow ? (
+                <RowBetween>
+                  <ButtonConfirmed
+                    onClick={approveCallback}
+                    disabled={approval !== ApprovalState.NOT_APPROVED || approvalSubmitted}
+                    width="48%"
+                    altDisabledStyle={approval === ApprovalState.PENDING} // show solid button while waiting
+                    confirmed={approval === ApprovalState.APPROVED}
+                  >
+                    {approval === ApprovalState.PENDING ? (
+                      <AutoRow gap="6px" justify="center">
+                        Approving <Loader stroke="white" />
+                      </AutoRow>
+                    ) : approvalSubmitted && approval === ApprovalState.APPROVED ? (
+                      t('exchange.approved')
+                    ) : (
+                      t('exchange.approve') + currencies[Field.INPUT]?.symbol
+                    )}
+                  </ButtonConfirmed>
+                  <ButtonError
+                    onClick={() => {
+                      if (isExpertMode) {
+                        handleSwap()
+                      } else {
+                        setSwapState({
+                          tradeToConfirm: trade,
+                          attemptingTxn: false,
+                          swapErrorMessage: undefined,
+                          showConfirm: true,
+                          txHash: undefined
+                        })
+                      }
+                    }}
+                    width="48%"
+                    id="swap-button"
+                    disabled={
+                      !isValid || approval !== ApprovalState.APPROVED || (priceImpactSeverity > 3 && !isExpertMode)
+                    }
+                    error={isValid && priceImpactSeverity > 2}
+                  >
+                    <Text fontSize={16} fontWeight={500}>
+                      {priceImpactSeverity > 3 && !isExpertMode
+                        ? t('exchange.priceImpactHigh')
+                        : t( priceImpactSeverity > 2 ? 'exchange.swapAnyway' : 'exchange.swap')}
+                    </Text>
+                  </ButtonError>
+                </RowBetween>
+              ) : (
+                <ButtonError
+                  onClick={() => {
+                    if (isExpertMode) {
+                      handleSwap()
+                    } else {
+                      setSwapState({
+                        tradeToConfirm: trade,
+                        attemptingTxn: false,
+                        swapErrorMessage: undefined,
+                        showConfirm: true,
+                        txHash: undefined
+                      })
+                    }
+                  }}
+                  id="swap-button"
+                  disabled={!isValid || (priceImpactSeverity > 3 && !isExpertMode) || !!swapCallbackError}
+                  error={isValid && priceImpactSeverity > 2 && !swapCallbackError}
+                >
+                  <Text fontSize={20} fontWeight={500}>
+                    {swapInputError
+                      ? swapInputError
+                      : priceImpactSeverity > 3 && !isExpertMode
+                        ? t('exchange.priceImpactTooHigh')
+                        : t(priceImpactSeverity > 2 ? 'exchange.swapAnyway' : 'exchange.swap')}
+                  </Text>
+                </ButtonError>
+              )}
+              {showApproveFlow && (
+                <Column style={{ marginTop: '1rem' }}>
+                  <ProgressSteps steps={[approval === ApprovalState.APPROVED]} />
+                </Column>
+              )}
+              {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
+              {betterTradeLinkV2 && !swapIsUnsupported && toggledVersion === Version.v1 ? (
+                <BetterTradeLink version={betterTradeLinkV2} />
+              ) : toggledVersion !== DEFAULT_VERSION && defaultTrade ? (
+                <DefaultVersionLink />
+              ) : null} */}
+            </StyledBottomGrouping>
+        </UpperSection>
+      </Modal>
+
       <StyledHeader>
         <div>
           <h3>{t('farm.liquidityMining')}</h3>
@@ -243,7 +510,7 @@ export default function Liquidity() {
           <span className="d-none d-md-flex">{t('farm.multiple')}</span>
         </StyledListHeader>
         <StyledCollapse
-          defaultActiveKey={[]}
+          defaultActiveKey={[1]}
           onChange={callback}
           expandIcon={({ isActive }) => (
             <StyledExtra
@@ -302,8 +569,19 @@ export default function Liquidity() {
                         <small>≈$ {item.mortgageUsd}</small>
                       </span>
                       <StyledButtonSecondary
+                        className="mr-3"
+                        onClick={() => {
+                          toggleModal(true)
+                        }}
                       >
-                        {t('farm.lptMortgageRedemption')}
+                        {t('farm.deposit')}
+                      </StyledButtonSecondary>
+                      <StyledButtonSecondary
+                        onClick={() => {
+                          toggleModal(true)
+                        }}
+                      >
+                        {t('farm.withdraw')}
                       </StyledButtonSecondary>
                     </div>
                   </StyledContentBoxItem>

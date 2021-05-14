@@ -56,7 +56,8 @@
     "auditReport": "Audit Report",
     "more": "More",
     "hide": "Hide",
-    "comingSoon_": "Coming Soon..."
+    "comingSoon_": "Coming Soon...",
+    "cancel": "Cancel"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "Expanded results from inactive Token Lists",
@@ -120,7 +121,11 @@
     "receiveAward": "Receive award",
     "getLpt": "Get {{ name }} LPT",
     "lptMortgageRedemption": "LPT Deposit/Withdraw",
-    "earningsRate": "{{ token }}/Day"
+    "earningsRate": "{{ token }}/Day",
+    "depositLpt": "Deposit LPT",
+    "withdrawLpt": "Withdraw LPT",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw"
   },
   "about": {
     "title": "Always be Innovative",
@@ -145,7 +150,7 @@
     "pool": "Pool",
     "farm": "Farm",
     "transactionMining": "Transaction Mining",
-    "stablecoinMining": "Stablecoin Mining",
+    "stablecoinMining": "Mining",
     "more": "More",
     "ido": "IDO",
     "vote": "Vote",
