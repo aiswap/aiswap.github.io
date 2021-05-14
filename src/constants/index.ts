@@ -21,11 +21,16 @@ type ChainTokenList = {
 
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
 export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD//C')
-export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
 export const COMP = new Token(ChainId.MAINNET, '0xc00e94Cb662C3520282E6f5717214004A7f26888', 18, 'COMP', 'Compound')
 export const MKR = new Token(ChainId.MAINNET, '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2', 18, 'MKR', 'Maker')
 export const AMPL = new Token(ChainId.MAINNET, '0xD46bA6D942050d489DBd938a2C909A5d5039A161', 9, 'AMPL', 'Ampleforth')
 export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
+
+export const SFG = new Token(ChainId.MAINNET, '0x3212606f74cc59656e1ec6f587fca61ba3b85eb0', 18, 'SFG', 'SFGK')
+export const OKB = new Token(ChainId.MAINNET, '0xdf54b6c6195ea4d948d03bfd818d365cf175cfc2', 18, 'OKB', 'OKB')
+export const USDT = new Token(ChainId.MAINNET, '0x382bb369d343125bfb2117af9c149795c6c65c50', 18, 'USDT', 'USDT')
+export const BTCK = new Token(ChainId.MAINNET, '0x54e4622dc504176b3bb432dccaf504569699a7ff', 18, 'BTC', 'BTCK')
+export const ETHK = new Token(ChainId.MAINNET, '0xef71ca2ee68f45b9ad6f72fbdb33d707b872315c', 18, 'ETH', 'ETHK')
 
 // Block time here is slightly higher (~1s) than average in order to avoid ongoing proposals past the displayed time
 export const AVERAGE_BLOCK_TIME_IN_SECS = 13
@@ -36,9 +41,9 @@ export const GOVERNANCE_ADDRESS = '0x5e4be8Bc9637f0EAA1A755019e06A68ce081D58F'
 
 export const TIMELOCK_ADDRESS = '0x1a9C8182C09F50C8318d769245beA52c32BE35BC'
 
-const UNI_ADDRESS = '0xa1eb7417AEe7C133f1B2b54ec9b699095215423d'
+const UNI_ADDRESS = '0x3212606f74cc59656e1ec6f587fca61ba3b85eb0'
 export const UNI: { [chainId in ChainId]: Token } = {
-  [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'AI', 'Uniswap')
+  [ChainId.MAINNET]: new Token(ChainId.MAINNET, UNI_ADDRESS, 18, 'SFGK', 'SFGK')
 }
 
 export const COMMON_CONTRACT_NAMES: { [address: string]: string } = {

@@ -172,7 +172,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
           <SubMenu key="farm" icon={<IconFarm />} title={t('sidenav.farm')}>
             {/* <Menu.Item key="transaction_mining">{t('sidenav.transactionMining')}</Menu.Item> */}
             <Menu.Item key="/mining">
-              <NavLink to={'/expect'}>{t('sidenav.stablecoinMining')}</NavLink>
+              <NavLink to={'/SFG'}>{t('sidenav.stablecoinMining')}</NavLink>
             </Menu.Item>
           </SubMenu>
           <Menu.Item key="ido" icon={<IconIDO />}>

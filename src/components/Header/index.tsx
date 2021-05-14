@@ -342,7 +342,7 @@ export default function Header() {
           >
             {t('sidenav.pool')}
           </StyledNavLink>
-          <StyledNavLink id={`stake-nav-link`} to={'/uni'}>
+          <StyledNavLink id={`stake-nav-link`} to={'/SFG'}>
             AI
           </StyledNavLink>
           <StyledNavLink id={`stake-nav-link`} to={'/vote'}>

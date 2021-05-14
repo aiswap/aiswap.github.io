@@ -1,6 +1,6 @@
-import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, WETH, Pair } from '@uniswap/sdk'
+import { ChainId, CurrencyAmount, JSBI, Token, TokenAmount, Pair, WETH } from '@uniswap/sdk'
 import { useMemo } from 'react'
-import { DAI, UNI, USDC, USDT, WBTC } from '../../constants'
+import { BTCK, ETHK, OKB, SFG, UNI, USDT } from '../../constants'
 import { STAKING_REWARDS_INTERFACE } from '../../constants/abis/staking-rewards'
 import { useActiveWeb3React } from '../../hooks'
 import { NEVER_RELOAD, useMultipleContractSingleData } from '../multicall/hooks'
@@ -21,20 +21,36 @@ export const STAKING_REWARDS_INFO: {
 } = {
   [ChainId.MAINNET]: [
     {
-      tokens: [WETH[ChainId.MAINNET], DAI],
-      stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
+      tokens: [BTCK, ETHK],
+      stakingRewardAddress: '0xA72d3AA3cA5eF2218FE8002dCf579693f1A1dbB0'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], USDC],
-      stakingRewardAddress: '0x7FBa4B8Dc5E7616e59622806932DBea72537A56b'
+      tokens: [BTCK, USDT],
+      stakingRewardAddress: '0x54049C6B5D2DB953f38658dEcCDe25267Ba5d7c0'
+    },
+    {
+      tokens: [ETHK, USDT],
+      stakingRewardAddress: '0x318b2456A711c5f35E9eAa2B9EE5734A3635FE96'
+    },
+    {
+      tokens: [OKB, USDT],
+      stakingRewardAddress: '0x87Aa8751054B5C7f194f1f16833BeA559BDbf564'
     },
     {
       tokens: [WETH[ChainId.MAINNET], USDT],
-      stakingRewardAddress: '0x6C3e4cb2E96B01F4b866965A91ed4437839A121a'
+      stakingRewardAddress: '0xeD8e63BDf56bBA1B63F1C969080a8092A675a9D7'
     },
     {
-      tokens: [WETH[ChainId.MAINNET], WBTC],
-      stakingRewardAddress: '0xCA35e32e7926b96A9988f61d510E038108d8068e'
+      tokens: [WETH[ChainId.MAINNET], BTCK],
+      stakingRewardAddress: '0x538018abe67b21a663fD4FBc05ae7B4f713Ee9f2'
+    },
+    {
+      tokens: [WETH[ChainId.MAINNET], ETHK],
+      stakingRewardAddress: '0xAbdc07003406643b02a7ce54DA50968657C3238f'
+    },
+    {
+      tokens: [WETH[ChainId.MAINNET], SFG],
+      stakingRewardAddress: '0x6ACe628FE1cc96C133c9f3Ab6015d6CE38a9af91'
     }
   ]
 }

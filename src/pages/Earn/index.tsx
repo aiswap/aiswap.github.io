@@ -6,11 +6,8 @@ import { TYPE, ExternalLink } from '../../theme'
 import PoolCard from '../../components/earn/PoolCard'
 import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
-import { Countdown } from './Countdown'
 import Loader from '../../components/Loader'
 import { useActiveWeb3React } from '../../hooks'
-import { JSBI } from '@uniswap/sdk'
-import { BIG_INT_ZERO } from '../../constants'
 import { OutlineCard } from '../../components/Card'
 
 const PageWrapper = styled(AutoColumn)`
@@ -43,16 +40,16 @@ export default function Earn() {
 
   // staking info for connected account
   const stakingInfos = useStakingInfo()
-
+  console.log('stakingInfos', stakingInfos)
   /**
    * only show staking cards with balance
    * @todo only account for this if rewards are inactive
    */
-  const stakingInfosWithBalance = stakingInfos?.filter(s => JSBI.greaterThan(s.stakedAmount.raw, BIG_INT_ZERO))
+  const stakingInfosWithBalance = stakingInfos
 
   // toggle copy if rewards are inactive
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
-
+  console.log('stakingRewardsExist', stakingRewardsExist)
   return (
     <PageWrapper gap="lg" justify="center">
       <TopSection gap="md">
@@ -86,7 +83,6 @@ export default function Earn() {
       <AutoColumn gap="lg" style={{ width: '100%', maxWidth: '720px' }}>
         <DataRow style={{ alignItems: 'baseline' }}>
           <TYPE.mediumHeader style={{ marginTop: '0.5rem' }}>Participating pools</TYPE.mediumHeader>
-          <Countdown exactEnd={stakingInfos?.[0]?.periodFinish} />
         </DataRow>
 
         <PoolSection>

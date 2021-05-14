@@ -1,6 +1,7 @@
-import React, { useState, 
+import React, {
+  useState
   // useCallback
-} from 'react';
+} from 'react'
 import styled from 'styled-components'
 import { Currency } from '@uniswap/sdk'
 // import { useActiveWeb3React } from '../../hooks'
@@ -11,7 +12,7 @@ import { ReactComponent as ArrowDropDown } from '../../assets/svg/base/arrow_dro
 import {
   // ButtonError,
   // ButtonLight,
-  ButtonPrimary,
+  ButtonPrimary
   // ButtonConfirmed
 } from '../../components/Button'
 import { useTranslation } from 'react-i18next'
@@ -26,7 +27,8 @@ import { useTranslation } from 'react-i18next'
 // import { Field } from '../../state/swap/actions'
 import { Collapse } from 'antd'
 // import BetterTradeLink, { DefaultVersionLink } from '../../components/swap/BetterTradeLink'
-import { BottomGrouping,
+import {
+  BottomGrouping
   // SwapCallbackError
 } from '../../components/swap/styleds'
 // import {
@@ -44,7 +46,7 @@ import CloseSVG from '../../assets/svg/base/close.svg'
 const { Panel } = Collapse
 
 // const {
-//   // independentField, 
+//   // independentField,
 //   typedValue,
 //   // recipient
 // } = useSwapState()
@@ -68,7 +70,7 @@ const StyledHeader = styled.header`
     font-weight: bold;
     font-size: 24px;
     line-height: 32px;
-    color: #3939E6;
+    color: #3939e6;
   }
   small {
     font-weight: normal;
@@ -170,7 +172,7 @@ const StyledContentBoxItem = styled.div`
     font-weight: 500;
     font-size: 12px;
     line-height: 20px;
-    color: #00BFA0;
+    color: #00bfa0;
     display: flex;
     align-items: center;
   }
@@ -199,7 +201,7 @@ const StyledContentBoxItem = styled.div`
     font-weight: 600;
     font-size: 12px;
     line-height: 20px;
-    color: #B6B6BF;
+    color: #b6b6bf;
   }
 `
 
@@ -234,11 +236,10 @@ const StyledContentHeader = styled.div`
     font-style: normal;
     font-size: 12px;
   }
-
 `
 
 const callback = (key: string) => {
-  console.log(key);
+  console.log(key)
 }
 
 export default function Liquidity() {
@@ -259,9 +260,53 @@ export default function Liquidity() {
   //   </StyledExtra>
   // )
 
-  const poolList: { code: string, name: string, lptAddress: string, token0?: Currency, token1?: Currency, todaysReward: string, rewardTokenName: string, earnings: string, apy: string, liquidityVol: string, multiple: string, pengdingReward: string, pengdingRewardUsd: string, mortgageVol: string, mortgageUsd: string}[]= [
-    { code: 'WOKT-BTCK', name: 'WOKT - BTCK 1', lptAddress: '', todaysReward: '21,345.78', rewardTokenName: 'AI', earnings: '', apy: '2,111', liquidityVol: '7,128,708,779', multiple: '20', pengdingReward: '2,333.1', pengdingRewardUsd: '21.34', mortgageVol: '1', mortgageUsd: '2' },
-    { code: 'WOKT-BTCK', name: 'WOKT - BTCK 2', lptAddress: '', todaysReward: '21,345.78', rewardTokenName: 'AI', earnings: '', apy: '2,111', liquidityVol: '7,128,708,779', multiple: '20', pengdingReward: '2,333.1', pengdingRewardUsd: '21.34', mortgageVol: '1', mortgageUsd: '2' },
+  const poolList: {
+    code: string
+    name: string
+    lptAddress: string
+    token0?: Currency
+    token1?: Currency
+    todaysReward: string
+    rewardTokenName: string
+    earnings: string
+    apy: string
+    liquidityVol: string
+    multiple: string
+    pengdingReward: string
+    pengdingRewardUsd: string
+    mortgageVol: string
+    mortgageUsd: string
+  }[] = [
+    {
+      code: 'WOKT-BTCK',
+      name: 'WOKT - BTCK 1',
+      lptAddress: '',
+      todaysReward: '21,345.78',
+      rewardTokenName: 'AI',
+      earnings: '',
+      apy: '2,111',
+      liquidityVol: '7,128,708,779',
+      multiple: '20',
+      pengdingReward: '2,333.1',
+      pengdingRewardUsd: '21.34',
+      mortgageVol: '1',
+      mortgageUsd: '2'
+    },
+    {
+      code: 'WOKT-BTCK',
+      name: 'WOKT - BTCK 2',
+      lptAddress: '',
+      todaysReward: '21,345.78',
+      rewardTokenName: 'AI',
+      earnings: '',
+      apy: '2,111',
+      liquidityVol: '7,128,708,779',
+      multiple: '20',
+      pengdingReward: '2,333.1',
+      pengdingRewardUsd: '21.34',
+      mortgageVol: '1',
+      mortgageUsd: '2'
+    }
   ]
 
   const [isShow, setShow] = useState(false)
@@ -306,7 +351,7 @@ export default function Liquidity() {
     font-size: 16px;
   `
 
-  function toggleModal (show: boolean): void {
+  function toggleModal(show: boolean): void {
     setShow(show)
   }
 
@@ -358,13 +403,15 @@ export default function Liquidity() {
     }
   `
 
-  return(
+  return (
     <Wrapper>
       <Modal isOpen={isShow} onDismiss={() => setShow(false)}>
         <UpperSection>
-          <CloseIcon onClick={() => {
-            toggleModal(false)
-          }}>
+          <CloseIcon
+            onClick={() => {
+              toggleModal(false)
+            }}
+          >
             <img src={CloseSVG} alt="close" />
           </CloseIcon>
           <HeaderRow>{t('farm.depositLpt')}</HeaderRow>
@@ -378,16 +425,11 @@ export default function Liquidity() {
             otherCurrency={currencies[Field.OUTPUT]}
             id="deposit-currency-input"
           /> */}
-            <StyledBottomGrouping>
-              <StyledButtonSecondary className="col mr-3">
-                {t('global.cancel')}
-              </StyledButtonSecondary>
-              <ButtonPrimary className="col">
-                {t('farm.deposit')}
-              </ButtonPrimary>
+          <StyledBottomGrouping>
+            <StyledButtonSecondary className="col mr-3">{t('global.cancel')}</StyledButtonSecondary>
+            <ButtonPrimary className="col">{t('farm.deposit')}</ButtonPrimary>
 
-
-              {/* {swapIsUnsupported ? (
+            {/* {swapIsUnsupported ? (
                 <ButtonPrimary disabled={true}>
                   <TYPE.main mb="4px">{t('exchange.unsupportedAsset')}</TYPE.main>
                 </ButtonPrimary>
@@ -489,7 +531,7 @@ export default function Liquidity() {
               ) : toggledVersion !== DEFAULT_VERSION && defaultTrade ? (
                 <DefaultVersionLink />
               ) : null} */}
-            </StyledBottomGrouping>
+          </StyledBottomGrouping>
         </UpperSection>
       </Modal>
 
@@ -505,7 +547,7 @@ export default function Liquidity() {
           <span>{t('farm.pool')}</span>
           <span className="d-none d-md-flex">{t('farm.todaysReward')}</span>
           <span className="d-none d-md-flex">{t('farm.earningsPer1000')}</span>
-          <span >{t('farm.apy')}</span>
+          <span>{t('farm.apy')}</span>
           <span className="d-none d-md-flex">{t('farm.liquidityVol')}</span>
           <span className="d-none d-md-flex">{t('farm.multiple')}</span>
         </StyledListHeader>
@@ -519,76 +561,85 @@ export default function Liquidity() {
               }}
             >
               {t(isActive ? 'global.hide' : 'global.more')}
-              <ArrowDropDown style={{ transform: `rotate(${isActive ? 0 : 90})`}} />
+              <ArrowDropDown style={{ transform: `rotate(${isActive ? 0 : 90})` }} />
             </StyledExtra>
           )}
         >
-          {
-            poolList.map((item, idx) => {
-              return (
-                <Panel
-                  key={idx}
-                  header={(
-                    <StyledContentHeader>
-                      <span>
-                        <DoubleCurrencyLogo currency0={item.token0} currency1={item.token1} size={32} margin={true} />
-                        <b>{item.name}</b>
-                      </span>
-                      <span>{item.todaysReward} <em>{item.rewardTokenName}</em></span>
-                      <span className="d-none d-md-flex">{item.earnings} <em>{t('farm.earningsRate', { token: item.rewardTokenName})}</em></span>
-                      <span className="d-none d-md-flex">{item.apy} <em>%</em></span>
-                      <span className="d-none d-md-flex"><em>$</em> {item.liquidityVol}</span>
-                      <span className="d-none d-md-flex">{item.multiple} <em>x</em></span>
-                    </StyledContentHeader>
-                  )}
-                >
-                  <StyledContentBoxItem className="col-12 col-md">
-                    <h5>{t('farm.myRewardToBeClaimed')}</h5>
-                    <div>
-                      <span className="pb-3 pb-md-0 col-12 col-md px-0">
-                        <h3><b>{item.pengdingReward}</b> {item.rewardTokenName}</h3>
-                        <small>≈$ {item.pengdingRewardUsd}</small>
-                      </span>
-                      <StyledButtonPink
-                      >
-                        {t('farm.receiveAward')}
-                      </StyledButtonPink>
-                    </div>
-                  </StyledContentBoxItem>
-                  <StyledContentBoxItem className="col-12 col-md">
-                    <h5>
-                      {t('farm.myMortgage')}
-                      <a href="###">
-                        {t('farm.getLpt', { name: item.code })}
-                        <ArrowForwardRight width="16px"  />
-                      </a>
-                    </h5>
-                    <div>
-                      <span className="pb-3 pb-md-0 col-12 col-md px-0">
-                        <h3><b>{item.mortgageVol}</b> {item.code} LPT</h3>
-                        <small>≈$ {item.mortgageUsd}</small>
-                      </span>
-                      <StyledButtonSecondary
-                        className="mr-3"
-                        onClick={() => {
-                          toggleModal(true)
-                        }}
-                      >
-                        {t('farm.deposit')}
-                      </StyledButtonSecondary>
-                      <StyledButtonSecondary
-                        onClick={() => {
-                          toggleModal(true)
-                        }}
-                      >
-                        {t('farm.withdraw')}
-                      </StyledButtonSecondary>
-                    </div>
-                  </StyledContentBoxItem>
-                </Panel>
-              )
-            })
-          }
+          {poolList.map((item, idx) => {
+            return (
+              <Panel
+                key={idx}
+                header={
+                  <StyledContentHeader>
+                    <span>
+                      <DoubleCurrencyLogo currency0={item.token0} currency1={item.token1} size={32} margin={true} />
+                      <b>{item.name}</b>
+                    </span>
+                    <span>
+                      {item.todaysReward} <em>{item.rewardTokenName}</em>
+                    </span>
+                    <span className="d-none d-md-flex">
+                      {item.earnings} <em>{t('farm.earningsRate', { token: item.rewardTokenName })}</em>
+                    </span>
+                    <span className="d-none d-md-flex">
+                      {item.apy} <em>%</em>
+                    </span>
+                    <span className="d-none d-md-flex">
+                      <em>$</em> {item.liquidityVol}
+                    </span>
+                    <span className="d-none d-md-flex">
+                      {item.multiple} <em>x</em>
+                    </span>
+                  </StyledContentHeader>
+                }
+              >
+                <StyledContentBoxItem className="col-12 col-md">
+                  <h5>{t('farm.myRewardToBeClaimed')}</h5>
+                  <div>
+                    <span className="pb-3 pb-md-0 col-12 col-md px-0">
+                      <h3>
+                        <b>{item.pengdingReward}</b> {item.rewardTokenName}
+                      </h3>
+                      <small>≈$ {item.pengdingRewardUsd}</small>
+                    </span>
+                    <StyledButtonPink>{t('farm.receiveAward')}</StyledButtonPink>
+                  </div>
+                </StyledContentBoxItem>
+                <StyledContentBoxItem className="col-12 col-md">
+                  <h5>
+                    {t('farm.myMortgage')}
+                    <a href="###">
+                      {t('farm.getLpt', { name: item.code })}
+                      <ArrowForwardRight width="16px" />
+                    </a>
+                  </h5>
+                  <div>
+                    <span className="pb-3 pb-md-0 col-12 col-md px-0">
+                      <h3>
+                        <b>{item.mortgageVol}</b> {item.code} LPT
+                      </h3>
+                      <small>≈$ {item.mortgageUsd}</small>
+                    </span>
+                    <StyledButtonSecondary
+                      className="mr-3"
+                      onClick={() => {
+                        toggleModal(true)
+                      }}
+                    >
+                      {t('farm.deposit')}
+                    </StyledButtonSecondary>
+                    <StyledButtonSecondary
+                      onClick={() => {
+                        toggleModal(true)
+                      }}
+                    >
+                      {t('farm.withdraw')}
+                    </StyledButtonSecondary>
+                  </div>
+                </StyledContentBoxItem>
+              </Panel>
+            )
+          })}
         </StyledCollapse>
       </StyledMain>
     </Wrapper>
