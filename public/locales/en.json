@@ -52,7 +52,11 @@
     "to": "to",
     "pooledSymbol": "持有 {{ symbol }}",
     "iUnderstand": "I understand",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "auditReport": "Audit Report",
+    "more": "More",
+    "hide": "Hide",
+    "comingSoon_": "Coming Soon..."
   },
   "tokens": {
     "tokenListsInactiveExpanded": "Expanded results from inactive Token Lists",
@@ -99,13 +103,39 @@
     "viewOKLink": "View on OKLink",
     "yourTransactionHistory": "Your transaction history will appear here",
     "viewTransactionOnScan": "View transaction on {{ scan }}",
-    "addToken2Metamask": "Add {{ symbol }} to Metamask"
+    "addToken2Metamask": "Add {{ symbol }} to Metamask",
+    "supplyingAB": "Supplying {{ currencyA }} and {{ currencyB }}"
+  },
+  "farm": {
+    "liquidityMining": "Liquidity Mining",
+    "liquidityMiningTip": "Trading in the designated exchange pool of AIswap can get governance token AI rewards",
+    "pool": "Pool",
+    "todaysReward": "Today's reward",
+    "earningsPer1000": "Earnings per $1,000",
+    "liquidityVol": "Liquidity",
+    "multiple": "Multiple",
+    "apy": "APY",
+    "myRewardToBeClaimed": "My reward to be claimed",
+    "myMortgage": "My mortgage",
+    "receiveAward": "Receive award",
+    "getLpt": "Get {{ name }} LPT",
+    "lptMortgageRedemption": "LPT Deposit/Withdraw",
+    "earningsRate": "{{ token }}/Day"
   },
   "about": {
     "title": "Always be Innovative",
     "subtitle": "The AMM and yield farm on OKExChain",
     "featuresSwap": "Exchange",
     "featuresSwapSub": "To be the #1 swap platform on OKExChain and the home of new, innovative liquidity providing mechanics",
+    "featuresTrademin": "Transaction mining",
+    "featuresTrademinSub": "Trading in the designated exchange pool of AIswap can get governance token AI rewards",
+    "featuresLiquidity": "Liquidity mining",
+    "featuresLiquiditySub": "Trading in the designated exchange pool of AIswap can get governance token AI rewards",
+    "featuresIdo": "IDO",
+    "featuresIdoTip": "Initial DeFi Offerings",
+    "featuresIdoSub": "Participate in the subscription of early projects and participate in discount auctions in a brand new way!",
+    "featuresDestruction": "Repurchase and destruction",
+    "featuresDestructionSub": "Create the largest asset exchange platform in the OKExChain ecological chain",
     "community": "Join our community"
   },
   "sidenav": {
@@ -113,7 +143,16 @@
     "exchange": "Exchange",
     "swap": "Swap",
     "pool": "Pool",
+    "farm": "Farm",
+    "transactionMining": "Transaction Mining",
+    "stablecoinMining": "Stablecoin Mining",
     "more": "More",
+    "ido": "IDO",
+    "vote": "Vote",
+    "chart": "Chart",
+    "announcements": "Announcements",
+    "document": "Document",
+    "wiki": "Wiki",
     "github": "GitHub"
   },
   "exchange": {
@@ -216,7 +255,9 @@
     "poolTokensInRewardsPool": "Pool tokens in rewards pool",
     "yourPosition": "Your position",
     "byAddingLiquidityTip": "By adding liquidity you'll earn 0.3% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
-    "outputWillBeSentTo": "Output will be sent to"
+    "outputWillBeSentTo": "Output will be sent to",
+    "outputIsEstimatedTip": "Output is estimated. If the price changes by more than {{ allowedSlippage }}% your transaction will revert.",
+    "addAB": "Add {{ currencyA }} and {{ currencyB }}"
   },
   "account": {
     "viewAccruedFeesAnalytics": "View accrued fees and analytics"

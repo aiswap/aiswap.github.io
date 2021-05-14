@@ -199,7 +199,7 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
       <CardNoise />
       <AutoColumn gap="12px">
         <FixedHeightRow>
-          <AutoRow gap="8px">
+          <AutoRow gap="8px" className="col px-0">
             <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={20} />
             <Text fontWeight={500} fontSize={20}>
               {!currency0 || !currency1 ? <Dots>Loading</Dots> : `${currency0.symbol}/${currency1.symbol}`}
@@ -294,9 +294,9 @@ export default function FullPositionCard({ pair, border, stakedBalance }: Positi
               </Text>
             </FixedHeightRow>
 
-            <ButtonSecondary padding="8px" borderRadius="8px">
+            <ButtonSecondary padding="8px" borderRadius="8px" className="d-none">
               <ExternalLink
-                style={{ width: '100%', textAlign: 'center', display: 'none' }}
+                style={{ width: '100%', textAlign: 'center' }}
                 href={`https://uniswap.info/account/${account}`}
               >
                 {t('account.viewAccruedFeesAnalytics')}<span style={{ fontSize: '11px' }}>↗</span>

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Layout, Menu } from 'antd'
 import { NavLink, withRouter } from 'react-router-dom'
 import AccountAddress from './AccountAddress'
-// import { ExternalLink } from '../../theme'
+import { ExternalLink } from '../../theme'
 import styled from 'styled-components'
 import Logo from '../../assets/svg/logo/md.svg'
 import LogoWhite from '../../assets/svg/logo/white_icon.svg'
@@ -12,10 +12,10 @@ import { Drawer } from 'antd';
 
 import {
   IconHome,
-  // IconFarm,
+  IconFarm,
   IconTrade,
-  // IconIDO,
-  // IconMore
+  IconIDO,
+  IconMore
 } from '../Icon/Base'
 
 // import Icon from '@ant-design/icons';
@@ -169,22 +169,38 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
               <NavLink to={'/pool'}>{t('sidenav.pool')}</NavLink>
             </Menu.Item>
           </SubMenu>
-          {/* <SubMenu key="mining" disabled icon={<IconFarm />} title="农场">
-            <Menu.Item key="transaction_mining">交易挖矿</Menu.Item>
-            <Menu.Item key="stablecoin_mining">流动性挖矿</Menu.Item>
-          </SubMenu> */}
-          {/* <Menu.Item key="ido" disabled icon={<IconIDO />}>
-            IDO
-          </Menu.Item> */}
-          {/* <SubMenu key="more" icon={<IconMore />} title={t('sidenav.more')}>
-            <Menu.Item key="" disabled>投票</Menu.Item>
-            <Menu.Item key="" disabled>图表</Menu.Item>
-            <Menu.Item key="" disabled>新鲜事</Menu.Item>
-            <Menu.Item key="" disabled>文档</Menu.Item>
-            <Menu.Item key="github">
-              <ExternalLink href={'https://github.com/aiswap/aiswap.github.io'}>GitHub</ExternalLink>
+          <SubMenu key="farm" icon={<IconFarm />} title={t('sidenav.farm')}>
+            {/* <Menu.Item key="transaction_mining">{t('sidenav.transactionMining')}</Menu.Item> */}
+            <Menu.Item key="/mining">
+              <NavLink to={'/expect'}>{t('sidenav.stablecoinMining')}</NavLink>
             </Menu.Item>
-          </SubMenu> */}
+          </SubMenu>
+          <Menu.Item key="ido" icon={<IconIDO />}>
+            <NavLink to={'/expect'}>{t('sidenav.ido')}</NavLink>
+          </Menu.Item>
+          <SubMenu key="more" icon={<IconMore />} title={t('sidenav.more')}>
+            {/* <Menu.Item key="vote">
+              <NavLink to={'/expect'}>{t('sidenav.vote')}</NavLink>
+            </Menu.Item>
+            <Menu.Item key="chart">
+              <NavLink to={'/expect'}>{t('sidenav.chart')}</NavLink>
+            </Menu.Item>
+            <Menu.Item key="announcements">
+              <NavLink to={'/expect'}>{t('sidenav.announcements')}</NavLink>
+            </Menu.Item>
+            <Menu.Item key="document">
+              <NavLink to={'/expect'}>{t('sidenav.document')}</NavLink>
+            </Menu.Item> */}
+            <Menu.Item key="wiki">
+              <ExternalLink href={'https://docs.aiswap.io/'}>{t('sidenav.wiki')}</ExternalLink>
+            </Menu.Item>
+            <Menu.Item key="audit">
+              <ExternalLink href={'/images/AiSwap_audit.pdf'}>{t('global.auditReport')}</ExternalLink>
+            </Menu.Item>
+            {/* <Menu.Item key="github">
+              <ExternalLink href={'https://github.com/aiswap/aiswap.github.io'}>GitHub</ExternalLink>
+            </Menu.Item> */}
+          </SubMenu>
         </WrapperMenu>
       )
     }

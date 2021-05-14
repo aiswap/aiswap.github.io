@@ -39,16 +39,16 @@ import CommunityTwitter from '../../assets/svg/community/twitter_b.svg'
 import CommunityMedium from '../../assets/svg/community/medium.svg' 
 
 import ArtSwap from '../../assets/svg/art/ai-swap.svg'
-// import ArtTrademin from '../../assets/svg/art/ai-trademin.svg'
-// import ArtLiquidity from '../../assets/svg/art/ai-liqmin.svg'
-// import ArtIdo from '../../assets/svg/art/ai-ido.svg'
-// import ArtDestruction from '../../assets/svg/art/ai-destruction.svg'
+import ArtTrademin from '../../assets/svg/art/ai-trademin.svg'
+import ArtLiquidity from '../../assets/svg/art/ai-liqmin.svg'
+import ArtIdo from '../../assets/svg/art/ai-ido.svg'
+import ArtDestruction from '../../assets/svg/art/ai-destruction.svg'
 
 import ArtExtraSwap from '../../assets/svg/art/extra-swap-11.png'
-// import ArtExtraTrademin from '../../assets/svg/art/extra-trademin-11.png'
-// import ArtExtraLiquidity from '../../assets/svg/art/extra-liqmin-11.png'
-// import ArtExtraIdo from '../../assets/svg/art/extra-ido-11.png'
-// import ArtExtraDestruction from '../../assets/svg/art/extra-destruction-11.png'
+import ArtExtraTrademin from '../../assets/svg/art/extra-trademin-11.png'
+import ArtExtraLiquidity from '../../assets/svg/art/extra-liqmin-11.png'
+import ArtExtraIdo from '../../assets/svg/art/extra-ido-11.png'
+import ArtExtraDestruction from '../../assets/svg/art/extra-destruction-11.png'
 
 import ArtCover from '../../assets/svg/art/art_01.svg'
 
@@ -56,11 +56,6 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 `
-
-// const TopSection = styled(AutoColumn)`
-//   max-width: 720px;
-//   width: 100%;
-// `
 
 const StyledHeader = styled.header`
   padding: 40px 40px 0;
@@ -273,7 +268,7 @@ const StyledFooter = styled.footer`
 // `};
 // `
 
-export default function Earn() {
+export default function About() {
   const { t } = useTranslation()
 
   // const { chainId } = useActiveWeb3React()
@@ -305,10 +300,10 @@ export default function Earn() {
 
   const features: { to: string, title: string, tip?: string, small: string, icon: string, style?: object}[] = [
     {to: '/swap', title: 'about.featuresSwap',small: 'about.featuresSwapSub', icon: ArtSwap, style: {background: `url(${ArtExtraSwap}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#FFE5FB'}},
-    // {to: '/', title: '交易挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtTrademin, style: {background: `url(${ArtExtraTrademin}) no-repeat 97% center`, backgroundSize: 'contain'}},
-    // {to: '/', title: '流动性挖矿', small: '在 AIswap 指定兑换池交易可以获得治理代币 AI 奖励', icon: ArtLiquidity, style: {background: `url(${ArtExtraLiquidity}) no-repeat 97% center`, backgroundSize: 'contain'}},
-    // {to: '/ido', title: 'IDO', tip: 'Initial DeFi Offerings', small: '以一种全新的方式参与早期项目的认购，参与折价拍卖！', icon: ArtIdo, style: {background: `url(${ArtExtraIdo}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#E1FAF6'}},
-    // {to: '/', title: '回购销毁', small: '打造 OKExChain 生态链最大的资产兑换平台', icon: ArtDestruction, style: {background: `url(${ArtExtraDestruction}) no-repeat 97% center`, backgroundSize: 'contain'}}
+    {to: '/expect', title: 'about.featuresTrademin', small: 'about.featuresTrademinSub', icon: ArtTrademin, style: {background: `url(${ArtExtraTrademin}) no-repeat 97% center`, backgroundSize: 'contain'}},
+    {to: '/expect', title: 'about.featuresLiquidity', small: 'about.featuresLiquiditySub', icon: ArtLiquidity, style: {background: `url(${ArtExtraLiquidity}) no-repeat 97% center`, backgroundSize: 'contain'}},
+    {to: '/expect', title: 'about.featuresIdo', tip: 'about.featuresIdoTip', small: 'about.featuresIdoSub', icon: ArtIdo, style: {background: `url(${ArtExtraIdo}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#E1FAF6'}},
+    {to: '/expect', title: 'about.featuresDestruction', small: 'about.featuresDestructionSub', icon: ArtDestruction, style: {background: `url(${ArtExtraDestruction}) no-repeat 97% center`, backgroundSize: 'contain'}}
   ]
 
   return (

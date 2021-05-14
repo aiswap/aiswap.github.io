@@ -69,7 +69,7 @@ export const ButtonPrimary = styled(Base)`
 
 
 export const ButtonSubmit = styled(Base)`
-  background-color: red !im;
+  background-color: #00BFA0 !important;
   color: white;
   &:focus {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, '#00BFA0')};

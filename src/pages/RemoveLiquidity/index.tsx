@@ -368,8 +368,7 @@ export default function RemoveLiquidity({
         </RowBetween>
 
         <TYPE.italic fontSize={12} color={theme.text2} textAlign="left" padding={'12px 0 0 0'}>
-          {`Output is estimated. If the price changes by more than ${allowedSlippage /
-            100}% your transaction will revert.`}
+          {t('exchange.outputIsEstimatedTip', { allowedSlippage: allowedSlippage / 100 })}
         </TYPE.italic>
       </AutoColumn>
     )
@@ -603,6 +602,7 @@ export default function RemoveLiquidity({
                   }}
                   showMaxButton={!atMaxAmount}
                   disableCurrencySelect
+                  label={t('global.input')}
                   currency={pair?.liquidityToken}
                   pair={pair}
                   id="liquidity-amount"
