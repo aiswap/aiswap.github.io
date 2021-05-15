@@ -33,10 +33,10 @@ import LogoWhite from '../../assets/svg/logo/white.svg'
 // import CooperationBg from '../../assets/svg/art/extra-bg.svg'
 import CooperationBgPng from '../../assets/svg/art/extra-bg.png'
 
-import CommunityTelegram from '../../assets/svg/community/telegram_b.svg' 
-import CommunityTwitter from '../../assets/svg/community/twitter_b.svg' 
-// import CommunityDiscord from '../../assets/svg/community/discord_b.svg' 
-import CommunityMedium from '../../assets/svg/community/medium.svg' 
+import CommunityTelegram from '../../assets/svg/community/telegram_b.svg'
+import CommunityTwitter from '../../assets/svg/community/twitter_b.svg'
+// import CommunityDiscord from '../../assets/svg/community/discord_b.svg'
+import CommunityMedium from '../../assets/svg/community/medium.svg'
 
 import ArtSwap from '../../assets/svg/art/ai-swap.svg'
 // import ArtTrademin from '../../assets/svg/art/ai-trademin.svg'
@@ -81,7 +81,7 @@ const StyledCover = styled.div`
   padding: 0 24px;
 
   h1 {
-    color: #3939E6;
+    color: #3939e6;
     // margin-right: 110px;
     display: flex;
     flex-flow: wrap column;
@@ -99,7 +99,7 @@ const StyledCover = styled.div`
     font-size: 20px;
     line-height: 28px;
     color: #151526;
-    margin-top:16px;
+    margin-top: 16px;
   }
   img {
     // max-width: 564px;
@@ -126,7 +126,7 @@ const StyledFeatures = styled.div`
   padding: 48px 0 24px;
   margin-top: -30px;
   width: 100%;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   align-items: center;
 
   a {
@@ -144,7 +144,7 @@ const StyledFeatures = styled.div`
 const StyledFeatureLink = styled(Link)`
   padding: 0 24px;
   display: flex;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: 1px solid rgba(35, 40, 64, 0.07);
   box-shadow: 0px 2px 2px rgba(35, 40, 64, 0.04);
   border-radius: 16px;
@@ -184,7 +184,7 @@ const StyledFeatureLink = styled(Link)`
     font-size: 12px;
     line-height: 20px;
     color: #151526;
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 8px;
     font-style: normal;
     margin-left: 4px;
@@ -207,7 +207,7 @@ const StyledFeatureLink = styled(Link)`
 const StyledCooperation = styled(ColumnCenter)`
   justify-content: center;
   background: url(${CooperationBgPng}) no-repeat center;
-  background-color: #F0F2FF;
+  background-color: #f0f2ff;
   padding: 48px 0;
 
   > div {
@@ -238,7 +238,7 @@ const StyledCooperationBody = styled(AutoRow)`
 
 const StyledCooperationLink = styled(ExternalLink)`
   margin: 12px 16px;
-  background-color: rgba(240,242,255, 0.5);
+  background-color: rgba(240, 242, 255, 0.5);
   display: flex;
   flex-direction: column;
   color: #151526;
@@ -291,19 +291,52 @@ export default function About() {
   //   { id: 'DMEX', href: '###', width: '120px', src: CooperationDMEX }
   // ]
 
-  const communities: {id: string, href: string, width: string, height: string, src: string}[] = [
+  const communities: { id: string; href: string; width: string; height: string; src: string }[] = [
     { id: 'telegram', href: COMMUNITY_TELEGRAM, width: '40px', height: '40px', src: CommunityTelegram },
     { id: 'twitter', href: COMMUNITY_TWITTER, width: '40px', height: '40px', src: CommunityTwitter },
     // { id: 'discord', href: COMMUNITY_DISCORD, width: '40px', height: '40px', src: CommunityDiscord },
     { id: 'medium', href: COMMUNITY_MEDIUM, width: '40px', height: '40px', src: CommunityMedium }
   ]
 
-  const features: { to: string, title: string, tip?: string, small: string, icon: string, style?: object}[] = [
-    {to: '/swap', title: 'about.featuresSwap',small: 'about.featuresSwapSub', icon: ArtSwap, style: {background: `url(${ArtExtraSwap}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#FFE5FB'}},
+  const features: { to: string; title: string; tip?: string; small: string; icon: string; style?: object }[] = [
+    {
+      to: '/swap',
+      title: 'about.featuresSwap',
+      small: 'about.featuresSwapSub',
+      icon: ArtSwap,
+      style: {
+        background: `url(${ArtExtraSwap}) no-repeat 97% center`,
+        backgroundSize: 'contain',
+        backgroundColor: '#FFE5FB'
+      }
+    },
     // {to: '/expect', title: 'about.featuresTrademin', small: 'about.featuresTrademinSub', icon: ArtTrademin, style: {background: `url(${ArtExtraTrademin}) no-repeat 97% center`, backgroundSize: 'contain'}},
-    {to: '/expect', title: 'about.featuresLiquidity', small: 'about.featuresLiquiditySub', icon: ArtLiquidity, style: {background: `url(${ArtExtraLiquidity}) no-repeat 97% center`, backgroundSize: 'contain'}},
-    {to: '/expect', title: 'about.featuresIdo', tip: 'about.featuresIdoTip', small: 'about.featuresIdoSub', icon: ArtIdo, style: {background: `url(${ArtExtraIdo}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#E1FAF6'}},
-    {to: '/expect', title: 'about.featuresDestruction', small: 'about.featuresDestructionSub', icon: ArtDestruction, style: {background: `url(${ArtExtraDestruction}) no-repeat 97% center`, backgroundSize: 'contain'}}
+    {
+      to: '/expect',
+      title: 'about.featuresLiquidity',
+      small: 'about.featuresLiquiditySub',
+      icon: ArtLiquidity,
+      style: { background: `url(${ArtExtraLiquidity}) no-repeat 97% center`, backgroundSize: 'contain' }
+    },
+    {
+      to: '/expect',
+      title: 'about.featuresIdo',
+      tip: 'about.featuresIdoTip',
+      small: 'about.featuresIdoSub',
+      icon: ArtIdo,
+      style: {
+        background: `url(${ArtExtraIdo}) no-repeat 97% center`,
+        backgroundSize: 'contain',
+        backgroundColor: '#E1FAF6'
+      }
+    },
+    {
+      to: '/expect',
+      title: 'about.featuresDestruction',
+      small: 'about.featuresDestructionSub',
+      icon: ArtDestruction,
+      style: { background: `url(${ArtExtraDestruction}) no-repeat 97% center`, backgroundSize: 'contain' }
+    }
   ]
 
   return (
@@ -314,7 +347,8 @@ export default function About() {
       <StyledMain>
         <StyledCover className="no-gutters justify-content-center">
           <h1 className="col-12 col-lg-5">
-            <b>AIswap</b>{t('about.title')}
+            <b>AIswap</b>
+            {t('about.title')}
             <small>{t('about.subtitle')}</small>
           </h1>
           <img className="col-12 col-md-6 ml-0 ml-lg-auto" src={ArtCover} alt="" />
@@ -322,21 +356,22 @@ export default function About() {
 
         <StyledFeatures>
           <div className="py-0 py-md-3">
-            {
-              features.map(item => {
-                return (
-                  <StyledFeatureLink to={item.to} style={item.style} className="">
-                    <div className="px-0 mx-0 px-md-4 my-0 my-md-4 mx-md-2 flex-column flex-md-row">
-                      <img src={item.icon} className="mb-4 mb-md-0 mr-md-5" alt="" />
-                      <h3>
-                        <span>{t(item.title)}{item.tip ? (<em>{t(item.tip)}</em>) : '' }</span>
-                        <small>{t(item.small)}</small>
-                      </h3>
-                    </div>
-                  </StyledFeatureLink>
-                )
-              })
-            }
+            {features.map(item => {
+              return (
+                <StyledFeatureLink to={item.to} style={item.style} className="">
+                  <div className="px-0 mx-0 px-md-4 my-0 my-md-4 mx-md-2 flex-column flex-md-row">
+                    <img src={item.icon} className="mb-4 mb-md-0 mr-md-5" alt="" />
+                    <h3>
+                      <span>
+                        {t(item.title)}
+                        {item.tip ? <em>{t(item.tip)}</em> : ''}
+                      </span>
+                      <small>{t(item.small)}</small>
+                    </h3>
+                  </div>
+                </StyledFeatureLink>
+              )
+            })}
           </div>
         </StyledFeatures>
 
@@ -344,16 +379,14 @@ export default function About() {
           <div className="py-0 py-md-5">
             <h3>{t('about.community')}</h3>
             <StyledCooperationBody>
-              {
-                communities.map(item => {
-                  return (
-                    <StyledCooperationLink href={item.href} key={'item-' + item.id}>
-                      <img width={item.width} height={item.height} src={item.src} alt={item.id} />
-                      {item.id}
-                    </StyledCooperationLink>
-                  )
-                })
-              }
+              {communities.map(item => {
+                return (
+                  <StyledCooperationLink href={item.href} key={'item-' + item.id}>
+                    <img width={item.width} height={item.height} src={item.src} alt={item.id} />
+                    {item.id}
+                  </StyledCooperationLink>
+                )
+              })}
             </StyledCooperationBody>
           </div>
         </StyledCooperation>
