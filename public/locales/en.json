@@ -152,7 +152,8 @@
     "lptTokensAvailable": "{{ unstaked }} ALPT tokens available",
     "weeklyRewards": "Weekly Rewards",
     "depositingLiquidity": "Depositing Liquidity",
-    "available2Deposit_": "Available to deposit:"
+    "available2Deposit_": "Available to deposit:",
+    "whenYouClaimWithoutWithdrawing": "When you claim without withdrawing your liquidity remains in the mining pool."
   },
   "about": {
     "title": "Always be Innovative",

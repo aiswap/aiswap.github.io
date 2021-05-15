@@ -11,7 +11,7 @@ import { useWalletModalToggle } from '../../state/application/hooks'
 import { TYPE } from '../../theme'
 // import { ReactComponent as LogoSingleFarm } from '../../assets/svg/logo/single/farm.svg'
 import { RowBetween } from '../../components/Row'
-import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
+import { CardSection, DataCard } from '../../components/earn/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
 import StakingModal from '../../components/earn/StakingModal'
 import { useStakingInfo } from '../../state/stake/hooks'
@@ -19,7 +19,7 @@ import UnstakingModal from '../../components/earn/UnstakingModal'
 import ClaimRewardModal from '../../components/earn/ClaimRewardModal'
 import { useTokenBalance } from '../../state/wallet/hooks'
 import { useActiveWeb3React } from '../../hooks'
-import { useColor } from '../../hooks/useColor'
+// import { useColor } from '../../hooks/useColor'
 import { CountUp } from 'use-count-up'
 
 import { wrappedCurrency } from '../../utils/wrappedCurrency'
@@ -77,7 +77,7 @@ const StyledMain = styled.main`
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`
   position: relative;
   width: 100%;
-  opacity: ${({ dim }) => (dim ? 0.6 : 1)};
+  opacity: ${({ dim }) => (dim ? 0.4 : 1)};
 `
 
 const BottomSection = styled(AutoColumn)`
@@ -88,20 +88,24 @@ const BottomSection = styled(AutoColumn)`
 
 
 
-const StyledDataCard = styled(DataCard)<{ bgColor?: any; showBackground?: any }>`
+const StyledDataCard = styled.div`
   z-index: 2;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   margin: 24px 0;
+  width: 100%;
+  background-color: #E6FFF7;
+  border-radius: 12px;
 `
 
 const StyledBottomCard = styled(DataCard)<{ dim: any }>`
   background: ${({ theme }) => theme.bg3};
   opacity: ${({ dim }) => (dim ? 0.4 : 1)};
-  margin-top: -40px;
+  margin-top: -32px;
   padding: 0 1.25rem 1rem 1.25rem;
-  padding-top: 24px;
+  padding-top: 8px;
   z-index: 1;
+  border: 1px solid #CED0D9;
 `
 
 const PoolData = styled(DataCard)`
@@ -112,8 +116,10 @@ const PoolData = styled(DataCard)`
   z-index: 1;
 `
 
-const VoteCard = styled(DataCard)`
+const VoteCard = styled.div`
   overflow: hidden;
+  background-color: #E6FFF7;
+  border-radius: 12px;
 `
 
 const DataRow = styled(RowBetween)`
@@ -152,11 +158,11 @@ export default function Manage({
   const [showClaimRewardModal, setShowClaimRewardModal] = useState(false)
 
   // fade cards if nothing staked or nothing earned yet
-  const disableTop = !stakingInfo?.stakedAmount || stakingInfo.stakedAmount.equalTo(JSBI.BigInt(0))
+  // const disableTop = !stakingInfo?.stakedAmount || stakingInfo.stakedAmount.equalTo(JSBI.BigInt(0))
 
-  const token = currencyA === ETHER ? tokenB : tokenA
+  // const token = currencyA === ETHER ? tokenB : tokenA
   const WETH = currencyA === ETHER ? tokenA : tokenB
-  const backgroundColor = useColor(token)
+  // const backgroundColor = useColor(token)
 
   // get WETH value of staked LP tokens
   const totalSupplyOfStakingToken = useTotalSupply(stakingInfo?.stakedAmount?.token)
@@ -236,16 +242,15 @@ export default function Manage({
 
         {showAddLiquidityButton && (
           <VoteCard className="mt-4">
-            <CardNoise />
             <CardSection>
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.white fontWeight={600}>{t('farm.lptStep1')}</TYPE.white>
+                  <TYPE.body fontWeight={600}>{t('farm.lptStep1')}</TYPE.body>
                 </RowBetween>
                 <RowBetween style={{ marginBottom: '1rem' }}>
-                  <TYPE.white fontSize={14}>
+                  <TYPE.body fontSize={14}>
                     {t('farm.tokensAreRequiredTip', { currencyA: currencyA?.symbol, currencyB: currencyB?.symbol})}
-                  </TYPE.white>
+                  </TYPE.body>
                 </RowBetween>
                 <ButtonPrimary
                   padding="8px"
@@ -258,8 +263,6 @@ export default function Manage({
                 </ButtonPrimary>
               </AutoColumn>
             </CardSection>
-            <CardBGImage />
-            <CardNoise />
           </VoteCard>
         )}
 
@@ -286,27 +289,24 @@ export default function Manage({
 
         <PositionInfo gap="lg" justify="center" dim={showAddLiquidityButton}>
           <BottomSection gap="lg" justify="center">
-            <StyledDataCard disabled={disableTop} bgColor={backgroundColor} showBackground={!showAddLiquidityButton}>
+            <StyledDataCard>
               <CardSection>
-                <CardNoise />
                 <AutoColumn gap="md">
                   <RowBetween>
-                    <TYPE.white fontWeight={600}>{t('farm.yourLiquidityDeposits')}</TYPE.white>
+                    <TYPE.body fontWeight={600}>{t('farm.yourLiquidityDeposits')}</TYPE.body>
                   </RowBetween>
                   <RowBetween style={{ alignItems: 'baseline' }}>
-                    <TYPE.white fontSize={36} fontWeight={600}>
+                    <TYPE.body fontSize={36} fontWeight={600}>
                       {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
-                    </TYPE.white>
-                    <TYPE.white>
+                    </TYPE.body>
+                    <TYPE.body>
                       ALPT {currencyA?.symbol}-{currencyB?.symbol}
-                    </TYPE.white>
+                    </TYPE.body>
                   </RowBetween>
                 </AutoColumn>
               </CardSection>
             </StyledDataCard>
             <StyledBottomCard dim={stakingInfo?.stakedAmount?.equalTo(JSBI.BigInt(0))}>
-              <CardBGImage desaturate />
-              <CardNoise />
               <AutoColumn gap="sm">
                 <RowBetween>
                   <div>

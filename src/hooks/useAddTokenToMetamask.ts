@@ -18,7 +18,7 @@ export default function useAddTokenToMetamask(
       const fixSymbol: string = token.symbol === 'UNI-V2'
         ? 'ALPT'
         : token.symbol || ' '
-console.log(`https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/${token.address.toLocaleLowerCase()}.png`)
+
       library.provider
         .request({
           method: 'wallet_watchAsset',

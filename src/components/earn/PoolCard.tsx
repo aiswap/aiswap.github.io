@@ -9,7 +9,7 @@ import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
 // import { BIG_INT_SECONDS_IN_WEEK } from '../../constants'
 // import { ReactComponent as ArrowForwardRight } from '../../assets/svg/base/arrow_forward_right.svg'
-import { ReactComponent as ArrowDropDown } from '../../assets/svg/base/arrow_drop_down.svg'
+// import { ReactComponent as ArrowDropDown } from '../../assets/svg/base/arrow_drop_down.svg'
 import { ButtonPink, ButtonSecondary } from '../../components/Button'
 
 const { Panel } = Collapse
@@ -32,6 +32,7 @@ const StyledCollapse = styled(Collapse)`
   > .ant-collapse-item .ant-collapse-header {
     padding: 24px !important;
     display: flex;
+    cursor: auto !important;
   }
 
   .ant-collapse-content-active {
@@ -115,9 +116,11 @@ const StyledButtonPink = styled(ButtonPink)`
 
 const StyledButtonSecondary = styled(ButtonSecondary)`
   width: auto;
-  padding: 14px 24px;
-  font-size: 16px;
   line-height: 20px;
+  padding: 6px 16px;
+  font-size: 14px;
+  margin-top: -8px;
+  float: right;
 `
 
 const StyledContentHeader = styled.div`
@@ -131,6 +134,7 @@ const StyledContentHeader = styled.div`
     color: #151526;
     flex: 1;
     padding-right: 4px;
+    align-items: baseline;
   }
 
   span em {
@@ -190,7 +194,7 @@ const StyledContentHeader = styled.div`
 // ]
 
 const StyledExtra = styled.div`
-  width: 54px;
+  width: 108px;
 `
 
 export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) {
@@ -214,7 +218,6 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
   }
   return (
     <StyledCollapse
-      defaultActiveKey={[1]}
       onChange={callback}
       expandIcon={({ isActive }) => (
         <StyledExtra
@@ -222,12 +225,18 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
             // e.stopPropagation();
           }}
         >
-          {t(isActive ? 'global.hide' : 'global.more')}
-          <ArrowDropDown style={{ transform: `rotate(${isActive ? 0 : 90})` }} />
+          <StyledInternalLink to={`/SFG/${currencyId(currency0)}/${currencyId(currency1)}`}>
+            <StyledButtonSecondary>
+              {isStaking ? t('global.manage') : t('global.deposit')}
+            </StyledButtonSecondary>
+          </StyledInternalLink>
+          {/* {t(isActive ? 'global.hide' : 'global.more')}
+          <ArrowDropDown style={{ transform: `rotate(${isActive ? 0 : 90})` }} /> */}
         </StyledExtra>
       )}
     >
       <Panel
+        collapsible="disabled"
         key={1}
         header={
           <StyledContentHeader>
@@ -244,8 +253,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
               {item.earnings} <em>{t('farm.earningsRate', { token: item.rewardTokenName })}</em>
             </span> */}
             <span className="d-none d-md-flex">
-              {/* <em>$</em> {item.liquidityVol} */}
-              {stakingInfo.tvl ? stakingInfo.tvl.toSignificant(4, { groupSeparator: ',' }) : '-'} <em>USD</em>
+              {stakingInfo.tvl ? stakingInfo.tvl.toSignificant(4, { groupSeparator: ',' }) : '-'} <em className="ml-1">USD</em>
             </span>
             <span>
               {stakingInfo.apy ? stakingInfo.apy.multiply('100').toSignificant(4) : '-'} <em>%</em>
