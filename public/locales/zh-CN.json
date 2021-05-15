@@ -50,7 +50,7 @@
     "add": "添加",
     "addedToken": "已添加 {{ symbol }}",
     "to": "至",
-    "pooledSymbol": "的 {{ symbol }}",
+    "pooledSymbol": "持有的 {{ symbol }}",
     "iUnderstand": "我明白",
     "confirm": "确认",
     "auditReport": "审计报告",

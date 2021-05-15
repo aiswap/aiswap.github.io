@@ -50,7 +50,7 @@
     "add": "Add",
     "addedToken": "Added {{ symbol }}",
     "to": "to",
-    "pooledSymbol": "持有 {{ symbol }}",
+    "pooledSymbol": "Pool {{ symbol }}",
     "iUnderstand": "I understand",
     "confirm": "Confirm",
     "auditReport": "Audit Report",
