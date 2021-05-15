@@ -58,7 +58,8 @@
     "hide": "隐藏",
     "comingSoon_": "即将开启...",
     "cancel": "取消",
-    "week": "周"
+    "week": "周",
+    "gasEstimate": "Gas 估算"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "扩展的代币列表无效",
@@ -128,7 +129,7 @@
     "deposit": "存入",
     "withdraw": "取出",
     "noActivePools": "没有可用的资金池",
-    "tvl": "总锁仓量",
+    "tvl": "总锁仓量（TVL）",
     "poolRate": "奖励效率",
     "myPoolRate": "我的奖励效率",
     "depositedLiquidity_": "存款的流动性：",
@@ -140,6 +141,7 @@
     "withdrewToken": "取出 {{ token }}!",
     "claiming": "领取中",
     "claim": "领取",
+    "Claimed": "已领取",
     "claimedToken": "已领取 {{ token }}!",
     "totalDepositsValue": "总价值",
     "lptStep1": "步骤1. 获取 ALPT 流动性代币",
@@ -238,6 +240,11 @@
     "pricesPoolShare": "价格和总份额",
     "swapMultihopDisabled": "禁用 Multi-Hop 兑换",
     "swapMultihopEnabled": "启用 Multi-Hop 兑换",
+    "unexpectedIssueWithEstimatingGas": "估计 Gas 产生异常。 请再试一次。",
+    "missingDependencies": "缺少依赖项",
+    "transactionWillNotSucceed": "由于价格变动或转移费用，该交易将不会成功。尝试增加滑动容差。",
+    "transactionCannotSucceedError": "由于错误：{{ reason}}，该事务无法成功。 您正在交换的其中一种代币有一个问题。",
+    "swapAForB": "兑换 {{ input }} 至 {{ output }}",
 
     "pool": "资金池",
     "liquidity": "流动性",
@@ -288,7 +295,8 @@
     "byAddingLiquidityTip": "通过增加流动性，将获得当前交易对所有交易费的0.3％，并你所占资金池成正比。费用会实时添加到资金池中，并可以通过提取流动资金来索取费用。",
     "outputWillBeSentTo": "输出将发送到",
     "outputIsEstimatedTip": "估计产量。 如果价格变化超过 {{ allowedSlippage }}％，您的交易将恢复。",
-    "addAB": "添加 {{ currencyA }} 和 {{ currencyB }}"
+    "addAB": "添加 {{ currencyA }} 和 {{ currencyB }}",
+    "withdrawDepositedLiquidity": "取出流动资金"
   },
   "account": {
     "viewAccruedFeesAnalytics": "查看应计费用和分析"

@@ -153,11 +153,11 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
           <AutoColumn gap="100px" justify={'center'}>
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.largeHeader fontWeight={600} color="black">
-                {claimConfirmed ? 'Claimed' : 'Claiming'}
+                {claimConfirmed ? t('farm.claimed') : t('farm.claiming')}
               </TYPE.largeHeader>
               {!claimConfirmed && (
                 <Text fontSize={36} color={'#ff007a'} fontWeight={800}>
-                  {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} UNI
+                  {unclaimedAmount?.toFixed(0, { groupSeparator: ',' } ?? '-')} SFG
                 </Text>
               )}
               {parsedAddress && (
@@ -184,7 +184,7 @@ export default function AddressClaimModal({ isOpen, onDismiss }: { isOpen: boole
             )}
             {attempting && hash && !claimConfirmed && chainId && hash && (
               <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ zIndex: 99 }}>
-                {t('exchange.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}
+                {t('wallet.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}
               </ExternalLink>
             )}
           </AutoColumn>

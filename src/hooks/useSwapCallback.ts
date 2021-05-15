@@ -123,14 +123,18 @@ export function useSwapCallback(
   const recipient = recipientAddressOrName === null ? account : recipientAddress
 
   const transactionRejected = t('exchange.transactionRejected')
+  const unexpectedIssueWithEstimatingGas = t('exchange.unexpectedIssueWithEstimatingGas')
+  const missingDependencies = t('exchange.missingDependencies')
+  const invalidRecipient = t('exchange.invalidRecipient')
+  const transactionWillNotSucceed = t('exchange.transactionWillNotSucceed')
 
   return useMemo(() => {
     if (!trade || !library || !account || !chainId) {
-      return { state: SwapCallbackState.INVALID, callback: null, error: 'Missing dependencies' }
+      return { state: SwapCallbackState.INVALID, callback: null, error: missingDependencies }
     }
     if (!recipient) {
       if (recipientAddressOrName !== null) {
-        return { state: SwapCallbackState.INVALID, callback: null, error: 'Invalid recipient' }
+        return { state: SwapCallbackState.INVALID, callback: null, error: invalidRecipient }
       } else {
         return { state: SwapCallbackState.LOADING, callback: null, error: null }
       }
@@ -162,7 +166,7 @@ export function useSwapCallback(
                 return contract.callStatic[methodName](...args, options)
                   .then(result => {
                     console.debug('Unexpected successful call after failed estimate gas', call, gasError, result)
-                    return { call, error: new Error('Unexpected issue with estimating the gas. Please try again.') }
+                    return { call, error: new Error(unexpectedIssueWithEstimatingGas) }
                   })
                   .catch(callError => {
                     console.debug('Call threw error', call, callError)
@@ -170,11 +174,10 @@ export function useSwapCallback(
                     switch (callError.reason) {
                       case 'UniswapV2Router: INSUFFICIENT_OUTPUT_AMOUNT':
                       case 'UniswapV2Router: EXCESSIVE_INPUT_AMOUNT':
-                        errorMessage =
-                          'This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.'
+                        errorMessage = transactionWillNotSucceed
                         break
                       default:
-                        errorMessage = `The transaction cannot succeed due to error: ${callError.reason}. This is probably an issue with one of the tokens you are swapping.`
+                        errorMessage = t('exchange.transactionCannotSucceedError', { reason: callError.reason })
                     }
                     return { call, error: new Error(errorMessage) }
                   })
@@ -212,7 +215,7 @@ export function useSwapCallback(
             const inputAmount = trade.inputAmount.toSignificant(3)
             const outputAmount = trade.outputAmount.toSignificant(3)
 
-            const base = `Swap ${inputAmount} ${inputSymbol} for ${outputAmount} ${outputSymbol}`
+            const base = t('exchange.swapAForB', { input: `${inputAmount} ${inputSymbol}`, output: `${outputAmount} ${outputSymbol}` })
             const withRecipient =
               recipient === account
                 ? base
@@ -244,5 +247,12 @@ export function useSwapCallback(
       },
       error: null
     }
-  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction, transactionRejected])
+  }, [trade, library, account, chainId, recipient, recipientAddressOrName, swapCalls, addTransaction,
+    transactionRejected,
+    unexpectedIssueWithEstimatingGas,
+    missingDependencies,
+    invalidRecipient,
+    transactionWillNotSucceed,
+    t
+  ])
 }

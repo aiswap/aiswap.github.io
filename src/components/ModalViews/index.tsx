@@ -67,7 +67,7 @@ export function SubmittedView({
         {children}
         {chainId && hash && (
           <ExternalLink href={getEtherscanLink(chainId, hash, 'transaction')} style={{ marginLeft: '4px' }}>
-            <TYPE.subHeader>{t('exchange.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}</TYPE.subHeader>
+            <TYPE.subHeader>{t('wallet.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}</TYPE.subHeader>
           </ExternalLink>
         )}
       </AutoColumn>

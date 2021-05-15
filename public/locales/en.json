@@ -58,7 +58,8 @@
     "hide": "Hide",
     "comingSoon_": "Coming Soon...",
     "cancel": "Cancel",
-    "week": "Week"
+    "week": "Week",
+    "gasEstimate": "gasEstimate"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "Expanded results from inactive Token Lists",
@@ -140,6 +141,7 @@
     "withdrewToken": "Withdrew {{ token }}!",
     "claiming": "Claiming",
     "claim": "Claim",
+    "claimed": "Claimed",
     "claimedToken": "Claimed {{ token }}!",
     "totalDepositsValue": "Total deposits value",
     "lptStep1": "Step 1. Get ALPT Liquidity tokens",
@@ -238,6 +240,11 @@
     "pricesPoolShare": "Prices and pool share",
     "swapMultihopDisabled": "Swap with Multi-Hop disabled",
     "swapMultihopEnabled": "Swap with Multi-Hop enabled",
+    "unexpectedIssueWithEstimatingGas": "Unexpected issue with estimating the gas. Please try again.",
+    "missingDependencies": "Missing dependencies",
+    "transactionWillNotSucceed": "This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.",
+    "transactionCannotSucceedError": "The transaction cannot succeed due to error: {{ reason }}. This is probably an issue with one of the tokens you are swapping.",
+    "swapAForB": "Swap {{ input }} for {{ output }}",
 
     "pool": "Pool",
     "liquidity": "Liquidity",
@@ -288,7 +295,8 @@
     "byAddingLiquidityTip": "By adding liquidity you'll earn 0.3% of all trades on this pair proportional to your share of the pool. Fees are added to the pool, accrue in real time and can be claimed by withdrawing your liquidity.",
     "outputWillBeSentTo": "Output will be sent to",
     "outputIsEstimatedTip": "Output is estimated. If the price changes by more than {{ allowedSlippage }}% your transaction will revert.",
-    "addAB": "Add {{ currencyA }} and {{ currencyB }}"
+    "addAB": "Add {{ currencyA }} and {{ currencyB }}",
+    "withdrawDepositedLiquidity": "Withdraw deposited liquidity"
   },
   "account": {
     "viewAccruedFeesAnalytics": "View accrued fees and analytics"

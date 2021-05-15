@@ -198,7 +198,7 @@ export default function ClaimModal() {
             )}
             {attempting && claimSubmitted && !claimConfirmed && chainId && claimTxn?.hash && (
               <ExternalLink href={getEtherscanLink(chainId, claimTxn?.hash, 'transaction')} style={{ zIndex: 99 }}>
-                {t('exchange.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}
+                {t('wallet.viewTransactionOnScan', { scan: getEtherscanName(chainId) })}
               </ExternalLink>
             )}
           </AutoColumn>
