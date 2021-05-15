@@ -301,7 +301,7 @@ export default function About() {
   const features: { to: string, title: string, tip?: string, small: string, icon: string, style?: object}[] = [
     {to: '/swap', title: 'about.featuresSwap',small: 'about.featuresSwapSub', icon: ArtSwap, style: {background: `url(${ArtExtraSwap}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#FFE5FB'}},
     // {to: '/expect', title: 'about.featuresTrademin', small: 'about.featuresTrademinSub', icon: ArtTrademin, style: {background: `url(${ArtExtraTrademin}) no-repeat 97% center`, backgroundSize: 'contain'}},
-    {to: '/expect', title: 'about.featuresLiquidity', small: 'about.featuresLiquiditySub', icon: ArtLiquidity, style: {background: `url(${ArtExtraLiquidity}) no-repeat 97% center`, backgroundSize: 'contain'}},
+    {to: '/SFG', title: 'about.featuresLiquidity', small: 'about.featuresLiquiditySub', icon: ArtLiquidity, style: {background: `url(${ArtExtraLiquidity}) no-repeat 97% center`, backgroundSize: 'contain'}},
     {to: '/expect', title: 'about.featuresIdo', tip: 'about.featuresIdoTip', small: 'about.featuresIdoSub', icon: ArtIdo, style: {background: `url(${ArtExtraIdo}) no-repeat 97% center`, backgroundSize: 'contain', backgroundColor: '#E1FAF6'}},
     {to: '/expect', title: 'about.featuresDestruction', small: 'about.featuresDestructionSub', icon: ArtDestruction, style: {background: `url(${ArtExtraDestruction}) no-repeat 97% center`, backgroundSize: 'contain'}}
   ]

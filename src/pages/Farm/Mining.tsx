@@ -414,7 +414,7 @@ export default function Liquidity() {
           >
             <img src={CloseSVG} alt="close" />
           </CloseIcon>
-          <HeaderRow>{t('farm.depositLpt')}</HeaderRow>
+          <HeaderRow>{t('farm.depositLpt', { token: 'LPT'})}</HeaderRow>
           {/* <CurrencyInputPanel
             value={formattedAmounts[Field.INPUT]}
             showMaxButton={!atMaxAmountInput}
