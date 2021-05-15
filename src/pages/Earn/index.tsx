@@ -117,7 +117,7 @@ export default function Earn() {
                     <span>{t('farm.pool')}</span>
                     <span className="d-none d-md-flex">{t('farm.tvl')}</span>
                     <span>{t('farm.apy')}</span>
-                    <span className="d-none d-md-flex"></span>
+                    {/* <span className="d-none d-md-flex"></span> */}
                     {/* <span className="d-none d-md-flex">{t('farm.poolRate')}</span> */}
 
                     {/* <span className="d-none d-md-flex">{t('farm.todaysReward')}</span>
@@ -136,5 +136,6 @@ export default function Earn() {
                 )
         }
       </StyledMain>
-    </Wrapper>  )
+    </Wrapper>
+  )
 }
