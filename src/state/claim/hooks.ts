@@ -7,7 +7,7 @@ import { useMerkleDistributorContract } from '../../hooks/useContract'
 import { useSingleCallResult } from '../multicall/hooks'
 import { calculateGasMargin, isAddress } from '../../utils'
 import { useTransactionAdder } from '../transactions/hooks'
-
+import { useTranslation } from 'react-i18next'
 interface UserClaimData {
   index: number
   amount: string
@@ -91,6 +91,7 @@ export function useClaimCallback(
 ): {
   claimCallback: () => Promise<string>
 } {
+  const { t } = useTranslation()
   // get claim data for this account
   const { library, chainId } = useActiveWeb3React()
   const claimData = useUserClaimData(account)
@@ -110,7 +111,7 @@ export function useClaimCallback(
         .claim(...args, { value: null, gasLimit: calculateGasMargin(estimatedGasLimit) })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Claimed ${unClaimedAmount?.toSignificant(4)} UNI`,
+            summary: `${t('farm.claimed')} ${unClaimedAmount?.toSignificant(4)} SFG`,
             claim: { recipient: account }
           })
           return response.hash

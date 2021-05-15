@@ -38,8 +38,6 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
              {t(isExactIn ? 'exchange.minimumReceived' : 'exchange.maximumSold')}
             </TYPE.black>
             <QuestionHelper text={t('exchange.unfavorableSwapTip')} />
-            <QuestionHelper text="Bypasses confirmation modals and allows high slippage trades. Use at your own risk." />
-
           </RowFixed>
           <RowFixed>
             <TYPE.black color={theme.text1} fontSize={14}>

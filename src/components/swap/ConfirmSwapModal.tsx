@@ -53,7 +53,7 @@ export default function ConfirmSwapModal({
     () => Boolean(trade && originalTrade && tradeMeaningfullyDiffers(trade, originalTrade)),
     [originalTrade, trade]
   )
-  const confirmSwap = t('exchange.exchange.confirmSwap')
+  const confirmSwap = t('exchange.confirmSwap')
 
   const modalHeader = useCallback(() => {
     return trade ? (
