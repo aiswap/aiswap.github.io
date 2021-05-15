@@ -312,7 +312,7 @@ export default function About() {
     },
     // {to: '/expect', title: 'about.featuresTrademin', small: 'about.featuresTrademinSub', icon: ArtTrademin, style: {background: `url(${ArtExtraTrademin}) no-repeat 97% center`, backgroundSize: 'contain'}},
     {
-      to: '/expect',
+      to: '/SFG',
       title: 'about.featuresLiquidity',
       small: 'about.featuresLiquiditySub',
       icon: ArtLiquidity,

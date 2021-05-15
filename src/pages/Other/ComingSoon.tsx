@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { ReactComponent as Oops } from '../../assets/svg/art/oops.svg'
+import Oops from '../../assets/images/art/oops.png'
 import { useTranslation } from 'react-i18next'
 
 const Wrapper = styled.div`
@@ -19,6 +19,10 @@ const StyledMain = styled.main`
   display: flex;
   flex-direction: column;
 
+  img {
+    width: 200px;
+    height: 200px;
+  }
   h4 {
     margin-top: 20px;
     font-style: normal;
@@ -41,7 +45,7 @@ export default function ComingSoon() {
       <StyledHeader>
       </StyledHeader>
       <StyledMain>
-        <Oops />
+        <img src={Oops} alt=""/>
         <h4>{t('global.comingSoon_')}</h4>
       </StyledMain>
       <StyledFooter>

@@ -2,14 +2,14 @@ import React, { useCallback, useState } from 'react'
 import { AutoColumn } from '../../components/Column'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-
+import { useTranslation } from 'react-i18next'
 import { JSBI, TokenAmount, ETHER } from '@uniswap/sdk'
 import { RouteComponentProps } from 'react-router-dom'
 import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { useCurrency } from '../../hooks/Tokens'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { TYPE } from '../../theme'
-
+// import { ReactComponent as LogoSingleFarm } from '../../assets/svg/logo/single/farm.svg'
 import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
@@ -30,14 +30,52 @@ import usePrevious from '../../hooks/usePrevious'
 import useUSDCPrice from '../../utils/useUSDCPrice'
 import { BIG_INT_ZERO, BIG_INT_SECONDS_IN_WEEK } from '../../constants'
 
-const PageWrapper = styled(AutoColumn)`
-  max-width: 640px;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+`
+
+// const StyledLogoSingleFarm = styled(LogoSingleFarm)`
+//   width: 64px;
+//   height: 64px;
+// `
+
+const StyledHeader = styled.header`
+  padding: 32px 56px 24px;
+  justify-content: space-between;
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    padding: 32px 24px 24px;
+  `};
+  display: flex;
+
+  h3 {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 32px;
+    color: #3939e6;
+  }
+  small {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    color: #606080;
+  }
+`
+
+const StyledMain = styled.main`
+  padding: 0 32px 32px;
+  display: flex;
+  flex-direction: column;
+
+  ${({ theme }) => theme.mediaWidth.upToMedium`
+    padding: 0 24px 24px;
+  `};
 `
 
 const PositionInfo = styled(AutoColumn)<{ dim: any }>`
   position: relative;
-  max-width: 640px;
   width: 100%;
   opacity: ${({ dim }) => (dim ? 0.6 : 1)};
 `
@@ -48,12 +86,13 @@ const BottomSection = styled(AutoColumn)`
   position: relative;
 `
 
+
+
 const StyledDataCard = styled(DataCard)<{ bgColor?: any; showBackground?: any }>`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #1e1a31 0%, #3d51a5 100%);
   z-index: 2;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background: ${({ theme, bgColor, showBackground }) =>
-    `radial-gradient(91.85% 100% at 1.84% 0%, ${bgColor} 0%,  ${showBackground ? theme.black : theme.bg5} 100%) `};
+  background-color: #fff;
+  margin: 24px 0;
 `
 
 const StyledBottomCard = styled(DataCard)<{ dim: any }>`
@@ -61,19 +100,19 @@ const StyledBottomCard = styled(DataCard)<{ dim: any }>`
   opacity: ${({ dim }) => (dim ? 0.4 : 1)};
   margin-top: -40px;
   padding: 0 1.25rem 1rem 1.25rem;
-  padding-top: 32px;
+  padding-top: 24px;
   z-index: 1;
 `
 
 const PoolData = styled(DataCard)`
   background: none;
+  background-color: #fff;
   border: 1px solid ${({ theme }) => theme.bg4};
   padding: 1rem;
   z-index: 1;
 `
 
 const VoteCard = styled(DataCard)`
-  background: radial-gradient(76.02% 75.41% at 1.84% 0%, #27ae60 0%, #000000 100%);
   overflow: hidden;
 `
 
@@ -92,6 +131,7 @@ export default function Manage({
     params: { currencyIdA, currencyIdB }
   }
 }: RouteComponentProps<{ currencyIdA: string; currencyIdB: string }>) {
+  const { t } = useTranslation()
   const { account, chainId } = useActiveWeb3React()
 
   // get currencies and pair
@@ -154,191 +194,196 @@ export default function Manage({
   }, [account, toggleWalletModal])
 
   return (
-    <PageWrapper gap="lg" justify="center">
-      <RowBetween style={{ gap: '24px' }}>
-        <TYPE.mediumHeader style={{ margin: 0 }}>
-          {currencyA?.symbol}-{currencyB?.symbol} Liquidity Mining
-        </TYPE.mediumHeader>
-        <DoubleCurrencyLogo currency0={currencyA ?? undefined} currency1={currencyB ?? undefined} size={24} />
-      </RowBetween>
-
-      <DataRow style={{ gap: '24px' }}>
-        <PoolData>
-          <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Total deposits</TYPE.body>
-            <TYPE.body fontSize={24} fontWeight={500}>
-              {valueOfTotalStakedAmountInUSDC
-                ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
-                : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} OKT`}
-            </TYPE.body>
-          </AutoColumn>
-        </PoolData>
-        <PoolData>
-          <AutoColumn gap="sm">
-            <TYPE.body style={{ margin: 0 }}>Pool Rate</TYPE.body>
-            <TYPE.body fontSize={24} fontWeight={500}>
-              {stakingInfo?.active
-                ? stakingInfo?.totalRewardRate
-                    ?.multiply(BIG_INT_SECONDS_IN_WEEK)
-                    ?.toFixed(0, { groupSeparator: ',' }) ?? '-'
-                : '0'}
-              {' SFG / week'}
-            </TYPE.body>
-          </AutoColumn>
-        </PoolData>
-      </DataRow>
-
-      {showAddLiquidityButton && (
-        <VoteCard>
-          <CardBGImage />
-          <CardNoise />
-          <CardSection>
-            <AutoColumn gap="md">
-              <RowBetween>
-                <TYPE.white fontWeight={600}>Step 1. Get ALPT Liquidity tokens</TYPE.white>
-              </RowBetween>
-              <RowBetween style={{ marginBottom: '1rem' }}>
-                <TYPE.white fontSize={14}>
-                  {`ALPT LP tokens are required. Once you've added liquidity to the ${currencyA?.symbol}-${currencyB?.symbol} pool you can stake your liquidity tokens on this page.`}
-                </TYPE.white>
-              </RowBetween>
-              <ButtonPrimary
-                padding="8px"
-                borderRadius="8px"
-                width={'fit-content'}
-                as={Link}
-                to={`/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
-              >
-                {`Add ${currencyA?.symbol}-${currencyB?.symbol} liquidity`}
-              </ButtonPrimary>
+    <Wrapper>
+      <StyledHeader>
+        <div>
+          <h3 className="d-flex align-items-center">
+            <DoubleCurrencyLogo currency0={currencyA ?? undefined} currency1={currencyB ?? undefined} size={24} />
+            <span className="ml-3">
+              {currencyA?.symbol}-{currencyB?.symbol} {t('farm.liquidityMining')}
+            </span>
+          </h3>
+          <small className=""></small>
+        </div>
+        {/* <StyledLogoSingleFarm /> */}
+      </StyledHeader>
+      <StyledMain>
+        <DataRow style={{ gap: '24px' }}>
+          <PoolData>
+            <AutoColumn gap="sm">
+              <TYPE.body style={{ margin: 0 }}>{t('farm.totalDepositsValue')}</TYPE.body>
+              <TYPE.body fontSize={24} fontWeight={500}>
+                {valueOfTotalStakedAmountInUSDC
+                  ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
+                  : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} OKT`}
+              </TYPE.body>
             </AutoColumn>
-          </CardSection>
-          <CardBGImage />
-          <CardNoise />
-        </VoteCard>
-      )}
+          </PoolData>
+          {/* <PoolData>
+            <AutoColumn gap="sm">
+              <TYPE.body style={{ margin: 0 }}>{t('farm.poolRate')}</TYPE.body>
+              <TYPE.body fontSize={24} fontWeight={500}>
+                {stakingInfo?.active
+                  ? stakingInfo?.totalRewardRate
+                      ?.multiply(BIG_INT_SECONDS_IN_WEEK)
+                      ?.toFixed(0, { groupSeparator: ',' }) ?? '-'
+                  : '0'}
+                {` SFG / ${t('global.week')}`}
+              </TYPE.body>
+            </AutoColumn>
+          </PoolData> */}
+        </DataRow>
 
-      {stakingInfo && (
-        <>
-          <StakingModal
-            isOpen={showStakingModal}
-            onDismiss={() => setShowStakingModal(false)}
-            stakingInfo={stakingInfo}
-            userLiquidityUnstaked={userLiquidityUnstaked}
-          />
-          <UnstakingModal
-            isOpen={showUnstakingModal}
-            onDismiss={() => setShowUnstakingModal(false)}
-            stakingInfo={stakingInfo}
-          />
-          <ClaimRewardModal
-            isOpen={showClaimRewardModal}
-            onDismiss={() => setShowClaimRewardModal(false)}
-            stakingInfo={stakingInfo}
-          />
-        </>
-      )}
-
-      <PositionInfo gap="lg" justify="center" dim={showAddLiquidityButton}>
-        <BottomSection gap="lg" justify="center">
-          <StyledDataCard disabled={disableTop} bgColor={backgroundColor} showBackground={!showAddLiquidityButton}>
+        {showAddLiquidityButton && (
+          <VoteCard>
+            <CardBGImage />
+            <CardNoise />
             <CardSection>
-              <CardBGImage desaturate />
-              <CardNoise />
               <AutoColumn gap="md">
                 <RowBetween>
-                  <TYPE.white fontWeight={600}>Your liquidity deposits</TYPE.white>
+                  <TYPE.white fontWeight={600}>{t('farm.lptStep1')}</TYPE.white>
                 </RowBetween>
-                <RowBetween style={{ alignItems: 'baseline' }}>
-                  <TYPE.white fontSize={36} fontWeight={600}>
-                    {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
-                  </TYPE.white>
-                  <TYPE.white>
-                    ALPT {currencyA?.symbol}-{currencyB?.symbol}
+                <RowBetween style={{ marginBottom: '1rem' }}>
+                  <TYPE.white fontSize={14}>
+                    {t('farm.tokensAreRequiredTip', { currencyA: currencyA?.symbol, currencyB: currencyB?.symbol})}
                   </TYPE.white>
                 </RowBetween>
-              </AutoColumn>
-            </CardSection>
-          </StyledDataCard>
-          <StyledBottomCard dim={stakingInfo?.stakedAmount?.equalTo(JSBI.BigInt(0))}>
-            <CardBGImage desaturate />
-            <CardNoise />
-            <AutoColumn gap="sm">
-              <RowBetween>
-                <div>
-                  <TYPE.black>Your unclaimed SFG</TYPE.black>
-                </div>
-                {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
-                  <ButtonEmpty
-                    padding="8px"
-                    borderRadius="8px"
-                    width="fit-content"
-                    onClick={() => setShowClaimRewardModal(true)}
-                  >
-                    Claim
-                  </ButtonEmpty>
-                )}
-              </RowBetween>
-              <RowBetween style={{ alignItems: 'baseline' }}>
-                <TYPE.largeHeader fontSize={36} fontWeight={600}>
-                  <CountUp
-                    key={countUpAmount}
-                    isCounting
-                    decimalPlaces={4}
-                    start={parseFloat(countUpAmountPrevious)}
-                    end={parseFloat(countUpAmount)}
-                    thousandsSeparator={','}
-                    duration={1}
-                  />
-                </TYPE.largeHeader>
-                <TYPE.black fontSize={16} fontWeight={500}>
-                  <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px ' }}>
-                    ⚡
-                  </span>
-                  {stakingInfo?.active
-                    ? stakingInfo?.rewardRate
-                        ?.multiply(BIG_INT_SECONDS_IN_WEEK)
-                        ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'
-                    : '0'}
-                  {' SFG / week'}
-                </TYPE.black>
-              </RowBetween>
-            </AutoColumn>
-          </StyledBottomCard>
-        </BottomSection>
-        <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
-          <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
-            ⭐️
-          </span>
-          When you withdraw, the contract will automagically claim SFG on your behalf!
-        </TYPE.main>
-
-        {!showAddLiquidityButton && (
-          <DataRow style={{ marginBottom: '1rem' }}>
-            {stakingInfo && stakingInfo.active && (
-              <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
-                {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? 'Deposit' : 'Deposit ALPT'}
-              </ButtonPrimary>
-            )}
-
-            {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
-              <>
                 <ButtonPrimary
                   padding="8px"
                   borderRadius="8px"
-                  width="160px"
-                  onClick={() => setShowUnstakingModal(true)}
+                  width={'fit-content'}
+                  as={Link}
+                  to={`/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
                 >
-                  Withdraw
+                  {t('farm.addLptTip', { currencyA: currencyA?.symbol, currencyB: currencyB?.symbol})}
                 </ButtonPrimary>
-              </>
-            )}
-          </DataRow>
+              </AutoColumn>
+            </CardSection>
+            <CardBGImage />
+            <CardNoise />
+          </VoteCard>
         )}
-        {!userLiquidityUnstaked ? null : userLiquidityUnstaked.equalTo('0') ? null : !stakingInfo?.active ? null : (
-          <TYPE.main>{userLiquidityUnstaked.toSignificant(6)} ALPT tokens available</TYPE.main>
+
+        {stakingInfo && (
+          <>
+            <StakingModal
+              isOpen={showStakingModal}
+              onDismiss={() => setShowStakingModal(false)}
+              stakingInfo={stakingInfo}
+              userLiquidityUnstaked={userLiquidityUnstaked}
+            />
+            <UnstakingModal
+              isOpen={showUnstakingModal}
+              onDismiss={() => setShowUnstakingModal(false)}
+              stakingInfo={stakingInfo}
+            />
+            <ClaimRewardModal
+              isOpen={showClaimRewardModal}
+              onDismiss={() => setShowClaimRewardModal(false)}
+              stakingInfo={stakingInfo}
+            />
+          </>
         )}
-      </PositionInfo>
-    </PageWrapper>
+
+        <PositionInfo gap="lg" justify="center" dim={showAddLiquidityButton}>
+          <BottomSection gap="lg" justify="center">
+            <StyledDataCard disabled={disableTop} bgColor={backgroundColor} showBackground={!showAddLiquidityButton}>
+              <CardSection>
+                <CardNoise />
+                <AutoColumn gap="md">
+                  <RowBetween>
+                    <TYPE.white fontWeight={600}>{t('farm.yourLiquidityDeposits')}</TYPE.white>
+                  </RowBetween>
+                  <RowBetween style={{ alignItems: 'baseline' }}>
+                    <TYPE.white fontSize={36} fontWeight={600}>
+                      {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
+                    </TYPE.white>
+                    <TYPE.white>
+                      ALPT {currencyA?.symbol}-{currencyB?.symbol}
+                    </TYPE.white>
+                  </RowBetween>
+                </AutoColumn>
+              </CardSection>
+            </StyledDataCard>
+            <StyledBottomCard dim={stakingInfo?.stakedAmount?.equalTo(JSBI.BigInt(0))}>
+              <CardBGImage desaturate />
+              <CardNoise />
+              <AutoColumn gap="sm">
+                <RowBetween>
+                  <div>
+                    <TYPE.black>{t('farm.yourUnclaimedToken', { token: 'SFG'})}</TYPE.black>
+                  </div>
+                  {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
+                    <ButtonEmpty
+                      padding="8px"
+                      borderRadius="8px"
+                      width="fit-content"
+                      onClick={() => setShowClaimRewardModal(true)}
+                    >
+                      {t('farm.claim')}
+                    </ButtonEmpty>
+                  )}
+                </RowBetween>
+                <RowBetween style={{ alignItems: 'baseline' }}>
+                  <TYPE.largeHeader fontSize={36} fontWeight={600}>
+                    <CountUp
+                      key={countUpAmount}
+                      isCounting
+                      decimalPlaces={4}
+                      start={parseFloat(countUpAmountPrevious)}
+                      end={parseFloat(countUpAmount)}
+                      thousandsSeparator={','}
+                      duration={1}
+                    />
+                  </TYPE.largeHeader>
+                  <TYPE.black fontSize={16} fontWeight={500}>
+                    <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px ' }}>
+                      ⚡
+                    </span>
+                    {stakingInfo?.active
+                      ? stakingInfo?.rewardRate
+                          ?.multiply(BIG_INT_SECONDS_IN_WEEK)
+                          ?.toSignificant(4, { groupSeparator: ',' }) ?? '-'
+                      : '0'}
+                    {` SFG / ${t('global.week')}`}
+                  </TYPE.black>
+                </RowBetween>
+              </AutoColumn>
+            </StyledBottomCard>
+          </BottomSection>
+          <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
+            <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
+              ⭐️
+            </span>{t('farm.whenYouWithdrawTip2')}
+          </TYPE.main>
+
+          {!showAddLiquidityButton && (
+            <DataRow style={{ marginBottom: '1rem' }}>
+              {stakingInfo && stakingInfo.active && (
+                <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
+                  {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? t('global.deposit') : t('farm.depositLpt', { token: 'ALPT' })}
+                </ButtonPrimary>
+              )}
+
+              {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) && (
+                <>
+                  <ButtonPrimary
+                    padding="8px"
+                    borderRadius="8px"
+                    width="160px"
+                    onClick={() => setShowUnstakingModal(true)}
+                  >
+                    {t('farm.withdraw')}
+                  </ButtonPrimary>
+                </>
+              )}
+            </DataRow>
+          )}
+          {!userLiquidityUnstaked ? null : userLiquidityUnstaked.equalTo('0') ? null : !stakingInfo?.active ? null : (
+            <TYPE.main>{t('farm.lptTokensAvailable', { unstaked: userLiquidityUnstaked.toSignificant(6) })}</TYPE.main>
+          )}
+        </PositionInfo>
+      </StyledMain>
+    </Wrapper>
   )
 }

@@ -81,7 +81,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
               <TYPE.body fontWeight={600} fontSize={36}>
                 {<FormattedCurrencyAmount currencyAmount={stakingInfo.stakedAmount} />}
               </TYPE.body>
-              <TYPE.body>Deposited liquidity:</TYPE.body>
+              <TYPE.body>{t('farm.depositedLiquidity_')}</TYPE.body>
             </AutoColumn>
           )}
           {stakingInfo?.earnedAmount && (
@@ -89,22 +89,22 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
               <TYPE.body fontWeight={600} fontSize={36}>
                 {<FormattedCurrencyAmount currencyAmount={stakingInfo?.earnedAmount} />}
               </TYPE.body>
-              <TYPE.body>Unclaimed SFG</TYPE.body>
+              <TYPE.body>{t('farm.unclaimedToken', { token: 'SFG'})}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            When you withdraw, your UNI is claimed and your liquidity is removed from the mining pool.
+            {t('farm.whenYouWithdrawTip')}
           </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onWithdraw}>
-            {error ?? 'Withdraw & Claim'}
+            {error ?? t('farm.withdrawAndClaim')}
           </ButtonError>
         </ContentWrapper>
       )}
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOndismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Withdrawing {stakingInfo?.stakedAmount?.toSignificant(4)} ALPT</TYPE.body>
-            <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(4)} SFG</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.withdrawing')} {stakingInfo?.stakedAmount?.toSignificant(4)} ALPT</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.claiming')} {stakingInfo?.earnedAmount?.toSignificant(4)} SFG</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -112,8 +112,8 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
         <SubmittedView onDismiss={wrappedOndismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{t('exchange.transactionSubmitted')}</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Withdrew ALPT!</TYPE.body>
-            <TYPE.body fontSize={20}>Claimed SFG!</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.withdrewToken', { token: 'ALPT' })}</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.claimedToken', { token: 'SFG' })}</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

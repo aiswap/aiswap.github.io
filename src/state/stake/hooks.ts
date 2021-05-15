@@ -116,8 +116,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   const balances = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'balanceOf', accountArg)
   const earnedAmounts = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'earned', accountArg)
   const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
-  const apy = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'APY', accountArg)
-
+  const apy = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'APY')
+  console.log('apy', apy)
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
     rewardsAddresses,
