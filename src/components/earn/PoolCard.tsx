@@ -4,13 +4,9 @@ import styled from 'styled-components'
 import { useTranslation } from 'react-i18next'
 import { StyledInternalLink } from '../../theme'
 import DoubleCurrencyLogo from '../DoubleLogo'
-import { ETHER, JSBI, TokenAmount } from '@uniswap/sdk'
 import { StakingInfo } from '../../state/stake/hooks'
 import { currencyId } from '../../utils/currencyId'
 import { unwrappedToken } from '../../utils/wrappedCurrency'
-import { useTotalSupply } from '../../data/TotalSupply'
-import { usePair } from '../../data/Reserves'
-import useUSDCPrice from '../../utils/useUSDCPrice'
 // import { BIG_INT_SECONDS_IN_WEEK } from '../../constants'
 // import { ReactComponent as ArrowForwardRight } from '../../assets/svg/base/arrow_forward_right.svg'
 import { ReactComponent as ArrowDropDown } from '../../assets/svg/base/arrow_drop_down.svg'
@@ -210,31 +206,9 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
 
   // get the color of the token
   // const token = currency0 === ETHER ? token1 : token0
-  const WETH = currency0 === ETHER ? token0 : token1
-
-  const totalSupplyOfStakingToken = useTotalSupply(stakingInfo.stakedAmount.token)
-  const [, stakingTokenPair] = usePair(...stakingInfo.tokens)
-
   // let returnOverMonth: Percent = new Percent('0')
-  let valueOfTotalStakedAmountInWETH: TokenAmount | undefined
-  if (totalSupplyOfStakingToken && stakingTokenPair) {
-    // take the total amount of LP tokens staked, multiply by ETH value of all LP tokens, divide by all LP tokens
-    valueOfTotalStakedAmountInWETH = new TokenAmount(
-      WETH,
-      JSBI.divide(
-        JSBI.multiply(
-          JSBI.multiply(stakingInfo.totalStakedAmount.raw, stakingTokenPair.reserveOf(WETH).raw),
-          JSBI.BigInt(2) // this is b/c the value of LP shares are ~double the value of the WETH they entitle owner to
-        ),
-        totalSupplyOfStakingToken.raw
-      )
-    )
-  }
 
   // get the USD value of staked WETH
-  const USDPrice = useUSDCPrice(WETH)
-  const valueOfTotalStakedAmountInUSDC =
-    valueOfTotalStakedAmountInWETH && USDPrice?.quote(valueOfTotalStakedAmountInWETH)
   const callback = (key: string) => {
     console.log(key)
   }
@@ -271,12 +245,10 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
             </span> */}
             <span className="d-none d-md-flex">
               {/* <em>$</em> {item.liquidityVol} */}
-              {valueOfTotalStakedAmountInUSDC
-                ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
-                : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ALPT`}
+              {stakingInfo.tvl ? stakingInfo.tvl.toSignificant(4, { groupSeparator: ',' }) : '-'} <em>USD</em>
             </span>
             <span>
-              - <em>%</em>
+              {stakingInfo.apy ? stakingInfo.apy.multiply('100').toSignificant(4) : '-'} <em>%</em>
             </span>
             <span></span>
             {/* <span className="d-none d-md-flex">

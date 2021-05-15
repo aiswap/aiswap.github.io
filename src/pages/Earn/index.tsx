@@ -75,7 +75,6 @@ export default function Earn() {
   const { t } = useTranslation()
   const { chainId } = useActiveWeb3React()
 
-
   // staking info for connected account
   const stakingInfos = useStakingInfo()
   console.log('stakingInfos', stakingInfos)
@@ -105,36 +104,34 @@ export default function Earn() {
         <StyledLogoSingleFarm />
       </StyledHeader>
       <StyledMain>
-        {stakingRewardsExist && stakingInfos?.length === 0
-          ? (<Loader style={{ margin: 'auto' }} />)
-          : !stakingRewardsExist
-            ? (<OutlineCard className="text-center">{t('farm.noActivePools')}</OutlineCard>)
-            : stakingInfos?.length !== 0 && stakingInfosWithBalance.length === 0
-              ? (<OutlineCard className="text-center">{t('farm.noActivePools')}</OutlineCard>)
-              : (
-                <>
-                  <StyledListHeader>
-                    <span>{t('farm.pool')}</span>
-                    <span className="d-none d-md-flex">{t('farm.tvl')}</span>
-                    <span>{t('farm.apy')}</span>
-                    <span className="d-none d-md-flex"></span>
-                    {/* <span className="d-none d-md-flex">{t('farm.poolRate')}</span> */}
+        {stakingRewardsExist && stakingInfos?.length === 0 ? (
+          <Loader style={{ margin: 'auto' }} />
+        ) : !stakingRewardsExist ? (
+          <OutlineCard className="text-center">{t('farm.noActivePools')}</OutlineCard>
+        ) : stakingInfos?.length !== 0 && stakingInfosWithBalance.length === 0 ? (
+          <OutlineCard className="text-center">{t('farm.noActivePools')}</OutlineCard>
+        ) : (
+          <>
+            <StyledListHeader>
+              <span>{t('farm.pool')}</span>
+              <span className="d-none d-md-flex">{t('farm.tvl')}</span>
+              <span>{t('farm.apy')}</span>
+              <span className="d-none d-md-flex"></span>
+              {/* <span className="d-none d-md-flex">{t('farm.poolRate')}</span> */}
 
-                    {/* <span className="d-none d-md-flex">{t('farm.todaysReward')}</span>
+              {/* <span className="d-none d-md-flex">{t('farm.todaysReward')}</span>
                     <span className="d-none d-md-flex">{t('farm.earningsPer1000')}</span>
                     <span>{t('farm.apy')}</span>
                     <span className="d-none d-md-flex">{t('farm.liquidityVol')}</span>
                     <span className="d-none d-md-flex">{t('farm.multiple')}</span> */}
-                  </StyledListHeader>
-                  {
-                    stakingInfosWithBalance?.map(stakingInfo => {
-                      // need to sort by added liquidity here
-                      return (<PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />)
-                    })
-                  }
-                </>
-                )
-        }
+            </StyledListHeader>
+            {stakingInfosWithBalance?.map(stakingInfo => {
+              // need to sort by added liquidity here
+              return <PoolCard key={stakingInfo.stakingRewardAddress} stakingInfo={stakingInfo} />
+            })}
+          </>
+        )}
       </StyledMain>
-    </Wrapper>  )
+    </Wrapper>
+  )
 }

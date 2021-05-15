@@ -186,11 +186,10 @@ export default function AddLiquidity({
           setAttemptingTxn(false)
 
           addTransaction(response, {
-            summary:
-              t('exchange.addAB', {
-                currencyA: `${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencies[Field.CURRENCY_A]?.symbol}`,
-                currencyB: `${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`
-              })
+            summary: t('exchange.addAB', {
+              currencyA: `${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencies[Field.CURRENCY_A]?.symbol}`,
+              currencyB: `${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencies[Field.CURRENCY_B]?.symbol}`
+            })
           })
 
           setTxHash(response.hash)
@@ -241,7 +240,11 @@ export default function AddLiquidity({
         </RowFlat>
         <Row>
           <Text fontSize="24px">
-            {currencies[Field.CURRENCY_A]?.symbol + '/' + currencies[Field.CURRENCY_B]?.symbol + ' ' + t('global.poolTokens')}
+            {currencies[Field.CURRENCY_A]?.symbol +
+              '/' +
+              currencies[Field.CURRENCY_B]?.symbol +
+              ' ' +
+              t('global.poolTokens')}
           </Text>
         </Row>
         <TYPE.italic fontSize={12} textAlign="left" padding={'8px 0 0 0 '}>
@@ -402,7 +405,9 @@ export default function AddLiquidity({
                           width={approvalB !== ApprovalState.APPROVED ? '48%' : '100%'}
                         >
                           {approvalA === ApprovalState.PENDING ? (
-                            <Dots>{t('exchange.approving')} {currencies[Field.CURRENCY_A]?.symbol}</Dots>
+                            <Dots>
+                              {t('exchange.approving')} {currencies[Field.CURRENCY_A]?.symbol}
+                            </Dots>
                           ) : (
                             t('exchange.approve') + ' ' + currencies[Field.CURRENCY_A]?.symbol
                           )}
@@ -415,7 +420,9 @@ export default function AddLiquidity({
                           width={approvalA !== ApprovalState.APPROVED ? '48%' : '100%'}
                         >
                           {approvalB === ApprovalState.PENDING ? (
-                            <Dots>{t('exchange.approving')} {currencies[Field.CURRENCY_B]?.symbol}</Dots>
+                            <Dots>
+                              {t('exchange.approving')} {currencies[Field.CURRENCY_B]?.symbol}
+                            </Dots>
                           ) : (
                             t('exchange.approve') + ' ' + currencies[Field.CURRENCY_B]?.symbol
                           )}
@@ -430,9 +437,7 @@ export default function AddLiquidity({
                   disabled={!isValid || approvalA !== ApprovalState.APPROVED || approvalB !== ApprovalState.APPROVED}
                   error={!isValid && !!parsedAmounts[Field.CURRENCY_A] && !!parsedAmounts[Field.CURRENCY_B]}
                 >
-                  <Text>
-                    {error ?? t('global.supply')}
-                  </Text>
+                  <Text>{error ?? t('global.supply')}</Text>
                 </ButtonError>
               </AutoColumn>
             )}

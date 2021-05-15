@@ -81,7 +81,8 @@ export interface StakingInfo {
     totalStakedAmount: TokenAmount,
     totalRewardRate: TokenAmount
   ) => TokenAmount
-  apy: TokenAmount
+  apy: TokenAmount,
+  tvl: TokenAmount
 }
 
 // gets the staking info from the network for the active chain id
@@ -117,7 +118,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   const earnedAmounts = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'earned', accountArg)
   const totalSupplies = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'totalSupply')
   const apy = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'APY')
-  console.log('apy', apy)
+  const tvl = useMultipleContractSingleData(rewardsAddresses, STAKING_REWARDS_INTERFACE, 'TVL')
+
   // tokens per second, constants
   const rewardRates = useMultipleContractSingleData(
     rewardsAddresses,
@@ -142,6 +144,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
       const balanceState = balances[index]
       const earnedAmountState = earnedAmounts[index]
       const apyState = apy[index]
+      const tvlState = tvl[index]
+
 
       // these get fetched regardless of account
       const totalSupplyState = totalSupplies[index]
@@ -159,6 +163,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         !rewardRateState.loading &&
         periodFinishState &&
         !periodFinishState.loading &&
+        tvlState &&
+        !tvlState.loading &&
         apyState &&
         !apyState.loading
       ) {
@@ -168,6 +174,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
           totalSupplyState.error ||
           rewardRateState.error ||
           periodFinishState.error ||
+          tvlState.error ||
           apyState.error
         ) {
           console.error('Failed to load staking rewards info')
@@ -184,6 +191,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         const totalStakedAmount = new TokenAmount(dummyPair.liquidityToken, JSBI.BigInt(totalSupplyState.result?.[0]))
         const totalRewardRate = new TokenAmount(uni, JSBI.BigInt(rewardRateState.result?.[0]))
         const apyAmount = new TokenAmount(uni, JSBI.BigInt(apyState.result?.[0]))
+        const tvlAmount = new TokenAmount(uni, JSBI.BigInt(tvlState.result?.[0]))
+
         const getHypotheticalRewardRate = (
           stakedAmount: TokenAmount,
           totalStakedAmount: TokenAmount,
@@ -217,6 +226,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
           totalStakedAmount: totalStakedAmount,
           getHypotheticalRewardRate,
           active,
+          tvl: tvlAmount,
           apy: apyAmount
         })
       }
@@ -233,7 +243,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
     rewardsAddresses,
     totalSupplies,
     uni,
-    apy
+    apy,
+    tvl
   ])
 }
 
