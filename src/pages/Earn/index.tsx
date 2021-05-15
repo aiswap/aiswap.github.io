@@ -83,12 +83,12 @@ export default function Earn() {
    * @todo only account for this if rewards are inactive
    */
   const stakingInfosWithBalance = stakingInfos
-  // stakingInfosWithBalance.sort((m: StakingInfo, n: StakingInfo) => {
-  //   console.log(m.tokens[1] ,  m.tokens[1])
-  //   if (m?.tokens[1]?.name >  m?.tokens[1]?.name) return -1
-  //   else if (m.tokens[1].name < n.tokens[1].name) return 1
-  //   else return 0
-  // })
+  stakingInfosWithBalance.sort((m, n) => {
+    // console.log(m.tokens[1] ,  m.tokens[1])
+    if ((m as any).tokens[1]?.name > 'SFG') return -1
+    else if ((m as any).tokens[1].name < (n as any).tokens[1].name) return 1
+    else return 0
+  })
 
   // toggle copy if rewards are inactive
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
@@ -116,7 +116,7 @@ export default function Earn() {
               <span>{t('farm.pool')}</span>
               <span className="d-none d-md-flex">{t('farm.tvl')}</span>
               <span>{t('farm.apy')}</span>
-              <span className="d-none d-md-flex"></span>
+              {/* <span className="d-none d-md-flex"></span> */}
               {/* <span className="d-none d-md-flex">{t('farm.poolRate')}</span> */}
 
               {/* <span className="d-none d-md-flex">{t('farm.todaysReward')}</span>

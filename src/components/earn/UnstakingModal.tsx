@@ -103,7 +103,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOndismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>{t('farm.withdrawing')} {stakingInfo?.stakedAmount?.toSignificant(4)} ALPT</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.withdrawing')} {stakingInfo?.stakedAmount?.toSignificant(4)} LP</TYPE.body>
             <TYPE.body fontSize={20}>{t('farm.claiming')} {stakingInfo?.earnedAmount?.toSignificant(4)} SFG</TYPE.body>
           </AutoColumn>
         </LoadingView>
@@ -112,7 +112,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
         <SubmittedView onDismiss={wrappedOndismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{t('exchange.transactionSubmitted')}</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>{t('farm.withdrewToken', { token: 'ALPT' })}</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.withdrewToken', { token: 'LP' })}</TYPE.body>
             <TYPE.body fontSize={20}>{t('farm.claimedToken', { token: 'SFG' })}</TYPE.body>
           </AutoColumn>
         </SubmittedView>

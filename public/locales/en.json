@@ -144,15 +144,16 @@
     "claimed": "Claimed",
     "claimedToken": "Claimed {{ token }}!",
     "totalDepositsValue": "Total deposits value",
-    "lptStep1": "Step 1. Get ALPT Liquidity tokens",
-    "tokensAreRequiredTip": "ALPT LP tokens are required. Once you've added liquidity to the {{ currencyA }}-{{ currencyB }} pool you can stake your liquidity tokens on this page.",
+    "lptStep1": "Step 1. Get LP Liquidity tokens",
+    "tokensAreRequiredTip": "LP LP tokens are required. Once you've added liquidity to the {{ currencyA }}-{{ currencyB }} pool you can stake your liquidity tokens on this page.",
     "addLptTip": "Add {{ currencyA }}-{{ currencyB }} liquidity",
     "yourLiquidityDeposits": "Your liquidity deposits",
     "whenYouWithdrawTip2": "When you withdraw, the contract will automagically claim SFG on your behalf!",
-    "lptTokensAvailable": "{{ unstaked }} ALPT tokens available",
+    "lptTokensAvailable": "{{ unstaked }} LP tokens available",
     "weeklyRewards": "Weekly Rewards",
     "depositingLiquidity": "Depositing Liquidity",
-    "available2Deposit_": "Available to deposit:"
+    "available2Deposit_": "Available to deposit:",
+    "whenYouClaimWithoutWithdrawing": "When you claim without withdrawing your liquidity remains in the mining pool."
   },
   "about": {
     "title": "Always be Innovative",

@@ -107,7 +107,8 @@
     "yourTransactionHistory": "您的交易记录将出现在这里",
     "viewTransactionOnScan": "在 {{ scan }} 中查看交易",
     "addToken2Metamask": "添加 {{ symbol }} 至 Metamask",
-    "supplyingAB": "提供 {{ currencyA }} 和 {{ currencyB }}"
+    "supplyingAB": "提供 {{ currencyA }} 和 {{ currencyB }}",
+    "whenYouClaimWithoutWithdrawing": "当您要求不撤回资金时，您的流动性仍留在采矿池中。"
   },
   "farm": {
     "liquidityMining": "流动性挖矿",
@@ -144,12 +145,12 @@
     "Claimed": "已领取",
     "claimedToken": "已领取 {{ token }}!",
     "totalDepositsValue": "总价值",
-    "lptStep1": "步骤1. 获取 ALPT 流动性代币",
-    "tokensAreRequiredTip": "ALPT LPT 是必需的。 将流动性添加到 {{currencyA}}-{{currencyB}} 池中后，您可以在此页面上投入您的流动性代币",
+    "lptStep1": "步骤1. 获取 LP 流动性代币",
+    "tokensAreRequiredTip": "LP LPT 是必需的。 将流动性添加到 {{currencyA}}-{{currencyB}} 池中后，您可以在此页面上投入您的流动性代币",
     "addLptTip": "添加 {{ currencyA }}-{{ currencyB }} 流动性",
     "yourLiquidityDeposits": "你的流动性存入",
     "whenYouWithdrawTip2": "当您退出时，合同将代表您自动领取SFG！",
-    "lptTokensAvailable": "{{ unstaked }} ALPT 代币可用",
+    "lptTokensAvailable": "{{ unstaked }} LP 代币可用",
     "weeklyRewards": "每周奖励",
     "depositingLiquidity": "存入流动资金",
     "available2Deposit_": "可存入："

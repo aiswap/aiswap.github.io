@@ -72,7 +72,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <RowBetween>
-            <TYPE.mediumHeader>Claim</TYPE.mediumHeader>
+            <TYPE.mediumHeader>{t('farm.claim')}</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOnDismiss} />
           </RowBetween>
           {stakingInfo?.earnedAmount && (
@@ -80,14 +80,14 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
               <TYPE.body fontWeight={600} fontSize={36}>
                 {stakingInfo?.earnedAmount?.toSignificant(6)}
               </TYPE.body>
-              <TYPE.body>Unclaimed SFG</TYPE.body>
+              <TYPE.body>{t('farm.unclaimedToken', { token: 'SFG' })}</TYPE.body>
             </AutoColumn>
           )}
           <TYPE.subHeader style={{ textAlign: 'center' }}>
-            When you claim without withdrawing your liquidity remains in the mining pool.
+            {t('farm.whenYouClaimWithoutWithdrawing')}
           </TYPE.subHeader>
           <ButtonError disabled={!!error} error={!!error && !!stakingInfo?.stakedAmount} onClick={onClaimReward}>
-            {error ?? 'Claim'}
+            {error ?? t('farm.claim')}
           </ButtonError>
         </ContentWrapper>
       )}
@@ -102,7 +102,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{t('exchange.transactionSubmitted')}</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Claimed SFG!</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.claimedToken', { token: 'SFG' })}</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
