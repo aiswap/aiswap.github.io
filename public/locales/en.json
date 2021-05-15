@@ -130,10 +130,27 @@
     "noActivePools": "No active pools",
     "tvl": "TVL",
     "poolRate": "Pool Rate",
-    "myPoolRate": "My Pool Rate"
-
-
-    
+    "myPoolRate": "My Pool Rate",
+    "depositedLiquidity_": "Deposited liquidity:",
+    "unclaimedToken": "Unclaimed {{ token }}",
+    "yourUnclaimedToken": "Your unclaimed {{ token }}",
+    "whenYouWithdrawTip": "When you withdraw, your LPT is claimed and your liquidity is removed from the mining pool.",
+    "withdrawAndClaim": "Withdraw & Claim",
+    "withdrawing": "Withdrawing",
+    "withdrewToken": "Withdrew {{ token }}!",
+    "claiming": "Claiming",
+    "claim": "Claim",
+    "claimedToken": "Claimed {{ token }}!",
+    "totalDepositsValue": "Total deposits value",
+    "lptStep1": "Step 1. Get ALPT Liquidity tokens",
+    "tokensAreRequiredTip": "ALPT LP tokens are required. Once you've added liquidity to the {{ currencyA }}-{{ currencyB }} pool you can stake your liquidity tokens on this page.",
+    "addLptTip": "Add {{ currencyA }}-{{ currencyB }} liquidity",
+    "yourLiquidityDeposits": "Your liquidity deposits",
+    "whenYouWithdrawTip2": "When you withdraw, the contract will automagically claim SFG on your behalf!",
+    "lptTokensAvailable": "{{ unstaked }} ALPT tokens available",
+    "weeklyRewards": "Weekly Rewards",
+    "depositingLiquidity": "Depositing Liquidity",
+    "available2Deposit_": "Available to deposit:"
   },
   "about": {
     "title": "Always be Innovative",

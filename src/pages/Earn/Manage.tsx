@@ -106,6 +106,7 @@ const StyledBottomCard = styled(DataCard)<{ dim: any }>`
 
 const PoolData = styled(DataCard)`
   background: none;
+  background-color: #fff;
   border: 1px solid ${({ theme }) => theme.bg4};
   padding: 1rem;
   z-index: 1;
@@ -207,7 +208,6 @@ export default function Manage({
         {/* <StyledLogoSingleFarm /> */}
       </StyledHeader>
       <StyledMain>
-
         <DataRow style={{ gap: '24px' }}>
           <PoolData>
             <AutoColumn gap="sm">
@@ -219,7 +219,7 @@ export default function Manage({
               </TYPE.body>
             </AutoColumn>
           </PoolData>
-          <PoolData>
+          {/* <PoolData>
             <AutoColumn gap="sm">
               <TYPE.body style={{ margin: 0 }}>{t('farm.poolRate')}</TYPE.body>
               <TYPE.body fontSize={24} fontWeight={500}>
@@ -231,7 +231,7 @@ export default function Manage({
                 {` SFG / ${t('global.week')}`}
               </TYPE.body>
             </AutoColumn>
-          </PoolData>
+          </PoolData> */}
         </DataRow>
 
         {showAddLiquidityButton && (

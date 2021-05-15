@@ -11,7 +11,7 @@ import { unwrappedToken } from '../../utils/wrappedCurrency'
 import { useTotalSupply } from '../../data/TotalSupply'
 import { usePair } from '../../data/Reserves'
 import useUSDCPrice from '../../utils/useUSDCPrice'
-import { BIG_INT_SECONDS_IN_WEEK } from '../../constants'
+// import { BIG_INT_SECONDS_IN_WEEK } from '../../constants'
 // import { ReactComponent as ArrowForwardRight } from '../../assets/svg/base/arrow_forward_right.svg'
 import { ReactComponent as ArrowDropDown } from '../../assets/svg/base/arrow_drop_down.svg'
 import { ButtonPink, ButtonSecondary } from '../../components/Button'
@@ -278,8 +278,8 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
                 ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
                 : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ALPT`}
             </span>
-            <span className="d-none d-md-flex">
-              {/* {item.multiple} <em>x</em> */}
+            {/* <span className="d-none d-md-flex">
+              {item.multiple} <em>x</em>
               {stakingInfo
                 ? stakingInfo.active
                   ? `${stakingInfo.totalRewardRate
@@ -287,7 +287,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
                       ?.toFixed(0, { groupSeparator: ',' })} SFG / ${t('global.week')}`
                   : `0 SFG / ${t('global.week')}`
                 : '-'}
-            </span>
+            </span> */}
           </StyledContentHeader>
         }
       >
@@ -304,16 +304,16 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
           </div>
         </StyledContentBoxItem>
         <StyledContentBoxItem className="col-12 col-md">
-          <h5>
+          {/* <h5>
             {t('farm.myMortgage')}
-            {/* <a href="###">
+            <a href="###">
               {t('farm.getLpt', { name: 'item.code' })}
               ALPT
               <ArrowForwardRight width="16px" />
-            </a> */}
+            </a>
           </h5>
-          <div className="d-flex">
-            <span className="px-0 mr-auto">
+          <div className="d-flex"> */}
+            {/* <span className="px-0 mr-auto">
               <small>{t('farm.myPoolRate')}</small>
               <h3>
                 { isStaking && stakingInfo
@@ -323,15 +323,15 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
                         ?.toSignificant(4, { groupSeparator: ',' })} SFG / ${t('global.week')}`
                     : `0 SFG / ${t('global.week')}`
                   : '-'}
-                {/* <b>item.mortgageVol</b> item.code LPT */}
+                <b>item.mortgageVol</b> item.code LPT
               </h3>
-            </span>
-            <StyledInternalLink to={`/SFG/${currencyId(currency0)}/${currencyId(currency1)}`}>
+            </span> */}
+            <StyledInternalLink className="ml-auto" to={`/SFG/${currencyId(currency0)}/${currencyId(currency1)}`}>
               <StyledButtonSecondary>
                 {isStaking ? t('global.manage') : t('global.deposit')}
               </StyledButtonSecondary>
             </StyledInternalLink>
-          </div>
+          {/* </div> */}
         </StyledContentBoxItem>
       </Panel>
     </StyledCollapse>

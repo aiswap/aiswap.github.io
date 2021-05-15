@@ -111,7 +111,7 @@ export default function Earn() {
                     <span className="d-none d-md-flex">TVL</span>
                     <span>{t('farm.apy')}</span>
                     <span className="d-none d-md-flex">{t('farm.todaysReward')}</span>
-                    <span className="d-none d-md-flex">{t('farm.poolRate')}</span>
+                    {/* <span className="d-none d-md-flex">{t('farm.poolRate')}</span> */}
 
                     {/* <span className="d-none d-md-flex">{t('farm.todaysReward')}</span>
                     <span className="d-none d-md-flex">{t('farm.earningsPer1000')}</span>
