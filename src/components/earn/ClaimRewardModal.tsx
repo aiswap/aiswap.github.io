@@ -48,7 +48,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         .getReward({ gasLimit: 350000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Claim accumulated UNI rewards`
+            summary: `Claim accumulated SFG rewards`
           })
           setHash(response.hash)
         })
@@ -94,7 +94,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} UNI</TYPE.body>
+            <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} SFG</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
@@ -102,7 +102,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{t('exchange.transactionSubmitted')}</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Claimed UNI!</TYPE.body>
+            <TYPE.body fontSize={20}>Claimed SFG!</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}
