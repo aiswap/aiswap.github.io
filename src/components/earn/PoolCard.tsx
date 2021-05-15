@@ -267,16 +267,16 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
               {item.earnings} <em>{t('farm.earningsRate', { token: item.rewardTokenName })}</em>
             </span> */}
             <span className="d-none d-md-flex">
-              -
-            </span>
-            <span>
-              - <em>%</em>
-            </span>
-            <span className="d-none d-md-flex">
               {/* <em>$</em> {item.liquidityVol} */}
               {valueOfTotalStakedAmountInUSDC
                 ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
                 : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} ALPT`}
+            </span>
+            <span>
+              - <em>%</em>
+            </span>
+            <span>
+
             </span>
             {/* <span className="d-none d-md-flex">
               {item.multiple} <em>x</em>
