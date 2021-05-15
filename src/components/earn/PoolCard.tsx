@@ -267,10 +267,10 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
               {item.earnings} <em>{t('farm.earningsRate', { token: item.rewardTokenName })}</em>
             </span> */}
             <span className="d-none d-md-flex">
-              [tvl]
+              -
             </span>
             <span>
-              [apy] <em>%</em>
+              - <em>%</em>
             </span>
             <span className="d-none d-md-flex">
               {/* <em>$</em> {item.liquidityVol} */}
