@@ -289,7 +289,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
             {t('farm.myMortgage')}
             <a href="###">
               {t('farm.getLpt', { name: 'item.code' })}
-              ALPT
+              LP
               <ArrowForwardRight width="16px" />
             </a>
           </h5>

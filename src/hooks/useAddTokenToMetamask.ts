@@ -16,7 +16,7 @@ export default function useAddTokenToMetamask(
   const addToken = useCallback(() => {
     if (library && library.provider.isMetaMask && library.provider.request && token) {
       const fixSymbol: string = token.symbol === 'UNI-V2'
-        ? 'ALPT'
+        ? 'LP'
         : token.symbol || ' '
 
       library.provider

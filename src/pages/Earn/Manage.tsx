@@ -300,7 +300,7 @@ export default function Manage({
                       {stakingInfo?.stakedAmount?.toSignificant(6) ?? '-'}
                     </TYPE.body>
                     <TYPE.body>
-                      ALPT {currencyA?.symbol}-{currencyB?.symbol}
+                      LP {currencyA?.symbol}-{currencyB?.symbol}
                     </TYPE.body>
                   </RowBetween>
                 </AutoColumn>
@@ -360,7 +360,7 @@ export default function Manage({
             <DataRow style={{ marginBottom: '1rem' }}>
               {stakingInfo && stakingInfo.active && (
                 <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
-                  {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? t('global.deposit') : t('farm.depositLpt', { token: 'ALPT' })}
+                  {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? t('global.deposit') : t('farm.depositLpt', { token: 'LP' })}
                 </ButtonPrimary>
               )}
 

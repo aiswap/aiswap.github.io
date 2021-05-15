@@ -86,7 +86,7 @@ function TransactionSubmittedContent({
 
   const { library } = useActiveWeb3React()
   const fixCurrencyToAddSymbol = currencyToAdd
-    ? currencyToAdd.symbol === 'UNI-V2' ? 'ALPT' : currencyToAdd.symbol
+    ? currencyToAdd.symbol === 'UNI-V2' ? 'LP' : currencyToAdd.symbol
     : '-'
 
   const { addToken, success } = useAddTokenToMetamask(currencyToAdd)
