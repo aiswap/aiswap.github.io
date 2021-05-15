@@ -240,7 +240,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
         key={1}
         header={
           <StyledContentHeader>
-            <span className="d-flex">
+            <span className="d-flex align-items-center">
               <DoubleCurrencyLogo currency0={currency0} currency1={currency1} size={24} />
               <b className="ml-3">
                 {currency0.symbol}-{currency1.symbol}
@@ -258,7 +258,7 @@ export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) 
             <span>
               {stakingInfo.apy ? stakingInfo.apy.multiply('100').toSignificant(4) : '-'} <em>%</em>
             </span>
-            <span></span>
+            {/* <span></span> */}
             {/* <span className="d-none d-md-flex">
               {item.multiple} <em>x</em>
               {stakingInfo
