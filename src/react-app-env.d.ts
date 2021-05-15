@@ -14,6 +14,7 @@ interface Window {
     on?: (...args: any[]) => void
     removeListener?: (...args: any[]) => void
     autoRefreshOnNetworkChange?: boolean
+    request: (option: any) => void
   }
   web3?: {}
 }

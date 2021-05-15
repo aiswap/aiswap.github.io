@@ -89,6 +89,27 @@ function TopLevelModals() {
 }
 
 export default function App() {
+  if (window.ethereum) {
+    console.log('tag---->')
+    window.ethereum.request({
+      method: 'wallet_addEthereumChain',
+      params: [
+        {
+          chainId: `0x${(66).toString(16)}`,
+          chainName: 'OKExChain',
+          nativeCurrency: {
+            name: 'OKT',
+            symbol: 'OKT',
+            decimals: 18
+          },
+          // rpcUrls: ['https://rpc.backbonecabal.net/eth/${projectId}'],
+          rpcUrls: ['https://exchainrpc.okex.org'],
+          blockExplorerUrls: ['https://www.oklink.com/okexchain']
+        }
+      ]
+    })
+  }
+
   return (
     <Suspense fallback={null}>
       <Route component={GoogleAnalyticsReporter} />
