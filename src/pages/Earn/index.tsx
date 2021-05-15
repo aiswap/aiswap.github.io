@@ -8,6 +8,7 @@ import { useActiveWeb3React } from '../../hooks'
 import { OutlineCard } from '../../components/Card'
 // import DoubleCurrencyLogo from '../../components/DoubleLogo'
 import { ReactComponent as LogoSingleFarm } from '../../assets/svg/logo/single/farm.svg'
+// import { StakingInfo } from '../../state/stake/hooks'
 
 const Wrapper = styled.div`
   display: flex;
@@ -83,6 +84,12 @@ export default function Earn() {
    * @todo only account for this if rewards are inactive
    */
   const stakingInfosWithBalance = stakingInfos
+  // stakingInfosWithBalance.sort((m: StakingInfo, n: StakingInfo) => {
+  //   console.log(m.tokens[1] ,  m.tokens[1])
+  //   if (m?.tokens[1]?.name >  m?.tokens[1]?.name) return -1
+  //   else if (m.tokens[1].name < n.tokens[1].name) return 1
+  //   else return 0
+  // })
 
   // toggle copy if rewards are inactive
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)

@@ -118,9 +118,7 @@ export default function App() {
                 <Route exact strict path="/find" component={PoolFinder} />
                 <Route exact strict path="/pool" component={Pool} />
                 <Route exact strict path="/mining" component={Mining} />
-                <Route exact strict path="/SFG" component={ComingSoon} />
-                {/* <Route exact strict path="/SFG" component={Earn} /> */}
-                <Route exact strict path="/dj1KKD=12" component={Earn} />
+                <Route exact strict path="/SFG" component={Earn} />
                 {/* <Route exact strict path="/vote" component={Vote} /> */}
                 <Route exact strict path="/create" component={RedirectToAddLiquidity} />
                 <Route exact path="/add" component={AddLiquidity} />
