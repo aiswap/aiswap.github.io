@@ -235,8 +235,7 @@ export default function Manage({
         </DataRow>
 
         {showAddLiquidityButton && (
-          <VoteCard>
-            <CardBGImage />
+          <VoteCard className="mt-4">
             <CardNoise />
             <CardSection>
               <AutoColumn gap="md">

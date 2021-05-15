@@ -42,7 +42,7 @@
     "rates": "费率",
     "deposited": "已存入",
     "aPerB": "{{ a }} / {{ b }}",
-    "dismiss": "解散",
+    "dismiss": "离开",
     "acceptUpdate": "允许更新",
     "accept": "允许",
     "removed": "已移除",

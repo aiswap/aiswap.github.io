@@ -15,6 +15,10 @@ export default function useAddTokenToMetamask(
 
   const addToken = useCallback(() => {
     if (library && library.provider.isMetaMask && library.provider.request && token) {
+      const fixSymbol: string = token.symbol === 'UNI-V2'
+        ? 'ALPT'
+        : token.symbol || ' '
+
       library.provider
         .request({
           method: 'wallet_watchAsset',
@@ -24,7 +28,7 @@ export default function useAddTokenToMetamask(
             type: 'ERC20',
             options: {
               address: token.address,
-              symbol: token.symbol,
+              symbol: fixSymbol,
               decimals: token.decimals,
               image: getTokenLogoURL(token.address)
             }
