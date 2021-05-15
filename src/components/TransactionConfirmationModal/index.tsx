@@ -85,6 +85,9 @@ function TransactionSubmittedContent({
   const theme = useContext(ThemeContext)
 
   const { library } = useActiveWeb3React()
+  const fixCurrencyToAddSymbol = currencyToAdd
+    ? currencyToAdd.symbol === 'UNI-V2' ? 'ALPT' : currencyToAdd.symbol
+    : '-'
 
   const { addToken, success } = useAddTokenToMetamask(currencyToAdd)
 
@@ -113,11 +116,11 @@ function TransactionSubmittedContent({
             <ButtonLight mt="12px" padding="6px 12px" width="fit-content" onClick={addToken}>
               {!success ? (
                 <RowFixed>
-                  {t('wallet.addToken2Metamask', { symbol: currencyToAdd.symbol })} <StyledLogo src={MetaMaskLogo} />
+                  {t('wallet.addToken2Metamask', { symbol: fixCurrencyToAddSymbol })} <StyledLogo src={MetaMaskLogo} />
                 </RowFixed>
               ) : (
                 <RowFixed>
-                  {t('global.addedToken', { symbol: currencyToAdd.symbol })}{' '}
+                  {t('global.addedToken', { symbol: fixCurrencyToAddSymbol })}{' '}
                   <CheckCircle size={'16px'} stroke={theme.green1} style={{ marginLeft: '6px' }} />
                 </RowFixed>
               )}

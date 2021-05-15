@@ -180,7 +180,7 @@ export function useDerivedMintInfo(
   if (currencyBAmount && currencyBalances?.[Field.CURRENCY_B]?.lessThan(currencyBAmount)) {
     error = t('exchange.insufficientTokenBalance', { symbol: currencies[Field.CURRENCY_B]?.symbol })
   }
-
+  
   return {
     dependentField,
     currencies,

@@ -1,4 +1,4 @@
-import { getTokenLogoURL } from './../components/CurrencyLogo/index'
+// import { getTokenLogoURL } from './../components/CurrencyLogo/index'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
 import { Currency, Token } from '@uniswap/sdk'
 import { useCallback, useState } from 'react'
@@ -15,6 +15,10 @@ export default function useAddTokenToMetamask(
 
   const addToken = useCallback(() => {
     if (library && library.provider.isMetaMask && library.provider.request && token) {
+      const fixSymbol: string = token.symbol === 'UNI-V2'
+        ? 'ALPT'
+        : token.symbol || ' '
+console.log(`https://raw.githubusercontent.com/aiswap/assets/main/OKExChain/${token.address.toLocaleLowerCase()}.png`)
       library.provider
         .request({
           method: 'wallet_watchAsset',
@@ -24,9 +28,9 @@ export default function useAddTokenToMetamask(
             type: 'ERC20',
             options: {
               address: token.address,
-              symbol: token.symbol,
+              symbol: fixSymbol,
               decimals: token.decimals,
-              image: getTokenLogoURL(token.address)
+              // image: getTokenLogoURL(token.address)
             }
           }
         })
