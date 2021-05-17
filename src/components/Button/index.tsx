@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { darken, lighten } from 'polished'
+import { darken, 
+  // lighten
+} from 'polished'
 
 import { RowBetween, RowCenter } from '../Row'
 import { ChevronDown } from 'react-feather'
@@ -41,30 +43,30 @@ const Base = styled(RebassButton)<{
 `
 
 export const ButtonPrimary = styled(Base)`
-  background-color: ${({ theme }) => theme.primary1};
+  background-color: #00BFA0;
   color: white;
+  box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+
   &:focus {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.primary1)};
-    background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+    background-color: #00BFA0;
   }
   &:hover {
     color: white;
-    background-color: ${({ theme }) => darken(0.05, theme.primary1)};
+    background-color: #45D9B6;
   }
   &:active {
-    box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
-    background-color: ${({ theme }) => darken(0.1, theme.primary1)};
+    background-color: #00BFA0;
   }
   &:disabled {
-    background-color: ${({ theme, altDisabledStyle, disabled }) =>
-      altDisabledStyle ? (disabled ? theme.bg3 : theme.primary1) : theme.bg3};
-    color: ${({ theme, altDisabledStyle, disabled }) =>
-      altDisabledStyle ? (disabled ? theme.text3 : 'white') : theme.text3};
+    background-color: #D4D4D9;
     cursor: auto;
     box-shadow: none;
     border: 1px solid transparent;
     outline: none;
-    opacity: ${({ altDisabledStyle }) => (altDisabledStyle ? '0.5' : '1')};
   }
 `
 
@@ -305,13 +307,30 @@ export const ButtonWhite = styled(Base)`
 `
 
 const ButtonConfirmedStyle = styled(Base)`
-  background-color: ${({ theme }) => lighten(0.5, theme.green1)};
-  color: ${({ theme }) => theme.green1};
-  border: 1px solid ${({ theme }) => theme.green1};
+  background-color: #00BFA0;
+  color: white;
+  box-shadow: 0px 2px 4px rgba(0, 191, 159, 0.25);
+  border-radius: 8px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
 
+  &:focus {
+    background-color: #00BFA0;
+  }
+  &:hover {
+    color: white;
+    background-color: #45D9B6;
+  }
+  &:active {
+    background-color: #00BFA0;
+  }
   &:disabled {
-    opacity: 50%;
+    background-color: #D4D4D9;
     cursor: auto;
+    box-shadow: none;
+    border: 1px solid transparent;
+    outline: none;
   }
 `
 
