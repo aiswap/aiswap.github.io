@@ -141,7 +141,9 @@
     "withdrawing": "Withdrawing",
     "withdrewToken": "Withdrew {{ token }}!",
     "claiming": "Claiming",
+    "ClaimingToken": "Claiming {{ amount }} {{ token }}",
     "claim": "Claim",
+    "claimToken": "Claim {{ token }}",
     "claimed": "Claimed",
     "claimedToken": "Claimed {{ token }}!",
     "totalDepositsValue": "Total deposits value",
@@ -154,7 +156,10 @@
     "weeklyRewards": "Weekly Rewards",
     "depositingLiquidity": "Depositing Liquidity",
     "available2Deposit_": "Available to deposit:",
-    "whenYouClaimWithoutWithdrawing": "When you claim without withdrawing your liquidity remains in the mining pool."
+    "whenYouClaimWithoutWithdrawing": "When you claim without withdrawing your liquidity remains in the mining pool.",
+    "depositedAmountLpt": "Deposited {{ amount }} {{ lpt }}",
+    "claimAccumulatedRewards": "Claim accumulated {{ token }} rewards",
+    "depositLiquidity": "Deposit liquidity"
   },
   "about": {
     "title": "Always be Innovative",
@@ -246,6 +251,9 @@
     "transactionWillNotSucceed": "This transaction will not succeed either due to price movement or fee on transfer. Try increasing your slippage tolerance.",
     "transactionCannotSucceedError": "The transaction cannot succeed due to error: {{ reason }}. This is probably an issue with one of the tokens you are swapping.",
     "swapAForB": "Swap {{ input }} for {{ output }}",
+    "wrapAmountFromTo": "Wrap {{ amount }} {{ from }} to {{ to }}",
+    "unwrapAmountFromTo": "Unwrap {{ amount }} {{ from }} to {{ to }}",
+
 
     "pool": "Pool",
     "liquidity": "Liquidity",
@@ -297,6 +305,7 @@
     "outputWillBeSentTo": "Output will be sent to",
     "outputIsEstimatedTip": "Output is estimated. If the price changes by more than {{ allowedSlippage }}% your transaction will revert.",
     "addAB": "Add {{ currencyA }} and {{ currencyB }}",
+    "removeAB": "Remove {{ currencyA }} and {{ currencyB }}",
     "withdrawDepositedLiquidity": "Withdraw deposited liquidity"
   },
   "account": {

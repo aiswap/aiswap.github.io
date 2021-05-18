@@ -49,7 +49,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
         .exit({ gasLimit: 1000000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Withdraw deposited liquidity`
+            summary: t('exchange.withdrawDepositedLiquidity')
           })
           setHash(response.hash)
         })
@@ -73,7 +73,7 @@ export default function UnstakingModal({ isOpen, onDismiss, stakingInfo }: Staki
       {!attempting && !hash && (
         <ContentWrapper gap="lg">
           <RowBetween>
-            <TYPE.mediumHeader>Withdraw</TYPE.mediumHeader>
+            <TYPE.mediumHeader>{t('farm.withdraw')}</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOndismiss} />
           </RowBetween>
           {stakingInfo?.stakedAmount && (

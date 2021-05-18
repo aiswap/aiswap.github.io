@@ -14,14 +14,15 @@ const Base = styled(RebassButton)<{
   borderRadius?: string
   altDisabledStyle?: boolean
 }>`
-  padding: ${({ padding }) => (padding ? padding : '18px')};
+  padding: ${({ padding }) => (padding ? padding : '14px')};
   width: ${({ width }) => (width ? width : '100%')};
   font-weight: bold;
   text-align: center;
   border-radius: 8px;
   border-radius: ${({ borderRadius }) => borderRadius && borderRadius};
   outline: none;
-  border: 1px solid transparent;
+  // border: 1px solid transparent;
+  border: 0px;
   color: white;
   text-decoration: none;
   display: flex;

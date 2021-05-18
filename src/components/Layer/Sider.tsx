@@ -132,75 +132,105 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
   // <StyleSider width={240} className="layer-side" collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
 
   const Sider = withRouter(({ history }) => {
-    // const menuSub: object = {
-    //   '/swap': 'transaction',
-    //   '/pool': 'transaction',
-    //   '/add/ETH': 'transaction',
-    //   '/create': 'transaction',
-    //   '/find': 'transaction'
-    // };
-    // function findMenuSubKey (key: string) {
-    //   return menuSub[key] || ''
-    // }
-    // let openKeys: [string] = [findMenuSubKey(history.location.pathname)]
+    const menuSub: object = {
+      '/add/ETH': 'transaction',
+      '/create': 'transaction',
+      '/find': 'transaction'
+    };
+    function findMenuSubKey (key: string) {
+      return menuSub[key] || ''
+    }
+    let openKeys: [string] = [findMenuSubKey(history.location.pathname)]
 
-    const showDrawer = () => {
-      setState(state => {
-        return { visible: true }
-      })
-    }
-    const onClose = () => {
-      setState(state => {
-        return { visible: false }
-      })
-    }
+    console.log('openKeys', openKeys, history.location.pathname)
 
     const WrapperMenuDom = () => {
+      const menus: { key?: string, icon: any, to: string, text: string, childs?: { key?: string, keys?: string[], to?: string, href?: string, text: string }[] }[] = [
+        { icon: IconHome, to: '/home', text: t('sidenav.home') },
+        { key: 'exchange', icon: IconTrade, to: '', text: t('sidenav.exchange'),
+          childs: [
+            { to: '/swap', keys: ['/swap'], text: t('sidenav.swap') },
+            { to: '/pool', keys: ['/pool', '/add', '/create', '/remove', '/find' ], text: t('sidenav.pool') }
+          ]
+        },
+        { key: 'farm', icon: IconFarm, to: '', text: t('sidenav.farm'),
+          childs: [
+            { to: '/SFG', keys: ['/SFG'], text: t('sidenav.stablecoinMining') }
+          ]
+        },
+        { icon: IconIDO, to: '/expect', text: t('sidenav.ido') },
+        { key: 'more', icon: IconMore, to: '', text: t('sidenav.more'),
+          childs: [
+            // { key: 'vote', to: '/expect', text: t('sidenav.vote') },
+            // { key: 'chart', to: '/expect', text: t('sidenav.chart') },
+            // { key: 'announcements', to: '/expect', text: t('sidenav.announcements') },
+            // { key: 'document', to: '/expect', text: t('sidenav.document') },
+            { key: 'wiki', href: 'https://docs.aiswap.io/', text: t('sidenav.wiki') },
+            { key: 'audit', href: '/images/AiSwap_audit.pdf', text: t('global.auditReport') },
+            // { key: 'github', href: 'https://github.com/aiswap/aiswap.github.io', text: t('sidenav.github') }
+        ] }
+      ]
+
+      let currentSubKey: string | undefined = ''
+      let currentSelectedKey: string | undefined = history.location.pathname
+
+      menus.some(item => {
+        if (item.childs) {
+          let a = false
+          item.childs.some(subitem => {
+            const b = subitem.to === history.location.pathname
+              || (subitem.keys && subitem.keys.some(item => history.location.pathname.indexOf(item) === 0))
+            if (b) {
+              a = true
+              currentSelectedKey = subitem.to
+            }
+
+              return b
+          })
+
+          if (a) {
+            currentSubKey = item.key
+          }
+        }
+        return currentSubKey
+      })
+
       return (
-        <WrapperMenu onClick={onClose} selectedKeys={[history.location.pathname]} mode="inline">
-          <Menu.Item key={'/home'} icon={<IconHome />}>
-            <NavLink to={'/home'}>{t('sidenav.home')}</NavLink>
-          </Menu.Item>
-          <SubMenu key="transaction" icon={<IconTrade />} title={t('sidenav.exchange')}>
-            <Menu.Item key={'/swap'}>
-              <NavLink to={'/swap'}>{t('sidenav.swap')}</NavLink>
-            </Menu.Item>
-            <Menu.Item key="/pool">
-              <NavLink to={'/pool'}>{t('sidenav.pool')}</NavLink>
-            </Menu.Item>
-          </SubMenu>
-          <SubMenu key="farm" icon={<IconFarm />} title={t('sidenav.farm')}>
-            {/* <Menu.Item key="transaction_mining">{t('sidenav.transactionMining')}</Menu.Item> */}
-            <Menu.Item key="/mining">
-              <NavLink to={'/SFG'}>{t('sidenav.stablecoinMining')}</NavLink>
-            </Menu.Item>
-          </SubMenu>
-          <Menu.Item key="ido" icon={<IconIDO />}>
-            <NavLink to={'/expect'}>{t('sidenav.ido')}</NavLink>
-          </Menu.Item>
-          <SubMenu key="more" icon={<IconMore />} title={t('sidenav.more')}>
-            {/* <Menu.Item key="vote">
-              <NavLink to={'/expect'}>{t('sidenav.vote')}</NavLink>
-            </Menu.Item>
-            <Menu.Item key="chart">
-              <NavLink to={'/expect'}>{t('sidenav.chart')}</NavLink>
-            </Menu.Item>
-            <Menu.Item key="announcements">
-              <NavLink to={'/expect'}>{t('sidenav.announcements')}</NavLink>
-            </Menu.Item>
-            <Menu.Item key="document">
-              <NavLink to={'/expect'}>{t('sidenav.document')}</NavLink>
-            </Menu.Item> */}
-            <Menu.Item key="wiki">
-              <ExternalLink href={'https://docs.aiswap.io/'}>{t('sidenav.wiki')}</ExternalLink>
-            </Menu.Item>
-            <Menu.Item key="audit">
-              <ExternalLink href={'/images/AiSwap_audit.pdf'}>{t('global.auditReport')}</ExternalLink>
-            </Menu.Item>
-            {/* <Menu.Item key="github">
-              <ExternalLink href={'https://github.com/aiswap/aiswap.github.io'}>GitHub</ExternalLink>
-            </Menu.Item> */}
-          </SubMenu>
+        <WrapperMenu
+          onClick={() => setState(state => ({ visible: false }))}
+          selectedKeys={[currentSelectedKey]}
+          defaultOpenKeys={[currentSubKey]}
+          subMenuOpenDelay={0.2}
+          subMenuCloseDelay={0.2}
+          mode="inline">
+          {
+            menus.map(item => {
+              return (
+                item.childs
+                  ? (
+                    <SubMenu key={item.key || item.to} icon={<item.icon />} title={item.text}>
+                      { item.childs.map(subitem => {
+                          return (
+                            <Menu.Item key={subitem.key || subitem.to || subitem.href}>
+                              {
+                                (subitem.to && (<NavLink to={subitem.to}>{subitem.text}</NavLink>))
+                                || (subitem.href && (<ExternalLink href={subitem.href}>{subitem.text}</ExternalLink>))
+                                || subitem.text
+                              }
+                            </Menu.Item>
+                          )
+                        })
+                      }
+                    </SubMenu>
+                  )
+                  : (
+                    <Menu.Item key={item.key || item.to} icon={<item.icon />}>
+                      <NavLink to={item.to}>{item.text}</NavLink>
+                    </Menu.Item>
+                  )
+              )
+            })
+          }
         </WrapperMenu>
       )
     }
@@ -225,8 +255,6 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
             </NavLink>
             <AccountAddress />
           </StyledCommon>
-
-          {/* openKeys={openKeys} */}
           <WrapperMenuDom />
           <WrapperAssistance>
             <SiderCommunity />
@@ -236,7 +264,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
 
         <StyledTopLayout>
           <div>
-            <StyledMenuIcon onClick={showDrawer} />
+            <StyledMenuIcon onClick={() => setState(state => ({ visible: true }))} />
             <NavLink className="logo" to={'/home'}>
               <img src={LogoWhite} alt="" style={{
                   height: '32px',
@@ -250,7 +278,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
 
         <StyledDrawer
           closable={false}
-          onClose={onClose}
+          onClose={() => setState(state => ({ visible: false }))}
           placement='left'
           visible={state.visible}
         >

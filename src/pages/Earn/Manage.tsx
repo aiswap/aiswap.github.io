@@ -225,7 +225,7 @@ export default function Manage({
               <TYPE.body style={{ margin: 0 }}>{t('farm.totalDepositsValue')}</TYPE.body>
               <TYPE.body fontSize={24} fontWeight={500}>
                 {valueOfTotalStakedAmountInUSDC
-                  ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
+                  ? `$ ${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
                   : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} OKT`}
               </TYPE.body>
             </AutoColumn>
@@ -258,8 +258,7 @@ export default function Manage({
                   </TYPE.body>
                 </RowBetween>
                 <ButtonPrimary
-                  padding="8px"
-                  borderRadius="8px"
+                  padding="14px 24px"
                   width={'fit-content'}
                   as={Link}
                   to={`/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}

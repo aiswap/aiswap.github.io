@@ -48,7 +48,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
         .getReward({ gasLimit: 350000 })
         .then((response: TransactionResponse) => {
           addTransaction(response, {
-            summary: `Claim accumulated SFG rewards`
+            summary: t('farm.claimAccumulatedRewards', { token : 'SFG' })
           })
           setHash(response.hash)
         })
@@ -64,7 +64,7 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
     error = t('wallet.submitConnect')
   }
   if (!stakingInfo?.stakedAmount) {
-    error = error ?? '输入数量'
+    error = error ?? t('global.inputAmount')
   }
 
   return (
@@ -94,7 +94,8 @@ export default function ClaimRewardModal({ isOpen, onDismiss, stakingInfo }: Sta
       {attempting && !hash && (
         <LoadingView onDismiss={wrappedOnDismiss}>
           <AutoColumn gap="12px" justify={'center'}>
-            <TYPE.body fontSize={20}>Claiming {stakingInfo?.earnedAmount?.toSignificant(6)} SFG</TYPE.body>
+            <TYPE.body fontSize={20}>
+              {t('farm.ClaimingToken', { amount: stakingInfo?.earnedAmount?.toSignificant(6), token: 'SFG' })}</TYPE.body>
           </AutoColumn>
         </LoadingView>
       )}
