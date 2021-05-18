@@ -90,7 +90,6 @@ function TopLevelModals() {
 
 export default function App() {
   if (window.ethereum) {
-    console.log('tag---->')
     window.ethereum.request({
       method: 'wallet_addEthereumChain',
       params: [
