@@ -8,8 +8,6 @@ export interface TokenList extends TokenListOrgin {
   readonly address?: string
 }
 
-export const FACTORY_ADDRESS = '0x65728c1d0e545db117940d5745089c256516ad43'
-
 export const ROUTER_ADDRESS = '0x9f843d9ba2a386bda2845507450fd47934fb3d03'
 
 export const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000'
