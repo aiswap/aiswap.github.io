@@ -8,15 +8,13 @@ import Logo from '../../assets/svg/logo/md.svg'
 import LogoWhite from '../../assets/svg/logo/white_icon.svg'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as MenuIcon } from '../../assets/svg/base/menu.svg'
+import { ReactComponent as ArrowDropUp } from '../../assets/svg/base/arrow_drop_up.svg'
+import { ReactComponent as IconHome } from '../../assets/svg/base/home.svg'
+import { ReactComponent as IconTrade } from '../../assets/svg/base/trade.svg'
+import { ReactComponent as IconFarm } from '../../assets/svg/base/farm.svg'
+import { ReactComponent as IconIDO } from '../../assets/svg/base/ido.svg'
+import { ReactComponent as IconMore } from '../../assets/svg/base/more.svg'
 import { Drawer } from 'antd';
-
-import {
-  IconHome,
-  IconFarm,
-  IconTrade,
-  IconIDO,
-  IconMore
-} from '../Icon/Base'
 
 // import Icon from '@ant-design/icons';
 import useToggle from '../../hooks/useToggle'
@@ -127,6 +125,11 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
     `};
   `
 
+  const StyledArrowDropUp = styled(ArrowDropUp)`
+    transition: transform .3s cubic-bezier(.645,.045,.355,1);
+    margin-left: auto;
+  `
+
   const [collapsed, toggleCollapsed] = useToggle(false)
 
   // <StyleSider width={240} className="layer-side" collapsible collapsed={collapsed} onCollapse={toggleCollapsed}>
@@ -202,13 +205,16 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
           defaultOpenKeys={[currentSubKey]}
           subMenuOpenDelay={0.2}
           subMenuCloseDelay={0.2}
+          expandIcon={(e: any) => {
+            return <StyledArrowDropUp style={{ transform: `rotate(${e.isOpen ? 0 : 180 }deg)` }} />
+          }}
           mode="inline">
           {
             menus.map(item => {
               return (
                 item.childs
                   ? (
-                    <SubMenu key={item.key || item.to} icon={<item.icon />} title={item.text}>
+                    <SubMenu key={item.key || item.to} icon={<item.icon className="mr-2" />} title={item.text}>
                       { item.childs.map(subitem => {
                           return (
                             <Menu.Item key={subitem.key || subitem.to || subitem.href}>
@@ -224,7 +230,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
                     </SubMenu>
                   )
                   : (
-                    <Menu.Item key={item.key || item.to} icon={<item.icon />}>
+                    <Menu.Item key={item.key || item.to} icon={<item.icon className="mr-2" />}>
                       <NavLink to={item.to}>{item.text}</NavLink>
                     </Menu.Item>
                   )

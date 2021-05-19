@@ -249,6 +249,13 @@ aside.svelte-rntogh {
     &.ant-menu-item-only-child {
       padding-left: 48px !important;
     }
+    svg {
+      fill: #606080;
+    }
+    &.ant-menu-item-selected svg,
+    &.ant-menu-item-active svg {
+      fill: #3939E6;
+    }
   }
   .ant-menu-submenu {
     .ant-menu-sub {
@@ -270,6 +277,16 @@ aside.svelte-rntogh {
           width: 100%;
         }
       }
+      svg {
+        fill: #606080;
+      }
+    }
+    
+  }
+  .ant-menu-submenu-selected,
+  .ant-menu-submenu-active {
+    .ant-menu-submenu-title svg {
+      fill: #3939E6;
     }
   }
   &:not(.ant-menu-horizontal) {
