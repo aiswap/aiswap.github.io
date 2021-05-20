@@ -31,46 +31,46 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
   return (
-      <AutoColumn style={{ padding: '0 16px' }}>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-             {t(isExactIn ? 'exchange.minimumReceived' : 'exchange.maximumSold')}
-            </TYPE.black>
-            <QuestionHelper text={t('exchange.unfavorableSwapTip')} />
-          </RowFixed>
-          <RowFixed>
-            <TYPE.black color={theme.text1} fontSize={14}>
-              {isExactIn
-                ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
-                  '-'
-                : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ??
-                  '-'}
-            </TYPE.black>
-          </RowFixed>
-        </RowBetween>
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {t('exchange.priceImpact')}
-            </TYPE.black>
-            <QuestionHelper text={t('exchange.differenceBetweenTip')} />
-          </RowFixed>
-          <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
-        </RowBetween>
-
-        <RowBetween>
-          <RowFixed>
-            <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-              {t('exchange.liquidityProviderFee')}
-            </TYPE.black>
-            <QuestionHelper text={t('exchange.tradeProtocolIncentive', { tradeFee: '0.30'})} />
-          </RowFixed>
-          <TYPE.black fontSize={14} color={theme.text1}>
-            {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
+    <AutoColumn style={{ padding: '0 16px' }}>
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+            {t(isExactIn ? 'exchange.minimumReceived' : 'exchange.maximumSold')}
           </TYPE.black>
-        </RowBetween>
-      </AutoColumn>
+          <QuestionHelper text={t('exchange.unfavorableSwapTip')} />
+        </RowFixed>
+        <RowFixed>
+          <TYPE.black color={theme.text1} fontSize={14}>
+            {isExactIn
+              ? `${slippageAdjustedAmounts[Field.OUTPUT]?.toSignificant(4)} ${trade.outputAmount.currency.symbol}` ??
+                '-'
+              : `${slippageAdjustedAmounts[Field.INPUT]?.toSignificant(4)} ${trade.inputAmount.currency.symbol}` ??
+                '-'}
+          </TYPE.black>
+        </RowFixed>
+      </RowBetween>
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+            {t('exchange.priceImpact')}
+          </TYPE.black>
+          <QuestionHelper text={t('exchange.differenceBetweenTip')} />
+        </RowFixed>
+        <FormattedPriceImpact priceImpact={priceImpactWithoutFee} />
+      </RowBetween>
+
+      <RowBetween>
+        <RowFixed>
+          <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+            {t('exchange.liquidityProviderFee')}
+          </TYPE.black>
+          <QuestionHelper text={t('exchange.tradeProtocolIncentive', { tradeFee: '0.30'})} />
+        </RowFixed>
+        <TYPE.black fontSize={14} color={theme.text1}>
+          {realizedLPFee ? `${realizedLPFee.toSignificant(4)} ${trade.inputAmount.currency.symbol}` : '-'}
+        </TYPE.black>
+      </RowBetween>
+    </AutoColumn>
   )
 }
 
