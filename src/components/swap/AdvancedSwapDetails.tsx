@@ -11,6 +11,7 @@ import { RowBetween, RowFixed } from '../Row'
 import FormattedPriceImpact from './FormattedPriceImpact'
 import SwapRoute from './SwapRoute'
 import { useTranslation } from 'react-i18next'
+import { GetInfoUrl } from '../../constants/infoSetting'
 
 const InfoLink = styled(ExternalLink)`
   width: 100%;
@@ -30,7 +31,6 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
   const slippageAdjustedAmounts = computeSlippageAdjustedAmounts(trade, allowedSlippage)
 
   return (
-    <>
       <AutoColumn style={{ padding: '0 16px' }}>
         <RowBetween>
           <RowFixed>
@@ -71,7 +71,6 @@ function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippag
           </TYPE.black>
         </RowBetween>
       </AutoColumn>
-    </>
   )
 }
 
@@ -80,6 +79,7 @@ export interface AdvancedSwapDetailsProps {
 }
 
 export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
+  const { t } = useTranslation()
   const theme = useContext(ThemeContext)
 
   const [allowedSlippage] = useUserSlippageTolerance()
@@ -92,25 +92,23 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
         <>
           <TradeSummary trade={trade} allowedSlippage={allowedSlippage} />
           {showRoute && (
-            <>
-              <RowBetween style={{ padding: '0 16px' }}>
-                <span style={{ display: 'flex', alignItems: 'center' }}>
-                  <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
-                    Route
-                  </TYPE.black>
-                  <QuestionHelper text="Routing through these tokens resulted in the best price for your trade." />
-                </span>
-                <SwapRoute trade={trade} />
-              </RowBetween>
-            </>
+            <RowBetween style={{ padding: '0 16px' }}>
+              <span style={{ display: 'flex', alignItems: 'center' }}>
+                <TYPE.black fontSize={14} fontWeight={400} color={theme.text2}>
+                  {t('global.route')}
+                </TYPE.black>
+                <QuestionHelper text={t('exchange.routingBestPriceTrade')} />
+              </span>
+              <SwapRoute trade={trade} />
+            </RowBetween>
           )}
           {!showRoute && (
-            <AutoColumn style={{ padding: '12px 16px 0 16px', display: 'none' }}>
+            <AutoColumn style={{ padding: '12px 16px 0 16px' }}>
               <InfoLink
-                href={'https://info.uniswap.org/pair/' + trade.route.pairs[0].liquidityToken.address}
+                href={GetInfoUrl({ type: 'pair', address: trade.route.pairs[0].liquidityToken.address})}
                 target="_blank"
               >
-                View pair analytics ↗
+                {t('exchange.viewPairAnalytics')} ↗
               </InfoLink>
             </AutoColumn>
           )}

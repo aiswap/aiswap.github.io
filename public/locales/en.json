@@ -59,7 +59,8 @@
     "comingSoon_": "Coming Soon...",
     "cancel": "Cancel",
     "week": "Week",
-    "gasEstimate": "gasEstimate"
+    "gasEstimate": "gasEstimate",
+    "route": "Route"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "Expanded results from inactive Token Lists",
@@ -72,7 +73,19 @@
     "unknownSource": "Unknown Source",
     "tradeAtYourOwnRisk": "Trade at your own risk!",
     "tradeRiskFakeVersions": "Anyone can create a token, including creating fake versions of existing tokens that claim to represent projects.",
-    "tradeRiskMayNotBeAbleToSell": "If you purchase this token, you may not be able to sell it back."
+    "tradeRiskMayNotBeAbleToSell": "If you purchase this token, you may not be able to sell it back.",
+    "importList": "Import List",
+    "importToken": "Import Token",
+    "importTokens": "Import Tokens",
+
+    "thisListLogo": "{{ name }} list logo",
+    "viewList": "View list",
+    "removeList": "Remove list",
+    "confirmRemoveListTip": "Please confirm you would like to remove this list by typing REMOVE",
+    "updateList": "Update list",
+    "importYourOwnRisk": "Import at your own risk",
+    "importRiskTip1": "By adding this list you are implicitly trusting that the data is correct. Anyone can create a list, including creating fake versions of existing lists and lists that claim to represent projects that do not have one.",
+    "importRiskTip2": "If you purchase a token from this list, you may not be able to sell it back."
   },
   "wallet": {
     "desc": {
@@ -253,7 +266,9 @@
     "swapAForB": "Swap {{ input }} for {{ output }}",
     "wrapAmountFromTo": "Wrap {{ amount }} {{ from }} to {{ to }}",
     "unwrapAmountFromTo": "Unwrap {{ amount }} {{ from }} to {{ to }}",
-
+    "enableExpertModeTip": "Please type the word \"confirm\" to enable expert mode.",
+    "viewPairAnalytics": "View pair analytics",
+    "routingBestPriceTrade": "Routing through these tokens resulted in the best price for your trade.",
 
     "pool": "Pool",
     "liquidity": "Liquidity",

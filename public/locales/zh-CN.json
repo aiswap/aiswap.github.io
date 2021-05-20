@@ -59,7 +59,8 @@
     "comingSoon_": "即将开启...",
     "cancel": "取消",
     "week": "周",
-    "gasEstimate": "Gas 估算"
+    "gasEstimate": "Gas 估算",
+    "route": "路由"
   },
   "tokens": {
     "tokenListsInactiveExpanded": "扩展的代币列表无效",
@@ -72,7 +73,19 @@
     "unknownSource": "未知来源",
     "tradeAtYourOwnRisk": "自负风险！",
     "tradeRiskFakeVersions": "任何人都可以创建令牌，包括创建声称代表项目的现有令牌的伪造版本。",
-    "tradeRiskMayNotBeAbleToSell": "如果您购买了此令牌，则可能无法将其出售。"
+    "tradeRiskMayNotBeAbleToSell": "如果您购买了此令牌，则可能无法将其出售。",
+    "importList": "导入列表",
+    "importToken": "导入代币",
+    "importTokens": "导入代币",
+
+    "thisListLogo": "{{ name }} 列表标识",
+    "viewList": "浏览列表",
+    "removeList": "移除列表",
+    "confirmRemoveListTip": "如果您确认要删除此列表，请输入 REMOVE",
+    "updateList": "更新列表",
+    "importYourOwnRisk": "导入请自负风险",
+    "importRiskTip1": "通过添加此列表，您将认可该列表中的数据都是有效、安全的。因为任何人都可以创建列表，包括创建已认可的假冒版本，以及虚假项目产生的空气币版本。",
+    "importRiskTip2": "如果您购买了导入列表中的代币，则可能无法将其出售"
   },
   "wallet": {
     "desc": {
@@ -253,7 +266,9 @@
     "swapAForB": "兑换 {{ input }} 至 {{ output }}",
     "wrapAmountFromTo": "将 {{ amount }} {{ from }} 包装为 {{ to }}",
     "unwrapAmountFromTo": "将 {{ amount }} {{ from }} 解包为 {{ to }}",
-
+    "enableExpertModeTip": "请输入 “confirm” 以启用专家模式。",
+    "viewPairAnalytics": "查看交易对分析",
+    "routingBestPriceTrade": "通过这些代币进行路由，可以为您的交易带来最佳的价格。",
 
     "pool": "资金池",
     "liquidity": "流动性",
@@ -279,7 +294,7 @@
     "invalidPair": "无效的交易对",
     "toolFindPairsTip": "使用此工具查找不会自动出现在界面中的交易对",
     "firstLiquidityProviderTip": "您是第一个流动性提供者。添加的代币比率将确定该池的价格。一旦对价格满意，请单击供应进行审查。",
-    "addLiquidityAfter": "增加流动性后，您将收到代表您头寸的集合代币，这些代币会自动赚取与您在集合中所占份额成比例的费用，并且可以随时取出。",
+    "addLiquidityAfter": "添加流动性后，您将收到代表您头寸的集合流动性代币。这些代币会自动赚取与您在流动性池中所占份额成比例的费用，并且可以随时取出。",
     "tokenSearchPlaceholder": "搜索名称或粘贴地址",
     "commonBases": "常用代币",
     "tokensCommonlyPairedOtherTokens": "这些代币通常与其他代币配对",
@@ -291,7 +306,7 @@
     "customTokens": "自定义代币",
     "manageListAddInput": "https:// 或 ipfs:// 或 ENS 名称",
     "enterValidTokenAddress": "输入有效的代币地址",
-    "removingPoolTip": "删除资金池代币会按照您在池中所占的比例按当前汇率将您的头寸转换回基础代币。应计费用已包含在您收到的金额中。",
+    "removingPoolTip": "移除资金池代币时，将依您在池中所占比例，并按当前汇率将您的头寸转换回基础代币。其中应计费用已包含在您收到的金额中。",
     "creatingPool": "您正在创建一个资金池",
     "shareOfPool_": "所占份额：",
     "createPoolAndSupply": "创建资金池并提供流动性",
