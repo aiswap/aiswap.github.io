@@ -29,8 +29,8 @@ export function useV1ExchangeAddress(tokenAddress?: string): string | undefined 
 }
 
 export class MockV1Pair extends Pair {
-  constructor(etherAmount: BigintIsh, tokenAmount: TokenAmount) {
-    super(tokenAmount, new TokenAmount(WETH[tokenAmount.token.chainId], etherAmount))
+  constructor(etherAmount: BigintIsh, tokenAmount: TokenAmount, pairAddress: string) {
+    super(tokenAmount, new TokenAmount(WETH[tokenAmount.token.chainId], etherAmount), pairAddress)
   }
 }
 
@@ -44,8 +44,10 @@ function useMockV1Pair(inputCurrency?: Currency): MockV1Pair | undefined {
 
   return useMemo(
     () =>
-      token && tokenBalance && ETHBalance && inputCurrency ? new MockV1Pair(ETHBalance.raw, tokenBalance) : undefined,
-    [ETHBalance, inputCurrency, token, tokenBalance]
+      token && tokenBalance && ETHBalance && inputCurrency
+        ? new MockV1Pair(ETHBalance.raw, tokenBalance, v1PairAddress ?? '')
+        : undefined,
+    [ETHBalance, inputCurrency, token, tokenBalance, v1PairAddress]
   )
 }
 

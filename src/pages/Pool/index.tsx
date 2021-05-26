@@ -20,7 +20,7 @@ import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks
 import { Dots, Wrapper } from '../../components/swap/styleds'
 // import { CardSection, DataCard, CardNoise, CardBGImage } from '../../components/earn/styled'
 import { useStakingInfo } from '../../state/stake/hooks'
-import { BIG_INT_ZERO } from '../../constants'
+import { BIG_INT_ZERO, ZERO_ADDRESS } from '../../constants'
 import { Layout } from 'antd'
 import BgGlobal from '../../assets/svg/art/bg_global.png'
 import Settings from '../../components/Settings'
@@ -116,9 +116,14 @@ export default function Pool() {
 
   // fetch the user's balances of all tracked V2 LP tokens
   const trackedTokenPairs = useTrackedTokenPairs()
+  const pairResults = usePairs(trackedTokenPairs)
   const tokenPairsWithLiquidityTokens = useMemo(
-    () => trackedTokenPairs.map(tokens => ({ liquidityToken: toV2LiquidityToken(tokens), tokens })),
-    [trackedTokenPairs]
+    () =>
+      trackedTokenPairs.map((tokens, index) => ({
+        liquidityToken: toV2LiquidityToken(tokens, pairResults[index][1]?.pairAddress ?? ZERO_ADDRESS),
+        tokens
+      })),
+    [trackedTokenPairs, pairResults]
   )
   const liquidityTokens = useMemo(() => tokenPairsWithLiquidityTokens.map(tpwlt => tpwlt.liquidityToken), [
     tokenPairsWithLiquidityTokens
@@ -127,6 +132,8 @@ export default function Pool() {
     account ?? undefined,
     liquidityTokens
   )
+
+  console.log('v2PairsBalances', liquidityTokens)
 
   // fetch the reserves for all V2 pools in which the user has a balance
   const liquidityTokensWithBalances = useMemo(
@@ -158,7 +165,7 @@ export default function Pool() {
         .filter(stakingPair => stakingPair?.liquidityToken.address === v2Pair.liquidityToken.address).length === 0
     )
   })
-
+  console.log('v2PairsWithoutStakedAmount', trackedTokenPairs)
   return (
     <LayoutCenter>
       <SwapPoolTabs active={'pool'} />
@@ -177,9 +184,7 @@ export default function Pool() {
               </StyledHeader>
               <ButtonRow margin="16px 0 0">
                 <ResponsiveButtonSecondary as={Link} padding="12px 24px" borderRadius="8px" to="/create/ETH">
-                  <Text>
-                    {t('exchange.createPair')}
-                  </Text>
+                  <Text>{t('exchange.createPair')}</Text>
                 </ResponsiveButtonSecondary>
                 <ResponsiveButtonPink
                   id="join-pool-button"
@@ -188,9 +193,7 @@ export default function Pool() {
                   borderRadius="8px"
                   to="/add/OKT"
                 >
-                  <Text fontWeight={'bold'}>
-                    {t('exchange.addLiquidity')}
-                  </Text>
+                  <Text fontWeight={'bold'}>{t('exchange.addLiquidity')}</Text>
                 </ResponsiveButtonPink>
               </ButtonRow>
             </AutoRow>
@@ -213,7 +216,7 @@ export default function Pool() {
               </EmptyProposals>
             ) : allV2PairsWithLiquidity?.length > 0 || stakingPairs?.length > 0 ? (
               <>
-                <ButtonSecondary style={{ display: 'none'}}>
+                <ButtonSecondary style={{ display: 'none' }}>
                   <RowBetween>
                     <ExternalLink href={'/account/' + account}>{t('exchange.accountAnalyticsFees')}</ExternalLink>
                     <span> ↗</span>

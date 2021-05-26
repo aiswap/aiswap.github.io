@@ -7,7 +7,6 @@ import { useActiveWeb3React } from '../hooks'
 import { useMultipleContractSingleData, useSingleContractMultipleData } from '../state/multicall/hooks'
 import { wrappedCurrency } from '../utils/wrappedCurrency'
 import { useFactoryContract } from '../hooks/useContract'
-import { ZERO_ADDRESS } from '../constants'
 
 const PAIR_INTERFACE = new Interface(IUniswapV2PairABI)
 
@@ -32,16 +31,31 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
   const pairs = useMemo(
     () =>
       tokens.map(([tokenA, tokenB]) => {
-        return tokenA && tokenB && !tokenA.equals(tokenB)
-          ? [tokenA.address, tokenB.address]
-          : [ZERO_ADDRESS, ZERO_ADDRESS]
+        return tokenA && tokenB && !tokenA.equals(tokenB) ? [tokenA.address, tokenB.address] : undefined
       }),
     [tokens]
   )
-  const pairResults = useSingleContractMultipleData(factory, 'getPairFor', pairs)
-  const pairAddresses = pairResults.map(state => state.result?.toString() ?? undefined)
-  const results = useMultipleContractSingleData(pairAddresses, PAIR_INTERFACE, 'getReserves')
 
+  const validPairs = useMemo(
+    () =>
+      pairs.filter(pair => {
+        return pair
+      }),
+    [pairs]
+  )
+
+  const pairResults = useSingleContractMultipleData(factory, 'getPairFor', validPairs)
+  const pairAddresses = pairs.map(pair => {
+    return pair
+      ? pairResults[
+          validPairs.findIndex(validPair => {
+            return validPair?.[0] === pair[0] && validPair[1] === pair[1]
+          })
+        ].result?.toString()
+      : undefined
+  })
+  //const pairAddresses = pairResults.map(state => state.result?.toString() ?? undefined).concat(invalidPairs)
+  const results = useMultipleContractSingleData(pairAddresses, PAIR_INTERFACE, 'getReserves')
   return useMemo(() => {
     return results.map((result, i) => {
       const { result: reserves, loading } = result
@@ -55,10 +69,14 @@ export function usePairs(currencies: [Currency | undefined, Currency | undefined
       const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA]
       return [
         PairState.EXISTS,
-        new Pair(new TokenAmount(token0, reserve0.toString()), new TokenAmount(token1, reserve1.toString()))
+        new Pair(
+          new TokenAmount(token0, reserve0.toString()),
+          new TokenAmount(token1, reserve1.toString()),
+          pairAddresses[i] ?? ''
+        )
       ]
     })
-  }, [results, tokens])
+  }, [results, tokens, pairAddresses])
 }
 
 export function usePair(tokenA?: Currency, tokenB?: Currency): [PairState, Pair | null] {

@@ -186,9 +186,10 @@ export function useURLWarningToggle(): () => void {
  * Given two tokens return the liquidity token that represents its liquidity shares
  * @param tokenA one of the two tokens
  * @param tokenB the other token
+ * @param pairAddress
  */
-export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token]): Token {
-  return new Token(tokenA.chainId, Pair.getAddress(tokenA, tokenB), 18, 'LP', 'AiSwap Liquidity Provider Token')
+export function toV2LiquidityToken([tokenA, tokenB]: [Token, Token], pairAddress: string): Token {
+  return new Token(tokenA.chainId, pairAddress, 18, 'ALPT', 'AiSwap Liquidity Provider Token')
 }
 
 /**

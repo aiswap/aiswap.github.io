@@ -32,7 +32,7 @@ enum Fields {
 }
 
 const StyledLiquidityActiveLink = styled(StyledInternalLink)`
-  color: #00BFA0;
+  color: #00bfa0;
 `
 const StyledTipText = styled(Text)`
   font-weight: bold;
@@ -70,7 +70,6 @@ export default function PoolFinder() {
 
   const position: TokenAmount | undefined = useTokenBalance(account ?? undefined, pair?.liquidityToken)
   const hasPosition = Boolean(position && JSBI.greaterThan(position.raw, JSBI.BigInt(0)))
-
   const handleCurrencySelect = useCallback(
     (currency: Currency) => {
       if (activeField === Fields.TOKEN0) {
@@ -164,9 +163,7 @@ export default function PoolFinder() {
               ) : (
                 <LightCard padding="24px 10px">
                   <AutoColumn gap="sm" justify="center">
-                    <StyledTipText textAlign="center">
-                      {t('exchange.youPoolDontHaveLiquidity')}
-                    </StyledTipText>
+                    <StyledTipText textAlign="center">{t('exchange.youPoolDontHaveLiquidity')}</StyledTipText>
                     <StyledLiquidityActiveLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                       <Text textAlign="center">{t('exchange.addLiquidity')}</Text>
                     </StyledLiquidityActiveLink>
@@ -176,9 +173,7 @@ export default function PoolFinder() {
             ) : validPairNoLiquidity ? (
               <LightCard padding="24px 10px">
                 <AutoColumn gap="sm" justify="center">
-                  <StyledTipText textAlign="center">
-                    {t('exchange.noPoolFound')}
-                  </StyledTipText>
+                  <StyledTipText textAlign="center">{t('exchange.noPoolFound')}</StyledTipText>
                   <StyledLiquidityActiveLink to={`/add/${currencyId(currency0)}/${currencyId(currency1)}`}>
                     {t('exchange.createPool')}
                   </StyledLiquidityActiveLink>

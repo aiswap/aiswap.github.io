@@ -30,7 +30,6 @@ import usePrevious from '../../hooks/usePrevious'
 import useUSDCPrice from '../../utils/useUSDCPrice'
 import { BIG_INT_ZERO, BIG_INT_SECONDS_IN_WEEK } from '../../constants'
 
-
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -86,15 +85,12 @@ const BottomSection = styled(AutoColumn)`
   position: relative;
 `
 
-
-
 const StyledDataCard = styled.div`
   z-index: 2;
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
   margin: 24px 0;
   width: 100%;
-  background-color: #E6FFF7;
+  background-color: #e6fff7;
   border-radius: 12px;
 `
 
@@ -105,7 +101,7 @@ const StyledBottomCard = styled(DataCard)<{ dim: any }>`
   padding: 0 1.25rem 1rem 1.25rem;
   padding-top: 8px;
   z-index: 1;
-  border: 1px solid #CED0D9;
+  border: 1px solid #ced0d9;
 `
 
 const PoolData = styled(DataCard)`
@@ -118,7 +114,7 @@ const PoolData = styled(DataCard)`
 
 const VoteCard = styled.div`
   overflow: hidden;
-  background-color: #E6FFF7;
+  background-color: #e6fff7;
   border-radius: 12px;
 `
 
@@ -147,7 +143,7 @@ export default function Manage({
 
   const [, stakingTokenPair] = usePair(tokenA, tokenB)
   const stakingInfo = useStakingInfo(stakingTokenPair)?.[0]
-
+  console.log('stakingInfo', stakingInfo, stakingTokenPair)
   // detect existing unstaked LP position to show add button if none found
   const userLiquidityUnstaked = useTokenBalance(account ?? undefined, stakingInfo?.stakedAmount?.token)
   const showAddLiquidityButton = Boolean(stakingInfo?.stakedAmount?.equalTo('0') && userLiquidityUnstaked?.equalTo('0'))
@@ -249,7 +245,7 @@ export default function Manage({
                 </RowBetween>
                 <RowBetween style={{ marginBottom: '1rem' }}>
                   <TYPE.body fontSize={14}>
-                    {t('farm.tokensAreRequiredTip', { currencyA: currencyA?.symbol, currencyB: currencyB?.symbol})}
+                    {t('farm.tokensAreRequiredTip', { currencyA: currencyA?.symbol, currencyB: currencyB?.symbol })}
                   </TYPE.body>
                 </RowBetween>
                 <ButtonPrimary
@@ -259,7 +255,7 @@ export default function Manage({
                   as={Link}
                   to={`/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
                 >
-                  {t('farm.addLptTip', { currencyA: currencyA?.symbol, currencyB: currencyB?.symbol})}
+                  {t('farm.addLptTip', { currencyA: currencyA?.symbol, currencyB: currencyB?.symbol })}
                 </ButtonPrimary>
               </AutoColumn>
             </CardSection>
@@ -272,6 +268,7 @@ export default function Manage({
               isOpen={showStakingModal}
               onDismiss={() => setShowStakingModal(false)}
               stakingInfo={stakingInfo}
+              stakingTokenPair={stakingTokenPair}
               userLiquidityUnstaked={userLiquidityUnstaked}
             />
             <UnstakingModal
@@ -310,7 +307,7 @@ export default function Manage({
               <AutoColumn gap="sm">
                 <RowBetween>
                   <div>
-                    <TYPE.black>{t('farm.yourUnclaimedToken', { token: 'SFG'})}</TYPE.black>
+                    <TYPE.black>{t('farm.yourUnclaimedToken', { token: 'SFG' })}</TYPE.black>
                   </div>
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
                     <ButtonEmpty
@@ -353,14 +350,17 @@ export default function Manage({
           <TYPE.main style={{ textAlign: 'center' }} fontSize={14}>
             <span role="img" aria-label="wizard-icon" style={{ marginRight: '8px' }}>
               ⭐️
-            </span>{t('farm.whenYouWithdrawTip2')}
+            </span>
+            {t('farm.whenYouWithdrawTip2')}
           </TYPE.main>
 
           {!showAddLiquidityButton && (
             <DataRow style={{ marginBottom: '1rem' }}>
               {stakingInfo && stakingInfo.active && (
                 <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
-                  {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? t('global.deposit') : t('farm.depositLpt', { token: 'LP' })}
+                  {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0))
+                    ? t('global.deposit')
+                    : t('farm.depositLpt', { token: 'LP' })}
                 </ButtonPrimary>
               )}
 

@@ -16,40 +16,49 @@ export const REWARDS_DURATION_DAYS = 60
 export const STAKING_REWARDS_INFO: {
   [chainId in ChainId]?: {
     tokens: [Token, Token]
+    pairAddress: string
     stakingRewardAddress: string
   }[]
 } = {
   [ChainId.MAINNET]: [
     {
       tokens: [BTCK, ETHK],
+      pairAddress: '0x203817bbbc49cdeb2076ff6edade9027510d5e7d',
       stakingRewardAddress: '0xA72d3AA3cA5eF2218FE8002dCf579693f1A1dbB0'
     },
     {
       tokens: [BTCK, USDT],
+      pairAddress: '0x3cca939888e796c104434bd120a3ba0d10f1834b',
       stakingRewardAddress: '0x54049C6B5D2DB953f38658dEcCDe25267Ba5d7c0'
     },
     {
       tokens: [ETHK, USDT],
+      pairAddress: '0x0c6cdba862b6c5a82f7297934043a059e0ef2c54',
       stakingRewardAddress: '0x318b2456A711c5f35E9eAa2B9EE5734A3635FE96'
     },
     {
       tokens: [OKB, USDT],
+      pairAddress: '0x87b881d5452efb81f8da411fef7dab4ef9c3d265',
       stakingRewardAddress: '0x87Aa8751054B5C7f194f1f16833BeA559BDbf564'
     },
     {
       tokens: [WETH[ChainId.MAINNET], USDT],
+      pairAddress: '0x44e8a805f8c06de4dcedf3cd169688a6a5fceaba',
       stakingRewardAddress: '0xeD8e63BDf56bBA1B63F1C969080a8092A675a9D7'
     },
     {
       tokens: [WETH[ChainId.MAINNET], BTCK],
+      pairAddress: '0xe521f345b3a9c55cb2110656e1aaf53cc6656a53',
       stakingRewardAddress: '0x538018abe67b21a663fD4FBc05ae7B4f713Ee9f2'
     },
     {
       tokens: [WETH[ChainId.MAINNET], ETHK],
+      pairAddress: '0x13b3e85f115a2938be5345c62e68bba5c858f71d',
       stakingRewardAddress: '0xAbdc07003406643b02a7ce54DA50968657C3238f'
     },
     {
       tokens: [WETH[ChainId.MAINNET], SFG],
+      pairAddress: '0xF6A14934ED35E1e2Bb448555BaaF37aDb91297Ed',
       stakingRewardAddress: '0x6ACe628FE1cc96C133c9f3Ab6015d6CE38a9af91'
     }
   ]
@@ -81,7 +90,7 @@ export interface StakingInfo {
     totalStakedAmount: TokenAmount,
     totalRewardRate: TokenAmount
   ) => TokenAmount
-  apy: TokenAmount,
+  apy: TokenAmount
   tvl: TokenAmount
 }
 
@@ -110,6 +119,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
   const uni = chainId ? UNI[chainId] : undefined
 
   const rewardsAddresses = useMemo(() => info.map(({ stakingRewardAddress }) => stakingRewardAddress), [info])
+  const pairAddresses = useMemo(() => info.map(({ pairAddress }) => pairAddress), [info])
 
   const accountArg = useMemo(() => [account ?? undefined], [account])
 
@@ -146,7 +156,6 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
       const apyState = apy[index]
       const tvlState = tvl[index]
 
-
       // these get fetched regardless of account
       const totalSupplyState = totalSupplies[index]
       const rewardRateState = rewardRates[index]
@@ -166,7 +175,8 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
         tvlState &&
         !tvlState.loading &&
         apyState &&
-        !apyState.loading
+        !apyState.loading &&
+        pairAddresses[index]
       ) {
         if (
           balanceState?.error ||
@@ -183,7 +193,11 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
 
         // get the LP token
         const tokens = info[index].tokens
-        const dummyPair = new Pair(new TokenAmount(tokens[0], '0'), new TokenAmount(tokens[1], '0'))
+        const dummyPair = new Pair(
+          new TokenAmount(tokens[0], '0'),
+          new TokenAmount(tokens[1], '0'),
+          pairAddresses[index]
+        )
 
         // check for account, if no account set to 0
 
@@ -241,6 +255,7 @@ export function useStakingInfo(pairToFilterBy?: Pair | null): StakingInfo[] {
     periodFinishes,
     rewardRates,
     rewardsAddresses,
+    pairAddresses,
     totalSupplies,
     uni,
     apy,
