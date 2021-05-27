@@ -94,6 +94,7 @@ function listUrlRowHTMLId(listUrl: string) {
 }
 
 const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
+  const { t } = useTranslation()
   const listsByUrl = useSelector<AppState, AppState['lists']['byUrl']>(state => state.lists.byUrl)
   const dispatch = useDispatch<AppDispatch>()
   const { current: list, pendingUpdate: pending } = listsByUrl[listUrl]
@@ -131,7 +132,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
       action: 'Start Remove List',
       label: listUrl
     })
-    if (window.prompt(`Please confirm you would like to remove this list by typing REMOVE`) === `REMOVE`) {
+    if (window.prompt(t('tokens.confirmRemoveListTip')) === `REMOVE`) {
       ReactGA.event({
         category: 'Lists',
         action: 'Confirm Remove List',
@@ -139,7 +140,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
       })
       dispatch(removeList(listUrl))
     }
-  }, [dispatch, listUrl])
+  }, [dispatch, listUrl, t])
 
   const handleEnableList = useCallback(() => {
     ReactGA.event({
@@ -164,7 +165,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
   return (
     <RowWrapper active={isActive} bgColor={listColor} key={listUrl} id={listUrlRowHTMLId(listUrl)}>
       {list.logoURI ? (
-        <ListLogo size="40px" style={{ marginRight: '1rem' }} logoURI={list.logoURI} address={list.address} alt={`${list.name} list logo`} />
+        <ListLogo size="40px" style={{ marginRight: '1rem' }} logoURI={list.logoURI} address={list.address} alt={t('tokens.thisListLogo', { name: list.name })}/>
       ) : (
         <div style={{ width: '24px', height: '24px', marginRight: '1rem' }} />
       )}
@@ -174,7 +175,7 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
         </Row>
         <RowFixed mt="4px">
           <StyledListUrlText active={isActive} mr="6px">
-            {list.tokens.length} tokens
+            {list.tokens.length} {t('global.tokens')}
           </StyledListUrlText>
           <StyledMenu ref={node as any}>
             <ButtonEmpty onClick={toggle} ref={setReferenceElement} padding="0">
@@ -184,12 +185,14 @@ const ListRow = memo(function ListRow({ listUrl }: { listUrl: string }) {
               <PopoverContainer show={true} ref={setPopperElement as any} style={styles.popper} {...attributes.popper}>
                 <div>{list && listVersionLabel(list.version)}</div>
                 <SeparatorDark />
-                <ExternalLink href={`https://tokenlists.org/token-list?url=${listUrl}`}>View list</ExternalLink>
-                <UnpaddedLinkStyledButton onClick={handleRemoveList} disabled={Object.keys(listsByUrl).length === 1}>
-                  Remove list
+                <ExternalLink href={`https://tokenlists.org/token-list?url=${listUrl}`}>{t('tokens.viewList')}</ExternalLink>
+                <UnpaddedLinkStyledButton onClick={handleRemoveList}
+                  // disabled={Object.keys(listsByUrl).length === 1}
+                >
+                  {t('tokens.removeList')}
                 </UnpaddedLinkStyledButton>
                 {pending && (
-                  <UnpaddedLinkStyledButton onClick={handleAcceptListUpdate}>Update list</UnpaddedLinkStyledButton>
+                  <UnpaddedLinkStyledButton onClick={handleAcceptListUpdate}>{t('tokens.updateList')}</UnpaddedLinkStyledButton>
                 )}
               </PopoverContainer>
             )}

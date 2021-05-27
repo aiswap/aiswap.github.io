@@ -149,7 +149,7 @@ export default function ClaimModal() {
               mt="1rem"
               onClick={onClaim}
             >
-              Claim SFG
+              {t('farm.claimToken', { token: 'SFG' })}
             </ButtonPrimary>
           </AutoColumn>
         </ContentWrapper>
@@ -172,7 +172,7 @@ export default function ClaimModal() {
           <AutoColumn gap="100px" justify={'center'}>
             <AutoColumn gap="12px" justify={'center'}>
               <TYPE.largeHeader fontWeight={600} color="black">
-                {claimConfirmed ? 'Claimed!' : 'Claiming'}
+                {claimConfirmed ? t('farm.claimedToken') : t('farm.claiming')}
               </TYPE.largeHeader>
               {!claimConfirmed && (
                 <Text fontSize={36} color={'#ff007a'} fontWeight={800}>

@@ -12,7 +12,7 @@ import { TYPE } from '../../theme'
 // import { ReactComponent as LogoSingleFarm } from '../../assets/svg/logo/single/farm.svg'
 import { RowBetween } from '../../components/Row'
 import { CardSection, DataCard } from '../../components/earn/styled'
-import { ButtonPrimary, ButtonEmpty } from '../../components/Button'
+import { ButtonPrimary, ButtonSecondary } from '../../components/Button'
 import StakingModal from '../../components/earn/StakingModal'
 import { useStakingInfo } from '../../state/stake/hooks'
 import UnstakingModal from '../../components/earn/UnstakingModal'
@@ -99,7 +99,7 @@ const StyledBottomCard = styled(DataCard)<{ dim: any }>`
   opacity: ${({ dim }) => (dim ? 0.4 : 1)};
   margin-top: -32px;
   padding: 0 1.25rem 1rem 1.25rem;
-  padding-top: 8px;
+  padding-top: 12px;
   z-index: 1;
   border: 1px solid #ced0d9;
 `
@@ -126,6 +126,11 @@ const DataRow = styled(RowBetween)`
     flex-direction: column;
     gap: 12px;
   `};
+`
+
+const StyledButtonSecondary = styled(ButtonSecondary)`
+  font-size: 14px;
+  padding: 6px 12px;
 `
 
 export default function Manage({
@@ -215,7 +220,7 @@ export default function Manage({
               <TYPE.body style={{ margin: 0 }}>{t('farm.totalDepositsValue')}</TYPE.body>
               <TYPE.body fontSize={24} fontWeight={500}>
                 {valueOfTotalStakedAmountInUSDC
-                  ? `$${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
+                  ? `$ ${valueOfTotalStakedAmountInUSDC.toFixed(0, { groupSeparator: ',' })}`
                   : `${valueOfTotalStakedAmountInWETH?.toSignificant(4, { groupSeparator: ',' }) ?? '-'} OKT`}
               </TYPE.body>
             </AutoColumn>
@@ -248,8 +253,7 @@ export default function Manage({
                   </TYPE.body>
                 </RowBetween>
                 <ButtonPrimary
-                  padding="8px"
-                  borderRadius="8px"
+                  padding="14px 24px"
                   width={'fit-content'}
                   as={Link}
                   to={`/add/${currencyA && currencyId(currencyA)}/${currencyB && currencyId(currencyB)}`}
@@ -309,14 +313,14 @@ export default function Manage({
                     <TYPE.black>{t('farm.yourUnclaimedToken', { token: 'SFG' })}</TYPE.black>
                   </div>
                   {stakingInfo?.earnedAmount && JSBI.notEqual(BIG_INT_ZERO, stakingInfo?.earnedAmount?.raw) && (
-                    <ButtonEmpty
+                    <StyledButtonSecondary
                       padding="8px"
                       borderRadius="8px"
                       width="fit-content"
                       onClick={() => setShowClaimRewardModal(true)}
                     >
                       {t('farm.claim')}
-                    </ButtonEmpty>
+                    </StyledButtonSecondary>
                   )}
                 </RowBetween>
                 <RowBetween style={{ alignItems: 'baseline' }}>
@@ -356,10 +360,8 @@ export default function Manage({
           {!showAddLiquidityButton && (
             <DataRow style={{ marginBottom: '1rem' }}>
               {stakingInfo && stakingInfo.active && (
-                <ButtonPrimary padding="8px" borderRadius="8px" width="160px" onClick={handleDepositClick}>
-                  {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0))
-                    ? t('global.deposit')
-                    : t('farm.depositLpt', { token: 'LP' })}
+                <ButtonPrimary padding="8px" width="180px" onClick={handleDepositClick}>
+                  {stakingInfo?.stakedAmount?.greaterThan(JSBI.BigInt(0)) ? t('global.deposit') : t('farm.depositLpt', { token: 'LP' })}
                 </ButtonPrimary>
               )}
 
@@ -367,8 +369,7 @@ export default function Manage({
                 <>
                   <ButtonPrimary
                     padding="8px"
-                    borderRadius="8px"
-                    width="160px"
+                    width="180px"
                     onClick={() => setShowUnstakingModal(true)}
                   >
                     {t('farm.withdraw')}

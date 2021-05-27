@@ -9,6 +9,7 @@ export const BodyWrapper = styled.div`
   background: #FFFFFF;
   border: 1px solid rgba(35, 40, 64, 0.07);
   border-radius: 16px;
+  z-index: 1;
 `
 
 /**

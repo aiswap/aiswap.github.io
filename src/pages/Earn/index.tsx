@@ -46,6 +46,22 @@ const StyledMain = styled.main`
   ${({ theme }) => theme.mediaWidth.upToMedium`
     padding: 0 24px 24px;
   `};
+
+  h2 {
+    color: #3939e6;
+    font-weight: bold;
+    font-size: 32px;
+    padding: 0 0 4px;
+  }
+  h2 em {
+    font-size: 16px;
+    font-style: normal;
+    padding-right: 4px;
+  }
+  h2 small {
+    font-size: 12px;
+    color: #606080;
+  }
 `
 
 const StyledLogoSingleFarm = styled(LogoSingleFarm)`
@@ -92,6 +108,29 @@ export default function Earn() {
   // toggle copy if rewards are inactive
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
 
+  let totalTvl = 0
+  stakingInfosWithBalance?.map(stakingInfo => {
+    totalTvl += +stakingInfo.tvl.toSignificant(4)
+  })
+
+  const formatNumber = (val: any): string => {
+    const list = (val + '').split('.')
+    const prefix = list[0].charAt(0) === '-' ? '-' : ''
+    let num = prefix ? list[0].slice(1) : list[0]
+    let result = ''
+
+    while (num.length > 3) {
+      result = `,${num.slice(-3)}${result}`
+      num = num.slice(0, num.length - 3)
+    }
+
+    if (num) {
+      result = num + result
+    }
+
+    return `${prefix}${result}${list[1] ? `.${list[1]}` : ''}`
+  }
+
   return (
     <Wrapper>
       <StyledHeader>
@@ -110,6 +149,9 @@ export default function Earn() {
           <OutlineCard className="text-center">{t('farm.noActivePools')}</OutlineCard>
         ) : (
           <>
+            <h2>
+              <em>$</em>{ formatNumber(totalTvl) } <small>{t('farm.totalTvl')}</small>
+            </h2>
             <StyledListHeader>
               <span>{t('farm.pool')}</span>
               <span className="d-none d-md-flex">{t('farm.tvl')}</span>

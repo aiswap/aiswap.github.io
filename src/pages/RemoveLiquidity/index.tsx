@@ -311,15 +311,7 @@ export default function RemoveLiquidity({
           setAttemptingTxn(false)
 
           addTransaction(response, {
-            summary:
-              'Remove ' +
-              parsedAmounts[Field.CURRENCY_A]?.toSignificant(3) +
-              ' ' +
-              currencyA?.symbol +
-              ' and ' +
-              parsedAmounts[Field.CURRENCY_B]?.toSignificant(3) +
-              ' ' +
-              currencyB?.symbol
+            summary: t('exchange.removeAB', { currencyA: `${parsedAmounts[Field.CURRENCY_A]?.toSignificant(3)} ${currencyA?.symbol}`, currencyB: `${parsedAmounts[Field.CURRENCY_B]?.toSignificant(3)} ${currencyB?.symbol}` })
           })
 
           setTxHash(response.hash)

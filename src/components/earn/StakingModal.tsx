@@ -33,7 +33,7 @@ const HypotheticalRewardRate = styled.div<{ dim: boolean }>`
 
 const ContentWrapper = styled(AutoColumn)`
   width: 100%;
-  padding: 1rem;
+  padding: 20px 24px;
 `
 
 interface StakingModalProps {
@@ -110,7 +110,7 @@ export default function StakingModal({
           )
           .then((response: TransactionResponse) => {
             addTransaction(response, {
-              summary: `Deposit liquidity`
+              summary: t('farm.depositLiquidity', { lpt: 'LP' })
             })
             setHash(response.hash)
           })
@@ -208,7 +208,7 @@ export default function StakingModal({
   return (
     <Modal isOpen={isOpen} onDismiss={wrappedOnDismiss} maxHeight={90}>
       {!attempting && !hash && (
-        <ContentWrapper gap="lg">
+        <ContentWrapper gap="md">
           <RowBetween>
             <TYPE.mediumHeader>{t('global.deposit')}</TYPE.mediumHeader>
             <CloseIcon onClick={wrappedOnDismiss} />
@@ -239,7 +239,7 @@ export default function StakingModal({
 
           <RowBetween>
             <ButtonConfirmed
-              mr="0.5rem"
+              mr="24px"
               onClick={onAttemptToApprove}
               confirmed={approval === ApprovalState.APPROVED || signatureData !== null}
               disabled={approval !== ApprovalState.NOT_APPROVED || signatureData !== null}
@@ -251,7 +251,7 @@ export default function StakingModal({
               error={!!error && !!parsedAmount}
               onClick={onStake}
             >
-              {error ?? 'Deposit'}
+              {error ?? t('farm.deposit')}
             </ButtonError>
           </RowBetween>
           <ProgressCircles steps={[approval === ApprovalState.APPROVED || signatureData !== null]} disabled={true} />
@@ -269,7 +269,7 @@ export default function StakingModal({
         <SubmittedView onDismiss={wrappedOnDismiss} hash={hash}>
           <AutoColumn gap="12px" justify={'center'}>
             <TYPE.largeHeader>{t('exchange.transactionSubmitted')}</TYPE.largeHeader>
-            <TYPE.body fontSize={20}>Deposited {parsedAmount?.toSignificant(4)} LP</TYPE.body>
+            <TYPE.body fontSize={20}>{t('farm.depositedAmountLpt', { amount: parsedAmount?.toSignificant(4), lpt: 'LP'})}</TYPE.body>
           </AutoColumn>
         </SubmittedView>
       )}

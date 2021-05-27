@@ -24,7 +24,7 @@ import Manage from './Earn/Manage'
 import RemoveV1Exchange from './MigrateV1/RemoveV1Exchange'
 // import HomeIndex from './Home'
 import Pool from './Pool'
-import Mining from './Farm/Mining'
+// import Mining from './Farm/Mining'
 import PoolFinder from './PoolFinder'
 import ComingSoon from './Other/ComingSoon'
 import RemoveLiquidity from './RemoveLiquidity'
@@ -137,7 +137,7 @@ export default function App() {
                 <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
                 <Route exact strict path="/find" component={PoolFinder} />
                 <Route exact strict path="/pool" component={Pool} />
-                <Route exact strict path="/mining" component={Mining} />
+                {/* <Route exact strict path="/mining" component={Mining} /> */}
                 <Route exact strict path="/SFG" component={Earn} />
                 {/* <Route exact strict path="/vote" component={Vote} /> */}
                 <Route exact strict path="/create" component={RedirectToAddLiquidity} />
