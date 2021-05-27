@@ -91,7 +91,6 @@ export default function Earn() {
 
   // toggle copy if rewards are inactive
   const stakingRewardsExist = Boolean(typeof chainId === 'number' && (STAKING_REWARDS_INFO[chainId]?.length ?? 0) > 0)
-  console.log('stakingRewardsExist', stakingRewardsExist)
 
   return (
     <Wrapper>

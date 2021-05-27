@@ -133,8 +133,6 @@ export default function Pool() {
     liquidityTokens
   )
 
-  console.log('v2PairsBalances', liquidityTokens)
-
   // fetch the reserves for all V2 pools in which the user has a balance
   const liquidityTokensWithBalances = useMemo(
     () =>
@@ -165,7 +163,6 @@ export default function Pool() {
         .filter(stakingPair => stakingPair?.liquidityToken.address === v2Pair.liquidityToken.address).length === 0
     )
   })
-  console.log('v2PairsWithoutStakedAmount', trackedTokenPairs)
   return (
     <LayoutCenter>
       <SwapPoolTabs active={'pool'} />
