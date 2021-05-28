@@ -195,6 +195,23 @@ const StyledContentHeader = styled.div`
 
 const StyledExtra = styled.div`
   width: 108px;
+  order: 12;
+  margin-right: 12px;
+  font-size: 12px;
+  vertical-align: -1px;
+  color: inherit;
+  font-style: normal;
+  line-height: 0;
+  text-align: center;
+  text-transform: none;
+  vertical-align: -.125em;
+  text-rendering: optimizeLegibility;
+  position: absolute;
+  top: 4.5px;
+  left: 16px;
+  display: inline-block;
+  padding: 12px 0 0;
+  font-size: 12px;
 `
 
 export default function PoolCard({ stakingInfo }: { stakingInfo: StakingInfo }) {

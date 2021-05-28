@@ -35,7 +35,7 @@ export default function Logo({ srcs, alt, address, ...rest }: LogoProps) {
           const eTarget = e.target as any
 
           // Backup local dir
-          if (eTarget.src && eTarget.src !== localSrc) {
+          if (eTarget.src && eTarget.src !== localSrc && !showLocalIcon) {
             showLocalIcon = true
             // localStorage.setItem('aaa', JSON.stringify({
             //   __EXPIREDATE__: 1,
@@ -45,14 +45,18 @@ export default function Logo({ srcs, alt, address, ...rest }: LogoProps) {
             // }))
             // # 2
             eTarget.src = localSrc
+          } else {
+            eTarget.src = '/images/unknow_token.svg'
           }
           refresh(i => {
             if (i > MAX_REFRESH && !BAD_SRCS[src]) {
               BAD_SRCS[src] = true
-              showLocalIcon = false
+              // showLocalIcon = false
+              eTarget.src = '/images/unknow_token.svg'
             }
             return i + 1
           })
+        console.log('refresh', eTarget.src  )
         }}
       />
     )

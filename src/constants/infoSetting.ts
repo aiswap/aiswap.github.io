@@ -8,4 +8,4 @@ export const COMMUNITY_MEDIUM = "https://medium.com/@aiswap"
 export const GetInfoUrl = (
   {type, address}:
   {type: string, address: string | undefined}
-): string => `https://info.uniswap.org/${type}/${String(address || '').toLocaleLowerCase()}`
+): string => `https://info.aiswap.io/${type}/${String(address || '').toLocaleLowerCase()}`
