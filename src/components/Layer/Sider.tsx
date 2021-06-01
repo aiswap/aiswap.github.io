@@ -13,6 +13,7 @@ import { ReactComponent as IconHome } from '../../assets/svg/base/home.svg'
 import { ReactComponent as IconTrade } from '../../assets/svg/base/trade.svg'
 import { ReactComponent as IconFarm } from '../../assets/svg/base/farm.svg'
 import { ReactComponent as IconIDO } from '../../assets/svg/base/ido.svg'
+import { ReactComponent as IconAnalytics } from '../../assets/svg/base/analytics.svg'
 import { ReactComponent as IconMore } from '../../assets/svg/base/more.svg'
 import { Drawer } from 'antd';
 
@@ -148,7 +149,7 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
     console.log('openKeys', openKeys, history.location.pathname)
 
     const WrapperMenuDom = () => {
-      const menus: { key?: string, icon: any, to: string, text: string, childs?: { key?: string, keys?: string[], to?: string, href?: string, text: string }[] }[] = [
+      const menus: { key?: string, icon: any, href?: string, to?: string, text: string, childs?: { key?: string, keys?: string[], to?: string, href?: string, text: string }[] }[] = [
         { icon: IconHome, to: '/home', text: t('sidenav.home') },
         { key: 'exchange', icon: IconTrade, to: '', text: t('sidenav.exchange'),
           childs: [
@@ -162,13 +163,14 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
           ]
         },
         { icon: IconIDO, to: '/expect', text: t('sidenav.ido') },
+        { key: 'analytics', icon: IconAnalytics, href: 'https://info.aiswap.io/', text: t('sidenav.analytics') },
         { key: 'more', icon: IconMore, to: '', text: t('sidenav.more'),
           childs: [
             // { key: 'vote', to: '/expect', text: t('sidenav.vote') },
             // { key: 'chart', to: '/expect', text: t('sidenav.chart') },
             // { key: 'announcements', to: '/expect', text: t('sidenav.announcements') },
             // { key: 'document', to: '/expect', text: t('sidenav.document') },
-            { key: 'wiki', href: 'https://docs.aiswap.io/', text: t('sidenav.wiki') },
+            { key: 'docs', href: 'https://docs.aiswap.io/', text: t('sidenav.wiki') },
             { key: 'audit', href: '/images/AiSwap_audit.pdf', text: t('global.auditReport') },
             // { key: 'github', href: 'https://github.com/aiswap/aiswap.github.io', text: t('sidenav.github') }
         ] }
@@ -231,7 +233,11 @@ export default function LayerSide({ children }: { children: React.ReactNode }) {
                   )
                   : (
                     <Menu.Item key={item.key || item.to} icon={<item.icon className="mr-2" />}>
-                      <NavLink to={item.to}>{item.text}</NavLink>
+                      {
+                        item.to
+                          ? (<NavLink to={item.to}>{item.text}</NavLink>)
+                          : item.href && (<ExternalLink href={item.href}>{item.text}</ExternalLink>)
+                      }
                     </Menu.Item>
                   )
               )
