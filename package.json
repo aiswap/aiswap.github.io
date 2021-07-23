@@ -54,6 +54,7 @@
     "ethers": "^5.0.7",
     "i18next": "^15.0.9",
     "i18next-browser-languagedetector": "^3.0.1",
+    "i18next-http-backend": "^1.2.1",
     "inter-ui": "^3.13.1",
     "jazzicon": "^1.5.0",
     "lodash.flatmap": "^4.5.0",
@@ -94,8 +95,7 @@
     "workbox-expiration": "^6.1.0",
     "workbox-precaching": "^6.1.0",
     "workbox-routing": "^6.1.0",
-    "workbox-strategies": "^6.1.0",
-    "i18next-http-backend": "^1.2.1"
+    "workbox-strategies": "^6.1.0"
   },
   "resolutions": {
     "@walletconnect/web3-provider": "1.1.1-alpha.0"

@@ -93,6 +93,8 @@
       "walletConnect": "连接到 Trust、Rainbow 等更多钱包...",
       "walletLink": "在移动设备上使用 Coinbase 钱包 App",
       "metamask": "易于使用的浏览器扩展。",
+      "coinhub": "连接到 Coinhub",
+      "okex_wallet": "连接到 OKEx 钱包",
       "coinbaseLink": "在 Coinbase 钱包 App 内打开",
       "fortmatic": "使用 Fortmatic 托管钱包登录",
       "portis": "使用 Portis 托管钱包登录"
@@ -115,7 +117,7 @@
     "connectAppropriateOKExNetwork": "请连接到合适的 OKEx 网络",
     "newUser_": "新用户？",
     "learnAboutWallets": "了解有关钱包的更多信息",
-    "installWallet": "装配 {{ walletName }}",
+    "installWallet": "安装 {{ walletName }}",
     "viewOKLink": "在 OKLink 浏览器查看",
     "yourTransactionHistory": "您的交易记录将出现在这里",
     "viewTransactionOnScan": "在 {{ scan }} 中查看交易",

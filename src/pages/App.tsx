@@ -89,8 +89,10 @@ function TopLevelModals() {
 }
 
 export default function App() {
-  if (window.ethereum) {
-    window.ethereum.request({
+  const etheremuTarget = window.ethereum || window.okexchain
+
+  etheremuTarget
+    && etheremuTarget.request({
       method: 'wallet_addEthereumChain',
       params: [
         {
@@ -107,7 +109,6 @@ export default function App() {
         }
       ]
     })
-  }
 
   return (
     <Suspense fallback={null}>

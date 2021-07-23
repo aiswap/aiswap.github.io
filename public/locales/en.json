@@ -93,6 +93,8 @@
       "walletConnect": "Connect to Trust Wallet, Rainbow Wallet and more...",
       "walletLink": "Use Coinbase Wallet app on mobile device",
       "metamask": "Easy-to-use browser extension.",
+      "coinhub": "Connect to Coinhub.",
+      "okex_wallet": "Connect to OKEx Wallet.",
       "coinbaseLink": "Open in Coinbase Wallet app.",
       "fortmatic": "Login using Fortmatic hosted wallet",
       "portis": "Login using Portis hosted wallet"

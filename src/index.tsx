@@ -22,8 +22,9 @@ import getLibrary from './utils/getLibrary'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
-if (!!window.ethereum) {
-  window.ethereum.autoRefreshOnNetworkChange = false
+const ethereumTarget = window.ethereum || window.okexchain
+if (!!ethereumTarget) {
+  ethereumTarget.autoRefreshOnNetworkChange = false
 }
 
 const GOOGLE_ANALYTICS_ID: string | undefined = process.env.REACT_APP_GOOGLE_ANALYTICS_ID

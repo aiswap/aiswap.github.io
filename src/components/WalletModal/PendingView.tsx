@@ -77,6 +77,7 @@ export default function PendingView({
 }) {
   const { t } = useTranslation()
   const isMetamask = window?.ethereum?.isMetaMask
+  const isOKExWallet = window?.okexchain?.isOKExWallet
 
   return (
     <PendingSection>
@@ -106,10 +107,9 @@ export default function PendingView({
         const option = SUPPORTED_WALLETS[key]
         if (option.connector === connector) {
           if (option.connector === injected) {
-            if (isMetamask && option.name !== 'MetaMask') {
-              return null
-            }
-            if (!isMetamask && option.name === 'MetaMask') {
+            if ((isMetamask && option.name !== 'MetaMask')
+                || (!isMetamask && option.name === 'MetaMask')
+                || (!isOKExWallet)) {
               return null
             }
           }

@@ -5,8 +5,8 @@ import React, { useEffect, useState } from 'react'
 import { isMobile } from 'react-device-detect'
 import ReactGA from 'react-ga'
 import styled from 'styled-components'
-import MetamaskIcon from '../../assets/images/metamask.png'
-import { fortmatic, injected, portis } from '../../connectors'
+// import MetamaskIcon from '../../assets/images/metamask.png'
+import { fortmatic, injected, okexwallet, portis } from '../../connectors'
 import { OVERLAY_READY } from '../../connectors/Fortmatic'
 import { SUPPORTED_WALLETS } from '../../constants'
 import usePrevious from '../../hooks/usePrevious'
@@ -200,6 +200,7 @@ export default function WalletModal({
     let name = ''
     Object.keys(SUPPORTED_WALLETS).map(key => {
       if (connector === SUPPORTED_WALLETS[key].connector) {
+        console.log(SUPPORTED_WALLETS[key].name, key)
         return (name = SUPPORTED_WALLETS[key].name)
       }
       return true
@@ -238,87 +239,89 @@ export default function WalletModal({
   // get wallets user can switch too, depending on device/browser
   function getOptions() {
     const isMetamask = window.ethereum && window.ethereum.isMetaMask
-    return Object.keys(SUPPORTED_WALLETS).map(key => {
-      const option = SUPPORTED_WALLETS[key]
-      // check for mobile options
-      if (isMobile) {
-        //disable portis on mobile for now
-        if (option.connector === portis) {
+
+    // const isOKExWallet = window.okexchain && window.okexchain.isOKExWallet
+    return Object.keys(SUPPORTED_WALLETS)
+      .filter(key => SUPPORTED_WALLETS[key].show)
+      .map(key => {
+        const option = SUPPORTED_WALLETS[key]
+        // check for mobile options
+        if (isMobile) {
+          //disable portis on mobile for now
+          if (option.connector === portis) {
+            return null
+          }
+
+          if (!window.web3 && !window.ethereum && option.mobile) {
+            return (
+              <StyledOption
+                onClick={() => {
+                  option.connector !== connector && !option.href && tryActivation(option.connector)
+                }}
+                id={`connect-${key}`}
+                key={key}
+                active={option.connector && option.connector === connector}
+                color={option.color}
+                link={option.href}
+                header={option.name}
+                subheader={null}
+                icon={require('../../assets/svg/wallet/' + option.iconName)}
+              />
+            )
+          }
           return null
         }
 
-        if (!window.web3 && !window.ethereum && option.mobile) {
-          return (
+        // overwrite injected when needed
+        if (option.connector === injected || option.connector === okexwallet) {
+          // don't show injected if there's no injected provider
+
+          if ((!(window.ethereum && window.ethereum.isMetaMask) && option.name === 'MetaMask')
+            || (!(window.okexchain && window.okexchain.isOKExWallet) && option.name === 'OKEx Wallet')) {
+              return (
+                <StyledOption
+                  id={`connect-${key}`}
+                  key={key}
+                  color={'#151526'}
+                  header={t('wallet.installWallet', { walletName: option.name })}
+                  subheader={null}
+                  link={option.installLink}
+                  icon={require('../../assets/svg/wallet/' + option.iconName)}
+                />
+              )
+          }
+          // don't return metamask if injected provider isn't metamask
+          else if (option.name === 'MetaMask' && !isMetamask) {
+            return null
+          }
+          // likewise for generic
+          else if (option.name === 'Injected' && isMetamask) {
+            return null
+          }
+        }
+
+        // return rest of options
+        return (
+          !isMobile &&
+          !option.mobileOnly && (
             <StyledOption
-              onClick={() => {
-                option.connector !== connector && !option.href && tryActivation(option.connector)
-              }}
               id={`connect-${key}`}
+              onClick={() => {
+                option.connector === connector
+                  ? setWalletView(WALLET_VIEWS.ACCOUNT)
+                  : !option.href && tryActivation(option.connector)
+              }}
               key={key}
-              active={option.connector && option.connector === connector}
+              active={option.connector === connector}
               color={option.color}
               link={option.href}
               header={option.name}
-              subheader={null}
+              subheader={null} //use option.descriptio to bring back multi-line
               icon={require('../../assets/svg/wallet/' + option.iconName)}
             />
           )
-        }
-        return null
-      }
-
-      // overwrite injected when needed
-      if (option.connector === injected) {
-        // don't show injected if there's no injected provider
-        if (!(window.web3 || window.ethereum)) {
-          if (option.name === 'MetaMask') {
-            return (
-              <StyledOption
-                id={`connect-${key}`}
-                key={key}
-                color={'#151526'}
-                header={t('wallet.installWallet', { walletName: 'Metamask' })}
-                subheader={null}
-                link={'https://metamask.io/'}
-                icon={MetamaskIcon}
-              />
-            )
-          } else {
-            return null //dont want to return install twice
-          }
-        }
-        // don't return metamask if injected provider isn't metamask
-        else if (option.name === 'MetaMask' && !isMetamask) {
-          return null
-        }
-        // likewise for generic
-        else if (option.name === 'Injected' && isMetamask) {
-          return null
-        }
-      }
-
-      // return rest of options
-      return (
-        !isMobile &&
-        !option.mobileOnly && (
-          <StyledOption
-            id={`connect-${key}`}
-            onClick={() => {
-              option.connector === connector
-                ? setWalletView(WALLET_VIEWS.ACCOUNT)
-                : !option.href && tryActivation(option.connector)
-            }}
-            key={key}
-            active={option.connector === connector}
-            color={option.color}
-            link={option.href}
-            header={option.name}
-            subheader={null} //use option.descriptio to bring back multi-line
-            icon={require('../../assets/svg/wallet/' + option.iconName)}
-          />
-        )
-      )
-    })
+        )}
+    )
   }
 
   function getModalContent() {

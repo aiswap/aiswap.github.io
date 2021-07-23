@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
+import { fortmatic, injected, okexwallet, portis, walletconnect, walletlink } from '../connectors'
 import { TokenList as TokenListOrgin } from '@uniswap/token-lists'
 
 export interface TokenList extends TokenListOrgin {
@@ -101,12 +101,14 @@ export interface WalletInfo {
   name: string
   iconName: string
   description: string
-  descI18n?: string
+  descI18n: string
   href: string | null
   color: string
   primary?: true
   mobile?: true
-  mobileOnly?: true
+  mobileOnly?: true,
+  show: boolean,
+  installLink?: string
 }
 
 export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
@@ -118,7 +120,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     descI18n: 'wallet.desc.injected',
     href: null,
     color: '#010101',
-    primary: true
+    primary: true,
+    show: false
   },
   METAMASK: {
     connector: injected,
@@ -126,8 +129,41 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     iconName: 'metamask.svg',
     description: '',
     descI18n: 'wallet.desc.metamask',
+    installLink: 'https://metamask.io/',
     href: null,
-    color: '#E8831D'
+    color: '#E8831D',
+    // show: !(window.ethereum && window.ethereum.isMetaMask)
+    show: true
+  },
+  // COINHUB: {
+  //   connector: coinhub,
+  //   name: 'Coinhub',
+  //   iconName: 'coinhub.svg',
+  //   description: '',
+  //   descI18n: 'wallet.desc.coinhub',
+  //   href: null,
+  //   color: '#22a079'
+  // },
+  OKEX_WALLET: {
+    connector: okexwallet,
+    name: 'OKEx Wallet',
+    iconName: 'okex_wallet.svg',
+    description: '',
+    descI18n: 'wallet.desc.okex_wallet',
+    installLink: 'https://www.ouyi.cc/wallet',
+    href: null,
+    color: '#3099f2',
+    // show: !(window.okexchain && window.okexchain.isOKExWallet)
+    show: true
+
+    // name: 'OKEx Wallet',
+    // iconName: 'okex_wallet.svg',
+    // description: '',
+    // descI18n: 'wallet.desc.okex_wallet',
+    // href: null,
+    // color: '#3099f2',
+    // mobile: true,
+    // mobileOnly: true
   },
   WALLET_CONNECT: {
     connector: walletconnect,
@@ -137,7 +173,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     descI18n: 'wallet.desc.walletConnect',
     href: null,
     color: '#4196FC',
-    mobile: true
+    mobile: true,
+    show: true
   },
   WALLET_LINK: {
     connector: walletlink,
@@ -146,7 +183,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     description: '',
     descI18n: 'wallet.desc.walletConnect',
     href: null,
-    color: '#315CF5'
+    color: '#315CF5',
+    show: true
   },
   COINBASE_LINK: {
     name: 'Open in Coinbase Wallet',
@@ -156,7 +194,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     href: 'https://go.cb-w.com/mtUDhEZPy1',
     color: '#315CF5',
     mobile: true,
-    mobileOnly: true
+    mobileOnly: true,
+    show: true
   },
   FORTMATIC: {
     connector: fortmatic,
@@ -166,7 +205,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     descI18n: 'wallet.desc.fortmatic',
     href: null,
     color: '#6748FF',
-    mobile: true
+    mobile: true,
+    show: true
   },
   Portis: {
     connector: portis,
@@ -176,7 +216,8 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     descI18n: 'wallet.desc.portis',
     href: null,
     color: '#4A6C9B',
-    mobile: true
+    mobile: true,
+    show: true
   }
 }
 

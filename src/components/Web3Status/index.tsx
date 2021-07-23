@@ -9,7 +9,7 @@ import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
 import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
 import PortisIcon from '../../assets/images/portisIcon.png'
 import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
-import { fortmatic, injected, portis, walletconnect, walletlink } from '../../connectors'
+import { fortmatic, injected, okexwallet, portis, walletconnect, walletlink } from '../../connectors'
 import { NetworkContextName } from '../../constants'
 import useENSName from '../../hooks/useENSName'
 import { useHasSocks } from '../../hooks/useSocksBalance'
@@ -172,6 +172,18 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
   if (connector === injected) {
     // return <Identicon />
     return <StyledConnectedIcon></StyledConnectedIcon>
+  // } else if (connector === coinhub) {
+  //   return (
+  //     <IconWrapper size={16}>
+  //       <img src={WalletConnectIcon} alt={''} />
+  //     </IconWrapper>
+  //   )
+  } else if (connector === okexwallet) {
+    return (
+      <IconWrapper size={16}>
+        <img src={WalletConnectIcon} alt={''} />
+      </IconWrapper>
+    )
   } else if (connector === walletconnect) {
     return (
       <IconWrapper size={16}>
