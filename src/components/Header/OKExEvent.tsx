@@ -63,7 +63,7 @@ export default function OKExEvent() {
     <StyledIcon src={IconGift} />
     <StyleBox>
       <span className="py-1 mr-3">{t('global.OKExEvent1')}<b>{t('global.OKExEvent2')}</b>{t('global.OKExEvent3')}</span>
-      <StyledSubmit href="https://www.cherryswap.net/pools/" target="_blank">{t('global.OKExEventSubmit')} <img className="ml-1" src={ArrowForwardRight} alt="" /></StyledSubmit>
+      <StyledSubmit href="https://www.ouyi.art/join/1901066" target="_blank">{t('global.OKExEventSubmit')} <img className="ml-1" src={ArrowForwardRight} alt="" /></StyledSubmit>
     </StyleBox>
     <StyledClose className="ml-auto" size={12} onClick={toggleURLWarning} />
   </EventAlert>
