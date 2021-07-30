@@ -14,6 +14,7 @@ import {
   updateUserSlippageTolerance,
   updateUserDeadline,
   toggleURLWarning,
+  toggleOKExEvent,
   updateUserSingleHopOnly
 } from './actions'
 
@@ -51,6 +52,7 @@ export interface UserState {
 
   timestamp: number
   URLWarningVisible: boolean
+  OKExEventVisible: boolean
 }
 
 function pairKey(token0Address: string, token1Address: string) {
@@ -67,7 +69,8 @@ export const initialState: UserState = {
   tokens: {},
   pairs: {},
   timestamp: currentTimestamp(),
-  URLWarningVisible: true
+  URLWarningVisible: true,
+  OKExEventVisible: true
 }
 
 export default createReducer(initialState, builder =>
@@ -147,5 +150,8 @@ export default createReducer(initialState, builder =>
     })
     .addCase(toggleURLWarning, state => {
       state.URLWarningVisible = !state.URLWarningVisible
+    })
+    .addCase(toggleOKExEvent, state => {
+      state.OKExEventVisible = !state.OKExEventVisible
     })
 )

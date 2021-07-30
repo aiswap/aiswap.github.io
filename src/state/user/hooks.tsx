@@ -19,7 +19,8 @@ import {
   updateUserExpertMode,
   updateUserSlippageTolerance,
   toggleURLWarning,
-  updateUserSingleHopOnly
+  updateUserSingleHopOnly,
+  toggleOKExEvent
 } from './actions'
 
 function serializeToken(token: Token): SerializedToken {
@@ -180,6 +181,15 @@ export function useURLWarningVisible(): boolean {
 export function useURLWarningToggle(): () => void {
   const dispatch = useDispatch()
   return useCallback(() => dispatch(toggleURLWarning()), [dispatch])
+}
+
+export function useOKExEventVisible(): boolean {
+  return useSelector((state: AppState) => state.user.OKExEventVisible)
+}
+
+export function useOKExEventToggle(): () => void {
+  const dispatch = useDispatch()
+  return useCallback(() => dispatch(toggleOKExEvent()), [dispatch])
 }
 
 /**
