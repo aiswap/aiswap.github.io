@@ -23,7 +23,7 @@ const ETHERSCANS: { [chainId in ChainId]: { name: string, domain: string } } = {
   //   domain: 'etherscan.io'
   // },
   66: {
-    name: 'OKExChain',
+    name: 'OEC',
     domain: 'www.oklink.com/okexchain'
   }
 }

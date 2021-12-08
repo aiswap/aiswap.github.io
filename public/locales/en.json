@@ -180,9 +180,9 @@
   },
   "about": {
     "title": "Always be Innovative",
-    "subtitle": "The AMM and yield farm on OKExChain",
+    "subtitle": "The AMM and yield farm on OEC",
     "featuresSwap": "Exchange",
-    "featuresSwapSub": "To be the #1 swap platform on OKExChain and the home of new, innovative liquidity providing mechanics",
+    "featuresSwapSub": "To be the #1 swap platform on OEC and the home of new, innovative liquidity providing mechanics",
     "featuresTrademin": "Transaction mining",
     "featuresTrademinSub": "Trading in the designated exchange pool of AIswap can get governance token SFG rewards",
     "featuresLiquidity": "Liquidity mining",
@@ -191,7 +191,7 @@
     "featuresIdoTip": "Initial DeFi Offerings",
     "featuresIdoSub": "Participate in the subscription of early projects and participate in discount auctions in a brand new way!",
     "featuresDestruction": "Repurchase and destruction",
-    "featuresDestructionSub": "Create the largest asset exchange platform in the OKExChain ecological chain",
+    "featuresDestructionSub": "Create the largest asset exchange platform in the OEC ecological chain",
     "community": "Join our community"
   },
   "sidenav": {

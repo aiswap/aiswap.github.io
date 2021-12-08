@@ -96,7 +96,7 @@ export default function App() {
       params: [
         {
           chainId: `0x${(66).toString(16)}`,
-          chainName: 'OKExChain',
+          chainName: 'OEC',
           nativeCurrency: {
             name: 'OKT',
             symbol: 'OKT',
