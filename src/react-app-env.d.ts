@@ -15,7 +15,14 @@ interface Window {
     removeListener?: (...args: any[]) => void
     autoRefreshOnNetworkChange?: boolean
     request: (option: any) => void
-  }
+  },
+  okexchain?: {
+    isOKExWallet?: true
+    on?: (...args: any[]) => void
+    removeListener?: (...args: any[]) => void
+    autoRefreshOnNetworkChange?: boolean
+    request: (option: any) => void
+  },
   web3?: {}
 }
 

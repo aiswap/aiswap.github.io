@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next'
 
 import { SUPPORTED_WALLETS } from '../../constants'
 import { getEtherscanLink } from '../../utils'
-import { injected, walletconnect, walletlink, fortmatic, portis } from '../../connectors'
+import { injected, metaXInjected, walletconnect, walletlink, fortmatic, portis } from '../../connectors'
 import CoinbaseWalletIcon from '../../assets/images/coinbaseWalletIcon.svg'
 import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
 import FortmaticIcon from '../../assets/images/fortmaticIcon.png'
@@ -228,8 +228,8 @@ export default function AccountDetails({
   const dispatch = useDispatch<AppDispatch>()
 
   function formatConnectorName() {
-    const { ethereum } = window
-    const isMetaMask = !!(ethereum && ethereum.isMetaMask)
+    const isMetaMask = !!(window.ethereum && window.ethereum.isMetaMask)
+
     const name = Object.keys(SUPPORTED_WALLETS)
       .filter(
         k =>
@@ -240,7 +240,7 @@ export default function AccountDetails({
   }
 
   function getStatusIcon() {
-    if (connector === injected) {
+    if (connector === injected || connector === metaXInjected) {
       return (
         <IconWrapper size={16}>
           <Identicon />
@@ -300,7 +300,7 @@ export default function AccountDetails({
               <AccountGroupingRow>
                 {formatConnectorName()}
                 <div>
-                  {connector !== injected && connector !== walletlink && (
+                  {connector !== injected && connector !== metaXInjected && connector !== walletlink && (
                     <WalletAction
                       style={{ fontSize: '.825rem', fontWeight: 400, marginRight: '8px' }}
                       onClick={() => {

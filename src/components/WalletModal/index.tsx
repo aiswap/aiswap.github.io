@@ -238,6 +238,8 @@ export default function WalletModal({
   // get wallets user can switch too, depending on device/browser
   function getOptions() {
     const isMetamask = window.ethereum && window.ethereum.isMetaMask
+    const isMetaX = window.okexchain && window.okexchain.isOKExWallet
+
     return Object.keys(SUPPORTED_WALLETS).map(key => {
       const option = SUPPORTED_WALLETS[key]
       // check for mobile options
@@ -247,7 +249,7 @@ export default function WalletModal({
           return null
         }
 
-        if (!window.web3 && !window.ethereum && option.mobile) {
+        if (!(window.okexchain || window.ethereum) && option.mobile) {
           return (
             <StyledOption
               onClick={() => {
@@ -270,7 +272,7 @@ export default function WalletModal({
       // overwrite injected when needed
       if (option.connector === injected) {
         // don't show injected if there's no injected provider
-        if (!(window.web3 || window.ethereum)) {
+        if (!(window.okexchain || window.ethereum)) {
           if (option.name === 'MetaMask') {
             return (
               <StyledOption
@@ -289,6 +291,12 @@ export default function WalletModal({
         }
         // don't return metamask if injected provider isn't metamask
         else if (option.name === 'MetaMask' && !isMetamask) {
+          return null
+        }
+        else if (option.name === 'MetaX' && !isMetaX) {
+          return null
+        }
+        else if (option.name === 'Injected' && isMetaX) {
           return null
         }
         // likewise for generic

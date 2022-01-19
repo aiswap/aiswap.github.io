@@ -77,6 +77,7 @@ export default function PendingView({
 }) {
   const { t } = useTranslation()
   const isMetamask = window?.ethereum?.isMetaMask
+  const isMetaX = window?.okexchain?.isOKExWallet
 
   return (
     <PendingSection>
@@ -110,6 +111,12 @@ export default function PendingView({
               return null
             }
             if (!isMetamask && option.name === 'MetaMask') {
+              return null
+            }
+            if (isMetaX && option.name !== 'MetaX') {
+              return null
+            }
+            if (!isMetaX && option.name === 'MetaX') {
               return null
             }
           }

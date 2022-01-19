@@ -90,8 +90,10 @@ function TopLevelModals() {
 }
 
 export default function App() {
-  if (window.ethereum) {
-    window.ethereum.request({
+  const ethereum = window.ethereum || window.okexchain
+
+  if (ethereum) {
+    ethereum.request({
       method: 'wallet_addEthereumChain',
       params: [
         {
@@ -104,7 +106,7 @@ export default function App() {
           },
           // rpcUrls: ['https://rpc.backbonecabal.net/eth/${projectId}'],
           rpcUrls: ['https://exchainrpc.okex.org'],
-          blockExplorerUrls: ['https://www.oklink.com/okexchain']
+          blockExplorerUrls: ['https://www.oklink.com/oec']
         }
       ]
     })

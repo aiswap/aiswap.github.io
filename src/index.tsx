@@ -22,15 +22,22 @@ import getLibrary from './utils/getLibrary'
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName)
 
-if (!!window.ethereum) {
+if (window.ethereum) {
   window.ethereum.autoRefreshOnNetworkChange = false
+} else if (window.okexchain) {
+  window.okexchain.autoRefreshOnNetworkChange = false
 }
 
 const GOOGLE_ANALYTICS_ID: string | undefined = process.env.REACT_APP_GOOGLE_ANALYTICS_ID
 if (typeof GOOGLE_ANALYTICS_ID === 'string') {
   ReactGA.initialize(GOOGLE_ANALYTICS_ID)
   ReactGA.set({
-    customBrowserType: !isMobile ? 'desktop' : 'web3' in window || 'ethereum' in window ? 'mobileWeb3' : 'mobileRegular'
+    customBrowserType:
+      !isMobile
+        ? 'desktop'
+        : 'okexchain' in window || 'ethereum' in window
+          ? 'mobileWeb3'
+          : 'mobileRegular'
   })
 } else {
   ReactGA.initialize('test', { testMode: true, debug: true })

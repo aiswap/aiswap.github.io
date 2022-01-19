@@ -1,5 +1,6 @@
 import { Web3Provider } from '@ethersproject/providers'
 import { InjectedConnector } from '@web3-react/injected-connector'
+import { InjectedConnector as OkexchainInjectedConnector } from 'web3-react-okexchain-connector'
 import { WalletConnectConnector } from '@web3-react/walletconnect-connector'
 import { WalletLinkConnector } from '@web3-react/walletlink-connector'
 import { PortisConnector } from '@web3-react/portis-connector'
@@ -27,6 +28,10 @@ export function getNetworkLibrary(): Web3Provider {
 }
 
 export const injected = new InjectedConnector({
+  supportedChainIds: [66]
+})
+
+export const metaXInjected = new OkexchainInjectedConnector({
   supportedChainIds: [66]
 })
 

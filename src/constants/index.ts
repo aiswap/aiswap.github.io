@@ -1,7 +1,7 @@
 import { ChainId, JSBI, Percent, Token, WETH } from '@uniswap/sdk'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-import { fortmatic, injected, portis, walletconnect, walletlink } from '../connectors'
+import { fortmatic, injected, metaXInjected, portis, walletconnect, walletlink } from '../connectors'
 import { TokenList as TokenListOrgin } from '@uniswap/token-lists'
 
 export interface TokenList extends TokenListOrgin {
@@ -128,6 +128,16 @@ export const SUPPORTED_WALLETS: { [key: string]: WalletInfo } = {
     descI18n: 'wallet.desc.metamask',
     href: null,
     color: '#E8831D'
+  },
+  METAX: {
+    connector: metaXInjected,
+    name: 'MetaX',
+    iconName: 'metax.svg',
+    description: '',
+    descI18n: '',
+    href: null,
+    color: '#000',
+    mobile: true
   },
   WALLET_CONNECT: {
     connector: walletconnect,
